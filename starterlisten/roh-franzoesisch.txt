@@ -1,0 +1,40 @@
+la famille | die Familie | Ma famille habite à Genève. | Meine Familie wohnt in Genf. | Toute la famille mange ensemble. | Die ganze Familie isst zusammen. | famij
+la mère | die Mutter | Ma mère travaille à Lausanne. | Meine Mutter arbeitet in Lausanne. | La mère prépare le dîner. | Die Mutter bereitet das Abendessen zu. | mɛʁ
+le père | der Vater | Mon père aime la musique. | Mein Vater mag Musik. | Le père joue avec son fils. | Der Vater spielt mit seinem Sohn. | pɛʁ
+les parents | die Eltern | Mes parents sont à la maison. | Meine Eltern sind zu Hause. | Les parents parlent avec le professeur. | Die Eltern sprechen mit dem Lehrer. | paʁɑ̃
+la sœur | die Schwester | Ma sœur a douze ans. | Meine Schwester ist zwölf Jahre alt. | Je joue avec ma sœur. | Ich spiele mit meiner Schwester. | sœʁ
+le frère | der Bruder | Mon frère va à l'école. | Mein Bruder geht zur Schule. | Le frère de Léa est gentil. | Léas Bruder ist nett. | fʁɛʁ
+la grand-mère | die Grossmutter | Ma grand-mère habite près de nous. | Meine Grossmutter wohnt in unserer Nähe. | Je téléphone à ma grand-mère. | Ich rufe meine Grossmutter an. | ɡʁɑ̃mɛʁ
+le grand-père | der Grossvater | Mon grand-père lit le journal. | Mein Grossvater liest die Zeitung. | Le grand-père raconte une histoire. | Der Grossvater erzählt eine Geschichte. | ɡʁɑ̃pɛʁ
+la fille | die Tochter | Leur fille s'appelle Emma. | Ihre Tochter heisst Emma. | La fille aide ses parents. | Die Tochter hilft ihren Eltern. | fij
+le fils | der Sohn | Leur fils joue au football. | Ihr Sohn spielt Fussball. | Le fils ressemble à son père. | Der Sohn ähnelt seinem Vater. | fis
+l'enfant | das Kind | L'enfant joue dans le jardin. | Das Kind spielt im Garten. | Cet enfant parle très bien français. | Dieses Kind spricht sehr gut Französisch. | ɑ̃fɑ̃
+le bébé | das Baby | Le bébé dort dans son lit. | Das Baby schläft in seinem Bett. | Elle porte le bébé doucement. | Sie trägt das Baby vorsichtig. | bebe
+l'ami | der Freund | Mon ami habite dans cette rue. | Mein Freund wohnt in dieser Strasse. | Je retrouve mon ami après l'école. | Ich treffe meinen Freund nach der Schule. | ami
+la femme | die Frau | Cette femme attend devant la gare. | Diese Frau wartet vor dem Bahnhof. | La femme achète du pain. | Die Frau kauft Brot. | fam
+l'homme | der Mann | Cet homme porte un chapeau. | Dieser Mann trägt einen Hut. | L'homme parle avec notre voisin. | Der Mann spricht mit unserem Nachbarn. | ɔm
+le garçon | der Junge | Le garçon joue dans le parc. | Der Junge spielt im Park. | Ce garçon s'appelle Nicolas. | Dieser Junge heisst Nicolas. | ɡaʁsɔ̃
+la personne | die Person | Cette personne connaît mon père. | Diese Person kennt meinen Vater. | Une personne attend devant la porte. | Eine Person wartet vor der Tür. | pɛʁsɔn
+le prénom | der Vorname | Mon prénom est Camille. | Mein Vorname ist Camille. | Écris ton prénom sur la feuille. | Schreib deinen Vornamen auf das Blatt. | pʁenɔ̃
+le nom | der Nachname | Quel est ton nom? | Wie lautet dein Nachname? | J'écris mon nom sur la liste. | Ich schreibe meinen Nachnamen auf die Liste. | nɔ̃
+l'âge | das Alter | Quel âge a ton frère? | Wie alt ist dein Bruder? | Son âge reste un secret. | Sein Alter bleibt ein Geheimnis. | ɑʒ
+l'école | die Schule | L'école commence à huit heures. | Die Schule beginnt um acht Uhr. | Nous allons ensemble à l'école. | Wir gehen zusammen zur Schule. | ekɔl
+la classe | die Klasse | Notre classe compte vingt élèves. | Unsere Klasse zählt zwanzig Schüler. | La classe commence après la pause. | Der Unterricht beginnt nach der Pause. | klas
+l'élève | der Schüler | L'élève écoute le professeur. | Der Schüler hört dem Lehrer zu. | Cet élève travaille très bien. | Dieser Schüler arbeitet sehr gut. | elɛv
+le professeur | der Lehrer | Le professeur explique la leçon. | Der Lehrer erklärt die Lektion. | Notre professeur parle lentement. | Unser Lehrer spricht langsam. | pʁɔfɛsœʁ
+le livre | das Buch | Le livre est sur la table. | Das Buch liegt auf dem Tisch. | Je lis un livre français. | Ich lese ein französisches Buch. | livʁ
+le cahier | das Heft | Mon cahier est dans mon sac. | Mein Heft ist in meiner Tasche. | Elle écrit dans son cahier. | Sie schreibt in ihr Heft. | kaje
+le stylo | der Kugelschreiber | Mon stylo écrit en bleu. | Mein Kugelschreiber schreibt blau. | Je cherche mon stylo noir. | Ich suche meinen schwarzen Kugelschreiber. | stilo
+le crayon | der Bleistift | Le crayon est sous la chaise. | Der Bleistift liegt unter dem Stuhl. | Il dessine avec un crayon. | Er zeichnet mit einem Bleistift. | kʁɛjɔ̃
+la gomme | der Radiergummi | La gomme est dans ma trousse. | Der Radiergummi ist in meinem Etui. | J'utilise la gomme pour corriger. | Ich benutze den Radiergummi zum Korrigieren. | ɡɔm
+la règle | das Lineal | La règle mesure trente centimètres. | Das Lineal ist dreissig Zentimeter lang. | Elle trace une ligne avec la règle. | Sie zieht mit dem Lineal eine Linie. | ʁɛɡl
+le sac | die Tasche | Mon sac est très lourd. | Meine Tasche ist sehr schwer. | Il pose son sac par terre. | Er stellt seine Tasche auf den Boden. | sak
+le tableau | die Tafel | Le professeur écrit au tableau. | Der Lehrer schreibt an die Tafel. | La réponse est sur le tableau. | Die Antwort steht an der Tafel. | tablo
+le devoir | die Hausaufgabe | Je fais mon devoir après l'école. | Ich mache meine Hausaufgabe nach der Schule. | Ce devoir est assez facile. | Diese Hausaufgabe ist ziemlich einfach. | dəvwaʁ
+l'exercice | die Übung | Nous faisons un exercice ensemble. | Wir machen gemeinsam eine Übung. | Cet exercice prend dix minutes. | Diese Übung dauert zehn Minuten. | ɛɡzɛʁsis
+la question | die Frage | Le professeur pose une question. | Der Lehrer stellt eine Frage. | Je ne comprends pas la question. | Ich verstehe die Frage nicht. | kɛstjɔ̃
+la réponse | die Antwort | Ta réponse est correcte. | Deine Antwort ist richtig. | Elle connaît la bonne réponse. | Sie kennt die richtige Antwort. | ʁepɔ̃s
+la leçon | die Lektion | Nous apprenons la nouvelle leçon. | Wir lernen die neue Lektion. | La leçon commence maintenant. | Die Lektion beginnt jetzt. | ləsɔ̃
+le mot | das Wort | Ce mot est difficile. | Dieses Wort ist schwierig. | Écris le mot au tableau. | Schreib das Wort an die Tafel. | mo
+la phrase | der Satz | Cette phrase a cinq mots. | Dieser Satz hat fünf Wörter. | Je lis la phrase lentement. | Ich lese den Satz langsam. | fʁaz
+la pause | die Pause | La pause dure quinze minutes. | Die Pause dauert fünfzehn Minuten. | Nous mangeons pendant la pause. | Wir essen während der Pause. | poz

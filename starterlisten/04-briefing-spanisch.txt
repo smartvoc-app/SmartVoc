@@ -1,0 +1,94 @@
+Du hilfst mir, einen Grundwortschatz Spanisch–Deutsch für Schülerinnen und
+Schüler in der Schweiz zusammenzustellen (1. bis 2. Lernjahr). Die Liste wird in
+eine Vokabeltrainer-App eingelesen. Das Format ist deshalb bindend.
+
+═══════════════════════════════════════════════════════════════════════
+1. AUSGABEFORMAT — genau einhalten
+═══════════════════════════════════════════════════════════════════════
+
+Gib NUR die Tabelle aus. Eine Zeile pro Wort. Spalten getrennt durch " | "
+(Leerzeichen, senkrechter Strich, Leerzeichen), in genau dieser Reihenfolge:
+
+Español | Deutsch | Beispielsatz 1 | Beispielsatz 1 deutsch | Beispielsatz 2 | Beispielsatz 2 deutsch | Aussprache
+
+Jede Zeile hat genau 7 Spalten, also genau 6 Trennstriche.
+ALLE sieben Felder werden ausgefüllt. Keine leeren Felder, keine Auslassungen.
+
+Keine Kopfzeile. Keine Nummerierung. Keine Zwischenüberschriften.
+Kein einleitender oder abschliessender Text. Keine Code-Blöcke, keine
+Markdown-Formatierung, keine Sternchen, keine Anführungszeichen um Felder.
+
+Der senkrechte Strich "|" darf im Inhalt selbst NIRGENDS vorkommen.
+Auch keine Zeilenumbrüche innerhalb einer Zeile.
+
+═══════════════════════════════════════════════════════════════════════
+2. WAS IN DIE EINZELNEN SPALTEN GEHÖRT
+═══════════════════════════════════════════════════════════════════════
+
+Español
+  Nomen IMMER mit bestimmtem Artikel: el perro, la casa, los padres.
+  Verben im Infinitiv, ohne Artikel.
+  Adjektive in der männlichen Einzahl.
+  Alle Akzente und das ñ korrekt setzen: á é í ó ú ñ ü.
+  Keine Klammern, keine Alternativen, keine Kommas.
+
+Deutsch
+  Genau EINE Übersetzung, nicht mehrere durch Komma oder Schrägstrich.
+  Nomen IMMER mit Artikel: der Hund, die Katze, das Buch.
+  Verben im Infinitiv, ohne "zu".
+  Adjektive in der Grundform.
+
+Beispielsatz 1 und Beispielsatz 2
+  Zwei verschiedene spanische Sätze, in denen das Wort vorkommt.
+  Kurz und einfach: 4 bis 9 Wörter, Presente oder Pretérito perfecto,
+  Wortschatz auf dem Niveau eines Anfängers.
+  Die beiden Sätze zeigen möglichst verschiedene Verwendungen.
+  Jeder Satz beginnt gross und endet mit einem Punkt oder Fragezeichen.
+  Alle Akzente korrekt setzen: á é í ó ú ñ ¿ ¡. Fragesätze mit ¿ … ?
+
+Beispielsatz 1 deutsch und Beispielsatz 2 deutsch
+  Die deutsche Übersetzung des jeweiligen Satzes daneben, natürliches
+  Deutsch, nicht Wort für Wort. Ebenfalls mit Satzzeichen.
+
+Aussprache
+  IPA-Lautschrift des Wortes, europäisches Spanisch (Kastilisch).
+  OHNE Schrägstriche und OHNE eckige Klammern.
+  Beim Nomen NUR das Wort selbst, ohne den Artikel.
+  MIT Betonungszeichen: ˈ vor der betonten Silbe.
+  Beispiele: ˈpe.ro · kaˈsa · esˈkwe.la · aˈβlaɾ
+
+═══════════════════════════════════════════════════════════════════════
+3. WELCHE 200 WÖRTER
+═══════════════════════════════════════════════════════════════════════
+
+Genau 200 Wörter, nach Themen, in dieser Reihenfolge und Anzahl:
+
+   20  Familie und Menschen
+   20  Schule und Unterricht
+   20  Zahlen, Zeit, Wochentage, Monate
+   15  Körper und Gesundheit
+   20  Essen und Trinken
+   15  Zuhause und Wohnen
+   10  Kleidung
+   15  Tiere und Natur
+   15  Stadt, Verkehr, Einkaufen
+   10  Freizeit und Sport
+   25  häufige Verben des Alltags
+   15  häufige Adjektive
+
+Nimm jeweils die geläufigsten, alltagsnächsten Wörter des Themas.
+Keine Wiederholungen über die Themen hinweg. Keine Wörter, die ein
+Anfänger nie braucht. Schreibe die Themennamen NICHT in die Ausgabe.
+
+═══════════════════════════════════════════════════════════════════════
+4. WIE DU LIEFERST
+═══════════════════════════════════════════════════════════════════════
+
+Gib 40 Zeilen aus und halte dann an. Ich schreibe "weiter", dann gibst du
+die nächsten 40 aus, ohne Wiederholung und ohne Einleitung. So bis 200.
+
+Prüfe jede Zeile vor dem Ausgeben:
+  – genau 6 Trennstriche?
+  – alle 7 Felder gefüllt?
+  – spanisches Nomen mit Artikel, deutsches Nomen mit Artikel?
+  – Lautschrift ohne Klammern und ohne Artikel?

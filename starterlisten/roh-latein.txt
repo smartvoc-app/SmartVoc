@@ -1,0 +1,40 @@
+homo | homo, hominis m | Nomen | der Mensch | Homo in villa habitat. | Der Mensch wohnt im Landhaus. | Hominem in foro videmus. | Wir sehen den Menschen auf dem Forum. | homō
+vir | vir, viri m | Nomen | der Mann | Vir bonus laborat. | Der gute Mann arbeitet. | Femina virum salutat. | Die Frau grüsst den Mann. | vir
+femina | femina, feminae f | Nomen | die Frau | Femina aquam portat. | Die Frau trägt Wasser. | Vir feminam salutat. | Der Mann grüsst die Frau. | fēmina
+puer | puer, pueri m | Nomen | der Junge | Puer in horto ludit. | Der Junge spielt im Garten. | Magister puerum laudat. | Der Lehrer lobt den Jungen. | puer
+puella | puella, puellae f | Nomen | das Mädchen | Puella librum legit. | Das Mädchen liest ein Buch. | Mater puellam vocat. | Die Mutter ruft das Mädchen. | puella
+pater | pater, patris m | Nomen | der Vater | Pater filium vocat. | Der Vater ruft den Sohn. | Donum patri damus. | Wir geben dem Vater ein Geschenk. | pater
+mater | mater, matris f | Nomen | die Mutter | Mater cenam parat. | Die Mutter bereitet das Abendessen zu. | Filia matrem adiuvat. | Die Tochter hilft der Mutter. | māter
+filius | filius, filii m | Nomen | der Sohn | Filius patri paret. | Der Sohn gehorcht dem Vater. | Pater filium amat. | Der Vater liebt den Sohn. | fīlius
+filia | filia, filiae f | Nomen | die Tochter | Filia matrem adiuvat. | Die Tochter hilft der Mutter. | Mater filiam laudat. | Die Mutter lobt die Tochter. | fīlia
+frater | frater, fratris m | Nomen | der Bruder | Frater cum amico ambulat. | Der Bruder geht mit dem Freund spazieren. | Soror fratrem vocat. | Die Schwester ruft den Bruder. | frāter
+soror | soror, sororis f | Nomen | die Schwester | Soror in villa manet. | Die Schwester bleibt im Landhaus. | Frater sororem salutat. | Der Bruder grüsst die Schwester. | soror
+avus | avus, avi m | Nomen | der Grossvater | Avus fabulam narrat. | Der Grossvater erzählt eine Geschichte. | Puer avum audit. | Der Junge hört dem Grossvater zu. | avus
+avia | avia, aviae f | Nomen | die Grossmutter | Avia cibum parat. | Die Grossmutter bereitet das Essen zu. | Puella aviam visitat. | Das Mädchen besucht die Grossmutter. | avia
+amicus | amicus, amici m | Nomen | der Freund | Amicus ad villam venit. | Der Freund kommt zum Landhaus. | Puer amicum videt. | Der Junge sieht den Freund. | amīcus
+amica | amica, amicae f | Nomen | die Freundin | Amica puellam salutat. | Die Freundin grüsst das Mädchen. | Puella cum amica ridet. | Das Mädchen lacht mit der Freundin. | amīca
+dominus | dominus, domini m | Nomen | der Herr | Dominus servum vocat. | Der Herr ruft den Sklaven. | Servus domino paret. | Der Sklave gehorcht dem Herrn. | dominus
+servus | servus, servi m | Nomen | der Sklave | Servus in agro laborat. | Der Sklave arbeitet auf dem Feld. | Dominus servum laudat. | Der Herr lobt den Sklaven. | servus
+magister | magister, magistri m | Nomen | der Lehrer | Magister discipulos docet. | Der Lehrer unterrichtet die Schüler. | Discipulus magistrum audit. | Der Schüler hört dem Lehrer zu. | magister
+discipulus | discipulus, discipuli m | Nomen | der Schüler | Discipulus librum legit. | Der Schüler liest ein Buch. | Magister discipulum laudat. | Der Lehrer lobt den Schüler. | discipulus
+familia | familia, familiae f | Nomen | die Familie | Familia in villa habitat. | Die Familie wohnt im Landhaus. | Pater familiam curat. | Der Vater kümmert sich um die Familie. | familia
+domus | domus, domus f | Nomen | das Haus | Domus magna est. | Das Haus ist gross. | Puer ad domum currit. | Der Junge läuft zum Haus. | domus
+villa | villa, villae f | Nomen | das Landhaus | Villa in agro stat. | Das Landhaus steht auf dem Feld. | Servi villam intrant. | Die Sklaven betreten das Landhaus. | vīlla
+ianua | ianua, ianuae f | Nomen | die Tür | Ianua aperta est. | Die Tür ist offen. | Puer ianuam claudit. | Der Junge schliesst die Tür. | iānua
+fenestra | fenestra, fenestrae f | Nomen | das Fenster | Fenestra magna est. | Das Fenster ist gross. | Puella fenestram aperit. | Das Mädchen öffnet das Fenster. | fenestra
+murus | murus, muri m | Nomen | die Mauer | Murus urbem defendit. | Die Mauer schützt die Stadt. | Milites ad murum currunt. | Die Soldaten laufen zur Mauer. | mūrus
+tectum | tectum, tecti n | Nomen | das Dach | Tectum villae altum est. | Das Dach des Landhauses ist hoch. | Puer in tectum ascendit. | Der Junge steigt auf das Dach. | tēctum
+cubiculum | cubiculum, cubiculi n | Nomen | das Schlafzimmer | Cubiculum parvum est. | Das Schlafzimmer ist klein. | Puella cubiculum intrat. | Das Mädchen betritt das Schlafzimmer. | cubiculum
+atrium | atrium, atrii n | Nomen | die Eingangshalle | Atrium magnum est. | Die Eingangshalle ist gross. | Servus atrium purgat. | Der Sklave reinigt die Eingangshalle. | ātrium
+mensa | mensa, mensae f | Nomen | der Tisch | Mensa in atrio stat. | Der Tisch steht in der Eingangshalle. | Servus cibum ad mensam portat. | Der Sklave trägt das Essen zum Tisch. | mēnsa
+sella | sella, sellae f | Nomen | der Stuhl | Sella prope mensam stat. | Der Stuhl steht nahe beim Tisch. | Puer in sella sedet. | Der Junge sitzt auf dem Stuhl. | sella
+lectus | lectus, lecti m | Nomen | das Bett | Lectus in cubiculo stat. | Das Bett steht im Schlafzimmer. | Puer ad lectum venit. | Der Junge kommt zum Bett. | lectus
+hortus | hortus, horti m | Nomen | der Garten | Hortus multas rosas habet. | Der Garten hat viele Rosen. | Puella in horto ludit. | Das Mädchen spielt im Garten. | hortus
+ager | ager, agri m | Nomen | das Feld | Ager prope villam est. | Das Feld liegt nahe beim Landhaus. | Servi in agro laborant. | Die Sklaven arbeiten auf dem Feld. | ager
+fundus | fundus, fundi m | Nomen | das Landgut | Fundus domino placet. | Das Landgut gefällt dem Herrn. | Servi fundum curant. | Die Sklaven bewirtschaften das Landgut. | fundus
+culina | culina, culinae f | Nomen | die Küche | Culina parva est. | Die Küche ist klein. | Mater in culina laborat. | Die Mutter arbeitet in der Küche. | culīna
+urbs | urbs, urbis f | Nomen | die Stadt | Urbs magna est. | Die Stadt ist gross. | Milites urbem defendunt. | Die Soldaten verteidigen die Stadt. | urbs
+forum | forum, fori n | Nomen | das Forum | Forum in urbe est. | Das Forum liegt in der Stadt. | Cives ad forum currunt. | Die Bürger laufen zum Forum. | forum
+via | via, viae f | Nomen | die Strasse | Via ad urbem ducit. | Die Strasse führt zur Stadt. | Milites in via ambulant. | Die Soldaten gehen auf der Strasse. | via
+templum | templum, templi n | Nomen | der Tempel | Templum prope forum stat. | Der Tempel steht nahe beim Forum. | Cives templum intrant. | Die Bürger betreten den Tempel. | templum
+civis | civis, civis m/f | Nomen | der Bürger | Civis ad forum ambulat. | Der Bürger geht zum Forum. | Rex civem laudat. | Der König lobt den Bürger. | cīvis

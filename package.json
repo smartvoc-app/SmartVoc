@@ -11,7 +11,8 @@
     "build:ios": "npm run recht && CAP_PLATFORM=ios tsc --noEmit && CAP_PLATFORM=ios vite build",
     "ios": "npm run build:ios && npx cap sync ios",
     "ios:open": "npx cap open ios",
-    "icons": "node scripts/gen-icons.mjs"
+    "icons": "node scripts/gen-icons.mjs",
+    "texte": "node texte/sammle-texte.mjs && cd texte && node bau-texte.cjs"
   },
   "dependencies": {
     "@capacitor/core": "^8.5.0",
@@ -33,6 +34,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "docx": "^9.7.1",
     "sharp": "^0.35.2",
     "typescript": "^5.6.3",
     "vite": "^5.4.11",

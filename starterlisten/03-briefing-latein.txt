@@ -1,0 +1,116 @@
+Du hilfst mir, einen Grundwortschatz Latein–Deutsch für Schülerinnen und Schüler
+in der Schweiz zusammenzustellen (1. bis 2. Lernjahr, Gymnasium, Latein als
+zweite oder dritte Sprache). Die Liste wird in eine Vokabeltrainer-App
+eingelesen. Das Format ist deshalb bindend.
+
+═══════════════════════════════════════════════════════════════════════
+1. AUSGABEFORMAT — genau einhalten
+═══════════════════════════════════════════════════════════════════════
+
+Gib NUR die Tabelle aus. Eine Zeile pro Wort. Spalten getrennt durch " | "
+(Leerzeichen, senkrechter Strich, Leerzeichen), in genau dieser Reihenfolge:
+
+Grundform | Lernform | Wortart | Deutsch | Beispielsatz 1 | Beispielsatz 1 deutsch | Beispielsatz 2 | Beispielsatz 2 deutsch | Aussprache
+
+Jede Zeile hat genau 9 Spalten, also genau 8 Trennstriche.
+ALLE neun Felder werden ausgefüllt. Keine leeren Felder, keine Auslassungen.
+
+Keine Kopfzeile. Keine Nummerierung. Keine Zwischenüberschriften.
+Kein einleitender oder abschliessender Text. Keine Code-Blöcke, keine
+Markdown-Formatierung, keine Sternchen, keine Anführungszeichen um Felder.
+
+Der senkrechte Strich "|" darf im Inhalt selbst NIRGENDS vorkommen.
+Kommas dagegen sind in der Lernform ausdrücklich erwünscht.
+Auch keine Zeilenumbrüche innerhalb einer Zeile.
+
+═══════════════════════════════════════════════════════════════════════
+2. WAS IN DIE EINZELNEN SPALTEN GEHÖRT
+═══════════════════════════════════════════════════════════════════════
+
+Grundform
+  Das Stichwort, so wie es im Wörterbuch vorne steht, OHNE Längenzeichen:
+  Nomen im Nominativ Singular (amicus), Verben in der 1. Person Singular
+  Präsens (video), Adjektive in der männlichen Form (ruber).
+
+Lernform
+  Die vollständigen Stammformen, wie man sie in der Schule auswendig lernt,
+  ebenfalls ohne Längenzeichen:
+    Nomen      Nominativ, Genitiv, Genus       amicus, amici m
+    Verb       vier Stammformen                video, videre, vidi, visum
+               (Deponens: drei)                sequor, sequi, secutus sum
+    Adjektiv   drei Genusformen                ruber, rubra, rubrum
+               (einendig: Nom. und Gen.)       felix, felicis
+    Adverb     das Wort selbst                 saepe
+    Zahlwort   das Wort selbst                 duo, duae, duo
+
+Wortart
+  Genau eines dieser fünf Wörter, keine anderen, keine Abkürzungen:
+    Nomen · Verb · Adjektiv · Zahlwort · Adverb
+  Schreibe NICHT "Substantiv", NICHT "Pronomen", NICHT "Präposition",
+  NICHT "Konjunktion". Nimm Wörter, die in keine der fünf Klassen passen,
+  gar nicht erst in die Liste auf.
+
+Deutsch
+  Genau EINE Übersetzung, nicht mehrere durch Komma oder Schrägstrich.
+  Nomen IMMER mit Artikel: der Freund, die Frau, das Buch.
+  Verben im Infinitiv, ohne "zu". Adjektive in der Grundform.
+
+Beispielsatz 1 und Beispielsatz 2
+  Zwei verschiedene lateinische Sätze, in denen das Wort vorkommt.
+  Kurz und einfach: 3 bis 7 Wörter, klassisches Schullatein, Indikativ
+  Präsens oder Perfekt, keine seltenen Konstruktionen, kein AcI in den
+  ersten Beispielen. Nur Wortschatz, der einem Anfänger zumutbar ist.
+  Die beiden Sätze zeigen möglichst verschiedene Fälle oder Personen.
+  Ohne Längenzeichen. Jeder Satz beginnt gross und endet mit einem Punkt
+  oder Fragezeichen.
+
+Beispielsatz 1 deutsch und Beispielsatz 2 deutsch
+  Die deutsche Übersetzung des jeweiligen Satzes daneben, natürliches
+  Deutsch, nicht Wort für Wort. Ebenfalls mit Satzzeichen.
+
+Aussprache
+  HIER KEINE IPA-LAUTSCHRIFT. Schreibe stattdessen die Grundform noch
+  einmal, diesmal MIT den Längenzeichen (Makra) über den langen Vokalen,
+  so wie ein Lehrbuch die Vokalquantitäten angibt:
+    amicus  ->  amīcus
+    video   ->  videō
+    ruber   ->  ruber        (keine Länge, dann eben unverändert)
+    hora    ->  hōra
+  Kurze Vokale bleiben unmarkiert, es werden keine Breven gesetzt.
+
+═══════════════════════════════════════════════════════════════════════
+3. WELCHE 200 WÖRTER
+═══════════════════════════════════════════════════════════════════════
+
+Genau 200 Wörter, nach Themen, in dieser Reihenfolge und Anzahl:
+
+   20  Menschen und Familie
+   15  Haus, Hof, Landgut
+   20  Stadt, Forum, Staat
+   15  Krieg und Militär
+   15  Götter, Religion, Mythos
+   15  Natur, Tiere, Landschaft
+   10  Körper und Sinne
+   15  Zeit und Raum
+   40  häufige Verben (Bewegung, Sagen, Tun, Sein und Haben)
+   20  häufige Adjektive
+   15  Zahlwörter und Adverbien
+
+Nimm die Wörter, die in den gängigen Schweizer Lehrmitteln im ersten und
+zweiten Lernjahr tatsächlich vorkommen. Keine Wiederholungen über die
+Themen hinweg. Schreibe die Themennamen NICHT in die Ausgabe.
+
+═══════════════════════════════════════════════════════════════════════
+4. WIE DU LIEFERST
+═══════════════════════════════════════════════════════════════════════
+
+Gib 40 Zeilen aus und halte dann an. Ich schreibe "weiter", dann gibst du
+die nächsten 40 aus, ohne Wiederholung und ohne Einleitung. So bis 200.
+
+Prüfe jede Zeile vor dem Ausgeben:
+  – genau 8 Trennstriche?
+  – alle 9 Felder gefüllt?
+  – Wortart eines der fünf erlaubten Wörter?
+  – Grundform, Lernform und Beispielsätze OHNE Längenzeichen,
+    letzte Spalte MIT Längenzeichen?
+  – deutsches Nomen mit Artikel?

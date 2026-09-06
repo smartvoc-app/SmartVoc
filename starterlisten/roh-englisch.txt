@@ -1,0 +1,40 @@
+family | die Familie | My family lives in Zurich. | Meine Familie lebt in Zürich. | Her family eats dinner together. | Ihre Familie isst gemeinsam zu Abend. | ˈfæməli
+mother | die Mutter | My mother works at home. | Meine Mutter arbeitet zu Hause. | Her mother makes a cake. | Ihre Mutter backt einen Kuchen. | ˈmʌðə
+father | der Vater | His father drives to work. | Sein Vater fährt zur Arbeit. | My father likes old films. | Mein Vater mag alte Filme. | ˈfɑːðə
+parent | der Elternteil | A parent waits outside school. | Ein Elternteil wartet vor der Schule. | Every parent gets a letter. | Jeder Elternteil erhält einen Brief. | ˈpeərənt
+sister | die Schwester | My sister plays the piano. | Meine Schwester spielt Klavier. | His sister is twelve years old. | Seine Schwester ist zwölf Jahre alt. | ˈsɪstə
+brother | der Bruder | Her brother walks to school. | Ihr Bruder geht zu Fuss zur Schule. | My brother has a new bike. | Mein Bruder hat ein neues Fahrrad. | ˈbrʌðə
+grandmother | die Grossmutter | My grandmother tells funny stories. | Meine Grossmutter erzählt lustige Geschichten. | His grandmother lives near us. | Seine Grossmutter wohnt in unserer Nähe. | ˈɡrænˌmʌðə
+grandfather | der Grossvater | Her grandfather reads every morning. | Ihr Grossvater liest jeden Morgen. | My grandfather has a small garden. | Mein Grossvater hat einen kleinen Garten. | ˈɡrænˌfɑːðə
+daughter | die Tochter | Their daughter loves music. | Ihre Tochter liebt Musik. | Our daughter walks to school. | Unsere Tochter geht zu Fuss zur Schule. | ˈdɔːtə
+son | der Sohn | Their son plays football. | Ihr Sohn spielt Fussball. | Our son is eight years old. | Unser Sohn ist acht Jahre alt. | sʌn
+child | das Kind | The child opens the door. | Das Kind öffnet die Tür. | Every child gets an apple. | Jedes Kind bekommt einen Apfel. | tʃaɪld
+baby | das Baby | The baby sleeps all morning. | Das Baby schläft den ganzen Morgen. | Their baby has blue eyes. | Ihr Baby hat blaue Augen. | ˈbeɪbi
+aunt | die Tante | My aunt lives in Bern. | Meine Tante lebt in Bern. | His aunt visits us today. | Seine Tante besucht uns heute. | ɑːnt
+uncle | der Onkel | Her uncle cooks very well. | Ihr Onkel kocht sehr gut. | My uncle owns a red car. | Mein Onkel besitzt ein rotes Auto. | ˈʌŋkəl
+cousin | der Cousin | My cousin plays tennis. | Mein Cousin spielt Tennis. | His cousin comes every Sunday. | Sein Cousin kommt jeden Sonntag. | ˈkʌzən
+friend | der Freund | My friend sits beside me. | Mein Freund sitzt neben mir. | Her friend speaks English well. | Ihr Freund spricht gut Englisch. | frend
+woman | die Frau | The woman carries a heavy bag. | Die Frau trägt eine schwere Tasche. | A woman waits at the station. | Eine Frau wartet am Bahnhof. | ˈwʊmən
+man | der Mann | The man opens the window. | Der Mann öffnet das Fenster. | A tall man stands outside. | Ein grosser Mann steht draussen. | mæn
+girl | das Mädchen | The girl draws a horse. | Das Mädchen zeichnet ein Pferd. | A girl runs across the garden. | Ein Mädchen rennt durch den Garten. | ɡɜːl
+boy | der Junge | The boy rides his bike. | Der Junge fährt mit seinem Fahrrad. | A boy throws the ball. | Ein Junge wirft den Ball. | bɔɪ
+school | die Schule | Our school starts at eight. | Unsere Schule beginnt um acht Uhr. | The school has a new library. | Die Schule hat eine neue Bibliothek. | skuːl
+teacher | die Lehrperson | The teacher writes on the board. | Die Lehrperson schreibt an die Tafel. | Our teacher explains the task. | Unsere Lehrperson erklärt die Aufgabe. | ˈtiːtʃə
+student | der Schüler | The student asks a question. | Der Schüler stellt eine Frage. | Every student needs a pencil. | Jeder Schüler braucht einen Bleistift. | ˈstjuːdənt
+classroom | das Klassenzimmer | Our classroom has three windows. | Unser Klassenzimmer hat drei Fenster. | The classroom is very quiet. | Das Klassenzimmer ist sehr ruhig. | ˈklɑːsruːm
+lesson | die Lektion | The lesson starts after lunch. | Die Lektion beginnt nach dem Mittagessen. | Our English lesson is interesting. | Unsere Englischlektion ist interessant. | ˈlesən
+book | das Buch | This book has many pictures. | Dieses Buch hat viele Bilder. | I read a book every week. | Ich lese jede Woche ein Buch. | bʊk
+notebook | das Heft | My notebook is in my bag. | Mein Heft ist in meiner Tasche. | She writes words in her notebook. | Sie schreibt Wörter in ihr Heft. | ˈnəʊtbʊk
+pen | der Kugelschreiber | My pen is under the desk. | Mein Kugelschreiber liegt unter dem Pult. | He writes his name with a pen. | Er schreibt seinen Namen mit einem Kugelschreiber. | pen
+pencil | der Bleistift | Her pencil is very short. | Ihr Bleistift ist sehr kurz. | I draw a house with my pencil. | Ich zeichne mit meinem Bleistift ein Haus. | ˈpensəl
+paper | das Papier | Please write your name on the paper. | Bitte schreibe deinen Namen auf das Papier. | The paper is on my desk. | Das Papier liegt auf meinem Pult. | ˈpeɪpə
+desk | das Pult | My bag is under the desk. | Meine Tasche liegt unter dem Pult. | The teacher stands beside her desk. | Die Lehrperson steht neben ihrem Pult. | desk
+chair | der Stuhl | The chair is near the window. | Der Stuhl steht beim Fenster. | Please put the chair here. | Bitte stell den Stuhl hierhin. | tʃeə
+board | die Tafel | The answer is on the board. | Die Antwort steht an der Tafel. | Our teacher cleans the board. | Unsere Lehrperson wischt die Tafel. | bɔːd
+homework | die Hausaufgabe | My homework takes thirty minutes. | Meine Hausaufgabe dauert dreissig Minuten. | I finish my homework before dinner. | Ich erledige meine Hausaufgabe vor dem Abendessen. | ˈhəʊmwɜːk
+test | die Prüfung | Our test begins at nine. | Unsere Prüfung beginnt um neun Uhr. | She studies hard for the test. | Sie lernt viel für die Prüfung. | test
+question | die Frage | The teacher asks a difficult question. | Die Lehrperson stellt eine schwierige Frage. | I have a question about this word. | Ich habe eine Frage zu diesem Wort. | ˈkwestʃən
+answer | die Antwort | His answer is correct. | Seine Antwort ist richtig. | Please write the answer here. | Bitte schreibe die Antwort hierhin. | ˈɑːnsə
+break | die Pause | We eat outside during the break. | Wir essen während der Pause draussen. | The break ends in five minutes. | Die Pause endet in fünf Minuten. | breɪk
+subject | das Fach | English is my favourite subject. | Englisch ist mein Lieblingsfach. | This subject is sometimes difficult. | Dieses Fach ist manchmal schwierig. | ˈsʌbdʒɪkt
+language | die Sprache | English is an important language. | Englisch ist eine wichtige Sprache. | She learns a new language. | Sie lernt eine neue Sprache. | ˈlæŋɡwɪdʒ

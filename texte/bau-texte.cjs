@@ -35,11 +35,23 @@ function titelZeile(text, lvl) {
 function langZeile(text, art) {
   const id = nummer("A-", ++nA);
   karte[id] = text;
+  /* Drei Arten von Zeile: Zwischenueberschrift, Aufzaehlungspunkt und
+     gewoehnlicher Absatz. Der Punkt ist eingerueckt und traegt ein
+     Zeichen davor -- sonst liest sich eine Schritt-fuer-Schritt-Anleitung
+     im Dokument wie Fliesstext und man aendert sie als solchen.
+     "S" ist die Beschriftung unter einer Skizze. */
+  const einzug = art === "L" ? { left: 340 } : undefined;
   return [
-    new Paragraph({ spacing: { before: 140, after: 20 },
-      children: [new TextRun({ text: id, size: 15, color: "9A958B", font: "Consolas" })] }),
-    new Paragraph({ spacing: { after: 60 },
-      children: [new TextRun({ text, size: art === "H" ? 22 : 21, bold: art === "H", font: "Calibri" })] }),
+    new Paragraph({ spacing: { before: 140, after: 20 }, indent: einzug,
+      children: [new TextRun({ text: id, size: 15, color: "9A958B", font: "Consolas" }),
+                 ...(art === "S" ? [new TextRun({ text: "  Bildbeschriftung", size: 15, color: "9A958B", font: "Consolas" })] : [])] }),
+    new Paragraph({ spacing: { after: 60 }, indent: einzug,
+      children: [new TextRun({ text: (art === "L" ? "· " : "") + text,
+                               size: art === "H" ? 22 : 21,
+                               bold: art === "H",
+                               italics: art === "S",
+                               color: art === "S" ? "5A554C" : undefined,
+                               font: "Calibri" })] }),
   ];
 }
 
@@ -70,13 +82,13 @@ const k = [];
 // ---------------------------------------------------------------- Kopf
 k.push(new Paragraph({ text: "SmartVoc", heading: HeadingLevel.TITLE, spacing: { after: 60 } }));
 k.push(p("Sämtliche deutschen Texte der App", { size: 26, color: "5A554C", after: 40 }));
-k.push(p("Stand 4. September 2026", { size: 19, color: "9A958B", after: 320 }));
+k.push(p("Stand 6. September 2026 · aus dem Programmtext erzeugt (texte/sammle-texte.mjs)", { size: 19, color: "9A958B", after: 320 }));
 
 k.push(h("So arbeitest du damit", HeadingLevel.HEADING_2));
 k.push(p("Jeder Text trägt eine Nummer. Ändere den Text, aber lass die Nummer stehen. Daran erkenne ich beim Zurückspielen, welche Stelle gemeint ist. Kommentare kannst du als Word-Kommentar an den Text hängen oder in eckigen Klammern dahinterschreiben."));
 k.push(p("Teil A sind die langen Texte, also die Hilfe und die Rechtstexte. Dort lohnt sich die meiste Arbeit, weil sie am Stück gelesen werden."));
 k.push(p("Teil B sind die kurzen Beschriftungen: Knöpfe, Titel, Meldungen, Erklärzeilen. Sie sind nach Bereich der App geordnet."));
-k.push(p("Nicht enthalten sind 311 Texte, die in der App nicht mehr vorkommen. Sie stehen noch in der Übersetzungsdatei und werden aufgeräumt.", { color: "5A554C" }));
+k.push(p("In Teil A steht vor einer Bildbeschriftung das Wort „Bildbeschriftung“; Aufzählungspunkte sind eingerückt und mit · gekennzeichnet.", { color: "5A554C" }));
 
 // ------------------------------------------------------------- Teil A
 k.push(new Paragraph({ children: [new PageBreak()] }));
@@ -113,10 +125,18 @@ k.push(new Paragraph({ children: [new PageBreak()] }));
 k.push(new Paragraph({ text: "Teil B: die kurzen Beschriftungen", heading: HeadingLevel.HEADING_1 }));
 k.push(p("Nach Bereich der App geordnet. {n}, {p} und ähnliche Klammern sind Platzhalter für Zahlen und Namen; sie müssen genau so stehen bleiben.", { color: "5A554C", after: 240 }));
 
+/* Die Reihenfolge folgt dem Weg durch die App, nicht dem Alphabet: erst
+   die vier Bereiche, dann die Einstellungen, dann was sich darueber legt. */
 const ordnung = ["Üben", "Übungsplan", "Wortlisten", "Statistik", "Einstellungen",
-  "Einstellungen · Modellwerte", "Konto", "Hilfe", "Über SmartVoc", "Wörter einfügen",
-  "Wörter prüfen", "Geteilte Listen", "Listenauswahl", "Wort im Detail", "Lernstand",
-  "Rückfragen", "Formularfelder", "Rahmen", "Mehrere Bereiche"];
+  "Anzeige-Einstellungen", "Erweiterte Werte", "Konto", "Hilfe (Rahmen)", "Über SmartVoc",
+  "Liste einfügen und KI-Prompt", "Wörter prüfen", "Geteilte Liste übernehmen", "Teilen",
+  "Listenwahl", "Wort im Detail", "Lernstand", "Lernstandsleiste", "Rückfragen",
+  "Auswahlpillen", "Rückmeldungen", "Smart Lists", "Lernstufen", "Ampel",
+  "Spalten und Wortarten", "Sprachen", "Sprachpille", "Voreinstellungen",
+  "Gratis und Pro", "Kopfzeile", "Lerntipp-Einblendung", "Lateinische Sonderzeichen",
+  "Startbild", "Rahmen und Reiter", "Beschriftungen in den Zeichnungen",
+  "Anmeldung", "Abgleich mit dem Konto", "Statistik (Auswertungen)", "Latein",
+  "Lernmodell", "Rundensteuerung", "Datenhaltung", "Umbauten an alten Daten"];
 const gruppen = T.oberflaeche;
 const rest = Object.keys(gruppen).filter(g => !ordnung.includes(g) && g !== "Nicht mehr verwendet").sort();
 for (const g of [...ordnung, ...rest]) {
