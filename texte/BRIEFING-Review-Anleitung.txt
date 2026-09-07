@@ -1,0 +1,60 @@
+BRIEFING — Review der Anleitung von SmartVoc
+
+
+KONTEXT
+
+SmartVoc ist ein Vokabeltrainer für Web und iOS. Er verwaltet Wortschatz in
+Listen, fragt ihn ab und plant die Wiederholungen so, dass der Stoff zu
+einem gewünschten Zeitpunkt sitzt. Zielgruppe sind Schülerinnen und
+Schüler, Studierende und alle, die Vokabeln systematisch lernen wollen.
+
+Die App ist fertig, die Texte sind es noch nicht. Die Anleitung wurde
+mehrfach überarbeitet und überzeugt in ihrer jetzigen Form nicht.
+
+
+WAS DU BEKOMMST
+
+1. SmartVoc-Funktionsspezifikation.docx
+   Was die Anwendung kann, in allen Einzelheiten. Datenmodell, Regeln,
+   Rechenwege, Grenzwerte. Keine Gestaltungsfragen.
+
+2. SmartVoc-Texte-Deutsch.docx
+   Sämtliche deutschen Texte der App, 840 Stück.
+   Teil A: die langen Texte. A1 ist die Anleitung, danach folgen
+   Lerntipps, ein Kapitel zur Lerntheorie, sowie Datenschutz und
+   Impressum.
+   Teil B: die kurzen Beschriftungen, nach Bereich der App geordnet.
+   Jeder Text trägt eine Nummer (A-001, B-137 …).
+
+3. Die laufende Webfassung:
+   https://smartvoc-app.github.io/SmartVoc/
+   Ohne Anmeldung und ohne Installation benutzbar. Für jede eingeschaltete
+   Sprache liegt bereits ein Grundwortschatz bereit, du kannst also sofort
+   alles durchklicken.
+
+   Wichtig: Die Anleitung IN der App ist ein älterer Stand. Massgeblich
+   für dein Review ist Teil A1 des Textdokuments.
+
+
+AUFTRAG
+
+1. Unterziehe die Anleitung (Teil A1) einem Review und benenne ihre
+   Schwächen.
+
+2. Mach einen konkreten Vorschlag: welche Kapitel, in welcher Reihenfolge,
+   mit welchen Texten. Ausformuliert, nicht als Gliederung. Sag dazu, an
+   welchen Stellen eine Grafik stehen sollte und was sie zeigen müsste.
+
+3. Wenn du ohnehin im Dokument bist: sieh dir auch die übrigen Texte an
+   und schlag vor, was sich verbessern lässt.
+
+4. Erzeuge zusätzlich eine Schnellanleitung als PDF, auf A4 druckbar, im
+   Stil einer Infografik und mit organisch wirkenden Schriften. Sie ist
+   für Leute gedacht, die die Anleitung nicht lesen wollen.
+
+
+FORM
+
+Beziehe dich auf die Nummern aus dem Textdokument, damit sich deine
+Vorschläge eindeutig zuordnen lassen. Texte auf Deutsch, Schweizer
+Rechtschreibung: „ss“ statt „ß“.
