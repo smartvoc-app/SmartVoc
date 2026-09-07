@@ -756,7 +756,7 @@
   ],
   [
    "P",
-   "You can ask what is stored about you, have it corrected, and you can export everything yourself as a file or delete your account entirely at any time. The export is in the settings; deleting your account is in the account window at the top right. Deleting also removes the data on the server, and it cannot be undone. For anything else, a message to the address given in the imprint is enough."
+   "You can ask what is stored about you, have it corrected, and you can export everything yourself as a file or delete your account entirely at any time. The export is in the settings; deleting your account is in the account window at the top right. Deleting also removes the data on the server, and it cannot be undone. For anything else, a message to support@smartvoc.app is enough."
   ],
   [
    "H",
@@ -776,7 +776,11 @@
   ],
   [
    "P",
-   "Martin Keller, Switzerland. Questions about data protection go to the address given in the imprint."
+   "Martin Keller, Rebbergstrasse 7a, 8953 Dietikon, Switzerland."
+  ],
+  [
+   "P",
+   "Questions about data protection: support@smartvoc.app, phone +41 79 822 36 75."
   ]
  ],
  "impressum": [
@@ -786,7 +790,19 @@
   ],
   [
    "P",
-   "Martin Keller, Switzerland"
+   "Martin Keller"
+  ],
+  [
+   "P",
+   "Rebbergstrasse 7a"
+  ],
+  [
+   "P",
+   "8953 Dietikon"
+  ],
+  [
+   "P",
+   "Switzerland"
   ],
   [
    "H",
@@ -794,7 +810,15 @@
   ],
   [
    "P",
-   "Questions, faults and feedback go to the address given in the App Store."
+   "Email: support@smartvoc.app"
+  ],
+  [
+   "P",
+   "Phone: +41 79 822 36 75"
+  ],
+  [
+   "P",
+   "Questions, faults and feedback go to the same address."
   ],
   [
    "H",

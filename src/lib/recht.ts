@@ -62,7 +62,7 @@ export const DATENSCHUTZ: Abschnitt[] = [
   {
     h: "Deine Rechte",
     p: [
-      "Du kannst Auskunft darüber verlangen, was über dich gespeichert ist, kannst es berichtigen lassen, und du kannst alles jederzeit selbst als Datei exportieren oder dein Konto vollständig löschen. Den Export findest du in den Einstellungen, das Löschen des Kontos im Kontofenster oben rechts. Beim Löschen verschwinden auch die Daten auf dem Server, und das lässt sich nicht rückgängig machen. Für alles andere genügt eine Nachricht an die im Impressum genannte Adresse.",
+      "Du kannst Auskunft darüber verlangen, was über dich gespeichert ist, kannst es berichtigen lassen, und du kannst alles jederzeit selbst als Datei exportieren oder dein Konto vollständig löschen. Den Export findest du in den Einstellungen, das Löschen des Kontos im Kontofenster oben rechts. Beim Löschen verschwinden auch die Daten auf dem Server, und das lässt sich nicht rückgängig machen. Für alles andere genügt eine Nachricht an support@smartvoc.app.",
     ],
   },
   {
@@ -75,7 +75,8 @@ export const DATENSCHUTZ: Abschnitt[] = [
   {
     h: "Verantwortlich",
     p: [
-      "Martin Keller, Schweiz. Fragen zum Datenschutz gehen an die im Impressum genannte Adresse.",
+      "Martin Keller, Rebbergstrasse 7a, 8953 Dietikon, Schweiz.",
+      "Fragen zum Datenschutz: support@smartvoc.app, Telefon +41 79 822 36 75.",
     ],
   },
 ];
@@ -84,13 +85,18 @@ export const IMPRESSUM: Abschnitt[] = [
   {
     h: "Herausgeber",
     p: [
-      "Martin Keller, Schweiz",
+      "Martin Keller",
+      "Rebbergstrasse 7a",
+      "8953 Dietikon",
+      "Schweiz",
     ],
   },
   {
     h: "Kontakt",
     p: [
-      "Fragen, Fehler und Rückmeldungen gehen an die im App Store hinterlegte Adresse.",
+      "E-Mail: support@smartvoc.app",
+      "Telefon: +41 79 822 36 75",
+      "Fragen, Fehler und Rückmeldungen gehen an dieselbe Adresse.",
     ],
   },
   {
@@ -158,7 +164,7 @@ export const DATENSCHUTZ_EN: Abschnitt[] = [
   {
     h: "Your rights",
     p: [
-      "You can ask what is stored about you, have it corrected, and you can export everything yourself as a file or delete your account entirely at any time. The export is in the settings; deleting your account is in the account window at the top right. Deleting also removes the data on the server, and it cannot be undone. For anything else, a message to the address given in the imprint is enough.",
+      "You can ask what is stored about you, have it corrected, and you can export everything yourself as a file or delete your account entirely at any time. The export is in the settings; deleting your account is in the account window at the top right. Deleting also removes the data on the server, and it cannot be undone. For anything else, a message to support@smartvoc.app is enough.",
     ],
   },
   {
@@ -171,7 +177,8 @@ export const DATENSCHUTZ_EN: Abschnitt[] = [
   {
     h: "Responsible",
     p: [
-      "Martin Keller, Switzerland. Questions about data protection go to the address given in the imprint.",
+      "Martin Keller, Rebbergstrasse 7a, 8953 Dietikon, Switzerland.",
+      "Questions about data protection: support@smartvoc.app, phone +41 79 822 36 75.",
     ],
   },
 ];
@@ -180,13 +187,18 @@ export const IMPRESSUM_EN: Abschnitt[] = [
   {
     h: "Publisher",
     p: [
-      "Martin Keller, Switzerland",
+      "Martin Keller",
+      "Rebbergstrasse 7a",
+      "8953 Dietikon",
+      "Switzerland",
     ],
   },
   {
     h: "Contact",
     p: [
-      "Questions, faults and feedback go to the address given in the App Store.",
+      "Email: support@smartvoc.app",
+      "Phone: +41 79 822 36 75",
+      "Questions, faults and feedback go to the same address.",
     ],
   },
   {
