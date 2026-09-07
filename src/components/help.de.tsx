@@ -66,7 +66,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <KritzelStart titel="Von der Heftseite zur ersten Karte" />
         <p>Eigene Wörter kommen dazu, sobald du sie brauchst. Das dauert keine zwei Minuten:</p>
         <ol>
-          <li>Unter <b>Wortlisten</b> auf <b>+ Neue Liste</b> und einen Weg wählen. Am schnellsten geht <b>Liste einfügen</b>: Der mitgelieferte <b>KI-Prompt</b> holt die Wörter aus einem Foto deiner Heftseite, samt Beispielsätzen und Lautschrift.</li>
+          <li>Unter <b>Wortlisten</b> auf <b>+ Neue Liste</b>, dann <b>Liste einfügen</b>. Die App gibt dir einen fertigen Auftrag zum Kopieren. Den fügst du in deine KI-App ein und hängst ein Foto deiner Heftseite dazu; was sie zurückgibt, kopierst du hierher — samt Beispielsätzen und Lautschrift.</li>
           <li>Steht ein Termin an, gib der Liste ein <b>Zieldatum</b>: den Tag, an dem die Wörter sitzen müssen. Ohne Termin geht es auch.</li>
           <li>Zurück auf <b>Üben</b>, die neue Liste wählen, los.</li>
         </ol>
@@ -152,7 +152,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <KritzelListe titel="Erst die Liste, dann ihre Wörter" />
         <p>Vier Wege führen hinein. Den richtigen zu wählen erspart dir die meiste Arbeit:</p>
         <ul>
-          <li><b>Liste einfügen</b> — für eine ganze Heftseite. Mit dem KI-Prompt sogar aus einem Foto.</li>
+          <li><b>Liste einfügen</b> — für eine ganze Heftseite. Mit dem KI-Prompt lässt du sie dir von deiner KI-App aus einem Foto erstellen.</li>
           <li><b>Einzelnes Wort eintippen</b> — für Nachträge.</li>
           <li><b>Geteilte Liste übernehmen</b> — wenn dir jemand einen Code oder Link geschickt hat.</li>
           <li><b>Tabelle einlesen</b> — Excel oder CSV, nur in der Webversion. Die leere Vorlage gibt es gleich daneben.</li>

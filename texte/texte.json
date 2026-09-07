@@ -17,7 +17,7 @@
     ],
     [
      "L",
-     "Unter Wortlisten auf + Neue Liste und einen Weg wählen. Am schnellsten geht Liste einfügen: Der mitgelieferte KI-Prompt holt die Wörter aus einem Foto deiner Heftseite, samt Beispielsätzen und Lautschrift."
+     "Unter Wortlisten auf + Neue Liste, dann Liste einfügen. Die App gibt dir einen fertigen Auftrag zum Kopieren. Den fügst du in deine KI-App ein und hängst ein Foto deiner Heftseite dazu; was sie zurückgibt, kopierst du hierher — samt Beispielsätzen und Lautschrift."
     ],
     [
      "L",
@@ -214,7 +214,7 @@
     ],
     [
      "L",
-     "Liste einfügen — für eine ganze Heftseite. Mit dem KI-Prompt sogar aus einem Foto."
+     "Liste einfügen — für eine ganze Heftseite. Mit dem KI-Prompt lässt du sie dir von deiner KI-App aus einem Foto erstellen."
     ],
     [
      "L",
@@ -846,7 +846,7 @@
    "Zwischenablage ist leer",
    "Die App kommt nicht an die Zwischenablage. Füg den Text von Hand ein.",
    "Einfügen",
-   "Nichts zum Kopieren? Der KI-Prompt unten holt dir die Wörter aus einem Foto deiner Heftseite.",
+   "Nichts zum Kopieren? Mit dem Auftrag unten macht dir deine KI-App aus einem Foto deiner Heftseite eine fertige Liste.",
    "Aus Zwischenablage",
    "Weiter zum Prüfen",
    "dog | der Hund cat | die Katze",
@@ -1239,7 +1239,7 @@
    "Teilen hat nicht geklappt. Zum Teilen brauchst du ein Konto.",
    "Übersetzung fehlt",
    "Liste einfügen",
-   "abtippen, einfügen — oder von einer KI aus einem Foto erstellen lassen",
+   "abtippen, einfügen — oder von deiner KI-App aus einem Foto erstellen lassen",
    "Geteilte Liste übernehmen",
    "jemand hat dir einen Link geschickt",
    "Tabelle einlesen",

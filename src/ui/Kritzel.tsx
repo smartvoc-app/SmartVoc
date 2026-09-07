@@ -183,11 +183,19 @@ export function KritzelListe({ titel }: { titel?: string }) {
   );
 }
 
-/** Der Weg von der Heftseite zur ersten Karte. Drei Stationen, und die
- *  mittlere ist die, die man sonst überspringt. */
+/** Der Weg von der Heftseite zur ersten Karte.
+ *
+ *  Der erste Pfeil traegt eine Beschriftung, und das ist kein Schmuck: Ohne
+ *  sie liest sich das Bild, als lese die App das Foto selbst ein. Sie tut
+ *  es nicht -- sie gibt einen Auftrag heraus, den man in seine eigene
+ *  KI-App legt. Genau diese Verwechslung stand vorher auch im Text. */
 export function KritzelStart({ titel }: { titel?: string }) {
-  const pfeil = (x: number) => (
-    <path d={`M${x} 52h22M${x + 14} 46l8 6-8 6`} stroke="var(--amber)" strokeWidth="2" />
+  const pfeil = (x: number, was?: string) => (
+    <g>
+      <path d={`M${x} 52h22M${x + 14} 46l8 6-8 6`} stroke="var(--amber)" strokeWidth="2" />
+      {was && <text x={x + 11} y="40" textAnchor="middle" fill="var(--amber)" stroke="none"
+                    fontSize="7">{was}</text>}
+    </g>
   );
   return (
     <Figur vb="0 0 300 116" titel={titel}>
@@ -200,7 +208,7 @@ export function KritzelStart({ titel }: { titel?: string }) {
           {[30, 42, 54, 66].map((y) => <path key={y} d={`M28 ${y}h48`} stroke="var(--line)" />)}
           <text x="44" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">Foto</text>
 
-          {pfeil(88)}
+          {pfeil(88, "KI-App")}
 
           {/* Prüfen-Fenster: eine Zeile ist sichtbar korrigiert */}
           <rect x="118" y="16" width="76" height="72" rx="4" fill="var(--card)" />

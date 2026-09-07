@@ -5,16 +5,26 @@
  * Kopien wären zwei Gelegenheiten, denselben Zustand verschieden zu
  * beschreiben.
  *
- * Die Form kommt aus dem Entwurf: eine Überschrift und darunter EINZELNE
- * Zeilen, jede ein eigenes Kärtchen mit Rand — Name links, Wert rechts.
- * Vorher war es ein zusammenhängender Block, der genau aussah wie das
- * Formular darüber; man konnte nicht sehen, wo etwas einzutragen ist und
- * wo nicht. Getrennte Kärtchen sagen das ohne ein Wort.
+ * Die Form sagt, dass hier nichts einzutragen ist — und zwar OHNE den
+ * Zusatz „nur zur Ansicht" zu brauchen.
+ *
+ * Zwei Anläufe reichten nicht. Erst war es ein zusammenhängender Block,
+ * der aussah wie das Formular darüber. Dann einzelne Kärtchen mit Rand --
+ * aber Kärtchen mit Rand sind in dieser App genau das, was man antippt:
+ * `.li` traegt `cursor: pointer` und die helle Kartenfarbe. Die Zeilen
+ * sahen dadurch bedienbarer aus als vorher.
+ *
+ * Jetzt umgekehrt: eine VERTIEFTE Flaeche statt erhabener Kaertchen.
+ * `--bg-2` liegt dunkler als die Seite, waehrend `--card` heller liegt --
+ * derselbe Unterschied wie zwischen einer Mulde und einem Knopf. Keine
+ * eigenen Raender je Zeile, nur Haarlinien dazwischen, gedaempfte Schrift,
+ * kein Zeigefinger. Dazu ein Auge an der Ueberschrift.
  *
  * Was hier NICHT steht: Rohwerte, Kartenzustände, Modellbegriffe. Die
  * gehören nach „Erweitert" in der Statistik, wo man sie bewusst aufsucht.
  */
 import { useStore } from "../store/StoreProvider";
+import { Icon } from "./Icon";
 import { txt } from "../lib/i18n";
 import { deriveProfile, effectiveRetentionFor } from "../lib/fsrs";
 import { practiceable } from "../lib/pairs";
@@ -22,7 +32,7 @@ import { STUFE_FARBE, STUFE_KURZ } from "../lib/stufen";
 
 function Zeile({ name, wert }: { name: string; wert: any }) {
   return (
-    <div className="li">
+    <div className="lern-zeile">
       <span className="g">{name}</span>
       <span className="lern-wert">{wert}</span>
     </div>
@@ -45,7 +55,11 @@ export function LernstandBlock({ word }: { word: any }) {
 
   return (
     <>
-      <div className="grp">{txt("Lernstand")} <span className="hint">— {txt("nur zur Ansicht")}</span></div>
+      <div className="grp">
+        <Icon name="eye" size={13} /> {txt("Lernstand")}
+        <span className="hint">— {txt("nur zur Ansicht")}</span>
+      </div>
+      <div className="lern-block">
       <Zeile name={txt("Wie gut es sitzt")} wert={
         <span className="wstufe" style={{ color: STUFE_FARBE[stufe] }}>
           <i style={{ background: STUFE_FARBE[stufe] }} />{txt(STUFE_KURZ[stufe])}
@@ -54,6 +68,7 @@ export function LernstandBlock({ word }: { word: any }) {
       <Zeile name={txt("Falsch beantwortet")} wert={stat?.seen ? <b>{txt("{n} ×", { n: stat.wrongCount || 0 })}</b> : strich} />
       <Zeile name={txt("Nächste Übung")} wert={naechste} />
       <Zeile name={txt("In der Liste")} wert={inListen.join(" · ") || strich} />
+      </div>
     </>
   );
 }

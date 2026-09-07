@@ -482,7 +482,7 @@ export function WordList() {
           ihn braucht: in das Fenster selbst, als Knopf neben dem Textfeld. */}
       <button className="li" onClick={() => { setQuellenBlatt(null); setPasteSeed(""); setPasteOpen(true); }}>
         <Icon name="list" size={15} />
-        <span className="g">{txt("Liste einfügen")}<div className="m">{txt("abtippen, einfügen — oder von einer KI aus einem Foto erstellen lassen")}</div></span>
+        <span className="g">{txt("Liste einfügen")}<div className="m">{txt("abtippen, einfügen — oder von deiner KI-App aus einem Foto erstellen lassen")}</div></span>
         <Icon name="arrowRight" size={14} />
       </button>
       {isConfigured && (

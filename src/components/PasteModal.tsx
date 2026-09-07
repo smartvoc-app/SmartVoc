@@ -194,7 +194,7 @@ export function PasteModal({ open, pair, onParsed, onClose, initialText }: { ope
         <div className="tips-intro" style={{ marginBottom: 12 }}>
           Füge eine Wortliste ein — eine Zeile pro Wort, Spalten getrennt durch Tab, „|", „–" oder „:".
           {isLat ? " Kurz genügt: Grundform | Formen | Wortart | Deutsch." : ` Kurz genügt: ${P.foreignLabel} | Deutsch.`}
-          {" "}{txt("Nichts zum Kopieren? Der KI-Prompt unten holt dir die Wörter aus einem Foto deiner Heftseite.")}
+          {" "}{txt("Nichts zum Kopieren? Mit dem Auftrag unten macht dir deine KI-App aus einem Foto deiner Heftseite eine fertige Liste.")}
         </div>
 
         <textarea className="field" style={{ minHeight: 150, resize: "vertical", fontFamily: "var(--mono)", fontSize: 16 }}
