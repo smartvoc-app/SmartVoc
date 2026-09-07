@@ -186,9 +186,6 @@
  "src/store/StoreProvider.tsx": [
   "Wörter ohne Liste"
  ],
- "src/sync/auth.tsx": [
-  "Das Passwort lässt sich in der App nicht zurücksetzen. Öffne SmartVoc dafür im Browser."
- ],
  "src/ui/Kritzel.tsx": [
   "1 Liste",
   "2 Listen",

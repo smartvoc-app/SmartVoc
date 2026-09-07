@@ -191,9 +191,10 @@ export function SettingsTab() {
     if (confirmText.trim().toUpperCase() !== txt("LÖSCHEN").toUpperCase()) return;
     setDelBusy(true); setDelErr("");
     try {
-      if (cloudActive) await deleteCloudAccount();
+      /* Nur dieses Geraet. Das Konto selbst loescht man im Kontofenster --
+         dort, wo es hingehoert. Vorher tat dieser Knopf beides, je nachdem
+         ob man angemeldet war, und hiess trotzdem immer gleich. */
       deleteLocalData();
-      if (cloudActive) await auth.signOut();
       location.reload();
     } catch (e: any) {
       setDelBusy(false);
@@ -633,7 +634,7 @@ export function SettingsTab() {
 
       {/* Konto & Daten */}
       <div className="set-section">
-        <div className="set-section-h"><Icon name="download" size={16} /> {txt("Konto & Daten")}</div>
+        <div className="set-section-h"><Icon name="download" size={16} /> {txt("Daten auf diesem Gerät")}</div>
         <Field title={txt("Daten exportieren")} desc={txt("Lädt alle deine Wörter, Listen, Fortschritte und Einstellungen als Sicherungsdatei herunter (Format JSON).")}>
           <button className="btn btn-sm" onClick={doExport}><Icon name="download" size={15} /> {txt("Exportieren")}</button>
         </Field>
@@ -643,7 +644,7 @@ export function SettingsTab() {
         <Field title={txt("Fortschritt zurücksetzen")} desc={txt("Löscht Punkte und Verlauf. Deine Wörter und Wortlisten bleiben.")}>
           <button className="btn btn-sm btn-ghost" onClick={() => setResetOpen(true)}><Icon name="refresh" size={15} /> {txt("Zurücksetzen")}</button>
         </Field>
-        <Field title={txt("Konto löschen")} desc={cloudActive ? txt("Löscht deine Daten endgültig, lokal und in der Cloud. Das kann nicht rückgängig gemacht werden.") : txt("Löscht alle Daten auf diesem Gerät. Das kann nicht rückgängig gemacht werden.")}>
+        <Field title={txt("Alle Daten auf diesem Gerät löschen")} desc={cloudActive ? txt("Löscht deine Daten endgültig, lokal und in der Cloud. Das kann nicht rückgängig gemacht werden.") : txt("Löscht alle Daten auf diesem Gerät. Das kann nicht rückgängig gemacht werden.")}>
           <button className="btn btn-sm" style={{ borderColor: "var(--red)", color: "var(--red)" }} onClick={() => { setConfirmText(""); setDelErr(""); setDelOpen(true); }}>
             <Icon name="trash" size={15} /> {txt("Löschen")}
           </button>
@@ -660,10 +661,10 @@ export function SettingsTab() {
         knopf={txt("Zurücksetzen")} gefahr onClose={() => setResetOpen(false)}
         tun={() => { store.resetStats(); setResetOpen(false); toast(txt("Lernstand zurückgesetzt"), "refresh"); }} />
 
-      <Bestaetigen offen={delOpen} titel={txt("Konto löschen")} gefahr
+      <Bestaetigen offen={delOpen} titel={txt("Alle Daten auf diesem Gerät löschen")} gefahr
         text={<>
           {cloudActive
-            ? txt("Das löscht deine Daten endgültig, auf diesem Gerät und in der Cloud. Danach wirst du abgemeldet.")
+            ? txt("Das löscht alle Vokabeln, Listen und Fortschritte auf diesem Gerät. Dein Konto auf dem Server bleibt bestehen; beim nächsten Anmelden kommt alles zurück.")
             : txt("Das löscht alle Vokabeln, Listen und Fortschritte auf diesem Gerät.")}
           {" "}{txt("Zum Bestätigen tippe")} <b style={{ color: "var(--ink)" }}>{txt("LÖSCHEN")}</b>.
         </>}

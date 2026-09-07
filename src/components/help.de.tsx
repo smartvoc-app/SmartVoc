@@ -231,7 +231,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
       <>
         <p>Die App läuft vollständig ohne Konto und vollständig ohne Netzverbindung. Ohne Anmeldung liegt alles, was du einträgst, auf diesem Gerät, und nur dort.</p>
         <p>Meldest du dich an, kommt dreierlei dazu: derselbe Stand auf allen deinen Geräten, Listen <b>teilen</b>, und deine Wörter überleben, wenn dem Gerät etwas zustößt. Anmelden kannst du dich jederzeit später und deine bisherigen Listen dabei übernehmen.</p>
-        <p>Dein Konto löschst du in den Einstellungen unter <b>Konto &amp; Daten</b>. Damit verschwinden auch die Daten auf dem Server. Das lässt sich nicht rückgängig machen.</p>
+        <p>Dein Konto löschst du oben rechts im Kontofenster. Dort änderst du auch Anzeigename und Passwort. Beim Löschen verschwinden auch die Daten auf dem Server, und das lässt sich nicht rückgängig machen.</p>
       </>
     ),
   },
@@ -248,7 +248,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <p className="help-frage"><b>Ein Wort ist falsch geschrieben. Wie ändere ich es?</b></p>
         <p>Liste öffnen, <b>Wörter ansehen und bearbeiten</b>, Zeile antippen, <b>Bearbeiten</b>. Dort lässt sich alles ändern oder nachtragen: Wort, Beispielsatz, Lautschrift, Formen und Geschlecht.</p>
         <p className="help-frage"><b>Mein Lernstand stimmt nicht mehr. Kann ich neu anfangen?</b></p>
-        <p>In den Einstellungen unter <b>Konto &amp; Daten</b> lässt sich der Fortschritt zurücksetzen: Punkte, Verlauf und Tagesserie, in allen Sprachen. Deine Wörter bleiben. Rückgängig machen lässt es sich nicht.</p>
+        <p>In den Einstellungen unter <b>Daten auf diesem Gerät</b> lässt sich der Fortschritt zurücksetzen: Punkte, Verlauf und Tagesserie, in allen Sprachen. Deine Wörter bleiben. Rückgängig machen lässt es sich nicht.</p>
         <p className="help-frage"><b>Ich möchte weg von SmartVoc. Bekomme ich meine Wörter mit?</b></p>
         <p>Ja. <b>Exportieren</b> gibt dir jede Liste als Text oder als Excel-Tabelle heraus, ohne Konto und ohne Umweg.</p>
       </>

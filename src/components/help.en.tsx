@@ -199,7 +199,7 @@ export const ANLEITUNG_EN: Kapitel[] = [
       <>
         <p>The app runs completely without an account and completely without a connection. Without signing in, everything you enter stays on this device, and nowhere else.</p>
         <p>Signing in adds three things: the same state on all your devices, <b>sharing</b> lists, and your words surviving if something happens to the device. You can sign in later at any time and take your existing lists with you.</p>
-        <p>You delete your account in the settings under <b>Account &amp; data</b>. That also removes the data on the server, and it cannot be undone.</p>
+        <p>You delete your account in the account window at the top right. That is also where you change your display name and password. Deleting removes the data on the server too, and it cannot be undone.</p>
       </>
     ),
   },
@@ -216,7 +216,7 @@ export const ANLEITUNG_EN: Kapitel[] = [
         <p className="help-frage"><b>A word is spelled wrong. How do I change it?</b></p>
         <p>Open the list, <b>View and edit words</b>, tap the row, <b>Edit</b>. Everything can be changed or added there: the word, example sentences, phonetics, forms and gender.</p>
         <p className="help-frage"><b>My progress is off. Can I start again?</b></p>
-        <p>In the settings under <b>Account &amp; data</b> you can reset your progress: points, history and daily streak, in every language. Your words stay. It cannot be undone.</p>
+        <p>In the settings under <b>Data on this device</b> you can reset your progress: points, history and daily streak, in every language. Your words stay. It cannot be undone.</p>
         <p className="help-frage"><b>I want to leave SmartVoc. Do I get my words out?</b></p>
         <p>Yes. <b>Export</b> gives you every list as text or as an Excel spreadsheet, without an account and without a detour.</p>
       </>

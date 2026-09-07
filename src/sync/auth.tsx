@@ -59,9 +59,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return error ? { error: error.message } : {};
   }, []);
 
+  /* Der Bestaetigungslink braucht ein Ziel.
+   *
+   * Ohne emailRedirectTo nimmt Supabase die allgemeine Site-URL aus dem
+   * Dashboard -- eine Einstellung, die man beim Umzug vergisst und die auf
+   * dem Telefon ohnehin nicht die App oeffnet. Dieselbe Ueberlegung wie beim
+   * Zuruecksetzen des Passworts darunter, deshalb dieselbe Ableitung. */
+  const zielAdresse = (): string | null => {
+    if (!Capacitor.isNativePlatform()) return window.location.origin + import.meta.env.BASE_URL;
+    const web = (import.meta.env.VITE_WEB_URL as string | undefined)?.trim();
+    return web ? web.replace(/\/*$/, "/") : null;
+  };
+
   const signUp = useCallback(async (email: string, password: string, username?: string): Promise<AuthResult> => {
     if (!supabase) return { error: "not-configured" };
-    const opts = username?.trim() ? { data: { username: username.trim() } } : undefined;
+    const ziel = zielAdresse();
+    const opts: any = {};
+    if (username?.trim()) opts.data = { username: username.trim() };
+    if (ziel) opts.emailRedirectTo = ziel;
     const { error } = await supabase.auth.signUp({ email, password, options: opts });
     return error ? { error: error.message } : {};
   }, []);
@@ -85,12 +100,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // link and look like it worked. Say so instead.
   const resetPassword = useCallback(async (email: string): Promise<AuthResult> => {
     if (!supabase) return { error: "not-configured" };
-    let redirectTo = window.location.origin + import.meta.env.BASE_URL;
-    if (Capacitor.isNativePlatform()) {
-      const web = (import.meta.env.VITE_WEB_URL as string | undefined)?.trim();
-      if (!web) return { error: "Das Passwort lässt sich in der App nicht zurücksetzen. Öffne SmartVoc dafür im Browser." };
-      redirectTo = web.replace(/\/*$/, "/");
-    }
+    const redirectTo = zielAdresse();
+    if (!redirectTo) return { error: "Das Passwort lässt sich in der App nicht zurücksetzen. Öffne SmartVoc dafür im Browser." };
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
     return error ? { error: error.message } : {};
   }, []);

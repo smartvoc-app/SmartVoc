@@ -397,7 +397,7 @@
     ],
     [
      "P",
-     "Dein Konto löschst du in den Einstellungen unter Konto & Daten. Damit verschwinden auch die Daten auf dem Server. Das lässt sich nicht rückgängig machen."
+     "Dein Konto löschst du oben rechts im Kontofenster. Dort änderst du auch Anzeigename und Passwort. Beim Löschen verschwinden auch die Daten auf dem Server, und das lässt sich nicht rückgängig machen."
     ]
    ]
   ],
@@ -442,7 +442,7 @@
     ],
     [
      "P",
-     "In den Einstellungen unter Konto & Daten lässt sich der Fortschritt zurücksetzen: Punkte, Verlauf und Tagesserie, in allen Sprachen. Deine Wörter bleiben. Rückgängig machen lässt es sich nicht."
+     "In den Einstellungen unter Daten auf diesem Gerät lässt sich der Fortschritt zurücksetzen: Punkte, Verlauf und Tagesserie, in allen Sprachen. Deine Wörter bleiben. Rückgängig machen lässt es sich nicht."
     ],
     [
      "P",
@@ -757,7 +757,7 @@
   ],
   [
    "P",
-   "Du kannst Auskunft darüber verlangen, was über dich gespeichert ist, kannst es berichtigen lassen, und du kannst alles jederzeit selbst als Datei exportieren oder dein Konto vollständig löschen. Export und Löschung findest du in den Einstellungen unter „Konto & Daten“. Beim Löschen verschwinden auch die Daten auf dem Server, und das lässt sich nicht rückgängig machen. Für alles andere genügt eine Nachricht an die im Impressum genannte Adresse."
+   "Du kannst Auskunft darüber verlangen, was über dich gespeichert ist, kannst es berichtigen lassen, und du kannst alles jederzeit selbst als Datei exportieren oder dein Konto vollständig löschen. Den Export findest du in den Einstellungen, das Löschen des Kontos im Kontofenster oben rechts. Beim Löschen verschwinden auch die Daten auf dem Server, und das lässt sich nicht rückgängig machen. Für alles andere genügt eine Nachricht an die im Impressum genannte Adresse."
   ],
   [
    "H",
@@ -831,22 +831,29 @@
    "Passwörter stimmen nicht überein.",
    "Passwort geändert",
    "Konto erstellt. Wir haben dir eine E-Mail geschickt: bestätige die Adresse, dann kannst du dich hier anmelden.",
+   "LÖSCHEN",
+   "Löschen fehlgeschlagen",
    "Anzeigename gespeichert",
    "Konto erstellen",
    "Passwort zurücksetzen",
    "Neues Passwort setzen",
-   "Anzeigename",
-   "Anzeigename bearbeiten",
-   "Noch kein Anzeigename gesetzt. Bis dahin zeigt die App deine E-Mail-Adresse. Tippe auf den Stift, um einen festzulegen.",
    "Deine Wörter, Listen und Fortschritte werden abgeglichen und stehen auf allen deinen Geräten zur Verfügung. Ohne Netz läuft alles weiter und wird beim nächsten Mal nachgeholt.",
+   "Dein Konto",
+   "Anzeigename",
+   "nicht gesetzt",
+   "E-Mail",
+   "Passwort ändern",
+   "Konto beenden",
    "Abmelden",
+   "Daten bleiben auf dem Server",
+   "Konto löschen",
+   "Endgültig, auch auf dem Server",
    "Setze ein neues Passwort für {wer}.",
    "dein Konto",
    "Neues Passwort",
    "Neues Passwort wiederholen",
    "Passwort speichern",
    "Wir schicken dir einen Link, mit dem du ein neues Passwort setzen kannst.",
-   "E-Mail",
    "Link senden",
    "Zurück zum Anmelden",
    "Passwort",
@@ -857,6 +864,9 @@
    "Noch kein Konto? Registrieren",
    "Schon registriert? Anmelden",
    "Passwort vergessen?",
+   "Das löscht deine Daten endgültig, auf diesem Gerät und auf dem Server. Danach wirst du abgemeldet.",
+   "Zum Bestätigen tippe",
+   "Endgültig löschen",
    "Nur auf diesem Gerät",
    "Ohne Netz, wird nachgeholt"
   ],
@@ -1075,8 +1085,6 @@
    "Zurück zur Voreinstellung",
    "✓ Voreinstellung",
    "Daten exportiert",
-   "LÖSCHEN",
-   "Löschen fehlgeschlagen",
    "Mindestens eine Sprache muss aktiv bleiben",
    "Auf Voreinstellung",
    "Die Voreinstellungen folgen der Lernpsychologie: verteiltes Üben, aktives Abrufen und wenige neue Wörter pro Tag. Du darfst alles ändern. Was du verstellt hast, ist markiert.",
@@ -1141,7 +1149,7 @@
    "Das Gedächtnis-Modell",
    "Womit die App rechnet: das Behaltensziel, die abgeleiteten Schwellen und die 19 Modell-Gewichte. Nur zum Ansehen. Die App passt diese Werte nicht an dich an und zeichnet dafür auch nichts auf.",
    "Werte ansehen",
-   "Konto & Daten",
+   "Daten auf diesem Gerät",
    "Daten exportieren",
    "Lädt alle deine Wörter, Listen, Fortschritte und Einstellungen als Sicherungsdatei herunter (Format JSON).",
    "Exportieren",
@@ -1150,7 +1158,7 @@
    "Zurücksetzen",
    "Fortschritt zurücksetzen",
    "Löscht Punkte und Verlauf. Deine Wörter und Wortlisten bleiben.",
-   "Konto löschen",
+   "Alle Daten auf diesem Gerät löschen",
    "Löscht deine Daten endgültig, lokal und in der Cloud. Das kann nicht rückgängig gemacht werden.",
    "Löscht alle Daten auf diesem Gerät. Das kann nicht rückgängig gemacht werden.",
    "Löschen",
@@ -1158,10 +1166,8 @@
    "Auf die Voreinstellungen zurückgesetzt",
    "Das löscht Punkte, Verlauf und die Tagesserie, und zwar in allen Sprachen. Deine Wörter und Wortlisten bleiben. Rückgängig machen lässt es sich nicht.",
    "Lernstand zurückgesetzt",
-   "Das löscht deine Daten endgültig, auf diesem Gerät und in der Cloud. Danach wirst du abgemeldet.",
+   "Das löscht alle Vokabeln, Listen und Fortschritte auf diesem Gerät. Dein Konto auf dem Server bleibt bestehen; beim nächsten Anmelden kommt alles zurück.",
    "Das löscht alle Vokabeln, Listen und Fortschritte auf diesem Gerät.",
-   "Zum Bestätigen tippe",
-   "Endgültig löschen",
    "Über SmartVoc",
    "Datenschutz und Impressum",
    "Gemächlich",
@@ -1496,9 +1502,6 @@
   ],
   "Datenhaltung": [
    "Wörter ohne Liste"
-  ],
-  "Anmeldung": [
-   "Das Passwort lässt sich in der App nicht zurücksetzen. Öffne SmartVoc dafür im Browser."
   ],
   "Abgleich mit dem Konto": [
    "Lokale Daten als Sicherung gespeichert",

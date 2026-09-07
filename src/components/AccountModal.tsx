@@ -4,9 +4,12 @@
 import { useState, useEffect } from "react";
 import { txt } from "../lib/i18n";
 import { Icon } from "../ui/Icon";
+import { Bestaetigen } from "../ui/Bestaetigen";
 import { useAuth } from "../sync/auth";
 import { useSync, type SyncStatus } from "../sync/SyncBridge";
 import { useToast } from "../ui/Toast";
+import { deleteLocalData } from "../lib/accountData";
+import { deleteCloudAccount } from "../sync/share";
 
 const STATUS_LABEL: Record<SyncStatus, string> = {
   local: "Nur auf diesem Gerät",
@@ -28,6 +31,10 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
   const [password2, setPassword2] = useState("");
   const [username, setUsername] = useState("");            // sign-up field
   const [editingName, setEditingName] = useState(false);    // inline username edit (logged-in view)
+  const [delOpen, setDelOpen] = useState(false);
+  const [delBusy, setDelBusy] = useState(false);
+  const [delErr, setDelErr] = useState("");
+  const [confirmText, setConfirmText] = useState("");
   const [nameDraft, setNameDraft] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -111,6 +118,27 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
     onClose();
   };
 
+  /* Das Konto loeschen gehoert hierher, nicht in die Einstellungen.
+   *
+   * Es stand dort neben "Einstellungen zuruecksetzen" und "Fortschritt
+   * zuruecksetzen" -- also zwischen Dingen, die das Geraet betreffen, waehrend
+   * es um die Identitaet geht. Wer sein Konto sucht, sucht es im Konto.
+   * In den Einstellungen bleibt das Loeschen der Daten AUF DIESEM GERAET;
+   * das ist eine andere Handlung und heisst jetzt auch so. */
+  const doDelete = async () => {
+    if (confirmText.trim().toUpperCase() !== txt("LÖSCHEN").toUpperCase()) return;
+    setDelBusy(true); setDelErr("");
+    try {
+      await deleteCloudAccount();
+      deleteLocalData();
+      await auth.signOut();
+      location.reload();
+    } catch (e: any) {
+      setDelBusy(false);
+      setDelErr(txt("Löschen fehlgeschlagen") + ": " + (e?.message || e));
+    }
+  };
+
   const close = () => { if (mode === "newpw") auth.clearRecovery(); onClose(); };
 
   const startEditName = () => { setNameDraft(auth.username || ""); setEditingName(true); };
@@ -140,6 +168,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
   };
 
   return (
+    <>
     <div className="modal-backdrop" onClick={close}>
       <div className="modal" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 420 }}>
         <div className="modal-head">
@@ -148,34 +177,46 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
         </div>
 
         {auth.user && mode !== "newpw" ? (
-          <div className="col" style={{ gap: 14 }}>
-            <div className="muted" style={{ fontSize: 14 }}>
-              {editingName ? (
-                <span className="row" style={{ gap: 6, alignItems: "center" }}>
-                  Angemeldet als
-                  <input className="mini-input" autoFocus placeholder={txt("Anzeigename")} value={nameDraft}
-                    onChange={(e) => setNameDraft(e.target.value)} onBlur={commitUsername}
-                    onKeyDown={(e) => e.key === "Enter" && (e.target as HTMLInputElement).blur()} />
-                </span>
-              ) : (
-                <>
-                  Angemeldet als <b style={{ color: "var(--ink)" }}>{auth.username || auth.email}</b>
-                  <button className="icon-btn" style={{ width: 26, height: 26, marginLeft: 6, verticalAlign: "-6px" }}
-                    title={txt("Anzeigename bearbeiten")} onClick={startEditName}><Icon name="edit" size={12} /></button>
-                </>
-              )}
-            </div>
-            {!auth.username && !editingName && (
-              <div className="muted" style={{ fontSize: 12.5, marginTop: -8 }}>{txt("Noch kein Anzeigename gesetzt. Bis dahin zeigt die App deine E-Mail-Adresse. Tippe auf den Stift, um einen festzulegen.")}</div>
-            )}
-            {auth.username && !editingName && <div className="faint" style={{ fontSize: 12, marginTop: -8 }}>{auth.email}</div>}
+          <div className="col" style={{ gap: 10 }}>
             <div className="badge slate" style={{ alignSelf: "flex-start" }}><span className="dot" />{txt(STATUS_LABEL[status])}</div>
             <div className="muted" style={{ fontSize: 12.5, lineHeight: 1.45 }}>
               {txt("Deine Wörter, Listen und Fortschritte werden abgeglichen und stehen auf allen deinen Geräten zur Verfügung. Ohne Netz läuft alles weiter und wird beim nächsten Mal nachgeholt.")}
             </div>
-            <div className="modal-foot">
-              <button className="btn btn-ghost" onClick={() => auth.signOut()}>{txt("Abmelden")}</button>
+
+            {/* Zeilen wie ueberall sonst in der App: Name links, Wert rechts,
+                antippbar. Vorher war der Anzeigename das EINZIGE, was man hier
+                aendern konnte, und zwar ueber einen Stift, der die Zeile beim
+                Aufklappen umbrach. Wer ein Konto sucht, sucht Zugangsdaten. */}
+            <div className="grp">{txt("Dein Konto")}</div>
+            {editingName ? (
+              <input className="field" autoFocus placeholder={txt("Anzeigename")} value={nameDraft}
+                onChange={(e) => setNameDraft(e.target.value)} onBlur={commitUsername}
+                onKeyDown={(e) => e.key === "Enter" && (e.target as HTMLInputElement).blur()} />
+            ) : (
+              <button className="li" onClick={startEditName}>
+                <span className="g">{txt("Anzeigename")}</span>
+                <span className="lern-wert">{auth.username || txt("nicht gesetzt")}</span>
+                <Icon name="edit" size={14} />
+              </button>
+            )}
+            <div className="li" style={{ cursor: "default" }}>
+              <span className="g">{txt("E-Mail")}</span>
+              <span className="lern-wert">{auth.email}</span>
             </div>
+            <button className="li" onClick={() => { setMode("newpw"); setPassword(""); setPassword2(""); setError(""); setInfo(""); }}>
+              <span className="g">{txt("Passwort ändern")}</span>
+              <Icon name="arrowRight" size={14} />
+            </button>
+
+            <div className="grp">{txt("Konto beenden")}</div>
+            <button className="li" onClick={() => auth.signOut()}>
+              <span className="g">{txt("Abmelden")}</span>
+              <span className="lern-wert">{txt("Daten bleiben auf dem Server")}</span>
+            </button>
+            <button className="li li-gefahr" onClick={() => { setConfirmText(""); setDelErr(""); setDelOpen(true); }}>
+              <span className="g">{txt("Konto löschen")}</span>
+              <span className="lern-wert">{txt("Endgültig, auch auf dem Server")}</span>
+            </button>
           </div>
         ) : mode === "newpw" ? (
           <div className="col" style={{ gap: 10 }}>
@@ -242,5 +283,18 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
         )}
       </div>
     </div>
+
+      <Bestaetigen offen={delOpen} titel={txt("Konto löschen")} gefahr
+        text={<>
+          {txt("Das löscht deine Daten endgültig, auf diesem Gerät und auf dem Server. Danach wirst du abgemeldet.")}
+          {" "}{txt("Zum Bestätigen tippe")} <b style={{ color: "var(--ink)" }}>{txt("LÖSCHEN")}</b>.
+        </>}
+        knopf={txt("Endgültig löschen")} aus={delBusy || confirmText.trim().toUpperCase() !== txt("LÖSCHEN").toUpperCase()}
+        onClose={() => !delBusy && setDelOpen(false)} tun={doDelete}>
+        <input className="field" style={{ marginTop: 12 }} placeholder={txt("LÖSCHEN")} value={confirmText}
+          onChange={(e) => setConfirmText(e.target.value)} autoFocus />
+        {delErr && <div className="badge red" style={{ marginTop: 10 }}><span className="dot" />{delErr}</div>}
+      </Bestaetigen>
+    </>
   );
 }

@@ -62,7 +62,7 @@ export const DATENSCHUTZ: Abschnitt[] = [
   {
     h: "Deine Rechte",
     p: [
-      "Du kannst Auskunft darüber verlangen, was über dich gespeichert ist, kannst es berichtigen lassen, und du kannst alles jederzeit selbst als Datei exportieren oder dein Konto vollständig löschen. Export und Löschung findest du in den Einstellungen unter „Konto & Daten“. Beim Löschen verschwinden auch die Daten auf dem Server, und das lässt sich nicht rückgängig machen. Für alles andere genügt eine Nachricht an die im Impressum genannte Adresse.",
+      "Du kannst Auskunft darüber verlangen, was über dich gespeichert ist, kannst es berichtigen lassen, und du kannst alles jederzeit selbst als Datei exportieren oder dein Konto vollständig löschen. Den Export findest du in den Einstellungen, das Löschen des Kontos im Kontofenster oben rechts. Beim Löschen verschwinden auch die Daten auf dem Server, und das lässt sich nicht rückgängig machen. Für alles andere genügt eine Nachricht an die im Impressum genannte Adresse.",
     ],
   },
   {
@@ -158,7 +158,7 @@ export const DATENSCHUTZ_EN: Abschnitt[] = [
   {
     h: "Your rights",
     p: [
-      "You can ask what is stored about you, have it corrected, and you can export everything yourself as a file or delete your account entirely at any time. Export and deletion are in the settings under “Account & data”. Deleting also removes the data on the server, and it cannot be undone. For anything else, a message to the address given in the imprint is enough.",
+      "You can ask what is stored about you, have it corrected, and you can export everything yourself as a file or delete your account entirely at any time. The export is in the settings; deleting your account is in the account window at the top right. Deleting also removes the data on the server, and it cannot be undone. For anything else, a message to the address given in the imprint is enough.",
     ],
   },
   {

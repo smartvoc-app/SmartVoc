@@ -397,7 +397,7 @@
     ],
     [
      "P",
-     "You delete your account in the settings under Account & data. That also removes the data on the server, and it cannot be undone."
+     "You delete your account in the account window at the top right. That is also where you change your display name and password. Deleting removes the data on the server too, and it cannot be undone."
     ]
    ]
   ],
@@ -442,7 +442,7 @@
     ],
     [
      "P",
-     "In the settings under Account & data you can reset your progress: points, history and daily streak, in every language. Your words stay. It cannot be undone."
+     "In the settings under Data on this device you can reset your progress: points, history and daily streak, in every language. Your words stay. It cannot be undone."
     ],
     [
      "P",
@@ -756,7 +756,7 @@
   ],
   [
    "P",
-   "You can ask what is stored about you, have it corrected, and you can export everything yourself as a file or delete your account entirely at any time. Export and deletion are in the settings under “Account & data”. Deleting also removes the data on the server, and it cannot be undone. For anything else, a message to the address given in the imprint is enough."
+   "You can ask what is stored about you, have it corrected, and you can export everything yourself as a file or delete your account entirely at any time. The export is in the settings; deleting your account is in the account window at the top right. Deleting also removes the data on the server, and it cannot be undone. For anything else, a message to the address given in the imprint is enough."
   ],
   [
    "H",
@@ -830,22 +830,29 @@
    "The passwords do not match.",
    "Password changed",
    "Account created. We have sent you an email: confirm the address, then you can sign in here.",
+   "DELETE",
+   "Deletion failed",
    "Display name saved",
    "Create account",
    "Reset password",
    "Set a new password",
-   "Display name",
-   "Edit display name",
-   "No display name set yet. Until then the app shows your email address. Tap the pencil to set one.",
    "Your words, lists and progress are synced and available on all your devices. Without a connection everything keeps working and catches up next time.",
+   "Your account",
+   "Display name",
+   "not set",
+   "Email",
+   "Change password",
+   "Leaving",
    "Sign out",
+   "Your data stays on the server",
+   "Delete account",
+   "Permanent, on the server too",
    "Set a new password for {wer}.",
    "your account",
    "New password",
    "Repeat the new password",
    "Save password",
    "We will send you a link to set a new password.",
-   "Email",
    "Send link",
    "Back to sign in",
    "Password",
@@ -856,6 +863,9 @@
    "No account yet? Register",
    "Already registered? Sign in",
    "Forgotten your password?",
+   "This permanently deletes your data, on this device and on the server. You will be signed out afterwards.",
+   "To confirm, type",
+   "Delete for good",
    "On this device only",
    "No connection, will catch up"
   ],
@@ -1074,8 +1084,6 @@
    "Back to the default",
    "✓ Default",
    "Data exported",
-   "DELETE",
-   "Deletion failed",
    "At least one language must stay switched on",
    "Reset to default",
    "The defaults follow learning research: spaced practice, active recall and few new words a day. Change anything you like, whatever you changed is marked.",
@@ -1140,7 +1148,7 @@
    "The memory model",
    "What the app calculates with: the retention target, the derived thresholds and the 19 model weights. For viewing only, the app does not tune these to you and records nothing for that purpose.",
    "See the values",
-   "Account & data",
+   "Data on this device",
    "Export data",
    "Downloads all your words, lists, progress and settings as a backup file (JSON format).",
    "Export",
@@ -1149,7 +1157,7 @@
    "Reset",
    "Reset progress",
    "Clears points and history. Your words and word lists stay.",
-   "Delete account",
+   "Delete all data on this device",
    "Deletes your data for good, on this device and in the cloud. This cannot be undone.",
    "Deletes all data on this device. This cannot be undone.",
    "Delete",
@@ -1157,10 +1165,8 @@
    "Reset to the recommended settings",
    "This clears points, history and your daily run, in every language. Your words and word lists stay. It cannot be undone.",
    "Progress reset",
-   "This deletes your data for good, on this device and in the cloud. You will be signed out afterwards.",
+   "This deletes all words, lists and progress on this device. Your account on the server stays; signing in again brings everything back.",
    "This deletes every word, list and bit of progress on this device.",
-   "To confirm, type",
-   "Delete for good",
    "About SmartVoc",
    "Privacy and legal notice",
    "Gentle",
@@ -1495,9 +1501,6 @@
   ],
   "Datenhaltung": [
    "Words without a list"
-  ],
-  "Anmeldung": [
-   "Passwords cannot be reset in the app. Open SmartVoc in a browser to do it."
   ],
   "Abgleich mit dem Konto": [
    "Local data saved as a backup",

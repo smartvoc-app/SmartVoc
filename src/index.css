@@ -2013,3 +2013,9 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus
                  margin: 0 3.5px; flex: none; }
 .pw-regel[data-zustand="gut"] { color: var(--ok); }
 .pw-regel[data-zustand="schlecht"] { color: var(--bad); }
+
+/* Eine Zeile, die etwas Unwiderrufliches tut. Rot nur in der Schrift, nicht
+   als Flaeche: eine rote Flaeche mitten in einer Liste liest sich wie ein
+   Fehler, nicht wie eine Moeglichkeit. */
+.li-gefahr, .li-gefahr .g { color: var(--bad); }
+.li-gefahr:hover { border-color: var(--bad); }
