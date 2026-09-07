@@ -160,7 +160,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <p><b>Das Zieldatum.</b> Gib einer Liste den Tag, an dem sie sitzen muss. Vergeben wird es unter <b>Wortlisten</b>, an der Liste selbst.</p>
         <p>Von da an rechnet die App rückwärts: Ab etwa drei Wochen vor dem Termin verlangt sie von diesen Wörtern mehr Sicherheit, wodurch sie öfter drankommen. In den letzten Tagen fällt für sie die Tagesgrenze weg. Nach dem Termin ist alles wieder normal.</p>
         <p>Übst du mehrere Listen zusammen, kommen die Wörter der Liste mit dem näheren Termin von selbst häufiger. Dafür musst du nichts einstellen.</p>
-        <p>Die Farbe eines Tages ist die <b>Ampel</b> der Liste, die an diesem Tag fällig ist, also dieselbe dreistufige Skala wie im Überblick, nicht die fünf Stufen. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste.</p>
+        <p>Die Farbe des Tages gibt an, wie bereit die Liste ist. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste.</p>
         <p>Tipp einen Tag an: Dann siehst du, um welche Listen es geht, wie viele ihrer Wörter am Stichtag voraussichtlich sitzen werden, und du kannst von dort direkt üben.</p>
       </>
     ),

@@ -237,7 +237,7 @@
     ],
     [
      "P",
-     "Die Farbe eines Tages ist die Ampel der Liste, die an diesem Tag fällig ist, also dieselbe dreistufige Skala wie im Überblick, nicht die fünf Stufen. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste."
+     "Die Farbe des Tages gibt an, wie bereit die Liste ist. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste."
     ],
     [
      "P",
