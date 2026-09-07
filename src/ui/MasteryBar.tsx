@@ -55,7 +55,7 @@ export function MasteryTrend({ days }: { days: { d: string; c: number[] }[] }) {
   const recent = days.slice(-21);
   return (
     <div className="mtrend">
-      <div className="mtrend-head">{txt("Verlauf")} <span className="faint">{txt("baut sich auf — ab heute füllt sich diese Linie")}</span></div>
+      <div className="mtrend-head">{txt("Verlauf")} <span className="faint">{txt("baut sich auf, ab heute füllt sich diese Linie")}</span></div>
       {recent.length === 0 ? (
         <div className="muted" style={{ fontSize: 12.5 }}>{txt("Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.")}</div>
       ) : (

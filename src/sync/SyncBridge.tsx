@@ -118,8 +118,8 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
         if (cloudEmpty && hasOwnContent(docsRef.current)) {
           const adopt = window.confirm(
             "Auf diesem Gerät liegen bereits Wörter und Listen.\n\n" +
-            "OK — in dieses Konto übernehmen\n" +
-            "Abbrechen — leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
+            "OK, in dieses Konto übernehmen\n" +
+            "Abbrechen, leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
           );
           if (!adopt) {
             backupLocal(docsRef.current);
@@ -169,7 +169,7 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
       // here — say so, otherwise the app silently shows different data.
       if (localStorage.getItem(SWITCH_NOTICE_KEY)) {
         localStorage.removeItem(SWITCH_NOTICE_KEY);
-        toast("Gerät auf dieses Konto umgestellt — die vorherigen Daten liegen als Sicherung auf dem Gerät.", "download");
+        toast("Gerät auf dieses Konto umgestellt. Die vorherigen Daten liegen als Sicherung auf dem Gerät.", "download");
       }
     } catch {
       setStatus(navigator.onLine ? "error" : "offline");

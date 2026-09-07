@@ -5,7 +5,7 @@
  ],
  "src/components/AccountModal.tsx": [
   "Nur auf diesem Gerät",
-  "Offline — wird nachgeholt",
+  "Ohne Netz, wird nachgeholt",
   "Wenn es zu dieser Adresse ein Konto gibt, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.",
   "Passwörter stimmen nicht überein.",
   "Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse.",
@@ -49,7 +49,7 @@
   "wie schnell die App annimmt, dass ein Wort fester wird"
  ],
  "src/components/ImportShareModal.tsx": [
-  "Liste nicht gefunden — Code prüfen.",
+  "Liste nicht gefunden. Bitte den Code prüfen.",
   "Teilen ist gerade nicht möglich.",
   "Konnte die Liste nicht laden.",
   "Geteilte Liste",
@@ -111,7 +111,7 @@
   "Dieselbe Liste wie zuletzt, und zwar mit den Wörtern, die noch offen waren.",
   "Dieselbe Liste wie zuletzt, aber von vorn.",
   "Nichts. Du wählst jedes Mal selbst.",
-  "Die Beispielsätze eines Wortes stehen auf der Lösungsseite der Karte — der Satz in der Fremdsprache und darunter seine Übersetzung.",
+  "Die Beispielsätze eines Wortes stehen auf der Lösungsseite der Karte: der Satz in der Fremdsprache und darunter seine Übersetzung.",
   "Die Lautschrift steht klein unter dem Fremdwort und sagt, wie man es ausspricht.",
   "Die Formen, die man zum Wort mitlernt: bei Latein die Stammformen, sonst Singular und Plural oder die unregelmäßigen Formen. Sie stehen klein unter dem Fremdwort und werden nie abgefragt.",
   "folgt der Einstellung des Telefons",
@@ -176,7 +176,7 @@
   "noch nicht geübt"
  ],
  "src/lib/latin.ts": [
-  "Fast — Schreibweise der Stammformen prüfen",
+  "Fast: Schreibweise der Stammformen prüfen",
   "Stammformen nochmal prüfen"
  ],
  "src/lib/pairs.ts": [
@@ -197,8 +197,8 @@
  ],
  "src/sync/SyncBridge.tsx": [
   "Auf diesem Gerät liegen bereits Wörter und Listen.",
-  "OK — in dieses Konto übernehmen",
-  "Abbrechen — leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
+  "OK, in dieses Konto übernehmen",
+  "Abbrechen, leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
  ],
  "src/ui/Kritzel.tsx": [
   "1 Liste",

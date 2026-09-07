@@ -473,7 +473,7 @@ export function SettingsTab() {
         </div>
       </div>
 
-      {([[ "beispiele", BEISPIELE, "Beispielsätze", "Die Beispielsätze eines Wortes stehen auf der Lösungsseite der Karte — der Satz in der Fremdsprache und darunter seine Übersetzung."],
+      {([[ "beispiele", BEISPIELE, "Beispielsätze", "Die Beispielsätze eines Wortes stehen auf der Lösungsseite der Karte: der Satz in der Fremdsprache und darunter seine Übersetzung."],
          [ "phonetik", PHONETIK, "Lautschrift", "Die Lautschrift steht klein unter dem Fremdwort und sagt, wie man es ausspricht."],
          [ "formen", FORMEN, "Formen", "Die Formen, die man zum Wort mitlernt: bei Latein die Stammformen, sonst Singular und Plural oder die unregelmäßigen Formen. Sie stehen klein unter dem Fremdwort und werden nie abgefragt."]] as any[]).map(([schl, feld, titel, desc]) => (
         <Blatt key={schl} offen={blatt === schl} titel={txt(titel)} onClose={() => setBlatt(null)}
@@ -590,7 +590,7 @@ export function SettingsTab() {
 
             <Field title={txt("Lernintensität")} atRec={cfgVal("learningSpeed") === DEFAULTS.learningSpeed}
               recLabel={txt("1,0× (normal)")}
-              desc={txt("Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher heißt: Die App nimmt schnellere Fortschritte an und fragt seltener nach — das ist riskanter. Niedriger heißt vorsichtiger und häufiger.")}>
+              desc={txt("Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher heißt: Die App nimmt schnellere Fortschritte an und fragt seltener nach. Das ist riskanter. Niedriger heißt vorsichtiger und häufiger.")}>
               <div className="col" style={{ gap: 6, width: "100%" }}>
                 <SliderControl value={speed} min={0.6} max={1.6} step={0.05} onChange={(v: number) => set("learningSpeed", v)} fmt={(v: number) => v.toFixed(2) + "×"} />
                 <div className="set-rec" style={{ fontSize: 12.5 }}>{txt("Beispiel: 3× richtig hintereinander → hält")} <b>~{Math.round(haeltAtSpeed)} statt ~{Math.round(haeltBase)} Tage</b>.</div>

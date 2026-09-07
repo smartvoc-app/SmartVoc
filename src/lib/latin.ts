@@ -57,7 +57,7 @@ export function scoreLatinForm(user: string, lernform: string, opts?: ScoreOpts)
     const missing = ct.length - matched;
     const note = missing > 0
       ? `Fast — ${missing} Stammform${missing === 1 ? "" : "en"} fehlt oder stimmt nicht`
-      : "Fast — Schreibweise der Stammformen prüfen";
+      : "Fast: Schreibweise der Stammformen prüfen";
     return { ...base, score: Math.max(0.35, Math.min(0.8, frac)), verdict: "almost", note, errorType: "typo" };
   }
   return { ...base, score: 0, verdict: "wrong", note: "Stammformen nochmal prüfen", errorType: "wrong" };

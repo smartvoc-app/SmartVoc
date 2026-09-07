@@ -17,7 +17,7 @@
     ],
     [
      "L",
-     "Unter Wortlisten auf + Neue Liste, dann Liste einfügen. Die App gibt dir einen fertigen Auftrag zum Kopieren. Den fügst du in deine KI-App ein und hängst ein Foto deiner Heftseite dazu; was sie zurückgibt, kopierst du hierher — samt Beispielsätzen und Lautschrift."
+     "Unter Wortlisten auf + Neue Liste, dann Liste einfügen. Die App gibt dir einen fertigen Auftrag zum Kopieren. Den fügst du in deine KI-App ein und hängst ein Foto deiner Heftseite dazu; was sie zurückgibt, kopierst du hierher, samt Beispielsätzen und Lautschrift."
     ],
     [
      "L",
@@ -46,7 +46,7 @@
     ],
     [
      "P",
-     "Das hat zwei Folgen, die anfangs überraschen. Wörter, die sitzen, verschwinden für Wochen aus der Abfrage — dafür brauchst du keine Zeit mehr. Und Wörter, bei denen du gezögert hast, sind morgen schon wieder da. Beides ist der Grund, warum zehn Minuten am Tag mehr bringen als eine Stunde am Samstag."
+     "Das hat zwei Folgen, die anfangs überraschen. Wörter, die sitzen, verschwinden für Wochen aus der Abfrage, dafür brauchst du keine Zeit mehr. Und Wörter, bei denen du gezögert hast, sind morgen schon wieder da. Beides ist der Grund, warum zehn Minuten am Tag mehr bringen als eine Stunde am Samstag."
     ],
     [
      "P",
@@ -67,19 +67,19 @@
     ],
     [
      "L",
-     "Üben — was soll ich jetzt tun? Hier wird gelernt."
+     "Üben: was soll ich jetzt tun? Hier wird gelernt."
     ],
     [
      "L",
-     "Übungsplan — bin ich rechtzeitig fertig? Deine Termine und wie du dazu stehst."
+     "Übungsplan: bin ich rechtzeitig fertig? Deine Termine und wie du dazu stehst."
     ],
     [
      "L",
-     "Wortlisten — woher kommen meine Wörter? Anlegen, füllen, verwalten."
+     "Wortlisten: woher kommen meine Wörter? Anlegen, füllen, verwalten."
     ],
     [
      "L",
-     "Statistik — wo stehe ich? Was sitzt, was wackelt, und ob es vorwärtsgeht."
+     "Statistik: wo stehe ich? Was sitzt, was wackelt, und ob es vorwärtsgeht."
     ],
     [
      "P",
@@ -91,7 +91,31 @@
     ],
     [
      "P",
-     "Die fünf Stufen gelten je Wort, und die Leiste liest sich von links nach rechts: sitzt hält länger als zwei Wochen und kommt selten zurück. sitzt fast — in der Leiste kurz fast — hält bis zu zwei Wochen. wackelt noch — kurz wackelt — hält weniger als drei Tage. neu ist frisch begonnen, ungeübt noch nie abgefragt. Diese Leiste findest du überall gleich: unter der Karte, an jeder Liste und in der Statistik. Ein Tipp auf einen Eintrag der Legende öffnet die Wörter dahinter."
+     "Die fünf Stufen gelten je Wort. Die Leiste liest sich von links nach rechts:"
+    ],
+    [
+     "L",
+     "sitzt: hält länger als zwei Wochen und kommt nur noch selten zurück."
+    ],
+    [
+     "L",
+     "fast: hält bis zu zwei Wochen. Ausgeschrieben heißt die Stufe sitzt fast."
+    ],
+    [
+     "L",
+     "wackelt: hält weniger als drei Tage. Ausgeschrieben wackelt noch."
+    ],
+    [
+     "L",
+     "neu: erst ein- oder zweimal geübt."
+    ],
+    [
+     "L",
+     "ungeübt: noch nie abgefragt."
+    ],
+    [
+     "P",
+     "Diese Leiste findest du überall gleich: unter der Karte, an jeder Liste und in der Statistik. Ein Tipp auf einen Eintrag der Legende öffnet die Wörter dahinter."
     ],
     [
      "P",
@@ -104,7 +128,7 @@
    [
     [
      "P",
-     "In der Zeile über der Karte wählst du, was abgefragt wird: die Sprache, die Richtung und eine oder mehrere Wortlisten — oder eine der vier Smart Lists, die die App selbst zusammenstellt. Die Auswahl darf Sprachen mischen."
+     "In der Zeile über der Karte wählst du, was abgefragt wird: die Sprache, die Richtung und eine oder mehrere Wortlisten, oder eine der vier Smart Lists, die die App selbst zusammenstellt. Die Auswahl darf Sprachen mischen."
     ],
     [
      "S",
@@ -116,19 +140,19 @@
     ],
     [
      "L",
-     "Eintippen — du schreibst die Antwort selbst. Am anstrengendsten, bringt am meisten. Im Zweifel diese."
+     "Eintippen: du schreibst die Antwort selbst. Am anstrengendsten, bringt am meisten. Im Zweifel diese."
     ],
     [
      "L",
-     "Multiple-Choice — du wählst aus mehreren Möglichkeiten. Leichter, gut für den Anfang oder wenn du müde bist."
+     "Multiple-Choice: du wählst aus mehreren Möglichkeiten. Leichter, gut für den Anfang oder wenn du müde bist."
     ],
     [
      "L",
-     "Selbstkontrolle — du überlegst, drehst um und beurteilst selbst. Schreib die Lösung vorher auf ein Blatt, sonst fällt das Urteil zu freundlich aus."
+     "Selbstkontrolle: du überlegst, drehst um und beurteilst selbst. Schreib die Lösung vorher auf ein Blatt, sonst fällt das Urteil zu freundlich aus."
     ],
     [
      "L",
-     "Nur durchblättern — zum Überfliegen einer Liste. Zählt für nichts: kein Lernstand, keine Statistik."
+     "Nur durchblättern: zum Überfliegen einer Liste. Zählt für nichts, weder Lernstand noch Statistik."
     ],
     [
      "P",
@@ -136,11 +160,15 @@
     ],
     [
      "P",
-     "Zwei Anzeigen, zwei verschiedene Dinge. Über der Karte steht der Übungsfortschritt: wie viel von dieser Runde erledigt ist. Jedes Wort braucht dafür eine bestimmte Zahl richtiger Antworten; ein Fehler setzt seinen Zähler zurück, und der Balken geht ein Stück zurück. Unter der Karte steht der Lernstand: wie sich die Wörter dieser Auswahl auf die fünf Stufen verteilen. Der Fortschritt beginnt bei jeder Runde neu, der Lernstand bewegt sich über Wochen. Beim Durchblättern fehlen beide, weil dieser Modus nichts verändert."
+     "Zwei Anzeigen, zwei verschiedene Dinge. Über der Karte steht der Übungsfortschritt: wie viel von dieser Runde erledigt ist. Jedes Wort braucht dafür eine bestimmte Zahl richtiger Antworten. Ein Fehler setzt seinen Zähler zurück, und der Balken geht ein Stück zurück."
     ],
     [
      "P",
-     "Wie deine Antwort bewertet wird. Beim Eintippen vergleicht die App deine Antwort mit der Lösung und fällt eines von drei Urteilen: richtig, fast richtig oder falsch. Fast richtig ist keine Höflichkeit — es zählt anders als falsch. In der Statistik werden richtig und fast richtig zusammen als Treffer gezählt."
+     "Unter der Karte steht der Lernstand: wie sich die Wörter dieser Auswahl auf die fünf Stufen verteilen. Der Fortschritt beginnt bei jeder Runde neu, der Lernstand bewegt sich über Wochen. Beim Durchblättern fehlen beide, weil dieser Modus nichts verändert."
+    ],
+    [
+     "P",
+     "Wie deine Antwort bewertet wird. Beim Eintippen vergleicht die App deine Antwort mit der Lösung und fällt eines von drei Urteilen: richtig, fast richtig oder falsch. Fast richtig ist keine Höflichkeit, es zählt anders als falsch. In der Statistik werden richtig und fast richtig zusammen als Treffer gezählt."
     ],
     [
      "L",
@@ -152,7 +180,7 @@
     ],
     [
      "L",
-     "Der Artikel zählt in der Voreinstellung halb mit. Du kannst ihn freiwillig machen oder voll verlangen. Zählt er nicht, steht er gar nicht erst auf der Karte — dafür das Geschlecht."
+     "Der Artikel zählt in der Voreinstellung halb mit. Du kannst ihn freiwillig machen oder voll verlangen. Zählt er nicht, steht er gar nicht erst auf der Karte, dafür steht dort das Geschlecht."
     ],
     [
      "L",
@@ -177,7 +205,7 @@
    [
     [
      "P",
-     "Der Übungsplan zeigt, wann welche Liste sitzen muss und wie weit du bist — als Kalender oder als Liste. Hier erscheinen nur Listen, denen du ein Zieldatum gegeben hast. Alle anderen werden ganz normal abgefragt, tauchen hier aber nicht auf."
+     "Der Übungsplan zeigt, wann welche Liste sitzen muss und wie weit du bist, als Kalender oder als Liste. Hier erscheinen nur Listen, denen du ein Zieldatum gegeben hast. Alle anderen werden ganz normal abgefragt, tauchen hier aber nicht auf."
     ],
     [
      "S",
@@ -185,7 +213,11 @@
     ],
     [
      "P",
-     "Das Zieldatum. Gib einer Liste den Tag, an dem sie sitzen muss — meist der Tag der Prüfung. Vergeben wird es unter Wortlisten, an der Liste selbst. Von da an rechnet die App rückwärts: Ab etwa drei Wochen vor dem Termin verlangt sie von diesen Wörtern mehr Sicherheit, wodurch sie öfter drankommen. In den letzten Tagen fällt für sie die Tagesgrenze weg. Nach dem Termin ist alles wieder normal."
+     "Das Zieldatum. Gib einer Liste den Tag, an dem sie sitzen muss, meist der Tag der Prüfung. Vergeben wird es unter Wortlisten, an der Liste selbst."
+    ],
+    [
+     "P",
+     "Von da an rechnet die App rückwärts: Ab etwa drei Wochen vor dem Termin verlangt sie von diesen Wörtern mehr Sicherheit, wodurch sie öfter drankommen. In den letzten Tagen fällt für sie die Tagesgrenze weg. Nach dem Termin ist alles wieder normal."
     ],
     [
      "P",
@@ -193,7 +225,11 @@
     ],
     [
      "P",
-     "Die Farbe eines Tages ist die Ampel der Liste, die an diesem Tag fällig ist — dieselbe dreistufige Skala wie im Überblick beschrieben, nicht die fünf Stufen. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste. Tipp einen Tag an: Dann siehst du, um welche Listen es geht, wie viele ihrer Wörter am Stichtag voraussichtlich sitzen werden, und du kannst von dort direkt üben."
+     "Die Farbe eines Tages ist die Ampel der Liste, die an diesem Tag fällig ist, also dieselbe dreistufige Skala wie im Überblick, nicht die fünf Stufen. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste."
+    ],
+    [
+     "P",
+     "Tipp einen Tag an: Dann siehst du, um welche Listen es geht, wie viele ihrer Wörter am Stichtag voraussichtlich sitzen werden, und du kannst von dort direkt üben."
     ]
    ]
   ],
@@ -214,19 +250,19 @@
     ],
     [
      "L",
-     "Liste einfügen — für eine ganze Heftseite. Mit dem KI-Prompt lässt du sie dir von deiner KI-App aus einem Foto erstellen."
+     "Liste einfügen: für eine ganze Heftseite. Mit dem KI-Prompt lässt du sie dir von deiner KI-App aus einem Foto erstellen."
     ],
     [
      "L",
-     "Einzelnes Wort eintippen — für Nachträge."
+     "Einzelnes Wort eintippen: für Nachträge."
     ],
     [
      "L",
-     "Geteilte Liste übernehmen — wenn dir jemand einen Code oder Link geschickt hat."
+     "Geteilte Liste übernehmen: wenn dir jemand einen Code oder Link geschickt hat."
     ],
     [
      "L",
-     "Tabelle einlesen — Excel oder CSV, nur in der Webversion. Die leere Vorlage gibt es gleich daneben."
+     "Tabelle einlesen: Excel oder CSV, nur in der Webversion. Die leere Vorlage gibt es gleich daneben."
     ],
     [
      "P",
@@ -238,15 +274,39 @@
     ],
     [
      "P",
-     "Listen und Wörter ändern. Öffnest du eine Liste, siehst du zuerst die Liste selbst: Zieldatum, Lernstand und die Handgriffe. Die Wörter liegen eine Ebene tiefer unter Wörter ansehen und bearbeiten. Dort tippst du eine Zeile an und benutzt Bearbeiten oder Löschen; mehrere auf einmal gehen auch. Zwei Listen, die zusammengehören, lassen sich zusammenführen. Löschst du eine Liste, bleiben ihre Wörter erhalten und verlassen nur diese Liste."
+     "Listen und Wörter ändern. Öffnest du eine Liste, siehst du zuerst die Liste selbst: Zieldatum, Lernstand und die Handgriffe. Die Wörter liegen eine Ebene tiefer unter Wörter ansehen und bearbeiten. Dort tippst du eine Zeile an und benutzt Bearbeiten oder Löschen; mehrere auf einmal gehen auch."
     ],
     [
      "P",
-     "Exportieren und Teilen. Über Exportieren bekommst du deine Wörter als Text oder als Excel-Tabelle zurück, im selben Format, das die App auch wieder einliest — ohne Konto. Über Teilen schickst du eine Liste an jemanden; die andere Person bekommt eine eigene Kopie, euer Lernstand bleibt getrennt. Teilen braucht ein Konto."
+     "Zwei Listen, die zusammengehören, lassen sich zusammenführen. Löschst du eine Liste, bleiben ihre Wörter erhalten und verlassen nur diese Liste."
     ],
     [
      "P",
-     "Die vier Smart Lists. Neben deinen eigenen Listen stehen vier Listen, die die App täglich selbst zusammenstellt, quer über alles, was du hast: Heute dran (deine Tagesportion aus Fälligem und Neuem), Fällige Wörter, Wackeln noch (genau die Wörter auf der Stufe wackelt noch) und Bald fällig. Ansehen und üben ja, ändern nein. Darunter steht außerdem Alle Wörter — das ist keine Smart List, sondern dein ganzer Bestand."
+     "Exportieren und Teilen. Über Exportieren bekommst du deine Wörter als Text oder als Excel-Tabelle zurück, im selben Format, das die App auch wieder einliest, ohne Konto. Über Teilen schickst du eine Liste an jemanden; die andere Person bekommt eine eigene Kopie, euer Lernstand bleibt getrennt. Teilen braucht ein Konto."
+    ],
+    [
+     "P",
+     "Die vier Smart Lists. Neben deinen eigenen Listen stehen vier Listen, die die App täglich selbst zusammenstellt, quer über alles, was du hast:"
+    ],
+    [
+     "L",
+     "Heute dran: deine Tagesportion aus Fälligem und Neuem."
+    ],
+    [
+     "L",
+     "Fällige Wörter: alles, was jetzt zur Wiederholung ansteht."
+    ],
+    [
+     "L",
+     "Wackeln noch: genau die Wörter auf der Stufe wackelt noch."
+    ],
+    [
+     "L",
+     "Bald fällig: sitzt noch, wäre aber bald wieder dran."
+    ],
+    [
+     "P",
+     "Ansehen und üben ja, ändern nein. Darunter steht außerdem Alle Wörter. Das ist keine Smart List, sondern dein ganzer Bestand."
     ]
    ]
   ],
@@ -263,19 +323,19 @@
     ],
     [
      "L",
-     "Bestand — wie sich deine Wörter auf die fünf Stufen verteilen."
+     "Bestand: wie sich deine Wörter auf die fünf Stufen verteilen."
     ],
     [
      "L",
-     "Fortschritt — wie viele Wörter dazugekommen sind, wie viel du geübt hast, an wie vielen Tagen, und wie viele Wörter neu die Stufe sitzt erreicht haben."
+     "Fortschritt: wie viele Wörter dazugekommen sind, wie viel du geübt hast, an wie vielen Tagen, und wie viele Wörter neu die Stufe sitzt erreicht haben."
     ],
     [
      "L",
-     "Auswertungen — wie deine Antworten ausgehen, woran sie scheitern, wie schnell ein Wort bei dir sitzt, wie lange deine Wörter halten, wie lang deine Sitzungen sind und zu welcher Tageszeit du am besten triffst."
+     "Auswertungen: wie deine Antworten ausgehen, woran sie scheitern, wie schnell ein Wort bei dir sitzt, wie lange deine Wörter halten, wie lang deine Sitzungen sind und zu welcher Tageszeit du am besten triffst."
     ],
     [
      "L",
-     "Stolpersteine und Hartnäckig — die Wörter, die dir immer wieder entwischen. Von dort kannst du sie direkt üben."
+     "Stolpersteine und Hartnäckig: die Wörter, die dir immer wieder entwischen. Von dort kannst du sie direkt üben."
     ],
     [
      "P",
@@ -292,15 +352,15 @@
     ],
     [
      "L",
-     "Lernintensität — wie sicher du ein Wort können sollst, wenn es wiederkommt. Intensiver heißt: häufiger üben, dafür sitzt mehr. Lockerer heißt: weniger Karten, dafür rutscht mehr weg. Ein Richtig gibt es nicht, nur einen Tausch."
+     "Lernintensität: wie sicher du ein Wort können sollst, wenn es wiederkommt. Intensiver heißt: häufiger üben, dafür sitzt mehr. Lockerer heißt: weniger Karten, dafür rutscht mehr weg. Ein Richtig gibt es nicht, nur einen Tausch."
     ],
     [
      "L",
-     "Neue Wörter pro Tag — dein einziger Hebel auf die Menge. Weniger neue Wörter heißt weniger Rückstau, nicht langsameres Lernen."
+     "Neue Wörter pro Tag: dein einziger Hebel auf die Menge. Weniger neue Wörter heißt weniger Rückstau, nicht langsameres Lernen."
     ],
     [
      "L",
-     "Antwortprüfung — wie streng Akzente, Artikel und Groß- und Kleinschreibung bewertet werden."
+     "Antwortprüfung: wie streng Akzente, Artikel und Groß- und Kleinschreibung bewertet werden."
     ],
     [
      "P",
@@ -338,7 +398,7 @@
     ],
     [
      "P",
-     "Weil du zuletzt gezögert hast oder danebenlagst. Die App bringt ein Wort zurück, kurz bevor du es vergisst — bei einem wackeligen Wort ist das morgen."
+     "Weil du zuletzt gezögert hast oder danebenlagst. Die App bringt ein Wort zurück, kurz bevor du es vergisst. Bei einem wackeligen Wort ist das morgen."
     ],
     [
      "P",
@@ -350,7 +410,7 @@
     ],
     [
      "P",
-     "Ich war eine Woche weg — wie schlimm ist es?"
+     "Ich war eine Woche weg. Wie schlimm ist es?"
     ],
     [
      "P",
@@ -661,7 +721,7 @@
   ],
   [
    "P",
-   "Sobald wir deine Daten für etwas anderes verwenden wollten — Auswertungen über mehrere Nutzer hinweg, Forschung, Werbung —, würden wir dich vorher fragen. Heute tun wir nichts davon."
+   "Sobald wir deine Daten für etwas anderes verwenden wollten, etwa für Auswertungen über mehrere Nutzer hinweg, für Forschung oder für Werbung, würden wir dich vorher fragen. Heute tun wir nichts davon."
   ],
   [
    "H",
@@ -769,7 +829,7 @@
    "Passwort",
    "Passwort vergessen?",
    "Nur auf diesem Gerät",
-   "Offline — wird nachgeholt",
+   "Ohne Netz, wird nachgeholt",
    "Wenn es zu dieser Adresse ein Konto gibt, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.",
    "Passwörter stimmen nicht überein.",
    "Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse.",
@@ -830,7 +890,7 @@
    "Liste importieren",
    "Code (VT-…) oder Link einfügen",
    "Abbrechen",
-   "Liste nicht gefunden — Code prüfen.",
+   "Liste nicht gefunden. Bitte den Code prüfen.",
    "Teilen ist gerade nicht möglich.",
    "Konnte die Liste nicht laden.",
    "Geteilte Liste",
@@ -920,7 +980,7 @@
    "Alles sitzt, nichts fällig",
    "Hier ist gerade nichts fällig. Wähle oben eine andere Wortliste oder komm später wieder.",
    "Durchgeblättert",
-   "Du hast alle Karten dieser Auswahl angesehen. Angesehen ist noch nicht gelernt — wechsle zu einer Antwortart, die zählt.",
+   "Du hast alle Karten dieser Auswahl angesehen. Angesehen ist noch nicht gelernt. Wechsle zu einer Antwortart, die zählt.",
    "Nochmal durchblättern",
    "und {n} weitere",
    "Runde geschafft",
@@ -1049,7 +1109,7 @@
    "Die Sprache der Bedienung. Deine Wörter und Wortlisten bleiben davon unberührt.",
    "Für Neugierige. Mit den Voreinstellungen läuft die App gut. Alles hier ist freiwillig und jederzeit zurückzustellen.",
    "1,0× (normal)",
-   "Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher heißt: Die App nimmt schnellere Fortschritte an und fragt seltener nach — das ist riskanter. Niedriger heißt vorsichtiger und häufiger.",
+   "Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher heißt: Die App nimmt schnellere Fortschritte an und fragt seltener nach. Das ist riskanter. Niedriger heißt vorsichtiger und häufiger.",
    "Beispiel: 3× richtig hintereinander → hält",
    "Übungsrunde: wie oft welche Wörter drankommen",
    "Das Gedächtnis-Modell",
@@ -1093,7 +1153,7 @@
    "Dieselbe Liste wie zuletzt, und zwar mit den Wörtern, die noch offen waren.",
    "Dieselbe Liste wie zuletzt, aber von vorn.",
    "Nichts. Du wählst jedes Mal selbst.",
-   "Die Beispielsätze eines Wortes stehen auf der Lösungsseite der Karte — der Satz in der Fremdsprache und darunter seine Übersetzung.",
+   "Die Beispielsätze eines Wortes stehen auf der Lösungsseite der Karte: der Satz in der Fremdsprache und darunter seine Übersetzung.",
    "Die Lautschrift steht klein unter dem Fremdwort und sagt, wie man es ausspricht.",
    "Die Formen, die man zum Wort mitlernt: bei Latein die Stammformen, sonst Singular und Plural oder die unregelmäßigen Formen. Sie stehen klein unter dem Fremdwort und werden nie abgefragt.",
    "folgt der Einstellung des Telefons",
@@ -1184,7 +1244,7 @@
    "Bei {n} oft geübten Wörtern reicht der gespeicherte Verlauf nicht 3 Monate zurück. Die Zahlen sind dort eher zu niedrig.",
    "{p} Prozent richtig",
    "Alle Wörter",
-   "Als Treffer zählt jede Antwort, die nicht ganz daneben war — ein fehlender Akzent oder ein Buchstabendreher also auch. Ein Wort, das noch nie abgefragt wurde, zeigt einen Strich.",
+   "Als Treffer zählt jede Antwort, die nicht ganz daneben war. Ein fehlender Akzent oder ein Buchstabendreher zählt also auch. Ein Wort, das noch nie abgefragt wurde, zeigt einen Strich.",
    "Wort",
    "Stufe",
    "hält",
@@ -1239,7 +1299,7 @@
    "Teilen hat nicht geklappt. Zum Teilen brauchst du ein Konto.",
    "Übersetzung fehlt",
    "Liste einfügen",
-   "abtippen, einfügen — oder von deiner KI-App aus einem Foto erstellen lassen",
+   "abtippen, einfügen oder von deiner KI-App aus einem Foto erstellen lassen",
    "Geteilte Liste übernehmen",
    "jemand hat dir einen Link geschickt",
    "Tabelle einlesen",
@@ -1301,7 +1361,7 @@
    "Alle auswählen",
    "Nichts gefunden",
    "Anderer Suchbegriff, oder das Feld leeren",
-   "Zurück zur Liste — dort stehen die Wege, sie zu füllen.",
+   "Zurück zur Liste. Dort stehen die Wege, sie zu füllen.",
    "Kein Zieldatum",
    "Umbenennen",
    "Teilen",
@@ -1318,7 +1378,7 @@
    "Ohne Liste",
    "Deine Listen",
    "Zieldatum {d}",
-   "Noch keine eigene Wortliste. Lege oben eine an — oder üb mit dem Grundwortschatz.",
+   "Noch keine eigene Wortliste. Lege oben eine an, oder üb mit dem Grundwortschatz.",
    "Gesamtbestand",
    "Wort suchen, über alle Sprachen",
    "Suche leeren",
@@ -1373,7 +1433,7 @@
    "noch nicht geübt"
   ],
   "Latein": [
-   "Fast — Schreibweise der Stammformen prüfen",
+   "Fast: Schreibweise der Stammformen prüfen",
    "Stammformen nochmal prüfen"
   ],
   "Sprachen": [
@@ -1390,7 +1450,7 @@
   ],
   "Smart Lists": [
    "Fälliges und Neues sinnvoll gemischt",
-   "Jetzt fällig — der beste Moment zum Auffrischen",
+   "Jetzt fällig, der beste Moment zum Auffrischen",
    "Schon geübt, sitzt aber noch nicht sicher",
    "Sitzt noch, wäre aber bald wieder dran"
   ],
@@ -1417,10 +1477,10 @@
   ],
   "Abgleich mit dem Konto": [
    "Lokale Daten als Sicherung gespeichert",
-   "Gerät auf dieses Konto umgestellt — die vorherigen Daten liegen als Sicherung auf dem Gerät.",
+   "Gerät auf dieses Konto umgestellt. Die vorherigen Daten liegen als Sicherung auf dem Gerät.",
    "Auf diesem Gerät liegen bereits Wörter und Listen.",
-   "OK — in dieses Konto übernehmen",
-   "Abbrechen — leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
+   "OK, in dieses Konto übernehmen",
+   "Abbrechen, leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
   ],
   "Beschriftungen in den Zeichnungen": [
    "1 Liste",
@@ -1462,7 +1522,7 @@
   ],
   "Lernstandsleiste": [
    "Verlauf",
-   "baut sich auf — ab heute füllt sich diese Linie",
+   "baut sich auf, ab heute füllt sich diese Linie",
    "Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.",
    "{n} Wort insgesamt",
    "{n} Wörter insgesamt"

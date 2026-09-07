@@ -924,7 +924,7 @@ export function Practice() {
           {scopeBar}
           <div className="empty round-done">
             <div className="big">{txt("Durchgeblättert")}</div>
-            <div className="round-tally">{txt("Du hast alle Karten dieser Auswahl angesehen. Angesehen ist noch nicht gelernt — wechsle zu einer Antwortart, die zählt.")}</div>
+            <div className="round-tally">{txt("Du hast alle Karten dieser Auswahl angesehen. Angesehen ist noch nicht gelernt. Wechsle zu einer Antwortart, die zählt.")}</div>
             <div className="round-actions">
               <button className="btn btn-primary" onClick={leaveRun}>{txt("Fertig")}</button>
               <button className="btn btn-ghost btn-sm" onClick={() => beginRun(runWordsRef.current, true)}><Icon name="refresh" size={14} /> {txt("Nochmal durchblättern")}</button>

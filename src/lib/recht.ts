@@ -44,7 +44,7 @@ export const DATENSCHUTZ: Abschnitt[] = [
     h: "Warum wir das dürfen",
     p: [
       "Wir fragen dich nicht um Erlaubnis, deinen Lernstand zu speichern, und das hat einen Grund: er ist die Leistung, für die du dich anmeldest. Ohne ihn gäbe es nichts abzugleichen. Eine Einwilligung wäre hier die falsche Grundlage, weil du sie widerrufen könntest und wir dann den Dienst einstellen müssten, für den du dich gerade angemeldet hast. Rechtlich stützen wir uns deshalb auf die Erfüllung des Vertrags mit dir.",
-      "Sobald wir deine Daten für etwas anderes verwenden wollten — Auswertungen über mehrere Nutzer hinweg, Forschung, Werbung —, würden wir dich vorher fragen. Heute tun wir nichts davon.",
+      "Sobald wir deine Daten für etwas anderes verwenden wollten, etwa für Auswertungen über mehrere Nutzer hinweg, für Forschung oder für Werbung, würden wir dich vorher fragen. Heute tun wir nichts davon.",
     ],
   },
   {

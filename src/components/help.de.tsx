@@ -66,7 +66,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <KritzelStart titel="Von der Heftseite zur ersten Karte" />
         <p>Eigene Wörter kommen dazu, sobald du sie brauchst. Das dauert keine zwei Minuten:</p>
         <ol>
-          <li>Unter <b>Wortlisten</b> auf <b>+ Neue Liste</b>, dann <b>Liste einfügen</b>. Die App gibt dir einen fertigen Auftrag zum Kopieren. Den fügst du in deine KI-App ein und hängst ein Foto deiner Heftseite dazu; was sie zurückgibt, kopierst du hierher — samt Beispielsätzen und Lautschrift.</li>
+          <li>Unter <b>Wortlisten</b> auf <b>+ Neue Liste</b>, dann <b>Liste einfügen</b>. Die App gibt dir einen fertigen Auftrag zum Kopieren. Den fügst du in deine KI-App ein und hängst ein Foto deiner Heftseite dazu; was sie zurückgibt, kopierst du hierher, samt Beispielsätzen und Lautschrift.</li>
           <li>Steht ein Termin an, gib der Liste ein <b>Zieldatum</b>: den Tag, an dem die Wörter sitzen müssen. Ohne Termin geht es auch.</li>
           <li>Zurück auf <b>Üben</b>, die neue Liste wählen, los.</li>
         </ol>
@@ -80,7 +80,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
       <>
         <p>Die meisten Vokabelprogramme lassen dich eine Liste durchgehen, bis du sie kannst. SmartVoc führt für jedes Wort einzeln Buch: wie lange es bei dir hält, wie schwer es dir fällt, und wann du kurz davor bist, es zu vergessen. Genau dann kommt es zurück.</p>
         <KritzelAbstaende titel="Jede richtige Antwort schiebt das Wort weiter nach hinten" />
-        <p>Das hat zwei Folgen, die anfangs überraschen. Wörter, die sitzen, verschwinden für Wochen aus der Abfrage — dafür brauchst du keine Zeit mehr. Und Wörter, bei denen du gezögert hast, sind morgen schon wieder da. Beides ist der Grund, warum zehn Minuten am Tag mehr bringen als eine Stunde am Samstag.</p>
+        <p>Das hat zwei Folgen, die anfangs überraschen. Wörter, die sitzen, verschwinden für Wochen aus der Abfrage, dafür brauchst du keine Zeit mehr. Und Wörter, bei denen du gezögert hast, sind morgen schon wieder da. Beides ist der Grund, warum zehn Minuten am Tag mehr bringen als eine Stunde am Samstag.</p>
         <p>Diese Planung kannst du nicht überstimmen. Was du in der Hand hast: welche Wörter dazukommen, wie viele pro Tag, und wie streng die App prüft. Das steht weiter unten unter <b>Einstellungen, die sich lohnen</b>. Wie gerechnet wird, steht im Kapitel <b>Dahinter</b>.</p>
       </>
     ),
@@ -92,14 +92,22 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <p>Unten stehen vier Bereiche nebeneinander. Jeder beantwortet eine andere Frage.</p>
         <KritzelBereiche titel="Vier Bereiche, vier Fragen" />
         <ul>
-          <li><b>Üben</b> — was soll ich jetzt tun? Hier wird gelernt.</li>
-          <li><b>Übungsplan</b> — bin ich rechtzeitig fertig? Deine Termine und wie du dazu stehst.</li>
-          <li><b>Wortlisten</b> — woher kommen meine Wörter? Anlegen, füllen, verwalten.</li>
-          <li><b>Statistik</b> — wo stehe ich? Was sitzt, was wackelt, und ob es vorwärtsgeht.</li>
+          <li><b>Üben</b>: was soll ich jetzt tun? Hier wird gelernt.</li>
+          <li><b>Übungsplan</b>: bin ich rechtzeitig fertig? Deine Termine und wie du dazu stehst.</li>
+          <li><b>Wortlisten</b>: woher kommen meine Wörter? Anlegen, füllen, verwalten.</li>
+          <li><b>Statistik</b>: wo stehe ich? Was sitzt, was wackelt, und ob es vorwärtsgeht.</li>
         </ul>
         <p>Oben rechts liegen zwei Knöpfe. Hinter dem Zahnrad stehen die <b>Einstellungen</b>, hinter dem Fragezeichen diese Anleitung, die <b>Lerntipps</b> und das Kapitel <b>Dahinter</b>.</p>
         <p><b>Zwei Farbskalen, nicht eine.</b> SmartVoc färbt an zwei Stellen, und die beiden bedeuten Verschiedenes. Wer sie verwechselt, liest die App falsch.</p>
-        <p>Die <b>fünf Stufen</b> gelten je Wort, und die Leiste liest sich von links nach rechts: <b>sitzt</b> hält länger als zwei Wochen und kommt selten zurück. <b>sitzt fast</b> — in der Leiste kurz <b>fast</b> — hält bis zu zwei Wochen. <b>wackelt noch</b> — kurz <b>wackelt</b> — hält weniger als drei Tage. <b>neu</b> ist frisch begonnen, <b>ungeübt</b> noch nie abgefragt. Diese Leiste findest du überall gleich: unter der Karte, an jeder Liste und in der Statistik. Ein Tipp auf einen Eintrag der Legende öffnet die Wörter dahinter.</p>
+        <p>Die <b>fünf Stufen</b> gelten je Wort. Die Leiste liest sich von links nach rechts:</p>
+        <ul>
+          <li><b>sitzt</b>: hält länger als zwei Wochen und kommt nur noch selten zurück.</li>
+          <li><b>fast</b>: hält bis zu zwei Wochen. Ausgeschrieben heißt die Stufe <b>sitzt fast</b>.</li>
+          <li><b>wackelt</b>: hält weniger als drei Tage. Ausgeschrieben <b>wackelt noch</b>.</li>
+          <li><b>neu</b>: erst ein- oder zweimal geübt.</li>
+          <li><b>ungeübt</b>: noch nie abgefragt.</li>
+        </ul>
+        <p>Diese Leiste findest du überall gleich: unter der Karte, an jeder Liste und in der Statistik. Ein Tipp auf einen Eintrag der Legende öffnet die Wörter dahinter.</p>
         <p>Die <b>Ampel</b> gilt je Liste. Sie zählt nur, wie viele Wörter einer Liste schon auf der Stufe <b>sitzt</b> stehen: ab 95 Prozent gilt die Liste als <b>bereit</b>, ab 70 Prozent als <b>auf Kurs</b>, darunter als <b>im Rückstand</b>. Die Schwellen kannst du verstellen.</p>
       </>
     ),
@@ -108,22 +116,23 @@ export const ANLEITUNG_DE: Kapitel[] = [
     titel: "Bereich «Üben»",
     text: (
       <>
-        <p>In der Zeile über der Karte wählst du, was abgefragt wird: die Sprache, die Richtung und eine oder mehrere Wortlisten — oder eine der vier <b>Smart Lists</b>, die die App selbst zusammenstellt. Die Auswahl darf Sprachen mischen.</p>
+        <p>In der Zeile über der Karte wählst du, was abgefragt wird: die Sprache, die Richtung und eine oder mehrere Wortlisten, oder eine der vier <b>Smart Lists</b>, die die App selbst zusammenstellt. Die Auswahl darf Sprachen mischen.</p>
         <KritzelKarte titel="Vorne die Frage, hinten die Lösung" />
         <p>Vier <b>Antwortarten</b> stehen unter der Karte zur Wahl. Du kannst mitten in der Übung umschalten:</p>
         <ul>
-          <li><b>Eintippen</b> — du schreibst die Antwort selbst. Am anstrengendsten, bringt am meisten. Im Zweifel diese.</li>
-          <li><b>Multiple-Choice</b> — du wählst aus mehreren Möglichkeiten. Leichter, gut für den Anfang oder wenn du müde bist.</li>
-          <li><b>Selbstkontrolle</b> — du überlegst, drehst um und beurteilst selbst. Schreib die Lösung vorher auf ein Blatt, sonst fällt das Urteil zu freundlich aus.</li>
-          <li><b>Nur durchblättern</b> — zum Überfliegen einer Liste. Zählt für nichts: kein Lernstand, keine Statistik.</li>
+          <li><b>Eintippen</b>: du schreibst die Antwort selbst. Am anstrengendsten, bringt am meisten. Im Zweifel diese.</li>
+          <li><b>Multiple-Choice</b>: du wählst aus mehreren Möglichkeiten. Leichter, gut für den Anfang oder wenn du müde bist.</li>
+          <li><b>Selbstkontrolle</b>: du überlegst, drehst um und beurteilst selbst. Schreib die Lösung vorher auf ein Blatt, sonst fällt das Urteil zu freundlich aus.</li>
+          <li><b>Nur durchblättern</b>: zum Überfliegen einer Liste. Zählt für nichts, weder Lernstand noch Statistik.</li>
         </ul>
         <p>Die <b>Richtung</b> ist ebenso umschaltbar: Fremdsprache zu Deutsch, umgekehrt, oder gemischt. Wechsle beides regelmäßig ab, sonst merkt sich dein Gedächtnis das Muster statt das Wort.</p>
-        <p><b>Zwei Anzeigen, zwei verschiedene Dinge.</b> Über der Karte steht der <b>Übungsfortschritt</b>: wie viel von dieser Runde erledigt ist. Jedes Wort braucht dafür eine bestimmte Zahl richtiger Antworten; ein Fehler setzt seinen Zähler zurück, und der Balken geht ein Stück zurück. Unter der Karte steht der <b>Lernstand</b>: wie sich die Wörter dieser Auswahl auf die fünf Stufen verteilen. Der Fortschritt beginnt bei jeder Runde neu, der Lernstand bewegt sich über Wochen. Beim Durchblättern fehlen beide, weil dieser Modus nichts verändert.</p>
-        <p><b>Wie deine Antwort bewertet wird.</b> Beim Eintippen vergleicht die App deine Antwort mit der Lösung und fällt eines von drei Urteilen: <b>richtig</b>, <b>fast richtig</b> oder <b>falsch</b>. Fast richtig ist keine Höflichkeit — es zählt anders als falsch. In der Statistik werden richtig und fast richtig zusammen als <b>Treffer</b> gezählt.</p>
+        <p><b>Zwei Anzeigen, zwei verschiedene Dinge.</b> Über der Karte steht der <b>Übungsfortschritt</b>: wie viel von dieser Runde erledigt ist. Jedes Wort braucht dafür eine bestimmte Zahl richtiger Antworten. Ein Fehler setzt seinen Zähler zurück, und der Balken geht ein Stück zurück.</p>
+        <p>Unter der Karte steht der <b>Lernstand</b>: wie sich die Wörter dieser Auswahl auf die fünf Stufen verteilen. Der Fortschritt beginnt bei jeder Runde neu, der Lernstand bewegt sich über Wochen. Beim Durchblättern fehlen beide, weil dieser Modus nichts verändert.</p>
+        <p><b>Wie deine Antwort bewertet wird.</b> Beim Eintippen vergleicht die App deine Antwort mit der Lösung und fällt eines von drei Urteilen: <b>richtig</b>, <b>fast richtig</b> oder <b>falsch</b>. Fast richtig ist keine Höflichkeit, es zählt anders als falsch. In der Statistik werden richtig und fast richtig zusammen als <b>Treffer</b> gezählt.</p>
         <ul>
           <li>Tippfehler werden erkannt, solange die Antwort der Lösung nahe genug kommt. Sie gelten je nach Ähnlichkeit als fast richtig.</li>
           <li>Akzente und Umlaute sind in der Voreinstellung nachsichtig. Auf streng gestellt zählt „grun“ statt „grün“ als Fehler.</li>
-          <li>Der Artikel zählt in der Voreinstellung halb mit. Du kannst ihn freiwillig machen oder voll verlangen. Zählt er nicht, steht er gar nicht erst auf der Karte — dafür das Geschlecht.</li>
+          <li>Der Artikel zählt in der Voreinstellung halb mit. Du kannst ihn freiwillig machen oder voll verlangen. Zählt er nicht, steht er gar nicht erst auf der Karte, dafür steht dort das Geschlecht.</li>
           <li>Groß- und Kleinschreibung zählt in der Voreinstellung. <b>ss</b> und <b>ß</b> gelten immer als gleich.</li>
         </ul>
         <p>Nach jeder Antwort zeigt die App, welche Zeichen fehlten, überflüssig waren oder abwichen. Wenn dich eine Bewertung ärgert, liegt der Hebel in den Einstellungen unter <b>Antwortprüfung</b>.</p>
@@ -136,11 +145,13 @@ export const ANLEITUNG_DE: Kapitel[] = [
     titel: "Bereich «Übungsplan»",
     text: (
       <>
-        <p>Der Übungsplan zeigt, wann welche Liste sitzen muss und wie weit du bist — als Kalender oder als Liste. Hier erscheinen nur Listen, denen du ein <b>Zieldatum</b> gegeben hast. Alle anderen werden ganz normal abgefragt, tauchen hier aber nicht auf.</p>
+        <p>Der Übungsplan zeigt, wann welche Liste sitzen muss und wie weit du bist, als Kalender oder als Liste. Hier erscheinen nur Listen, denen du ein <b>Zieldatum</b> gegeben hast. Alle anderen werden ganz normal abgefragt, tauchen hier aber nicht auf.</p>
         <KritzelEndspurt titel="Je näher der Termin, desto enger die Wiederholungen" />
-        <p><b>Das Zieldatum.</b> Gib einer Liste den Tag, an dem sie sitzen muss — meist der Tag der Prüfung. Vergeben wird es unter <b>Wortlisten</b>, an der Liste selbst. Von da an rechnet die App rückwärts: Ab etwa drei Wochen vor dem Termin verlangt sie von diesen Wörtern mehr Sicherheit, wodurch sie öfter drankommen. In den letzten Tagen fällt für sie die Tagesgrenze weg. Nach dem Termin ist alles wieder normal.</p>
+        <p><b>Das Zieldatum.</b> Gib einer Liste den Tag, an dem sie sitzen muss, meist der Tag der Prüfung. Vergeben wird es unter <b>Wortlisten</b>, an der Liste selbst.</p>
+        <p>Von da an rechnet die App rückwärts: Ab etwa drei Wochen vor dem Termin verlangt sie von diesen Wörtern mehr Sicherheit, wodurch sie öfter drankommen. In den letzten Tagen fällt für sie die Tagesgrenze weg. Nach dem Termin ist alles wieder normal.</p>
         <p>Übst du mehrere Listen zusammen, kommen die Wörter der Liste mit dem näheren Termin von selbst häufiger. Dafür musst du nichts einstellen.</p>
-        <p>Die Farbe eines Tages ist die <b>Ampel</b> der Liste, die an diesem Tag fällig ist — dieselbe dreistufige Skala wie im Überblick beschrieben, nicht die fünf Stufen. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste. Tipp einen Tag an: Dann siehst du, um welche Listen es geht, wie viele ihrer Wörter am Stichtag voraussichtlich sitzen werden, und du kannst von dort direkt üben.</p>
+        <p>Die Farbe eines Tages ist die <b>Ampel</b> der Liste, die an diesem Tag fällig ist, also dieselbe dreistufige Skala wie im Überblick, nicht die fünf Stufen. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste.</p>
+        <p>Tipp einen Tag an: Dann siehst du, um welche Listen es geht, wie viele ihrer Wörter am Stichtag voraussichtlich sitzen werden, und du kannst von dort direkt üben.</p>
       </>
     ),
   },
@@ -152,16 +163,24 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <KritzelListe titel="Erst die Liste, dann ihre Wörter" />
         <p>Vier Wege führen hinein. Den richtigen zu wählen erspart dir die meiste Arbeit:</p>
         <ul>
-          <li><b>Liste einfügen</b> — für eine ganze Heftseite. Mit dem KI-Prompt lässt du sie dir von deiner KI-App aus einem Foto erstellen.</li>
-          <li><b>Einzelnes Wort eintippen</b> — für Nachträge.</li>
-          <li><b>Geteilte Liste übernehmen</b> — wenn dir jemand einen Code oder Link geschickt hat.</li>
-          <li><b>Tabelle einlesen</b> — Excel oder CSV, nur in der Webversion. Die leere Vorlage gibt es gleich daneben.</li>
+          <li><b>Liste einfügen</b>: für eine ganze Heftseite. Mit dem KI-Prompt lässt du sie dir von deiner KI-App aus einem Foto erstellen.</li>
+          <li><b>Einzelnes Wort eintippen</b>: für Nachträge.</li>
+          <li><b>Geteilte Liste übernehmen</b>: wenn dir jemand einen Code oder Link geschickt hat.</li>
+          <li><b>Tabelle einlesen</b>: Excel oder CSV, nur in der Webversion. Die leere Vorlage gibt es gleich daneben.</li>
         </ul>
         <p><b>Der Weg über die KI.</b> Er funktioniert mit jeder KI, die Bilder lesen kann. In der App auf <b>KI-Prompt kopieren</b> tippen, in deine KI-App wechseln, den Auftrag einfügen und ein Foto deiner Heftseite dazuhängen. Die Antwort kopierst du zurück ins große Feld und gehst auf <b>Weiter zum Prüfen</b>.</p>
         <p><b>Das Prüfen-Fenster.</b> Dort steht jedes Wort einzeln, mit allen Angaben. Schau kurz drüber und korrigiere, was schiefgelaufen ist. Am Schluss wählst du die Liste. Fotos werden gerne einmal falsch gelesen; hier fällt es auf.</p>
-        <p><b>Listen und Wörter ändern.</b> Öffnest du eine Liste, siehst du zuerst die Liste selbst: Zieldatum, Lernstand und die Handgriffe. Die Wörter liegen eine Ebene tiefer unter <b>Wörter ansehen und bearbeiten</b>. Dort tippst du eine Zeile an und benutzt <b>Bearbeiten</b> oder <b>Löschen</b>; mehrere auf einmal gehen auch. Zwei Listen, die zusammengehören, lassen sich <b>zusammenführen</b>. Löschst du eine Liste, bleiben ihre Wörter erhalten und verlassen nur diese Liste.</p>
-        <p><b>Exportieren und Teilen.</b> Über <b>Exportieren</b> bekommst du deine Wörter als Text oder als Excel-Tabelle zurück, im selben Format, das die App auch wieder einliest — ohne Konto. Über <b>Teilen</b> schickst du eine Liste an jemanden; die andere Person bekommt eine eigene Kopie, euer Lernstand bleibt getrennt. Teilen braucht ein Konto.</p>
-        <p><b>Die vier Smart Lists.</b> Neben deinen eigenen Listen stehen vier Listen, die die App täglich selbst zusammenstellt, quer über alles, was du hast: <b>Heute dran</b> (deine Tagesportion aus Fälligem und Neuem), <b>Fällige Wörter</b>, <b>Wackeln noch</b> (genau die Wörter auf der Stufe <b>wackelt noch</b>) und <b>Bald fällig</b>. Ansehen und üben ja, ändern nein. Darunter steht außerdem <b>Alle Wörter</b> — das ist keine Smart List, sondern dein ganzer Bestand.</p>
+        <p><b>Listen und Wörter ändern.</b> Öffnest du eine Liste, siehst du zuerst die Liste selbst: Zieldatum, Lernstand und die Handgriffe. Die Wörter liegen eine Ebene tiefer unter <b>Wörter ansehen und bearbeiten</b>. Dort tippst du eine Zeile an und benutzt <b>Bearbeiten</b> oder <b>Löschen</b>; mehrere auf einmal gehen auch.</p>
+        <p>Zwei Listen, die zusammengehören, lassen sich <b>zusammenführen</b>. Löschst du eine Liste, bleiben ihre Wörter erhalten und verlassen nur diese Liste.</p>
+        <p><b>Exportieren und Teilen.</b> Über <b>Exportieren</b> bekommst du deine Wörter als Text oder als Excel-Tabelle zurück, im selben Format, das die App auch wieder einliest, ohne Konto. Über <b>Teilen</b> schickst du eine Liste an jemanden; die andere Person bekommt eine eigene Kopie, euer Lernstand bleibt getrennt. Teilen braucht ein Konto.</p>
+        <p><b>Die vier Smart Lists.</b> Neben deinen eigenen Listen stehen vier Listen, die die App täglich selbst zusammenstellt, quer über alles, was du hast:</p>
+        <ul>
+          <li><b>Heute dran</b>: deine Tagesportion aus Fälligem und Neuem.</li>
+          <li><b>Fällige Wörter</b>: alles, was jetzt zur Wiederholung ansteht.</li>
+          <li><b>Wackeln noch</b>: genau die Wörter auf der Stufe <b>wackelt noch</b>.</li>
+          <li><b>Bald fällig</b>: sitzt noch, wäre aber bald wieder dran.</li>
+        </ul>
+        <p>Ansehen und üben ja, ändern nein. Darunter steht außerdem <b>Alle Wörter</b>. Das ist keine Smart List, sondern dein ganzer Bestand.</p>
       </>
     ),
   },
@@ -172,10 +191,10 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <p>Die Statistik geht ins Detail. Oben wählst du, ob du alle Sprachen ansiehst oder eine, alle Wörter oder eine bestimmte Liste, und ob es um die letzten 7, 30 oder 90 Tage geht.</p>
         <KritzelLeiste titel="Dieselben fünf Stufen überall" />
         <ul>
-          <li><b>Bestand</b> — wie sich deine Wörter auf die fünf Stufen verteilen.</li>
-          <li><b>Fortschritt</b> — wie viele Wörter dazugekommen sind, wie viel du geübt hast, an wie vielen Tagen, und wie viele Wörter neu die Stufe <b>sitzt</b> erreicht haben.</li>
-          <li><b>Auswertungen</b> — wie deine Antworten ausgehen, woran sie scheitern, wie schnell ein Wort bei dir sitzt, wie lange deine Wörter halten, wie lang deine Sitzungen sind und zu welcher Tageszeit du am besten triffst.</li>
-          <li><b>Stolpersteine</b> und <b>Hartnäckig</b> — die Wörter, die dir immer wieder entwischen. Von dort kannst du sie direkt üben.</li>
+          <li><b>Bestand</b>: wie sich deine Wörter auf die fünf Stufen verteilen.</li>
+          <li><b>Fortschritt</b>: wie viele Wörter dazugekommen sind, wie viel du geübt hast, an wie vielen Tagen, und wie viele Wörter neu die Stufe <b>sitzt</b> erreicht haben.</li>
+          <li><b>Auswertungen</b>: wie deine Antworten ausgehen, woran sie scheitern, wie schnell ein Wort bei dir sitzt, wie lange deine Wörter halten, wie lang deine Sitzungen sind und zu welcher Tageszeit du am besten triffst.</li>
+          <li><b>Stolpersteine</b> und <b>Hartnäckig</b>: die Wörter, die dir immer wieder entwischen. Von dort kannst du sie direkt üben.</li>
         </ul>
         <p>Auswertungen, für die zu wenige Daten da sind, zeigt die App gar nicht erst an. Am Anfang ist die Seite deshalb ziemlich leer. Das gibt sich.</p>
       </>
@@ -187,9 +206,9 @@ export const ANLEITUNG_DE: Kapitel[] = [
       <>
         <p>Die Voreinstellungen folgen der Lernforschung und passen für die meisten. Drei Schrauben lohnen trotzdem einen Blick:</p>
         <ul>
-          <li><b>Lernintensität</b> — wie sicher du ein Wort können sollst, wenn es wiederkommt. Intensiver heißt: häufiger üben, dafür sitzt mehr. Lockerer heißt: weniger Karten, dafür rutscht mehr weg. Ein Richtig gibt es nicht, nur einen Tausch.</li>
-          <li><b>Neue Wörter pro Tag</b> — dein einziger Hebel auf die Menge. Weniger neue Wörter heißt weniger Rückstau, nicht langsameres Lernen.</li>
-          <li><b>Antwortprüfung</b> — wie streng Akzente, Artikel und Groß- und Kleinschreibung bewertet werden.</li>
+          <li><b>Lernintensität</b>: wie sicher du ein Wort können sollst, wenn es wiederkommt. Intensiver heißt: häufiger üben, dafür sitzt mehr. Lockerer heißt: weniger Karten, dafür rutscht mehr weg. Ein Richtig gibt es nicht, nur einen Tausch.</li>
+          <li><b>Neue Wörter pro Tag</b>: dein einziger Hebel auf die Menge. Weniger neue Wörter heißt weniger Rückstau, nicht langsameres Lernen.</li>
+          <li><b>Antwortprüfung</b>: wie streng Akzente, Artikel und Groß- und Kleinschreibung bewertet werden.</li>
         </ul>
         <p>Dazu kommen Kleinigkeiten, die den Alltag angenehmer machen: was auf der Karte zu sehen ist (Lautschrift, Formen, Beispielsätze), womit die App aufmacht, Farbschema und Kartenschrift. Alles lässt sich einzeln zurücksetzen; was du verstellt hast, ist markiert.</p>
         <p>Unter <b>Erweitert</b> kannst du dem Modell beim Rechnen zusehen. Nötig ist das nie.</p>
@@ -211,10 +230,10 @@ export const ANLEITUNG_DE: Kapitel[] = [
     text: (
       <>
         <p className="help-frage"><b>Warum kommt dasselbe Wort schon wieder?</b></p>
-        <p>Weil du zuletzt gezögert hast oder danebenlagst. Die App bringt ein Wort zurück, kurz bevor du es vergisst — bei einem wackeligen Wort ist das morgen.</p>
+        <p>Weil du zuletzt gezögert hast oder danebenlagst. Die App bringt ein Wort zurück, kurz bevor du es vergisst. Bei einem wackeligen Wort ist das morgen.</p>
         <p className="help-frage"><b>Warum fragt die App Wörter ab, die ich längst kann?</b></p>
         <p>Weil auch sicher sitzende Wörter alle paar Wochen eine Auffrischung brauchen; sonst gehen sie über die Monate doch verloren. Es sind wenige Karten, und sie kosten kaum Zeit.</p>
-        <p className="help-frage"><b>Ich war eine Woche weg — wie schlimm ist es?</b></p>
+        <p className="help-frage"><b>Ich war eine Woche weg. Wie schlimm ist es?</b></p>
         <p>Nicht schlimm. Die fälligen Wörter sammeln sich an, aber <b>Heute dran</b> gibt dir nur die Tagesportion. Du bekommst nicht den ganzen Rückstand auf einmal.</p>
         <p className="help-frage"><b>Ein Wort ist falsch geschrieben. Wie ändere ich es?</b></p>
         <p>Liste öffnen, <b>Wörter ansehen und bearbeiten</b>, Zeile antippen, <b>Bearbeiten</b>. Dort lässt sich alles ändern oder nachtragen: Wort, Beispielsatz, Lautschrift, Formen und Geschlecht.</p>

@@ -482,7 +482,7 @@ export function WordList() {
           ihn braucht: in das Fenster selbst, als Knopf neben dem Textfeld. */}
       <button className="li" onClick={() => { setQuellenBlatt(null); setPasteSeed(""); setPasteOpen(true); }}>
         <Icon name="list" size={15} />
-        <span className="g">{txt("Liste einfügen")}<div className="m">{txt("abtippen, einfügen — oder von deiner KI-App aus einem Foto erstellen lassen")}</div></span>
+        <span className="g">{txt("Liste einfügen")}<div className="m">{txt("abtippen, einfügen oder von deiner KI-App aus einem Foto erstellen lassen")}</div></span>
         <Icon name="arrowRight" size={14} />
       </button>
       {isConfigured && (
@@ -1026,7 +1026,7 @@ export function WordList() {
             {sichtbar.length ? sichtbar.map(wortZeile) : (
               <div className="empty">
                 <div className="big">{q ? txt("Nichts gefunden") : txt("Noch keine Wörter")}</div>
-                <div>{q ? txt("Anderer Suchbegriff, oder das Feld leeren") : txt("Zurück zur Liste — dort stehen die Wege, sie zu füllen.")}</div>
+                <div>{q ? txt("Anderer Suchbegriff, oder das Feld leeren") : txt("Zurück zur Liste. Dort stehen die Wege, sie zu füllen.")}</div>
               </div>
             )}
           </div>
@@ -1227,7 +1227,7 @@ export function WordList() {
               </button>
             );
           }) : (
-            <div className="quiet">{txt("Noch keine eigene Wortliste. Lege oben eine an — oder üb mit dem Grundwortschatz.")}</div>
+            <div className="quiet">{txt("Noch keine eigene Wortliste. Lege oben eine an, oder üb mit dem Grundwortschatz.")}</div>
           )}
 
           {pairLists.length > 0 && (

@@ -135,7 +135,7 @@ export function scoreAnswer(user: string, correct: string, opts?: ScoreOpts): Sc
   // positions, so the solution shows them in red. Umlauts/accents are unaffected.
   const foldLen = (s: string) => ss(norm(s)).normalize("NFD").replace(/[\u0304\u0306]/g, "").normalize("NFC");
   if (opts.macronsOptional && foldLen(userOrig) === foldLen(corrOrig)) {
-    return { score: 1, verdict: "correct", note: "Richtig — die Längenstriche sind in der Lösung rot markiert", targetDiff, userDiff, errorType: "accent" };
+    return { score: 1, verdict: "correct", note: "Richtig. Die Längenstriche sind in der Lösung rot markiert", targetDiff, userDiff, errorType: "accent" };
   }
 
   // Umlauts / accents only

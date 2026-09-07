@@ -458,7 +458,7 @@ function AlleWoerter({ rows, stats, fgnOf, filter, setFilter, sort, setSort, cou
       </div>
 
       {trefferInfo && (
-        <div className="infonote">{txt("Als Treffer zählt jede Antwort, die nicht ganz daneben war — ein fehlender Akzent oder ein Buchstabendreher also auch. Ein Wort, das noch nie abgefragt wurde, zeigt einen Strich.")}</div>
+        <div className="infonote">{txt("Als Treffer zählt jede Antwort, die nicht ganz daneben war. Ein fehlender Akzent oder ein Buchstabendreher zählt also auch. Ein Wort, das noch nie abgefragt wurde, zeigt einen Strich.")}</div>
       )}
 
       <table className="wtable">

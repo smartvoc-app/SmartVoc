@@ -12,8 +12,8 @@ const STATUS_LABEL: Record<SyncStatus, string> = {
   local: "Nur auf diesem Gerät",
   syncing: "Synchronisiere…",
   synced: "Synchronisiert",
-  offline: "Offline — wird nachgeholt",
-  error: "Sync-Problem — Wiederholung folgt",
+  offline: "Ohne Netz, wird nachgeholt",
+  error: "Abgleich fehlgeschlagen, neuer Versuch folgt",
 };
 
 type Mode = "in" | "up" | "reset" | "newpw";

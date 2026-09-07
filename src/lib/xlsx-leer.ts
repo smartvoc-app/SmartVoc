@@ -13,7 +13,7 @@
  * gelangen, ist das ein Fehler in der Bedingung und soll auffallen.
  */
 const nichtHier = (): never => {
-  throw new Error("xlsx ist im iOS-Bündel nicht enthalten — Tabellen gibt es nur im Web");
+  throw new Error("xlsx ist im iOS-Bündel nicht enthalten. Tabellen gibt es nur im Web");
 };
 
 export const read = nichtHier;

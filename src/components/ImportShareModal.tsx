@@ -28,7 +28,7 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
     setBusy(true); setError(""); setPayload(null);
     try {
       const p = await fetchShared(parseCode(raw));
-      if (!p || !p.words) setError("Liste nicht gefunden — Code prüfen.");
+      if (!p || !p.words) setError("Liste nicht gefunden. Bitte den Code prüfen.");
       else setPayload(p);
     } catch (e: any) {
       setError(e?.message === "not-configured" ? "Teilen ist gerade nicht möglich." : "Konnte die Liste nicht laden.");
