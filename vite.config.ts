@@ -15,11 +15,15 @@ import { VitePWA } from "vite-plugin-pwa";
 // the web build.
 const forIOS = process.env.CAP_PLATFORM === "ios";
 
-// GitHub Pages project page → served under /<repo>/. base must match the repo
-// name exactly, capitals included — Pages paths are case-sensitive, and a
-// mismatch serves a blank page. The PWA manifest start_url/scope/id and the SW
-// scope all derive from it.
-const base = forIOS ? "/" : "/SmartVoc/";
+/* Seit die Website unter der eigenen Domaene smartvoc.app liegt, steht sie im
+ * Wurzelverzeichnis -- nicht mehr unter /SmartVoc/ wie bei einer
+ * GitHub-Projektseite. Manifest (id, start_url, scope) und der Geltungsbereich
+ * des Dienst-Arbeiters leiten sich davon ab, deshalb steht es an einer Stelle.
+ *
+ * Die Datei public/CNAME haelt die Domaene fest: `upload-pages-artifact` legt
+ * aus, was in dist/ liegt, und ohne diese Datei verloere Pages die eigene
+ * Domaene bei jeder Auslieferung. */
+const base = "/";
 
 export default defineConfig({
   base,

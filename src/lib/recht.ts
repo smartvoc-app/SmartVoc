@@ -14,7 +14,7 @@
 /* Die oeffentliche Adresse der Datenschutzerklaerung. Sie steht in der
  * App, in App Store Connect und spaeter womoeglich auf einer eigenen
  * Domain -- deshalb an genau einer Stelle. */
-export const DATENSCHUTZ_URL = "https://smartvoc-app.github.io/SmartVoc/datenschutz.html";
+export const DATENSCHUTZ_URL = "https://smartvoc.app/datenschutz.html";
 
 export interface Abschnitt { h?: string; p: string[] }
 
