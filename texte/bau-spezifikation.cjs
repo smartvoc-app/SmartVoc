@@ -24,6 +24,8 @@ const h1 = (t) => new Paragraph({ text: t, heading: HeadingLevel.HEADING_1,
   spacing: { before: 380, after: 160 } });
 const h2 = (t) => new Paragraph({ text: t, heading: HeadingLevel.HEADING_2,
   spacing: { before: 260, after: 110 } });
+const h3 = (t) => new Paragraph({ text: t, heading: HeadingLevel.HEADING_3,
+  spacing: { before: 220, after: 90 } });
 
 /* Aufzaehlung: Spiegelstrich und Einzug. Word-Nummerierung waere haltbarer,
    verlangt aber eine eigene Konfiguration je Ebene; fuer ein Lesedokument
@@ -66,6 +68,7 @@ for (const a of T.abschnitte) {
   k.push(h1(a.h1));
   for (const teil of a.teile) {
     if (teil.h2) { k.push(h2(teil.h2)); continue; }
+    if (teil.h3) { k.push(h3(teil.h3)); continue; }
     if (teil.p) { k.push(p(teil.p)); continue; }
     if (teil.ul) { k.push(...liste(teil.ul, false)); k.push(p("", { after: 60 })); continue; }
     if (teil.ol) { k.push(...liste(teil.ol, true)); k.push(p("", { after: 60 })); continue; }

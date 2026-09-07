@@ -16,47 +16,181 @@
      "h2": "1.1  Was die Anwendung auszeichnet"
     },
     {
+     "p": "Die folgenden Angaben sind Tatsachen aus dem Funktionsumfang und als Grundlage für Beschreibungstexte gedacht."
+    },
+    {
+     "h3": "Lernplanung"
+    },
+    {
      "tab": {
       "kopf": [
        "Merkmal",
-       "Nutzen"
+       "Faktische Grundlage"
       ],
       "zeilen": [
        [
         "Berechnete statt getaktete Wiederholung",
-        "Jedes Wort hat seinen eigenen Rhythmus, abgeleitet aus einem etablierten Modell des Vergessens. Kein starrer Karteikasten, keine Wiederholung nach Gefühl."
+        "Jedes Wort hat seinen eigenen Rhythmus. Aus Haltedauer und Schwierigkeit wird für jedes Wort einzeln der Zeitpunkt der nächsten Abfrage berechnet. Kein starrer Karteikasten und keine feste Wiederholung nach Tagen."
+       ],
+       [
+        "Grundlage ist Forschung, keine Faustregel",
+        "Das Modell (FSRS) beruht auf der Vergessenskurve und wird seit über hundert Jahren untersucht. Die Parameter stammen aus der Forschung und sind für alle Benutzer gleich."
        ],
        [
         "Zeit geht dorthin, wo sie wirkt",
-        "Sicher sitzender Wortschatz wird nicht abgefragt, solange er hält. Der Aufwand konzentriert sich auf das, was tatsächlich noch wackelt."
+        "Wörter der Stufe „sitzt“, die nicht fällig sind, werden gar nicht erst abgefragt. Der Aufwand verteilt sich auf die Wörter, die tatsächlich noch wackeln."
        ],
        [
         "Fordern ohne zu überfordern",
-        "Eine Grenze für Karten pro Tag und für neu begonnene Wörter verhindert Rückstau und Überlastung. Auch nach einer Pause kommt der Rückstand portioniert und nicht am Stück."
+        "Zwei Grenzen: Karten pro Tag (Voreinstellung 30, einstellbar von 10 bis 80) und neu begonnene Wörter pro Tag (Voreinstellung 10). Nach 40 Karten wird eine Pause vorgeschlagen. Ein Rückstand nach einer Lernpause kommt portioniert, nicht am Stück."
        ],
+       [
+        "Drei Lerntempi",
+        "Das Behaltensziel ist über drei Stufen einstellbar (85, 90 oder 95 Prozent) und verändert die Abstände zwischen den Wiederholungen."
+       ]
+      ]
+     }
+    },
+    {
+     "h3": "Flexibilität beim Üben"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Merkmal",
+       "Faktische Grundlage"
+      ],
+      "zeilen": [
+       [
+        "Vier Abfragearten",
+        "Eintippen mit maschineller Bewertung, Multiple-Choice mit zwei bis sechs Vorschlägen, Selbstkontrolle, und reines Durchblättern. Während der Übung umschaltbar."
+       ],
+       [
+        "Drei Abfragerichtungen",
+        "Fremdsprache zur Muttersprache, umgekehrt, und ein gemischter Modus, der die Richtung je Karte zufällig bestimmt. Das verhindert, dass sich das Gedächtnis an ein festes Muster gewöhnt und ein Wort nur in einer Richtung sitzt."
+       ],
+       [
+        "Beliebige Listen mischen",
+        "Der Umfang einer Übung ist frei wählbar: eine Liste, mehrere Listen, oder alles. Die Auswahl darf Sprachen mischen; jede Karte trägt ihr eigenes Sprachpaar und ihre eigene Richtung."
+       ],
+       [
+        "Sieben vorgerechnete Auswahlen",
+        "Neben den eigenen Listen stehen Auswahlen bereit, die die Anwendung selbst zusammenstellt: die Tagesportion, fällige Wörter, wackelnde Wörter, bald fällige, hartnäckige, frisch gelernte und solche kurz vor dem Ziel."
+       ],
+       [
+        "Angaben ein- und ausblendbar",
+        "Beispielsätze, Lautschrift und Formen lassen sich einzeln steuern: immer sichtbar, nie sichtbar, oder während der Übung umschaltbar."
+       ],
+       [
+        "Bewertung einstellbar",
+        "Gross- und Kleinschreibung, Akzente, Artikel und lateinische Längenzeichen lassen sich je nach Anspruch streng oder nachsichtig bewerten. Tippfehler werden als solche erkannt und nicht als Fehler gewertet."
+       ]
+      ]
+     }
+    },
+    {
+     "h3": "Wortschatz erfassen und verwalten"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Merkmal",
+       "Faktische Grundlage"
+      ],
+      "zeilen": [
+       [
+        "Vier Wege, Wörter zu erfassen",
+        "Text einfügen, einzelnes Wort eintippen, geteilte Liste übernehmen, Tabelle einlesen (Excel oder CSV). Dazu eine leere Vorlage zum Herunterladen."
+       ],
+       [
+        "Wortschatz in Sekunden statt Stunden",
+        "Ein mitgelieferter Auftrag an ein Sprachmodell überführt eine abfotografierte Buchseite in eine vollständige Wortliste, samt Beispielsätzen, Übersetzungen, Lautschrift und Grammatikangaben. Abtippen entfällt."
+       ],
+       [
+        "Zehn Angaben je Wort",
+        "Wort, Übersetzung, Formen, Geschlecht, Wortart, zwei Beispielsätze mit Übersetzung und Lautschrift. Alles ausser Wort und Übersetzung ist freiwillig."
+       ],
+       [
+        "Sechs Sprachen mitgeliefert",
+        "Englisch, Französisch, Spanisch, Italienisch, Portugiesisch und Latein, jeweils mit einem Grundwortschatz von hundert vollständig ausgearbeiteten Wörtern. Sofort startklar, ohne eigene Liste."
+       ],
+       [
+        "Latein mit Stammformen",
+        "Latein wird nicht als einzelnes Wort behandelt, sondern über Grundform und vollständige Stammformen, mit zwei Abfragestufen und eigener Bewertung."
+       ],
+       [
+        "Kontrolle vor der Übernahme",
+        "Jeder eingelesene Wortschatz durchläuft eine Prüfmaske, in der sich jedes Wort einzeln korrigieren oder streichen lässt. Bereits vorhandene Wörter werden erkannt und übersprungen."
+       ]
+      ]
+     }
+    },
+    {
+     "h3": "Überblick und Auswertung"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Merkmal",
+       "Faktische Grundlage"
+      ],
+      "zeilen": [
        [
         "Prüfungstermine sind Teil der Planung",
-        "Eine Wortliste bekommt ein Zieldatum. Die Anwendung rechnet rückwärts, zieht die Wiederholungen zusammen und sagt vorher, wie der Stoff am Stichtag dastehen wird."
+        "Eine Liste bekommt ein Zieldatum. Die Anwendung zieht die Wiederholungen zusammen, je näher der Termin rückt, und sagt vorher, wie viele Wörter am Stichtag sitzen werden und wie viele pro Tag noch zu festigen sind."
        ],
        [
-        "Mehrere Sprachen nebeneinander",
-        "Sechs Sprachpaare in einem Programm, mit gemeinsamem Terminkalender und gemeinsamer Auswertung. Wer parallel Englisch, Französisch und Latein lernt, behält den Überblick."
+        "Mehrere Sprachen, ein Kalender",
+        "Termine aller Sprachen stehen in einem Plan, wahlweise als Kalender oder als Liste, mit einer dreistufigen Einordnung je Tag."
        ],
        [
         "Auswertung bis auf das einzelne Wort",
-        "Für jede Liste und jedes Wort ist ablesbar, wie sicher es sitzt, wie oft es abgefragt wurde, wie viele Anläufe es gebraucht hat und woran es scheitert. Daraus wird sichtbar, wo sich Üben lohnt und ob es vorwärtsgeht."
+        "Für jede Liste und jedes Wort ist ablesbar, auf welcher der fünf Stufen es steht, wie oft es abgefragt wurde, wie hoch die Trefferquote ist und wie lange es hält."
        ],
        [
-        "Wortschatz in Sekunden erfassen",
-        "Eine abfotografierte Buchseite lässt sich über ein Sprachmodell in eine vollständige Wortliste überführen, samt Beispielsätzen, Lautschrift und Grammatikangaben. Abtippen entfällt."
+        "Auswertung des eigenen Lernverhaltens",
+        "Über 7, 30 oder 90 Tage: Zahl der geübten Wörter, Zahl der Übungstage, Zahl der neu gefestigten Wörter im Vergleich zum Vorzeitraum, Fehlerbild nach Fehlerart, durchschnittliche Sitzungsdauer, Trefferquote nach Tageszeit, und die Wörter, die immer wieder vergessen werden."
+       ],
+       [
+        "Eine Rechnung, überall dieselbe",
+        "Die fünf Stufen werden an einer Stelle berechnet und erscheinen unverändert auf der Karte, an der Liste, im Plan und in der Statistik. Farben und Zahlen sind damit vergleichbar."
+       ]
+      ]
+     }
+    },
+    {
+     "h3": "Zugang und Datenhoheit"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Merkmal",
+       "Faktische Grundlage"
+      ],
+      "zeilen": [
+       [
+        "Auf dem Telefon und im Browser",
+        "Eine Anwendung für iOS und Web, mit demselben Funktionsumfang und demselben Konto. Vollständig offline benutzbar."
        ],
        [
         "Ohne Konto vollständig nutzbar",
-        "Die Anwendung läuft offline und ohne Anmeldung. Ein Konto bringt Abgleich über mehrere Geräte und das Teilen von Listen, ist aber keine Voraussetzung."
+        "Anmeldung ist keine Voraussetzung. Ein Konto bringt Abgleich über mehrere Geräte, Sicherung und das Teilen von Listen."
+       ],
+       [
+        "Listen teilen",
+        "Eine Liste lässt sich über Code oder Verweis weitergeben. Die andere Person erhält eine eigene Kopie; die Lernstände bleiben getrennt."
        ],
        [
         "Die Daten bleiben beim Benutzer",
-        "Jede Liste lässt sich jederzeit als Text oder Tabelle ausgeben, ohne Konto und ohne Umweg. Es gibt keine Werbung und keine Auswertung des Nutzungsverhaltens zu fremden Zwecken."
+        "Jede Liste lässt sich jederzeit als Text oder als Tabelle ausgeben, ohne Konto. Das ausgegebene Format liest die Anwendung unverändert wieder ein."
+       ],
+       [
+        "Keine Werbung, keine Auswertung",
+        "Es werden keine Daten an Dritte weitergegeben und kein Nutzungsverhalten zu fremden Zwecken ausgewertet. Konto und Daten lassen sich in der Anwendung selbst vollständig löschen."
+       ],
+       [
+        "Zweisprachige Oberfläche",
+        "Deutsch und Englisch, wahlweise der Geräteeinstellung folgend."
        ]
       ]
      }
