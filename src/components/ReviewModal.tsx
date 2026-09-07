@@ -65,7 +65,13 @@ export function ReviewModal({ open, rows, pair, onConfirm, onClose }: { open: bo
           <button className="icon-btn" style={{ width: 34, height: 34 }} onClick={onClose}><Icon name="x" size={16} /></button>
         </div>
         <div className="muted" style={{ fontSize: 13.5, margin: "0 2px 12px" }}>
-          {valid.length} Wort{valid.length === 1 ? "" : "er"} erkannt. Korrigiere, was nicht stimmt, dann wähle eine Liste.
+          {/* "Wort" + "er" ergab "Worter" -- der Umlaut faellt bei dieser Art
+              Mehrzahlbildung weg. Und der Satz lief ohne txt(), stand also
+              auch in der englischen Fassung deutsch da. Zwei Zeilen weiter
+              unten steht das richtige Muster schon. */}
+          {txt(valid.length === 1
+            ? "{n} Wort erkannt. Korrigiere, was nicht stimmt, dann wähle eine Liste."
+            : "{n} Wörter erkannt. Korrigiere, was nicht stimmt, dann wähle eine Liste.", { n: valid.length })}
         </div>
 
         {/* Sieben Spalten passen auf ein iPhone nicht. Auf dem Handy wird

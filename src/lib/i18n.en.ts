@@ -81,6 +81,8 @@ export const EN: Record<string, string> = {
   "baut sich auf, ab heute füllt sich diese Linie": "building up, this line fills from today",
   "Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.": "No history yet. From today the app records where you stand each day.",
   "{n} Wort": "{n} word",
+  "{n} Wort erkannt. Korrigiere, was nicht stimmt, dann wähle eine Liste.": "{n} word recognised. Correct anything that is wrong, then pick a list.",
+  "{n} Wörter erkannt. Korrigiere, was nicht stimmt, dann wähle eine Liste.": "{n} words recognised. Correct anything that is wrong, then pick a list.",
   "Gewicht: frisch gelernt": "Weight: freshly learned",
   "Gewicht: sitzt fast": "Weight: nearly solid",
   "Runden-Ziel: frisch gelernt": "Round target: freshly learned",
