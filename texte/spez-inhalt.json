@@ -1,309 +1,1221 @@
-{"titel":"SmartVoc","untertitel":"Funktionsspezifikation","stand":"Stand 7. September 2026","abschnitte":[
-
-{"h1":"1  Zweck und Abgrenzung","teile":[
-{"p":"SmartVoc ist ein Vokabeltrainer für Schülerinnen und Schüler. Er verwaltet Wortschatz in Listen, fragt ihn ab und plant die Wiederholungen so, dass der Stoff zu einem gewünschten Zeitpunkt sitzt."},
-{"p":"Dieses Dokument beschreibt, was die Anwendung tut, nach welchen Regeln sie rechnet und welche Daten sie hält. Es beschreibt nicht, wie sie aussieht: Anordnung, Farben, Schriften und Bedienelemente sind nicht Gegenstand dieser Spezifikation."},
-{"h2":"1.1  Nicht-Ziele"},
-{"ul":["Kein Übersetzer und kein Wörterbuch. Die Anwendung schlägt keine Bedeutungen nach.",
-"Keine Anpassung des Lernmodells an die einzelne Person. Die Modellparameter sind für alle gleich und werden nicht aus dem Verhalten gelernt.",
-"Keine soziale Ebene: keine Profile, keine Ranglisten, keine Freundeslisten.",
-"Keine Werbung, keine Verfolgung des Nutzungsverhaltens über die Anwendung hinaus."]}]},
-
-{"h1":"2  Plattformen und Auslieferung","teile":[
-{"p":"Eine Quelltextbasis erzeugt zwei Auslieferungen."},
-{"tab":{"kopf":["Fassung","Technik","Besonderheit"],"zeilen":[
-["Web","Statische Seite mit Service Worker (installierbar als PWA)","Tabellen-Import und -Export verfügbar"],
-["iOS","Dieselbe Weboberfläche in einem nativen Rahmen (Capacitor)","Systemweites Teilen und Rückmeldung über Vibration; kein Tabellen-Import"]]}},
-{"p":"Beide Fassungen sprechen mit demselben Server, sodass ein Konto auf Telefon und im Browser denselben Stand zeigt. Die Anwendung ist ohne Netzverbindung vollständig benutzbar; die Verbindung wird nur für Konto, Abgleich und Teilen gebraucht."}]},
-
-{"h1":"3  Sprachen","teile":[
-{"p":"Ein Sprachpaar besteht aus einer Fremdsprache und der Muttersprache und trägt die Kennung „<fremd>-<mutter>“, zum Beispiel „en-de“. Diese Kennung steht an jedem Wort und an jeder Liste."},
-{"p":"Ausgeliefert werden sechs Paare mit Deutsch als Muttersprache: Englisch, Französisch, Spanisch, Italienisch, Portugiesisch und Latein. Die Muttersprache ist als eigene Angabe gespeichert; das Datenmodell lässt weitere Muttersprachen zu, ohne bestehende Daten zu entwerten."},
-{"p":"Welche Paare sichtbar sind, ist eine reine Anzeigeeinstellung. Wörter eines ausgeblendeten Paares bleiben erhalten."},
-{"h2":"3.1  Sonderfall Latein"},
-{"p":"Latein wird nicht über ein einzelnes Fremdwort gelernt, sondern über Stammformen. Ein lateinisches Wort trägt deshalb zwei Felder: die Grundform als Stichwort und die vollständige Lernform. Zwei Abfragearten sind einstellbar:"},
-{"ul":["L2: Die Karte zeigt die vollständige Lernform, abgefragt wird nur die Grundform.",
-"L3: Abgefragt werden die vollständigen Stammformen. Die Bewertung ist unempfindlich gegenüber Reihenfolge und Abständen der Formen."]}]},
-
-{"h1":"4  Datenmodell","teile":[
-{"h2":"4.1  Wort"},
-{"tab":{"kopf":["Feld","Inhalt"],"zeilen":[
-["id","Eindeutige Kennung"],
-["pair","Sprachpaar"],
-["de","Die Seite in der Muttersprache. Der Feldname ist historisch und bedeutet nicht „Deutsch“."],
-["en / fr / es / it / pt","Die Fremdseite, unter dem Kürzel der jeweiligen Sprache"],
-["grundform","Nur Latein: das Stichwort"],
-["lernform","Formen, die zum Wort mitgelernt werden. Latein: die Stammformen. Sonst Plural oder unregelmässige Formen."],
-["wortart","Eine von neun Klassen (siehe 4.2)"],
-["genus","Geschlecht des Fremdworts (siehe 4.3)"],
-["examples","Bis zu zwei Beispielsätze in der Fremdsprache"],
-["examplesDe","Deren Übersetzungen, über den Index zugeordnet"],
-["phonetic","Lautschrift des Fremdworts. Bei Latein stattdessen das Stichwort mit Längenzeichen."],
-["lists","Zugehörigkeit. Ein Wort gehört zu genau einer Liste."],
-["review","Kennzeichen, dass eine Angabe automatisch ergänzt wurde und geprüft werden sollte"],
-["source","Herkunft: mitgeliefert, von Hand, eingelesen"],
-["createdAt","Zeitpunkt der Anlage"]]}},
-{"p":"Der Artikel eines Nomens steht im Wortfeld selbst („la maison“, „der Stuhl“) und nicht in einem eigenen Feld. Er liesse sich aus dem Geschlecht nicht zurückbilden: im Französischen und Italienischen richtet er sich nach dem Anlaut, im Spanischen wird er teilweise verschliffen."},
-{"h2":"4.2  Wortarten"},
-{"p":"Nomen, Verb, Adjektiv, Adverb, Pronomen, Zahlwort, Präposition, Konjunktion, Wendung. Die Angabe ist freiwillig."},
-{"h2":"4.3  Geschlecht"},
-{"p":"Zulässig sind: m, f, n, m pl, f pl, n pl, pl. Die Plural-Werte gelten für Wörter ohne Singular. Bei allem, was kein Nomen ist, bleibt das Feld leer. Ein eigenes Feld für den Numerus gibt es nicht, weil der Singular der Regelfall ist und nur die Abweichung eine Auskunft trägt."},
-{"h2":"4.4  Wortliste"},
-{"tab":{"kopf":["Feld","Inhalt"],"zeilen":[
-["id, name, pair","Kennung, Bezeichnung, Sprachpaar"],
-["createdAt, updatedAt","Anlage und letzte Änderung"],
-["autor","Anzeigename zum Zeitpunkt der Anlage, als Text gespeichert"],
-["herkunft","selbst angelegt, übernommen, oder mitgeliefert"],
-["dueDate","Zieldatum, freiwillig"],
-["system","Kennzeichen für von der Anwendung verwaltete Listen"]]}},
-{"h2":"4.5  Lernstand je Wort"},
-{"p":"Zu jedem Wort wird gezählt: Zahl der Abfragen, Summe der Punkte, Zahl der richtigen, fast richtigen und falschen Antworten, gleitender Durchschnitt, laufende Serie, Zeitpunkt der letzten Abfrage sowie ein Verlauf der einzelnen Antworten mit Punktzahl, Urteil, Zeitstempel und Fehlerart. Dazu kommt der Zustand des Lernmodells (siehe 9)."},
-{"h2":"4.6  Tageszähler"},
-{"p":"Datum des letzten Übens, laufende Tagesserie, Zahl der heute gezeigten Karten, Zahl der heute neu begonnenen Wörter, Gesamtzahl aller Abfragen sowie eine Zeitreihe der Stufenverteilung je Sprachpaar und Tag, begrenzt auf 180 Tage."}]},
-
-{"h1":"5  Wörter erfassen","teile":[
-{"h2":"5.1  Spaltenformat"},
-{"p":"Alle Wege in die Anwendung und alle Wege heraus verwenden denselben Spaltensatz, in dieser Reihenfolge:"},
-{"ol":["Fremdsprache","Formen","Genus","Wortart","Muttersprache","Beispielsatz 1","Beispielsatz 1 übersetzt","Beispielsatz 2","Beispielsatz 2 übersetzt","Aussprache"]},
-{"p":"In der Textform trennt „ | “ die Spalten, eine Zeile je Wort, ohne Kopfzeile. In der Tabellenform tragen die Spalten Überschriften; die Reihenfolge ist dann unerheblich, weil die Zuordnung über die Überschrift erfolgt. Leere Felder sind zulässig und behalten ihr Trennzeichen."},
-{"p":"Von Hand getippte Zeilen dürfen kürzer sein. Die Zahl der Spalten entscheidet über die Deutung; zwei Spalten bedeuten Wort und Übersetzung."},
-{"h2":"5.2  Wege in die Anwendung"},
-{"tab":{"kopf":["Weg","Beschreibung","Verfügbar"],"zeilen":[
-["Liste einfügen","Text wird in ein Feld eingefügt und zerlegt. Enthält einen vorformulierten Auftrag für ein Sprachmodell, mit dem sich eine abfotografierte Buchseite in das Spaltenformat überführen lässt.","Überall"],
-["Einzelnes Wort","Eingabemaske mit allen Feldern","Überall"],
-["Geteilte Liste übernehmen","Über Code oder Verweis, erzeugt eine eigene Kopie","Überall, Konto nötig"],
-["Tabelle einlesen","Excel oder CSV","Nur Web"]]}},
-{"p":"Zum Tabellenweg gehört eine leere Vorlage zum Herunterladen. Sie trägt dieselben Spalten und einige Beispielzeilen und ist nach der Sprache benannt."},
-{"h2":"5.3  Auftrag an ein Sprachmodell"},
-{"p":"Der mitgelieferte Auftrag verlangt drei Dinge: die Wörter und Übersetzungen der Vorlage unverändert zu übernehmen, bereits vorhandene Angaben wie Beispielsätze oder Lautschrift ebenfalls zu übernehmen, und alle übrigen Felder zu ergänzen. Er nennt die Spaltenzahl, die zulässigen Wortarten und Geschlechter."},
-{"h2":"5.4  Prüfschritt"},
-{"p":"Alle Wege ausser der Einzeleingabe münden in eine Prüfmaske. Dort steht jedes erkannte Wort in einer eigenen Zeile mit allen Feldern und lässt sich vor der Übernahme ändern oder streichen. Erst danach wird die Zielliste gewählt."},
-{"h2":"5.5  Dubletten"},
-{"p":"Beim Übernehmen wird auf bereits vorhandene Wörter desselben Sprachpaares geprüft. Der Vergleich läuft über Fremdwort und Übersetzung, bei Latein über Grundform und Übersetzung, ohne Rücksicht auf Gross- und Kleinschreibung. Bereits vorhandene Wörter werden übersprungen."},
-{"h2":"5.6  Automatische Ergänzung"},
-{"p":"Fehlt bei einem eingelesenen Wort eine der beiden Seiten, versucht die Anwendung sie aus einem mitgelieferten Wörterbuch zu ergänzen. Gelingt das, wird das Wort als zu prüfen gekennzeichnet."}]},
-
-{"h1":"6  Wortlisten","teile":[
-{"p":"Eine Liste fasst zusammen, was gemeinsam geübt wird. Jedes Wort gehört zu genau einer Liste."},
-{"h2":"6.1  Handgriffe"},
-{"ul":["Anlegen, umbenennen, löschen. Beim Löschen einer Liste verlassen die Wörter diese Liste; sie werden nicht mit gelöscht.",
-"Zieldatum setzen und entfernen.",
-"Wörter ansehen, suchen, einzeln oder mehrfach auswählen, ändern, löschen.",
-"Zwei Listen zusammenführen. Die Wörter wandern in die Zielliste, Dubletten werden dabei verworfen, die geleerte Liste verschwindet.",
-"Exportieren als Text oder als Tabelle.",
-"Teilen (Konto nötig)."]},
-{"p":"Jede Löschung von Listen oder Wörtern verlangt eine Bestätigung und meldet danach, was geschehen ist."},
-{"h2":"6.2  Suche"},
-{"p":"Die Suche in der Übersicht läuft über alle eingeschalteten Sprachen und durchsucht Fremdwort, Lernform und Übersetzung. Ein Treffer nennt Liste und Sprachpaar."},
-{"h2":"6.3  Mitgelieferter Grundwortschatz"},
-{"p":"Zu jedem Sprachpaar gehört eine Liste von hundert Wörtern mit Beispielsätzen, Übersetzungen der Beispielsätze und Lautschrift. Sie wird beim Einschalten einer Sprache automatisch als gewöhnliche Wortliste angelegt und lässt sich wie jede andere bearbeiten oder löschen. Die Aktivierung ist wiederholungssicher: sie legt dieselbe Liste nicht zweimal an."},
-{"p":"Die fünf neueren Sprachen tragen dieselben hundert Begriffe, sodass die Seite in der Muttersprache in allen fünf Listen übereinstimmt. Latein hat einen eigenen Wortschatz."}]},
-
-{"h1":"7  Üben","teile":[
-{"h2":"7.1  Umfang"},
-{"p":"Vor einer Übung wird gewählt, worüber abgefragt wird: eine oder mehrere eigene Wortlisten, oder eine der vorgerechneten Auswahlen (siehe 10). Die Auswahl darf Sprachen mischen; jede Karte trägt ihr eigenes Sprachpaar."},
-{"p":"Womit die Anwendung beim Öffnen aufmacht, ist einstellbar: mit der Tagesauswahl, mit der zuletzt geübten Auswahl, mit deren offenen Wörtern, oder mit nichts."},
-{"h2":"7.2  Richtung"},
-{"p":"Fremdsprache zur Muttersprache, umgekehrt, oder gemischt. Bei gemischt wird die Richtung je Karte bestimmt, aber innerhalb einer Runde für dasselbe Wort stabil gehalten."},
-{"h2":"7.3  Antwortarten"},
-{"tab":{"kopf":["Art","Ablauf","Zählt"],"zeilen":[
-["Eintippen","Die Antwort wird geschrieben und maschinell bewertet","ja"],
-["Multiple-Choice","Auswahl aus zwei bis sechs Möglichkeiten, Zahl einstellbar","ja"],
-["Selbstkontrolle","Die Karte wird umgedreht und selbst beurteilt","ja"],
-["Nur durchblättern","Die Karte wird angesehen","nein"]]}},
-{"p":"Die Ablenker beim Multiple-Choice stammen aus dem gesamten Wortschatz desselben Sprachpaares, nicht nur aus dem Umfang der Runde."},
-{"h2":"7.4  Angaben auf der Karte"},
-{"p":"Die Frageseite zeigt das abgefragte Wort, die Lösungsseite die Antwort. Beispielsätze erscheinen nur auf der Lösungsseite und jeweils in der Sprache der Seite, auf der sie stehen."},
-{"p":"Lautschrift, Formen und Geschlecht gehören zum Fremdwort und erscheinen nur dort, wo dieses Wort steht. Für Beispielsätze, Lautschrift und Formen gilt je eine Einstellung mit drei Möglichkeiten: immer anzeigen, nie anzeigen, oder während des Übens umschaltbar."},
-{"p":"Zählt der Artikel nicht zur Antwort (siehe 8.2), wird er auf der Karte weggelassen und stattdessen das Geschlecht angegeben."},
-{"h2":"7.5  Hilfe während der Abfrage"},
-{"p":"Je Karte lässt sich einmal ein Hinweis abrufen. Er wird im Lernstand vermerkt."},
-{"h2":"7.6  Abbruch"},
-{"p":"Eine Runde lässt sich abbrechen. Die noch offenen Wörter werden gemerkt, sodass die nächste Sitzung sie wieder aufnehmen kann; der Zustand des Lernmodells wird dabei nicht eingefroren, sondern beim Neustart frisch aus dem Lernstand gelesen."}]},
-
-{"h1":"8  Bewertung einer Antwort","teile":[
-{"p":"Eine eingetippte Antwort wird gegen die Lösung verglichen und ergibt eine Punktzahl zwischen 0 und 1 sowie ein Urteil: richtig, fast richtig oder falsch. Zusätzlich wird die Fehlerart festgehalten: Artikel, Akzent, Tippfehler oder falsch."},
-{"h2":"8.1  Reihenfolge der Prüfungen"},
-{"ol":["Genaue Übereinstimmung, wahlweise ohne Rücksicht auf Gross- und Kleinschreibung. Ergibt volle Punktzahl.",
-"Artikelprüfung (siehe 8.2).",
-"Längenzeichen: Sind sie als nicht nötig eingestellt und liegt nur darin der Unterschied, gilt die Antwort als richtig.",
-"Umlaute und Akzente: Sind sie nicht als streng eingestellt und liegt nur darin der Unterschied, ergibt das 0,8 Punkte und das Urteil fast richtig.",
-"Tippfehler: Der Abstand zur Lösung wird gemessen. Liegt er innerhalb eines Drittels der Länge und beträgt die Ähnlichkeit mindestens die Hälfte, ergibt das zwischen 0,35 und 0,8 Punkte, abhängig von der Ähnlichkeit.",
-"Sonst: null Punkte."]},
-{"h2":"8.2  Artikel"},
-{"p":"Trägt die Lösung einen Artikel und stimmt der Rest, entscheidet eine Einstellung mit drei Stufen: der Artikel ist freiwillig (volle Punktzahl), er zählt teilweise (0,8 Punkte, Urteil fast richtig), oder er zählt voll (null Punkte)."},
-{"p":"Trägt die Lösung keinen Artikel, die Antwort aber schon, und stimmt der Rest, gilt die Antwort als richtig. Dieser Fall betrifft vor allem das Englische, wo der Artikel keine zu lernende Auskunft trägt."},
-{"p":"Erkannt werden die bestimmten und unbestimmten Artikel aller unterstützten Sprachen."},
-{"h2":"8.3  Latein"},
-{"p":"In der Abfrageart L3 werden die eingegebenen Stammformen einzeln gegen die Lernform verglichen. Reihenfolge und Abstände sind unerheblich; für jede Form gelten dieselben Regeln zu Tippfehlern und Akzenten."},
-{"h2":"8.4  Rückmeldung"},
-{"p":"Nach jeder Antwort wird angezeigt, welche Zeichen fehlten, überflüssig waren oder abwichen, und ein kurzer Hinweis auf die Art des Fehlers. Auf dem Telefon kommt eine Rückmeldung über Vibration dazu."}]},
-
-{"h1":"9  Lernmodell","teile":[
-{"p":"Die Planung der Wiederholungen folgt einem etablierten Modell des Vergessens (FSRS). Zu jedem Wort werden drei Grössen geführt: die Haltedauer (wie lange das Wort hält), die Schwierigkeit, und der Zeitpunkt der letzten Abfrage."},
-{"h2":"9.1  Rechenregeln"},
-{"tab":{"kopf":["Grösse","Formel"],"zeilen":[
-["Abstand bis zur nächsten Abfrage","9 · Haltedauer · (1 / Behaltensziel − 1), in Tagen"],
-["Erinnerungswahrscheinlichkeit jetzt","(1 + verstrichene Tage / (9 · Haltedauer)) hoch −0,5"],
-["Fällig","wenn der Zeitpunkt der letzten Abfrage plus Abstand erreicht ist"]]}},
-{"p":"Die Modellparameter sind fest und für alle Benutzer gleich. Sie werden nicht aus dem Verhalten einzelner Personen gelernt, und es werden dafür auch keine Daten ausgewertet."},
-{"h2":"9.2  Die fünf Stufen"},
-{"tab":{"kopf":["Stufe","Bedingung"],"zeilen":[
-["ungeübt","noch nie abgefragt"],
-["neu","weniger als 2 Abfragen und noch kein Rückfall"],
-["wackelt noch","Haltedauer unter 3 Tagen"],
-["sitzt fast","Haltedauer zwischen 3 und 14 Tagen"],
-["sitzt","Haltedauer ab 14 Tagen"]]}},
-{"p":"Dieselbe Ableitung wird überall verwendet: auf der Karte, an der Liste, im Plan und in der Statistik."},
-{"p":"Ein Wort gilt als hartnäckig, wenn die Schwierigkeit mindestens 7 beträgt und es mindestens dreimal zurückgefallen ist."},
-{"h2":"9.3  Behaltensziel"},
-{"p":"Das Behaltensziel gibt an, mit welcher Wahrscheinlichkeit ein Wort zum Zeitpunkt der Wiederholung noch gewusst werden soll. Es ist über drei Stufen einstellbar:"},
-{"tab":{"kopf":["Einstellung","Ziel","Wirkung"],"zeilen":[
-["Locker","0,85","längere Abstände, weniger Wiederholungen"],
-["Normal","0,90","Voreinstellung"],
-["Intensiv","0,95","kürzere Abstände, mehr Wiederholungen"]]}},
-{"h2":"9.4  Zieldatum"},
-{"p":"Hat eine Liste ein Zieldatum, wird das Behaltensziel für ihre Wörter angehoben, je näher der Termin rückt. Ab 21 Tagen vor dem Termin steigt es gleichmässig an; in den letzten drei Tagen gilt der Höchstwert von 0,95. Nach dem Termin fällt alles auf den Normalwert zurück."},
-{"p":"Ein höheres Behaltensziel verkürzt den Abstand und macht damit mehr Wörter fällig. Es braucht deshalb keine gesonderte Prüfungslogik: Werden mehrere Listen zusammen geübt, kommen die Wörter der Liste mit dem näheren Termin von selbst häufiger."}]},
-
-{"h1":"10  Aufbau einer Übungsrunde","teile":[
-{"p":"Aus dem gewählten Umfang wird eine Runde gebildet. Jedes Wort erhält dabei ein Ziel: wie oft es in dieser Runde richtig beantwortet werden soll."},
-{"tab":{"kopf":["Ausgangslage","Ziel","Gewicht"],"zeilen":[
-["wackelt noch","3","5"],
-["fällig und sitzt","1","5"],
-["ungeübt","2","3"],
-["neu","2","3"],
-["sitzt fast","1","2"]]}},
-{"p":"Wörter der Stufe „sitzt“, die nicht fällig sind, bleiben aussen vor; das Modell plant sie ohnehin."},
-{"p":"Die nächste Karte wird bestimmt, indem zuerst gewichtet eine Gruppe gezogen und daraus das dringendste noch offene Wort gewählt wird. Wörter, die länger nicht gezeigt wurden, bekommen einen Vorzug, damit keines liegen bleibt. Dasselbe Wort erscheint nie zweimal hintereinander; nach einem Fehler vergehen mindestens zwei andere Karten, bevor es wiederkommt. Sind nur noch wenige Wörter offen, wird die Gewichtung fallen gelassen und die offenen werden zyklisch wiederholt, damit die Runde endet."},
-{"p":"Ziel und Nenner des Fortschritts werden beim Aufbau der Runde festgehalten und ändern sich während der Runde nicht. Ein Rückfall setzt den Zähler des betroffenen Wortes zurück, nicht den Nenner."},
-{"p":"Das Lernmodell wird je Wort und Runde genau einmal fortgeschrieben, nicht bei jeder einzelnen Antwort."},
-{"h2":"10.1  Tagesgrenzen"},
-{"p":"Zwei Grenzen begrenzen den Umfang: die Zahl der Karten pro Tag (Voreinstellung 30) und die Zahl neu begonnener Wörter pro Tag (Voreinstellung 10). Nach 40 gezeigten Karten weist die Anwendung darauf hin, dass es für heute genug sein könnte."},
-{"p":"Wörter aus einer Liste, deren Zieldatum in den nächsten drei Tagen liegt, zählen nicht gegen die Tagesgrenze."}]},
-
-{"h1":"11  Vorgerechnete Auswahlen","teile":[
-{"p":"Neben den eigenen Listen stehen vier Auswahlen zur Verfügung, die die Anwendung selbst zusammenstellt."},
-{"tab":{"kopf":["Auswahl","Inhalt"],"zeilen":[
-["Heute dran","Fällige Wörter, dazu Wörter aus Listen mit Termin innerhalb einer Woche, die noch nicht sitzen, dazu neue Wörter bis zur Tagesgrenze. Sortiert nach Dringlichkeit."],
-["Fällige Wörter","Alle Wörter, deren Abstand abgelaufen ist"],
-["Wackeln noch","Alle Wörter der Stufe „wackelt noch“"],
-["Bald fällig","Wörter, die innerhalb der nächsten zwei Tage fällig werden"]]}},
-{"p":"Für die Statistik stehen zusätzlich drei weitere Auswahlen bereit: hartnäckige Wörter, frisch gelernte mit geringer Haltedauer, und solche kurz vor der Stufe „sitzt“."},
-{"p":"Diese Auswahlen sind Ansichten und keine Ablagen. Sie lassen sich nicht bearbeiten, und ein Wort daraus zu löschen ist nicht möglich."}]},
-
-{"h1":"12  Übungsplan","teile":[
-{"p":"Der Plan zeigt ausschliesslich Listen mit Zieldatum, wahlweise als Kalender oder als Liste, für eine oder alle Sprachen."},
-{"h2":"12.1  Bewertung einer Liste"},
-{"p":"Der Anteil der Wörter einer Liste, die auf der Stufe „sitzt“ stehen, ergibt eine Prozentzahl. Daraus folgt eine dreistufige Einordnung, deren Schwellen einstellbar sind:"},
-{"tab":{"kopf":["Einordnung","Voreinstellung"],"zeilen":[["bereit","ab 95 %"],["auf Kurs","ab 70 %"],["im Rückstand","darunter"]]}},
-{"p":"Liegen mehrere Listen auf demselben Tag, bestimmt die schwächste die Einordnung des Tages."},
-{"h2":"12.2  Prognose"},
-{"p":"Zu einer Liste mit Termin wird geschätzt, wie jedes Wort am Termin dastehen wird. Grundlage ist die Erinnerungswahrscheinlichkeit zum Zeitpunkt des Termins:"},
-{"tab":{"kopf":["Einordnung","Bedingung"],"zeilen":[["sicher","ab 0,9"],["wackelig","ab 0,7"],["vergessen","darunter oder nie geübt"]]}},
-{"p":"Daraus wird abgeleitet, wie viele Wörter noch zu festigen sind und wie viele davon pro verbleibendem Tag. Übersteigt der Bedarf das in der Zeit Erreichbare, wird das ausgewiesen."},
-{"h2":"12.3  Ausblick"},
-{"p":"Für die kommenden sieben Tage wird gezählt, wie viele Wörter je Tag fällig werden, und welche Termine anstehen."}]},
-
-{"h1":"13  Statistik","teile":[
-{"p":"Die Auswertung lässt sich auf alle Sprachen, eine Sprache oder einzelne Listen einschränken. Der Zeitraum ist 7, 30 oder 90 Tage."},
-{"h2":"13.1  Bestand"},
-{"p":"Verteilung aller Wörter auf die fünf Stufen, gesamt und je Sprache. Ein Eintrag der Legende öffnet die zugehörigen Wörter."},
-{"h2":"13.2  Fortschritt im Zeitraum"},
-{"ul":["Zahl der neu hinzugekommenen Wörter",
-"Zahl der geübten Wörter und der gegebenen Antworten",
-"Zahl der Tage, an denen geübt wurde",
-"Zahl der Wörter, die im Zeitraum die Stufe „sitzt“ erreicht haben, im Vergleich zum Zeitraum davor"]},
-{"h2":"13.3  Auswertungen"},
-{"tab":{"kopf":["Auswertung","Inhalt"],"zeilen":[
-["Wie Antworten ausgehen","Anteil richtiger, fast richtiger und falscher Antworten"],
-["Stolpersteine","Häufigkeit der Fehlerarten: Artikel, Akzent, Tippfehler, ganz daneben"],
-["Wie schnell etwas sitzt","Mittlere Zahl der Abfragen bis zur Stufe „sitzt“, in Klassen"],
-["Haltedauer","Verteilung der Wörter nach erreichter Haltedauer"],
-["Wie lange geübt wird","Mittlere Dauer einer Sitzung. Als Sitzung gilt eine Folge von Antworten mit weniger als zehn Minuten Abstand."],
-["Beste Lernzeit","Trefferquote nach Tageszeit, in sechs Blöcken zu je drei Stunden"],
-["Hartnäckig","Wörter, die oft geübt und immer wieder vergessen wurden"]]}},
-{"p":"Auswertungen, die auf zu wenigen Daten beruhen, werden nicht angezeigt. Der gespeicherte Verlauf je Wort ist begrenzt; wo er für den gewählten Zeitraum nicht ausreicht, wird darauf hingewiesen."},
-{"h2":"13.4  Tabelle aller Wörter"},
-{"p":"Eine sortierbare Aufstellung mit Wort, Stufe, Zahl der Abfragen und Trefferquote. Als Treffer zählt jede Antwort, die nicht ganz daneben lag."}]},
-
-{"h1":"14  Einstellungen","teile":[
-{"h2":"14.1  Üben"},
-{"tab":{"kopf":["Einstellung","Werte","Voreinstellung"],"zeilen":[
-["Wortliste beim Öffnen","Tagesauswahl, zuletzt geübt, offene Wörter, nichts","Tagesauswahl"],
-["Antwortart","Eintippen, Multiple-Choice, Selbstkontrolle, Durchblättern","Eintippen"],
-["Höchstens pro Tag","10 bis 80 Karten","30"],
-["Neue Wörter pro Tag","drei Stufen","10"],
-["Vorschläge bei Multiple-Choice","2 bis 6","4"],
-["Lernintensität","locker, normal, intensiv","normal"],
-["Beispielsätze","immer, wählbar, nie","wählbar"],
-["Lautschrift","immer, wählbar, nie","wählbar"],
-["Formen","immer, wählbar, nie","wählbar"],
-["Lerntipp-Einblendungen","aus, gelegentlich, häufig","gelegentlich"],
-["Latein: Abfrageform","L2, L3","L2"]]}},
-{"h2":"14.2  Bewertung"},
-{"tab":{"kopf":["Einstellung","Werte","Voreinstellung"],"zeilen":[
-["Gross- und Kleinschreibung zählt","ja, nein","ja"],
-["Umlaute und Akzente streng","ja, nein","nein"],
-["Artikel","freiwillig, teilweise, voll","teilweise"],
-["Fast richtig zulassen","ja, nein","ja"],
-["Latein: Längenstriche nicht nötig","ja, nein","nein"]]}},
-{"h2":"14.3  Darstellung und Sprache"},
-{"p":"Sprachen ein- und ausschalten, Sprache der Oberfläche (Deutsch, Englisch oder der Geräteeinstellung folgend), Farbschema, hell oder dunkel, Kartenpapier und Kartenschrift, Schwellen der dreistufigen Einordnung."},
-{"h2":"14.4  Konto und Daten"},
-{"p":"Anmelden und abmelden, Anzeigename setzen, Passwort ändern, Einstellungen zurücksetzen, Fortschritt zurücksetzen (Punkte, Verlauf und Tagesserie, in allen Sprachen, ohne die Wörter zu löschen), Konto samt allen Daten auf dem Server löschen."},
-{"h2":"14.5  Erweitert"},
-{"p":"Die Modellparameter aus 9 lassen sich einsehen. Fünf davon sind veränderbar; die übrigen dienen der Nachvollziehbarkeit."}]},
-
-{"h1":"15  Konto und Abgleich","teile":[
-{"p":"Die Anwendung ist ohne Konto vollständig benutzbar. Alle Daten liegen dann nur auf dem Gerät."},
-{"h2":"15.1  Anmeldung"},
-{"p":"Anmeldung mit E-Mail-Adresse und Passwort, mit Bestätigung der Adresse. Ein Anzeigename kann gesetzt werden und erscheint als Herkunftsangabe an geteilten Listen."},
-{"h2":"15.2  Abgleich"},
-{"p":"Fünf Dokumente werden abgeglichen: Wörter, Listen, Lernstände, Tageszähler und Einstellungen."},
-{"tab":{"kopf":["Gruppe","Dokumente","Verzögerung"],"zeilen":[
-["Sofort","Wörter, Listen, Einstellungen","1,5 Sekunden nach der letzten Änderung"],
-["Nachgelagert","Lernstände, Tageszähler","20 Sekunden Ruhe, ausserdem beim Verlassen"]]}},
-{"p":"Massgeblich ist ausschliesslich der Zeitstempel des Servers; die Uhr des Geräts wird nicht verwendet. Je Dokument gilt: die jüngere Fassung gewinnt. Änderungen ohne Verbindung bleiben als offen vermerkt und werden bei der nächsten Gelegenheit nachgeholt."},
-{"h2":"15.3  Erste Anmeldung"},
-{"p":"Liegen beim ersten Anmelden bereits eigene Daten auf dem Gerät, wird gefragt, ob sie in das Konto übernommen werden sollen. Vor einer überschreibenden Zusammenführung wird eine lokale Sicherung angelegt."},
-{"h2":"15.4  Konto löschen"},
-{"p":"Das Konto lässt sich in der Anwendung löschen. Dabei werden die Daten auf dem Server und das Konto selbst entfernt. Der Vorgang ist nicht umkehrbar."}]},
-
-{"h1":"16  Teilen","teile":[
-{"p":"Eine Liste lässt sich als Momentaufnahme veröffentlichen. Dabei entsteht eine nicht erratbare Kennung, aus der ein Code und ein Verweis gebildet werden."},
-{"p":"Wer den Code oder Verweis öffnet, erhält eine eigene Kopie der Wörter samt Beispielsätzen, Formen, Geschlecht und Lautschrift. Lernstände werden nicht übertragen und bleiben getrennt. Spätere Änderungen an der ursprünglichen Liste wirken sich auf die Kopie nicht aus."},
-{"p":"Zum Veröffentlichen ist ein Konto nötig, zum Übernehmen nicht."}]},
-
-{"h1":"17  Ausgabe","teile":[
-{"p":"Jede Liste sowie die Gesamtheit aller Wörter lassen sich ausgeben, ohne Konto."},
-{"ul":["Als Text, in denselben zehn Spalten, die die Anwendung auch einliest. Auf dem Telefon über das Systemblatt, im Browser über die Zwischenablage.",
-"Als Tabelle im Excel-Format, nur in der Webfassung."]},
-{"p":"Was ausgegeben wird, lässt sich unverändert wieder einlesen."}]},
-
-{"h1":"18  Tarife","teile":[
-{"p":"Das Berechtigungsmodell ist vorbereitet, aber nicht in Kraft: in der ersten Fassung stehen allen Benutzern alle Funktionen offen."},
-{"tab":{"kopf":["Grenze","Gratis","Pro"],"zeilen":[
-["Eigene Listen je Sprache","1","unbegrenzt"],
-["Wörter je Liste","40","unbegrenzt"],
-["Listen teilen","nein","ja"]]}},
-{"p":"Der mitgelieferte Grundwortschatz zählt nicht gegen diese Grenzen."},
-{"p":"Der Anspruch wird beim ersten Start festgeschrieben und danach nicht von selbst geändert. Eine spätere Fassung kann die Voreinstellung für neue Installationen ändern, ohne bestehende Benutzer zu betreffen."}]},
-
-{"h1":"19  Daten und Datenschutz","teile":[
-{"p":"Gespeichert werden ausschliesslich die Wörter, Listen, Lernstände und Einstellungen, die der Benutzer selbst anlegt, sowie bei angemeldeten Benutzern die E-Mail-Adresse und ein selbst gewählter Anzeigename."},
-{"ul":["Keine Werbung, keine Weitergabe an Dritte, keine Auswertung des Nutzungsverhaltens zu anderen Zwecken.",
-"Das Lernmodell wird nicht an die einzelne Person angepasst; es werden dafür keine Daten ausgewertet.",
-"Ohne Anmeldung verlassen keine Daten das Gerät.",
-"Konto und Daten lassen sich in der Anwendung selbst vollständig löschen."]},
-{"p":"Datenschutzerklärung und Impressum sind in der Anwendung enthalten und zusätzlich als öffentliche Seite verfügbar. Beide stammen aus derselben Quelle."}]},
-
-{"h1":"20  Oberflächensprache","teile":[
-{"p":"Die Oberfläche liegt auf Deutsch und Englisch vor und folgt wahlweise der Geräteeinstellung. Die Umschaltung betrifft nur die Beschriftungen und die Hilfetexte, nicht den Wortschatz des Benutzers."},
-{"p":"Die längeren Hilfetexte bestehen aus zwei vollständigen Fassungen und nicht aus satzweisen Übersetzungen."}]},
-
-{"h1":"21  Hilfe in der Anwendung","teile":[
-{"p":"Drei Teile: eine Anleitung entlang der vier Bereiche, eine Sammlung von Lerntipps, und eine Darstellung der Grundlagen, auf denen die Wiederholungsplanung beruht."},
-{"p":"Ausserdem werden während des Übens gelegentlich kurze Lerntipps eingeblendet; die Häufigkeit ist einstellbar oder abschaltbar."}]}
-
-]}
+{
+ "titel": "SmartVoc",
+ "untertitel": "Funktionsspezifikation",
+ "stand": "Stand 7. September 2026",
+ "abschnitte": [
+  {
+   "h1": "1  Zweck, Nutzen und Abgrenzung",
+   "teile": [
+    {
+     "p": "SmartVoc ist ein Vokabeltrainer, der die Wiederholung jedes einzelnen Wortes berechnet, statt sie einem festen Rhythmus oder dem Zufall zu überlassen. Er verfolgt ein klares Verhältnis: möglichst viele Wörter möglichst lange sicher können, bei möglichst geringem Zeitaufwand."
+    },
+    {
+     "p": "Die Planung folgt dem aktuellen Stand der Lern- und Gedächtnisforschung. Für jedes Wort wird geschätzt, wann es zu entgleiten beginnt, und die Wiederholung genau dorthin gelegt. Wörter, die sitzen, verschwinden dadurch für Wochen aus der Abfrage; Wörter, die wackeln, kommen zurück, bevor sie verloren gehen. Damit entfällt der grösste Teil des üblichen Aufwands, nämlich das wiederholte Abfragen von Wortschatz, der ohnehin schon sicher ist."
+    },
+    {
+     "h2": "1.1  Was die Anwendung auszeichnet"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Merkmal",
+       "Nutzen"
+      ],
+      "zeilen": [
+       [
+        "Berechnete statt getaktete Wiederholung",
+        "Jedes Wort hat seinen eigenen Rhythmus, abgeleitet aus einem etablierten Modell des Vergessens. Kein starrer Karteikasten, keine Wiederholung nach Gefühl."
+       ],
+       [
+        "Zeit geht dorthin, wo sie wirkt",
+        "Sicher sitzender Wortschatz wird nicht abgefragt, solange er hält. Der Aufwand konzentriert sich auf das, was tatsächlich noch wackelt."
+       ],
+       [
+        "Fordern ohne zu überfordern",
+        "Eine Grenze für Karten pro Tag und für neu begonnene Wörter verhindert Rückstau und Überlastung. Auch nach einer Pause kommt der Rückstand portioniert und nicht am Stück."
+       ],
+       [
+        "Prüfungstermine sind Teil der Planung",
+        "Eine Wortliste bekommt ein Zieldatum. Die Anwendung rechnet rückwärts, zieht die Wiederholungen zusammen und sagt vorher, wie der Stoff am Stichtag dastehen wird."
+       ],
+       [
+        "Mehrere Sprachen nebeneinander",
+        "Sechs Sprachpaare in einem Programm, mit gemeinsamem Terminkalender und gemeinsamer Auswertung. Wer parallel Englisch, Französisch und Latein lernt, behält den Überblick."
+       ],
+       [
+        "Auswertung bis auf das einzelne Wort",
+        "Für jede Liste und jedes Wort ist ablesbar, wie sicher es sitzt, wie oft es abgefragt wurde, wie viele Anläufe es gebraucht hat und woran es scheitert. Daraus wird sichtbar, wo sich Üben lohnt und ob es vorwärtsgeht."
+       ],
+       [
+        "Wortschatz in Sekunden erfassen",
+        "Eine abfotografierte Buchseite lässt sich über ein Sprachmodell in eine vollständige Wortliste überführen, samt Beispielsätzen, Lautschrift und Grammatikangaben. Abtippen entfällt."
+       ],
+       [
+        "Ohne Konto vollständig nutzbar",
+        "Die Anwendung läuft offline und ohne Anmeldung. Ein Konto bringt Abgleich über mehrere Geräte und das Teilen von Listen, ist aber keine Voraussetzung."
+       ],
+       [
+        "Die Daten bleiben beim Benutzer",
+        "Jede Liste lässt sich jederzeit als Text oder Tabelle ausgeben, ohne Konto und ohne Umweg. Es gibt keine Werbung und keine Auswertung des Nutzungsverhaltens zu fremden Zwecken."
+       ]
+      ]
+     }
+    },
+    {
+     "h2": "1.2  Für wen"
+    },
+    {
+     "p": "Für Schülerinnen und Schüler, für Studierende und für alle, die Vokabeln systematisch lernen wollen: für eine Prüfung, für ein Studium, für eine Reise oder aus eigenem Antrieb. Vorausgesetzt wird nichts ausser der Bereitschaft, regelmässig kurze Einheiten zu üben."
+    },
+    {
+     "p": "Der mitgelieferte Wortschatz ist auf Anfänger ausgelegt. Eigener Wortschatz lässt sich in beliebigem Umfang und beliebigem Niveau hinzufügen; die Planung arbeitet unabhängig davon, woher die Wörter stammen."
+    },
+    {
+     "h2": "1.3  Gegenstand dieses Dokuments"
+    },
+    {
+     "p": "Beschrieben werden Datenmodell, Regeln, Rechenwege und Verhalten. Nicht beschrieben werden Gestaltung, Anordnung, Farben, Schriften und Bedienelemente."
+    },
+    {
+     "h2": "1.4  Nicht-Ziele"
+    },
+    {
+     "ul": [
+      "Kein Übersetzer und kein Wörterbuch. Die Anwendung schlägt keine Bedeutungen nach.",
+      "Keine Anpassung des Lernmodells an die einzelne Person. Die Modellparameter sind für alle gleich und werden nicht aus dem Verhalten gelernt.",
+      "Keine soziale Ebene: keine Profile, keine Ranglisten, keine Freundeslisten.",
+      "Keine Werbung, keine Verfolgung des Nutzungsverhaltens über die Anwendung hinaus."
+     ]
+    }
+   ]
+  },
+  {
+   "h1": "2  Plattformen und Auslieferung",
+   "teile": [
+    {
+     "p": "Eine Quelltextbasis erzeugt zwei Auslieferungen."
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Fassung",
+       "Technik",
+       "Besonderheit"
+      ],
+      "zeilen": [
+       [
+        "Web",
+        "Statische Seite mit Service Worker (installierbar als PWA)",
+        "Tabellen-Import und -Export verfügbar"
+       ],
+       [
+        "iOS",
+        "Dieselbe Weboberfläche in einem nativen Rahmen (Capacitor)",
+        "Systemweites Teilen und Rückmeldung über Vibration; kein Tabellen-Import"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Beide Fassungen sprechen mit demselben Server, sodass ein Konto auf Telefon und im Browser denselben Stand zeigt. Die Anwendung ist ohne Netzverbindung vollständig benutzbar; die Verbindung wird nur für Konto, Abgleich und Teilen gebraucht."
+    }
+   ]
+  },
+  {
+   "h1": "3  Sprachen",
+   "teile": [
+    {
+     "p": "Ein Sprachpaar besteht aus einer Fremdsprache und der Muttersprache und trägt die Kennung „<fremd>-<mutter>“, zum Beispiel „en-de“. Diese Kennung steht an jedem Wort und an jeder Liste."
+    },
+    {
+     "p": "Ausgeliefert werden sechs Paare mit Deutsch als Muttersprache: Englisch, Französisch, Spanisch, Italienisch, Portugiesisch und Latein. Die Muttersprache ist als eigene Angabe gespeichert; das Datenmodell lässt weitere Muttersprachen zu, ohne bestehende Daten zu entwerten."
+    },
+    {
+     "p": "Welche Paare sichtbar sind, ist eine reine Anzeigeeinstellung. Wörter eines ausgeblendeten Paares bleiben erhalten."
+    },
+    {
+     "h2": "3.1  Sonderfall Latein"
+    },
+    {
+     "p": "Latein wird nicht über ein einzelnes Fremdwort gelernt, sondern über Stammformen. Ein lateinisches Wort trägt deshalb zwei Felder: die Grundform als Stichwort und die vollständige Lernform. Zwei Abfragearten sind einstellbar:"
+    },
+    {
+     "ul": [
+      "L2: Die Karte zeigt die vollständige Lernform, abgefragt wird nur die Grundform.",
+      "L3: Abgefragt werden die vollständigen Stammformen. Die Bewertung ist unempfindlich gegenüber Reihenfolge und Abständen der Formen."
+     ]
+    }
+   ]
+  },
+  {
+   "h1": "4  Datenmodell",
+   "teile": [
+    {
+     "h2": "4.1  Wort"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Feld",
+       "Inhalt"
+      ],
+      "zeilen": [
+       [
+        "id",
+        "Eindeutige Kennung"
+       ],
+       [
+        "pair",
+        "Sprachpaar"
+       ],
+       [
+        "de",
+        "Die Seite in der Muttersprache. Der Feldname ist historisch und bedeutet nicht „Deutsch“."
+       ],
+       [
+        "en / fr / es / it / pt",
+        "Die Fremdseite, unter dem Kürzel der jeweiligen Sprache"
+       ],
+       [
+        "grundform",
+        "Nur Latein: das Stichwort"
+       ],
+       [
+        "lernform",
+        "Formen, die zum Wort mitgelernt werden. Latein: die Stammformen. Sonst Plural oder unregelmässige Formen."
+       ],
+       [
+        "wortart",
+        "Eine von neun Klassen (siehe 4.2)"
+       ],
+       [
+        "genus",
+        "Geschlecht des Fremdworts (siehe 4.3)"
+       ],
+       [
+        "examples",
+        "Bis zu zwei Beispielsätze in der Fremdsprache"
+       ],
+       [
+        "examplesDe",
+        "Deren Übersetzungen, über den Index zugeordnet"
+       ],
+       [
+        "phonetic",
+        "Lautschrift des Fremdworts. Bei Latein stattdessen das Stichwort mit Längenzeichen."
+       ],
+       [
+        "lists",
+        "Zugehörigkeit. Ein Wort gehört zu genau einer Liste."
+       ],
+       [
+        "review",
+        "Kennzeichen, dass eine Angabe automatisch ergänzt wurde und geprüft werden sollte"
+       ],
+       [
+        "source",
+        "Herkunft: mitgeliefert, von Hand, eingelesen"
+       ],
+       [
+        "createdAt",
+        "Zeitpunkt der Anlage"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Der Artikel eines Nomens steht im Wortfeld selbst („la maison“, „der Stuhl“) und nicht in einem eigenen Feld. Er liesse sich aus dem Geschlecht nicht zurückbilden: im Französischen und Italienischen richtet er sich nach dem Anlaut, im Spanischen wird er teilweise verschliffen."
+    },
+    {
+     "h2": "4.2  Wortarten"
+    },
+    {
+     "p": "Nomen, Verb, Adjektiv, Adverb, Pronomen, Zahlwort, Präposition, Konjunktion, Wendung. Die Angabe ist freiwillig."
+    },
+    {
+     "h2": "4.3  Geschlecht"
+    },
+    {
+     "p": "Zulässig sind: m, f, n, m pl, f pl, n pl, pl. Die Plural-Werte gelten für Wörter ohne Singular. Bei allem, was kein Nomen ist, bleibt das Feld leer. Ein eigenes Feld für den Numerus gibt es nicht, weil der Singular der Regelfall ist und nur die Abweichung eine Auskunft trägt."
+    },
+    {
+     "h2": "4.4  Wortliste"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Feld",
+       "Inhalt"
+      ],
+      "zeilen": [
+       [
+        "id, name, pair",
+        "Kennung, Bezeichnung, Sprachpaar"
+       ],
+       [
+        "createdAt, updatedAt",
+        "Anlage und letzte Änderung"
+       ],
+       [
+        "autor",
+        "Anzeigename zum Zeitpunkt der Anlage, als Text gespeichert"
+       ],
+       [
+        "herkunft",
+        "selbst angelegt, übernommen, oder mitgeliefert"
+       ],
+       [
+        "dueDate",
+        "Zieldatum, freiwillig"
+       ],
+       [
+        "system",
+        "Kennzeichen für von der Anwendung verwaltete Listen"
+       ]
+      ]
+     }
+    },
+    {
+     "h2": "4.5  Lernstand je Wort"
+    },
+    {
+     "p": "Zu jedem Wort wird gezählt: Zahl der Abfragen, Summe der Punkte, Zahl der richtigen, fast richtigen und falschen Antworten, gleitender Durchschnitt, laufende Serie, Zeitpunkt der letzten Abfrage sowie ein Verlauf der einzelnen Antworten mit Punktzahl, Urteil, Zeitstempel und Fehlerart. Dazu kommt der Zustand des Lernmodells (siehe 9)."
+    },
+    {
+     "h2": "4.6  Tageszähler"
+    },
+    {
+     "p": "Datum des letzten Übens, laufende Tagesserie, Zahl der heute gezeigten Karten, Zahl der heute neu begonnenen Wörter, Gesamtzahl aller Abfragen sowie eine Zeitreihe der Stufenverteilung je Sprachpaar und Tag, begrenzt auf 180 Tage."
+    }
+   ]
+  },
+  {
+   "h1": "5  Wörter erfassen",
+   "teile": [
+    {
+     "h2": "5.1  Spaltenformat"
+    },
+    {
+     "p": "Alle Wege in die Anwendung und alle Wege heraus verwenden denselben Spaltensatz, in dieser Reihenfolge:"
+    },
+    {
+     "ol": [
+      "Fremdsprache",
+      "Formen",
+      "Genus",
+      "Wortart",
+      "Muttersprache",
+      "Beispielsatz 1",
+      "Beispielsatz 1 übersetzt",
+      "Beispielsatz 2",
+      "Beispielsatz 2 übersetzt",
+      "Aussprache"
+     ]
+    },
+    {
+     "p": "In der Textform trennt „ | “ die Spalten, eine Zeile je Wort, ohne Kopfzeile. In der Tabellenform tragen die Spalten Überschriften; die Reihenfolge ist dann unerheblich, weil die Zuordnung über die Überschrift erfolgt. Leere Felder sind zulässig und behalten ihr Trennzeichen."
+    },
+    {
+     "p": "Von Hand getippte Zeilen dürfen kürzer sein. Die Zahl der Spalten entscheidet über die Deutung; zwei Spalten bedeuten Wort und Übersetzung."
+    },
+    {
+     "h2": "5.2  Wege in die Anwendung"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Weg",
+       "Beschreibung",
+       "Verfügbar"
+      ],
+      "zeilen": [
+       [
+        "Liste einfügen",
+        "Text wird in ein Feld eingefügt und zerlegt. Enthält einen vorformulierten Auftrag für ein Sprachmodell, mit dem sich eine abfotografierte Buchseite in das Spaltenformat überführen lässt.",
+        "Überall"
+       ],
+       [
+        "Einzelnes Wort",
+        "Eingabemaske mit allen Feldern",
+        "Überall"
+       ],
+       [
+        "Geteilte Liste übernehmen",
+        "Über Code oder Verweis, erzeugt eine eigene Kopie",
+        "Überall, Konto nötig"
+       ],
+       [
+        "Tabelle einlesen",
+        "Excel oder CSV",
+        "Nur Web"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Zum Tabellenweg gehört eine leere Vorlage zum Herunterladen. Sie trägt dieselben Spalten und einige Beispielzeilen und ist nach der Sprache benannt."
+    },
+    {
+     "h2": "5.3  Auftrag an ein Sprachmodell"
+    },
+    {
+     "p": "Der mitgelieferte Auftrag verlangt drei Dinge: die Wörter und Übersetzungen der Vorlage unverändert zu übernehmen, bereits vorhandene Angaben wie Beispielsätze oder Lautschrift ebenfalls zu übernehmen, und alle übrigen Felder zu ergänzen. Er nennt die Spaltenzahl, die zulässigen Wortarten und Geschlechter."
+    },
+    {
+     "h2": "5.4  Prüfschritt"
+    },
+    {
+     "p": "Alle Wege ausser der Einzeleingabe münden in eine Prüfmaske. Dort steht jedes erkannte Wort in einer eigenen Zeile mit allen Feldern und lässt sich vor der Übernahme ändern oder streichen. Erst danach wird die Zielliste gewählt."
+    },
+    {
+     "h2": "5.5  Dubletten"
+    },
+    {
+     "p": "Beim Übernehmen wird auf bereits vorhandene Wörter desselben Sprachpaares geprüft. Der Vergleich läuft über Fremdwort und Übersetzung, bei Latein über Grundform und Übersetzung, ohne Rücksicht auf Gross- und Kleinschreibung. Bereits vorhandene Wörter werden übersprungen."
+    },
+    {
+     "h2": "5.6  Automatische Ergänzung"
+    },
+    {
+     "p": "Fehlt bei einem eingelesenen Wort eine der beiden Seiten, versucht die Anwendung sie aus einem mitgelieferten Wörterbuch zu ergänzen. Gelingt das, wird das Wort als zu prüfen gekennzeichnet."
+    }
+   ]
+  },
+  {
+   "h1": "6  Wortlisten",
+   "teile": [
+    {
+     "p": "Eine Liste fasst zusammen, was gemeinsam geübt wird. Jedes Wort gehört zu genau einer Liste."
+    },
+    {
+     "h2": "6.1  Handgriffe"
+    },
+    {
+     "ul": [
+      "Anlegen, umbenennen, löschen. Beim Löschen einer Liste verlassen die Wörter diese Liste; sie werden nicht mit gelöscht.",
+      "Zieldatum setzen und entfernen.",
+      "Wörter ansehen, suchen, einzeln oder mehrfach auswählen, ändern, löschen.",
+      "Zwei Listen zusammenführen. Die Wörter wandern in die Zielliste, Dubletten werden dabei verworfen, die geleerte Liste verschwindet.",
+      "Exportieren als Text oder als Tabelle.",
+      "Teilen (Konto nötig)."
+     ]
+    },
+    {
+     "p": "Jede Löschung von Listen oder Wörtern verlangt eine Bestätigung und meldet danach, was geschehen ist."
+    },
+    {
+     "h2": "6.2  Suche"
+    },
+    {
+     "p": "Die Suche in der Übersicht läuft über alle eingeschalteten Sprachen und durchsucht Fremdwort, Lernform und Übersetzung. Ein Treffer nennt Liste und Sprachpaar."
+    },
+    {
+     "h2": "6.3  Mitgelieferter Grundwortschatz"
+    },
+    {
+     "p": "Zu jedem Sprachpaar gehört eine Liste von hundert Wörtern mit Beispielsätzen, Übersetzungen der Beispielsätze und Lautschrift. Sie wird beim Einschalten einer Sprache automatisch als gewöhnliche Wortliste angelegt und lässt sich wie jede andere bearbeiten oder löschen. Die Aktivierung ist wiederholungssicher: sie legt dieselbe Liste nicht zweimal an."
+    },
+    {
+     "p": "Die fünf neueren Sprachen tragen dieselben hundert Begriffe, sodass die Seite in der Muttersprache in allen fünf Listen übereinstimmt. Latein hat einen eigenen Wortschatz."
+    }
+   ]
+  },
+  {
+   "h1": "7  Üben",
+   "teile": [
+    {
+     "h2": "7.1  Umfang"
+    },
+    {
+     "p": "Vor einer Übung wird gewählt, worüber abgefragt wird: eine oder mehrere eigene Wortlisten, oder eine der vorgerechneten Auswahlen (siehe 10). Die Auswahl darf Sprachen mischen; jede Karte trägt ihr eigenes Sprachpaar."
+    },
+    {
+     "p": "Womit die Anwendung beim Öffnen aufmacht, ist einstellbar: mit der Tagesauswahl, mit der zuletzt geübten Auswahl, mit deren offenen Wörtern, oder mit nichts."
+    },
+    {
+     "h2": "7.2  Richtung"
+    },
+    {
+     "p": "Fremdsprache zur Muttersprache, umgekehrt, oder gemischt. Bei gemischt wird die Richtung je Karte bestimmt, aber innerhalb einer Runde für dasselbe Wort stabil gehalten."
+    },
+    {
+     "h2": "7.3  Antwortarten"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Art",
+       "Ablauf",
+       "Zählt"
+      ],
+      "zeilen": [
+       [
+        "Eintippen",
+        "Die Antwort wird geschrieben und maschinell bewertet",
+        "ja"
+       ],
+       [
+        "Multiple-Choice",
+        "Auswahl aus zwei bis sechs Möglichkeiten, Zahl einstellbar",
+        "ja"
+       ],
+       [
+        "Selbstkontrolle",
+        "Die Karte wird umgedreht und selbst beurteilt",
+        "ja"
+       ],
+       [
+        "Nur durchblättern",
+        "Die Karte wird angesehen",
+        "nein"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Die Ablenker beim Multiple-Choice stammen aus dem gesamten Wortschatz desselben Sprachpaares, nicht nur aus dem Umfang der Runde."
+    },
+    {
+     "h2": "7.4  Angaben auf der Karte"
+    },
+    {
+     "p": "Die Frageseite zeigt das abgefragte Wort, die Lösungsseite die Antwort. Beispielsätze erscheinen nur auf der Lösungsseite und jeweils in der Sprache der Seite, auf der sie stehen."
+    },
+    {
+     "p": "Lautschrift, Formen und Geschlecht gehören zum Fremdwort und erscheinen nur dort, wo dieses Wort steht. Für Beispielsätze, Lautschrift und Formen gilt je eine Einstellung mit drei Möglichkeiten: immer anzeigen, nie anzeigen, oder während des Übens umschaltbar."
+    },
+    {
+     "p": "Zählt der Artikel nicht zur Antwort (siehe 8.2), wird er auf der Karte weggelassen und stattdessen das Geschlecht angegeben."
+    },
+    {
+     "h2": "7.5  Hilfe während der Abfrage"
+    },
+    {
+     "p": "Je Karte lässt sich einmal ein Hinweis abrufen. Er wird im Lernstand vermerkt."
+    },
+    {
+     "h2": "7.6  Abbruch"
+    },
+    {
+     "p": "Eine Runde lässt sich abbrechen. Die noch offenen Wörter werden gemerkt, sodass die nächste Sitzung sie wieder aufnehmen kann; der Zustand des Lernmodells wird dabei nicht eingefroren, sondern beim Neustart frisch aus dem Lernstand gelesen."
+    }
+   ]
+  },
+  {
+   "h1": "8  Bewertung einer Antwort",
+   "teile": [
+    {
+     "p": "Eine eingetippte Antwort wird gegen die Lösung verglichen und ergibt eine Punktzahl zwischen 0 und 1 sowie ein Urteil: richtig, fast richtig oder falsch. Zusätzlich wird die Fehlerart festgehalten: Artikel, Akzent, Tippfehler oder falsch."
+    },
+    {
+     "h2": "8.1  Reihenfolge der Prüfungen"
+    },
+    {
+     "ol": [
+      "Genaue Übereinstimmung, wahlweise ohne Rücksicht auf Gross- und Kleinschreibung. Ergibt volle Punktzahl.",
+      "Artikelprüfung (siehe 8.2).",
+      "Längenzeichen: Sind sie als nicht nötig eingestellt und liegt nur darin der Unterschied, gilt die Antwort als richtig.",
+      "Umlaute und Akzente: Sind sie nicht als streng eingestellt und liegt nur darin der Unterschied, ergibt das 0,8 Punkte und das Urteil fast richtig.",
+      "Tippfehler: Der Abstand zur Lösung wird gemessen. Liegt er innerhalb eines Drittels der Länge und beträgt die Ähnlichkeit mindestens die Hälfte, ergibt das zwischen 0,35 und 0,8 Punkte, abhängig von der Ähnlichkeit.",
+      "Sonst: null Punkte."
+     ]
+    },
+    {
+     "h2": "8.2  Artikel"
+    },
+    {
+     "p": "Trägt die Lösung einen Artikel und stimmt der Rest, entscheidet eine Einstellung mit drei Stufen: der Artikel ist freiwillig (volle Punktzahl), er zählt teilweise (0,8 Punkte, Urteil fast richtig), oder er zählt voll (null Punkte)."
+    },
+    {
+     "p": "Trägt die Lösung keinen Artikel, die Antwort aber schon, und stimmt der Rest, gilt die Antwort als richtig. Dieser Fall betrifft vor allem das Englische, wo der Artikel keine zu lernende Auskunft trägt."
+    },
+    {
+     "p": "Erkannt werden die bestimmten und unbestimmten Artikel aller unterstützten Sprachen."
+    },
+    {
+     "h2": "8.3  Latein"
+    },
+    {
+     "p": "In der Abfrageart L3 werden die eingegebenen Stammformen einzeln gegen die Lernform verglichen. Reihenfolge und Abstände sind unerheblich; für jede Form gelten dieselben Regeln zu Tippfehlern und Akzenten."
+    },
+    {
+     "h2": "8.4  Rückmeldung"
+    },
+    {
+     "p": "Nach jeder Antwort wird angezeigt, welche Zeichen fehlten, überflüssig waren oder abwichen, und ein kurzer Hinweis auf die Art des Fehlers. Auf dem Telefon kommt eine Rückmeldung über Vibration dazu."
+    }
+   ]
+  },
+  {
+   "h1": "9  Lernmodell",
+   "teile": [
+    {
+     "p": "Die Planung der Wiederholungen folgt einem etablierten Modell des Vergessens (FSRS). Zu jedem Wort werden drei Grössen geführt: die Haltedauer (wie lange das Wort hält), die Schwierigkeit, und der Zeitpunkt der letzten Abfrage."
+    },
+    {
+     "h2": "9.1  Rechenregeln"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Grösse",
+       "Formel"
+      ],
+      "zeilen": [
+       [
+        "Abstand bis zur nächsten Abfrage",
+        "9 · Haltedauer · (1 / Behaltensziel − 1), in Tagen"
+       ],
+       [
+        "Erinnerungswahrscheinlichkeit jetzt",
+        "(1 + verstrichene Tage / (9 · Haltedauer)) hoch −0,5"
+       ],
+       [
+        "Fällig",
+        "wenn der Zeitpunkt der letzten Abfrage plus Abstand erreicht ist"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Die Modellparameter sind fest und für alle Benutzer gleich. Sie werden nicht aus dem Verhalten einzelner Personen gelernt, und es werden dafür auch keine Daten ausgewertet."
+    },
+    {
+     "h2": "9.2  Die fünf Stufen"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Stufe",
+       "Bedingung"
+      ],
+      "zeilen": [
+       [
+        "ungeübt",
+        "noch nie abgefragt"
+       ],
+       [
+        "neu",
+        "weniger als 2 Abfragen und noch kein Rückfall"
+       ],
+       [
+        "wackelt noch",
+        "Haltedauer unter 3 Tagen"
+       ],
+       [
+        "sitzt fast",
+        "Haltedauer zwischen 3 und 14 Tagen"
+       ],
+       [
+        "sitzt",
+        "Haltedauer ab 14 Tagen"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Dieselbe Ableitung wird überall verwendet: auf der Karte, an der Liste, im Plan und in der Statistik."
+    },
+    {
+     "p": "Ein Wort gilt als hartnäckig, wenn die Schwierigkeit mindestens 7 beträgt und es mindestens dreimal zurückgefallen ist."
+    },
+    {
+     "h2": "9.3  Behaltensziel"
+    },
+    {
+     "p": "Das Behaltensziel gibt an, mit welcher Wahrscheinlichkeit ein Wort zum Zeitpunkt der Wiederholung noch gewusst werden soll. Es ist über drei Stufen einstellbar:"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Einstellung",
+       "Ziel",
+       "Wirkung"
+      ],
+      "zeilen": [
+       [
+        "Locker",
+        "0,85",
+        "längere Abstände, weniger Wiederholungen"
+       ],
+       [
+        "Normal",
+        "0,90",
+        "Voreinstellung"
+       ],
+       [
+        "Intensiv",
+        "0,95",
+        "kürzere Abstände, mehr Wiederholungen"
+       ]
+      ]
+     }
+    },
+    {
+     "h2": "9.4  Zieldatum"
+    },
+    {
+     "p": "Hat eine Liste ein Zieldatum, wird das Behaltensziel für ihre Wörter angehoben, je näher der Termin rückt. Ab 21 Tagen vor dem Termin steigt es gleichmässig an; in den letzten drei Tagen gilt der Höchstwert von 0,95. Nach dem Termin fällt alles auf den Normalwert zurück."
+    },
+    {
+     "p": "Ein höheres Behaltensziel verkürzt den Abstand und macht damit mehr Wörter fällig. Es braucht deshalb keine gesonderte Prüfungslogik: Werden mehrere Listen zusammen geübt, kommen die Wörter der Liste mit dem näheren Termin von selbst häufiger."
+    }
+   ]
+  },
+  {
+   "h1": "10  Aufbau einer Übungsrunde",
+   "teile": [
+    {
+     "p": "Aus dem gewählten Umfang wird eine Runde gebildet. Jedes Wort erhält dabei ein Ziel: wie oft es in dieser Runde richtig beantwortet werden soll."
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Ausgangslage",
+       "Ziel",
+       "Gewicht"
+      ],
+      "zeilen": [
+       [
+        "wackelt noch",
+        "3",
+        "5"
+       ],
+       [
+        "fällig und sitzt",
+        "1",
+        "5"
+       ],
+       [
+        "ungeübt",
+        "2",
+        "3"
+       ],
+       [
+        "neu",
+        "2",
+        "3"
+       ],
+       [
+        "sitzt fast",
+        "1",
+        "2"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Wörter der Stufe „sitzt“, die nicht fällig sind, bleiben aussen vor; das Modell plant sie ohnehin."
+    },
+    {
+     "p": "Die nächste Karte wird bestimmt, indem zuerst gewichtet eine Gruppe gezogen und daraus das dringendste noch offene Wort gewählt wird. Wörter, die länger nicht gezeigt wurden, bekommen einen Vorzug, damit keines liegen bleibt. Dasselbe Wort erscheint nie zweimal hintereinander; nach einem Fehler vergehen mindestens zwei andere Karten, bevor es wiederkommt. Sind nur noch wenige Wörter offen, wird die Gewichtung fallen gelassen und die offenen werden zyklisch wiederholt, damit die Runde endet."
+    },
+    {
+     "p": "Ziel und Nenner des Fortschritts werden beim Aufbau der Runde festgehalten und ändern sich während der Runde nicht. Ein Rückfall setzt den Zähler des betroffenen Wortes zurück, nicht den Nenner."
+    },
+    {
+     "p": "Das Lernmodell wird je Wort und Runde genau einmal fortgeschrieben, nicht bei jeder einzelnen Antwort."
+    },
+    {
+     "h2": "10.1  Tagesgrenzen"
+    },
+    {
+     "p": "Zwei Grenzen begrenzen den Umfang: die Zahl der Karten pro Tag (Voreinstellung 30) und die Zahl neu begonnener Wörter pro Tag (Voreinstellung 10). Nach 40 gezeigten Karten weist die Anwendung darauf hin, dass es für heute genug sein könnte."
+    },
+    {
+     "p": "Wörter aus einer Liste, deren Zieldatum in den nächsten drei Tagen liegt, zählen nicht gegen die Tagesgrenze."
+    }
+   ]
+  },
+  {
+   "h1": "11  Vorgerechnete Auswahlen",
+   "teile": [
+    {
+     "p": "Neben den eigenen Listen stehen vier Auswahlen zur Verfügung, die die Anwendung selbst zusammenstellt."
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Auswahl",
+       "Inhalt"
+      ],
+      "zeilen": [
+       [
+        "Heute dran",
+        "Fällige Wörter, dazu Wörter aus Listen mit Termin innerhalb einer Woche, die noch nicht sitzen, dazu neue Wörter bis zur Tagesgrenze. Sortiert nach Dringlichkeit."
+       ],
+       [
+        "Fällige Wörter",
+        "Alle Wörter, deren Abstand abgelaufen ist"
+       ],
+       [
+        "Wackeln noch",
+        "Alle Wörter der Stufe „wackelt noch“"
+       ],
+       [
+        "Bald fällig",
+        "Wörter, die innerhalb der nächsten zwei Tage fällig werden"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Für die Statistik stehen zusätzlich drei weitere Auswahlen bereit: hartnäckige Wörter, frisch gelernte mit geringer Haltedauer, und solche kurz vor der Stufe „sitzt“."
+    },
+    {
+     "p": "Diese Auswahlen sind Ansichten und keine Ablagen. Sie lassen sich nicht bearbeiten, und ein Wort daraus zu löschen ist nicht möglich."
+    }
+   ]
+  },
+  {
+   "h1": "12  Übungsplan",
+   "teile": [
+    {
+     "p": "Der Plan zeigt ausschliesslich Listen mit Zieldatum, wahlweise als Kalender oder als Liste, für eine oder alle Sprachen."
+    },
+    {
+     "h2": "12.1  Bewertung einer Liste"
+    },
+    {
+     "p": "Der Anteil der Wörter einer Liste, die auf der Stufe „sitzt“ stehen, ergibt eine Prozentzahl. Daraus folgt eine dreistufige Einordnung, deren Schwellen einstellbar sind:"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Einordnung",
+       "Voreinstellung"
+      ],
+      "zeilen": [
+       [
+        "bereit",
+        "ab 95 %"
+       ],
+       [
+        "auf Kurs",
+        "ab 70 %"
+       ],
+       [
+        "im Rückstand",
+        "darunter"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Liegen mehrere Listen auf demselben Tag, bestimmt die schwächste die Einordnung des Tages."
+    },
+    {
+     "h2": "12.2  Prognose"
+    },
+    {
+     "p": "Zu einer Liste mit Termin wird geschätzt, wie jedes Wort am Termin dastehen wird. Grundlage ist die Erinnerungswahrscheinlichkeit zum Zeitpunkt des Termins:"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Einordnung",
+       "Bedingung"
+      ],
+      "zeilen": [
+       [
+        "sicher",
+        "ab 0,9"
+       ],
+       [
+        "wackelig",
+        "ab 0,7"
+       ],
+       [
+        "vergessen",
+        "darunter oder nie geübt"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Daraus wird abgeleitet, wie viele Wörter noch zu festigen sind und wie viele davon pro verbleibendem Tag. Übersteigt der Bedarf das in der Zeit Erreichbare, wird das ausgewiesen."
+    },
+    {
+     "h2": "12.3  Ausblick"
+    },
+    {
+     "p": "Für die kommenden sieben Tage wird gezählt, wie viele Wörter je Tag fällig werden, und welche Termine anstehen."
+    }
+   ]
+  },
+  {
+   "h1": "13  Statistik",
+   "teile": [
+    {
+     "p": "Die Auswertung lässt sich auf alle Sprachen, eine Sprache oder einzelne Listen einschränken. Der Zeitraum ist 7, 30 oder 90 Tage."
+    },
+    {
+     "h2": "13.1  Bestand"
+    },
+    {
+     "p": "Verteilung aller Wörter auf die fünf Stufen, gesamt und je Sprache. Ein Eintrag der Legende öffnet die zugehörigen Wörter."
+    },
+    {
+     "h2": "13.2  Fortschritt im Zeitraum"
+    },
+    {
+     "ul": [
+      "Zahl der neu hinzugekommenen Wörter",
+      "Zahl der geübten Wörter und der gegebenen Antworten",
+      "Zahl der Tage, an denen geübt wurde",
+      "Zahl der Wörter, die im Zeitraum die Stufe „sitzt“ erreicht haben, im Vergleich zum Zeitraum davor"
+     ]
+    },
+    {
+     "h2": "13.3  Auswertungen"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Auswertung",
+       "Inhalt"
+      ],
+      "zeilen": [
+       [
+        "Wie Antworten ausgehen",
+        "Anteil richtiger, fast richtiger und falscher Antworten"
+       ],
+       [
+        "Stolpersteine",
+        "Häufigkeit der Fehlerarten: Artikel, Akzent, Tippfehler, ganz daneben"
+       ],
+       [
+        "Wie schnell etwas sitzt",
+        "Mittlere Zahl der Abfragen bis zur Stufe „sitzt“, in Klassen"
+       ],
+       [
+        "Haltedauer",
+        "Verteilung der Wörter nach erreichter Haltedauer"
+       ],
+       [
+        "Wie lange geübt wird",
+        "Mittlere Dauer einer Sitzung. Als Sitzung gilt eine Folge von Antworten mit weniger als zehn Minuten Abstand."
+       ],
+       [
+        "Beste Lernzeit",
+        "Trefferquote nach Tageszeit, in sechs Blöcken zu je drei Stunden"
+       ],
+       [
+        "Hartnäckig",
+        "Wörter, die oft geübt und immer wieder vergessen wurden"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Auswertungen, die auf zu wenigen Daten beruhen, werden nicht angezeigt. Der gespeicherte Verlauf je Wort ist begrenzt; wo er für den gewählten Zeitraum nicht ausreicht, wird darauf hingewiesen."
+    },
+    {
+     "h2": "13.4  Tabelle aller Wörter"
+    },
+    {
+     "p": "Eine sortierbare Aufstellung mit Wort, Stufe, Zahl der Abfragen und Trefferquote. Als Treffer zählt jede Antwort, die nicht ganz daneben lag."
+    }
+   ]
+  },
+  {
+   "h1": "14  Einstellungen",
+   "teile": [
+    {
+     "h2": "14.1  Üben"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Einstellung",
+       "Werte",
+       "Voreinstellung"
+      ],
+      "zeilen": [
+       [
+        "Wortliste beim Öffnen",
+        "Tagesauswahl, zuletzt geübt, offene Wörter, nichts",
+        "Tagesauswahl"
+       ],
+       [
+        "Antwortart",
+        "Eintippen, Multiple-Choice, Selbstkontrolle, Durchblättern",
+        "Eintippen"
+       ],
+       [
+        "Höchstens pro Tag",
+        "10 bis 80 Karten",
+        "30"
+       ],
+       [
+        "Neue Wörter pro Tag",
+        "drei Stufen",
+        "10"
+       ],
+       [
+        "Vorschläge bei Multiple-Choice",
+        "2 bis 6",
+        "4"
+       ],
+       [
+        "Lernintensität",
+        "locker, normal, intensiv",
+        "normal"
+       ],
+       [
+        "Beispielsätze",
+        "immer, wählbar, nie",
+        "wählbar"
+       ],
+       [
+        "Lautschrift",
+        "immer, wählbar, nie",
+        "wählbar"
+       ],
+       [
+        "Formen",
+        "immer, wählbar, nie",
+        "wählbar"
+       ],
+       [
+        "Lerntipp-Einblendungen",
+        "aus, gelegentlich, häufig",
+        "gelegentlich"
+       ],
+       [
+        "Latein: Abfrageform",
+        "L2, L3",
+        "L2"
+       ]
+      ]
+     }
+    },
+    {
+     "h2": "14.2  Bewertung"
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Einstellung",
+       "Werte",
+       "Voreinstellung"
+      ],
+      "zeilen": [
+       [
+        "Gross- und Kleinschreibung zählt",
+        "ja, nein",
+        "ja"
+       ],
+       [
+        "Umlaute und Akzente streng",
+        "ja, nein",
+        "nein"
+       ],
+       [
+        "Artikel",
+        "freiwillig, teilweise, voll",
+        "teilweise"
+       ],
+       [
+        "Fast richtig zulassen",
+        "ja, nein",
+        "ja"
+       ],
+       [
+        "Latein: Längenstriche nicht nötig",
+        "ja, nein",
+        "nein"
+       ]
+      ]
+     }
+    },
+    {
+     "h2": "14.3  Darstellung und Sprache"
+    },
+    {
+     "p": "Sprachen ein- und ausschalten, Sprache der Oberfläche (Deutsch, Englisch oder der Geräteeinstellung folgend), Farbschema, hell oder dunkel, Kartenpapier und Kartenschrift, Schwellen der dreistufigen Einordnung."
+    },
+    {
+     "h2": "14.4  Konto und Daten"
+    },
+    {
+     "p": "Anmelden und abmelden, Anzeigename setzen, Passwort ändern, Einstellungen zurücksetzen, Fortschritt zurücksetzen (Punkte, Verlauf und Tagesserie, in allen Sprachen, ohne die Wörter zu löschen), Konto samt allen Daten auf dem Server löschen."
+    },
+    {
+     "h2": "14.5  Erweitert"
+    },
+    {
+     "p": "Die Modellparameter aus 9 lassen sich einsehen. Fünf davon sind veränderbar; die übrigen dienen der Nachvollziehbarkeit."
+    }
+   ]
+  },
+  {
+   "h1": "15  Konto und Abgleich",
+   "teile": [
+    {
+     "p": "Die Anwendung ist ohne Konto vollständig benutzbar. Alle Daten liegen dann nur auf dem Gerät."
+    },
+    {
+     "h2": "15.1  Anmeldung"
+    },
+    {
+     "p": "Anmeldung mit E-Mail-Adresse und Passwort, mit Bestätigung der Adresse. Ein Anzeigename kann gesetzt werden und erscheint als Herkunftsangabe an geteilten Listen."
+    },
+    {
+     "h2": "15.2  Abgleich"
+    },
+    {
+     "p": "Fünf Dokumente werden abgeglichen: Wörter, Listen, Lernstände, Tageszähler und Einstellungen."
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Gruppe",
+       "Dokumente",
+       "Verzögerung"
+      ],
+      "zeilen": [
+       [
+        "Sofort",
+        "Wörter, Listen, Einstellungen",
+        "1,5 Sekunden nach der letzten Änderung"
+       ],
+       [
+        "Nachgelagert",
+        "Lernstände, Tageszähler",
+        "20 Sekunden Ruhe, ausserdem beim Verlassen"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Massgeblich ist ausschliesslich der Zeitstempel des Servers; die Uhr des Geräts wird nicht verwendet. Je Dokument gilt: die jüngere Fassung gewinnt. Änderungen ohne Verbindung bleiben als offen vermerkt und werden bei der nächsten Gelegenheit nachgeholt."
+    },
+    {
+     "h2": "15.3  Erste Anmeldung"
+    },
+    {
+     "p": "Liegen beim ersten Anmelden bereits eigene Daten auf dem Gerät, wird gefragt, ob sie in das Konto übernommen werden sollen. Vor einer überschreibenden Zusammenführung wird eine lokale Sicherung angelegt."
+    },
+    {
+     "h2": "15.4  Konto löschen"
+    },
+    {
+     "p": "Das Konto lässt sich in der Anwendung löschen. Dabei werden die Daten auf dem Server und das Konto selbst entfernt. Der Vorgang ist nicht umkehrbar."
+    }
+   ]
+  },
+  {
+   "h1": "16  Teilen",
+   "teile": [
+    {
+     "p": "Eine Liste lässt sich als Momentaufnahme veröffentlichen. Dabei entsteht eine nicht erratbare Kennung, aus der ein Code und ein Verweis gebildet werden."
+    },
+    {
+     "p": "Wer den Code oder Verweis öffnet, erhält eine eigene Kopie der Wörter samt Beispielsätzen, Formen, Geschlecht und Lautschrift. Lernstände werden nicht übertragen und bleiben getrennt. Spätere Änderungen an der ursprünglichen Liste wirken sich auf die Kopie nicht aus."
+    },
+    {
+     "p": "Zum Veröffentlichen ist ein Konto nötig, zum Übernehmen nicht."
+    }
+   ]
+  },
+  {
+   "h1": "17  Ausgabe",
+   "teile": [
+    {
+     "p": "Jede Liste sowie die Gesamtheit aller Wörter lassen sich ausgeben, ohne Konto."
+    },
+    {
+     "ul": [
+      "Als Text, in denselben zehn Spalten, die die Anwendung auch einliest. Auf dem Telefon über das Systemblatt, im Browser über die Zwischenablage.",
+      "Als Tabelle im Excel-Format, nur in der Webfassung."
+     ]
+    },
+    {
+     "p": "Was ausgegeben wird, lässt sich unverändert wieder einlesen."
+    }
+   ]
+  },
+  {
+   "h1": "18  Tarife",
+   "teile": [
+    {
+     "p": "Das Berechtigungsmodell ist vorbereitet, aber nicht in Kraft: in der ersten Fassung stehen allen Benutzern alle Funktionen offen."
+    },
+    {
+     "tab": {
+      "kopf": [
+       "Grenze",
+       "Gratis",
+       "Pro"
+      ],
+      "zeilen": [
+       [
+        "Eigene Listen je Sprache",
+        "1",
+        "unbegrenzt"
+       ],
+       [
+        "Wörter je Liste",
+        "40",
+        "unbegrenzt"
+       ],
+       [
+        "Listen teilen",
+        "nein",
+        "ja"
+       ]
+      ]
+     }
+    },
+    {
+     "p": "Der mitgelieferte Grundwortschatz zählt nicht gegen diese Grenzen."
+    },
+    {
+     "p": "Der Anspruch wird beim ersten Start festgeschrieben und danach nicht von selbst geändert. Eine spätere Fassung kann die Voreinstellung für neue Installationen ändern, ohne bestehende Benutzer zu betreffen."
+    }
+   ]
+  },
+  {
+   "h1": "19  Daten und Datenschutz",
+   "teile": [
+    {
+     "p": "Gespeichert werden ausschliesslich die Wörter, Listen, Lernstände und Einstellungen, die der Benutzer selbst anlegt, sowie bei angemeldeten Benutzern die E-Mail-Adresse und ein selbst gewählter Anzeigename."
+    },
+    {
+     "ul": [
+      "Keine Werbung, keine Weitergabe an Dritte, keine Auswertung des Nutzungsverhaltens zu anderen Zwecken.",
+      "Das Lernmodell wird nicht an die einzelne Person angepasst; es werden dafür keine Daten ausgewertet.",
+      "Ohne Anmeldung verlassen keine Daten das Gerät.",
+      "Konto und Daten lassen sich in der Anwendung selbst vollständig löschen."
+     ]
+    },
+    {
+     "p": "Datenschutzerklärung und Impressum sind in der Anwendung enthalten und zusätzlich als öffentliche Seite verfügbar. Beide stammen aus derselben Quelle."
+    }
+   ]
+  },
+  {
+   "h1": "20  Oberflächensprache",
+   "teile": [
+    {
+     "p": "Die Oberfläche liegt auf Deutsch und Englisch vor und folgt wahlweise der Geräteeinstellung. Die Umschaltung betrifft nur die Beschriftungen und die Hilfetexte, nicht den Wortschatz des Benutzers."
+    },
+    {
+     "p": "Die längeren Hilfetexte bestehen aus zwei vollständigen Fassungen und nicht aus satzweisen Übersetzungen."
+    }
+   ]
+  },
+  {
+   "h1": "21  Hilfe in der Anwendung",
+   "teile": [
+    {
+     "p": "Drei Teile: eine Anleitung entlang der vier Bereiche, eine Sammlung von Lerntipps, und eine Darstellung der Grundlagen, auf denen die Wiederholungsplanung beruht."
+    },
+    {
+     "p": "Ausserdem werden während des Übens gelegentlich kurze Lerntipps eingeblendet; die Häufigkeit ist einstellbar oder abschaltbar."
+    }
+   ]
+  }
+ ]
+}
