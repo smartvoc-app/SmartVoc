@@ -8,6 +8,8 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useStore } from "../store/StoreProvider";
 import { useAuth } from "./auth";
 import { useToast } from "../ui/Toast";
+import { Bestaetigen } from "../ui/Bestaetigen";
+import { txt } from "../lib/i18n";
 import { DOC_KEYS, type DocKey } from "../lib/supabase";
 import {
   loadSyncState, saveSyncState, patchDocSync,
@@ -116,11 +118,7 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
       // assume. Order of sign-ups is no proof of ownership.
       if (!prevUid) {
         if (cloudEmpty && hasOwnContent(docsRef.current)) {
-          const adopt = window.confirm(
-            "Auf diesem Gerät liegen bereits Wörter und Listen.\n\n" +
-            "OK, in dieses Konto übernehmen\n" +
-            "Abbrechen, leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
-          );
+          const adopt = await fragen();
           if (!adopt) {
             backupLocal(docsRef.current);
             clearLocalDocs();
@@ -218,6 +216,22 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
     return () => store.registerSync(null);
   }, [flushDirty]); // active() reads refs
 
+  /* Die Rueckfrage beim ersten Anmelden lief ueber window.confirm.
+   *
+   * Der Systemdialog sieht in der App fremd aus, laesst sich nicht
+   * beschriften -- "OK" und "Abbrechen" statt der eigentlichen Wahl -- und
+   * kann in einer WebView ganz ausbleiben. Ausbleiben heisst hier: die
+   * Antwort ist automatisch "nein", und die Woerter des Benutzers wandern
+   * ungefragt in die Sicherung. Das ist der schlechteste Moment fuer einen
+   * Dialog, der nicht erscheint.
+   *
+   * Deshalb dasselbe Fenster wie ueberall sonst. Der Ablauf ist async und
+   * wartet auf eine Zusage, die der Dialog aufloest. */
+  const [frage, setFrage] = useState<null | ((ja: boolean) => void)>(null);
+  const fragen = useCallback(() => new Promise<boolean>((aufloesen) => {
+    setFrage(() => (ja: boolean) => { setFrage(null); aufloesen(ja); });
+  }), []);
+
   // ---- login transition --------------------------------------------
   useEffect(() => {
     if (auth.configured && auth.user?.id) mergeOnLogin(auth.user.id);
@@ -241,5 +255,17 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
     };
   }, [flushDirty, pullFresh]);
 
-  return <SyncCtx.Provider value={{ status }}>{children}</SyncCtx.Provider>;
+  return (
+    <SyncCtx.Provider value={{ status }}>
+      {children}
+      <Bestaetigen
+        offen={!!frage}
+        titel={txt("Auf diesem Gerät liegen bereits Wörter und Listen.")}
+        text={txt("Sollen sie in dieses Konto übernommen werden? Wenn nicht, beginnt das Konto leer; die bisherigen Daten bleiben als Sicherung auf dem Gerät.")}
+        knopf={txt("In dieses Konto übernehmen")}
+        tun={() => frage && frage(true)}
+        onClose={() => frage && frage(false)}
+      />
+    </SyncCtx.Provider>
+  );
 }

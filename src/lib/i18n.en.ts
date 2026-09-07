@@ -714,4 +714,6 @@ export const EN: Record<string, string> = {
   "Grundwortschatz {kuerzel} · Stufe {n}": "Core vocabulary {kuerzel} · Level {n}",
   "Löschen fehlgeschlagen": "Deletion failed",
   "Ein Vokabeltrainer, der ausrechnet, wann ein Wort wiederkommt, statt es zu raten. Für alle, die Vokabeln lernen, vom Schulunterricht bis zum Selbststudium.": "A vocabulary trainer that works out when a word comes back, instead of guessing. For anyone learning vocabulary, from school lessons to studying on your own.",
+  "Sollen sie in dieses Konto übernommen werden? Wenn nicht, beginnt das Konto leer; die bisherigen Daten bleiben als Sicherung auf dem Gerät.": "Should they be moved into this account? If not, the account starts empty; the existing data stays on the device as a backup.",
+  "In dieses Konto übernehmen": "Move into this account",
 };

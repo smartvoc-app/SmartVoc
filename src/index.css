@@ -150,8 +150,17 @@ input, button, textarea, select { font-family: inherit; }
    Platz kommt stattdessen von der Marke: Zeichen und Name duerfen auf
    schmalen Bildschirmen etwas kleiner sein, ohne dass etwas verloren geht. */
 .topbar .tipbtn { flex: none; white-space: nowrap; }
-.topbar .brand { min-width: 0; }
+/* `min-width: 0` allein genuegte nicht: `.topbar > *` setzt `flex: none`,
+   also schrumpfte die Marke trotzdem nicht, und die beiden runden Knoepfe
+   wurden rechts aus dem Bildschirm geschoben. Da die Seite seitwaerts nicht
+   rollt, war das Zahnrad auf 320 px schlicht nicht erreichbar. */
+.topbar .brand { flex: 0 1 auto; min-width: 0; }
 .topbar .brand-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+/* Unter 360 px faellt der Schriftzug ganz weg statt mitten im Wort
+   abzubrechen ("SmartV…"). Das Zeichen daneben benennt die App genauso. */
+@media (max-width: 360px) {
+  .topbar .brand-name { display: none; }
+}
 @media (max-width: 430px) {
   .topbar { gap: 8px; }
   .topbar .brand { gap: 9px; }

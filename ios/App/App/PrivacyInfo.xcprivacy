@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!--
+    Apple verlangt seit Fruehjahr 2024 fuer bestimmte APIs eine Begruendung im
+    Manifest, sonst weist App Store Connect den Upload zurueck.
+
+    Betroffen ist hier genau eine: UserDefaults. Das Preferences-Plugin von
+    Capacitor legt darin die Sicherung der lokalen Daten ab
+    (Preferences.swift: UserDefaults.standard). Capacitor und Cordova bringen
+    zwar eigene Manifeste mit, deklarieren darin aber KEINE zugriffspflichtigen
+    APIs, und die drei benutzten Plugins (Preferences, Haptics, Share) haben
+    gar keines. Also muss es hier stehen.
+
+    CA92.1 = Zugriff auf Daten derselben App. Genau das tun wir: gelesen und
+    geschrieben wird nur, was diese App selbst abgelegt hat.
+
+    Kein Tracking, keine Tracking-Domains. Die App misst nichts ueber den
+    Nutzer hinaus und spricht ausser mit der eigenen Datenbank mit niemandem.
+  -->
+  <key>NSPrivacyTracking</key>
+  <false/>
+  <key>NSPrivacyTrackingDomains</key>
+  <array/>
+  <key>NSPrivacyCollectedDataTypes</key>
+  <array/>
+  <key>NSPrivacyAccessedAPITypes</key>
+  <array>
+    <dict>
+      <key>NSPrivacyAccessedAPIType</key>
+      <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+      <key>NSPrivacyAccessedAPITypeReasons</key>
+      <array>
+        <string>CA92.1</string>
+      </array>
+    </dict>
+  </array>
+</dict>
+</plist>
