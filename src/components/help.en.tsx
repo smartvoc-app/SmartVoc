@@ -3,14 +3,15 @@
  * differently, and the emphasis sits in other places. Two complete versions,
  * not one word list. Mirrors help.de.tsx chapter for chapter. */
 import type { Kapitel, Tipp } from "./help.types";
-import { KritzelKarte, KritzelAntwortarten, KritzelKalender, KritzelLeiste,
-         KritzelListe, KritzelVergessen, KritzelFenster, KritzelTesteffekt } from "../ui/Kritzel";
+import { KritzelStart, KritzelAbstaende, KritzelBereiche, KritzelKarte,
+         KritzelEndspurt, KritzelListe, KritzelLeiste,
+         KritzelVergessen, KritzelFenster, KritzelTesteffekt } from "../ui/Kritzel";
 
 export const TIPPS_EN: Tipp[] = [
   { h: "A little every day beats a lot now and then",
     b: "Ten to fifteen minutes a day does more than an hour at the weekend. In the gaps between sessions your brain does the rest by itself." },
   { h: "Think first, then turn the card over",
-    b: "Actually type your answer before you look at the solution. That effort of remembering is what makes a word stick — not looking at it again." },
+    b: "Actually type your answer before you look at the solution. That effort of remembering is what makes a word stick, not looking at it again." },
   { h: "A word needs many encounters",
     b: "Almost nobody knows a word after seeing it once. Meeting the same word again over several days is normal, and exactly how it should be." },
   { h: "Make friends with your mistakes",
@@ -31,136 +32,164 @@ export const TIPPS_EN: Tipp[] = [
 
 export const ANLEITUNG_EN: Kapitel[] = [
   {
-    titel: "Test tomorrow: what now?",
+    titel: "Start right away",
     text: (
       <>
-        <p>The shortest way from the page in your book to your first round takes about two minutes:</p>
+        <p>There is nothing to set up. For every language you have switched on, a hundred words are ready. Tap <b>Practise</b> at the bottom, pick a list, and the first card is there.</p>
+        <KritzelStart titel="From the page in your exercise book to the first card" />
+        <p>Your own words come in whenever you need them. It takes under two minutes:</p>
         <ol>
-          <li>Under <b>Word lists</b>, tap <b>+ New list</b>, then <b>Paste a list</b>. If you would rather not type the words, the <b>AI prompt</b> fetches them from a photo of your page.</li>
-          <li>Give the list a <b>target date</b>. That is the day of the test.</li>
-          <li>Tap <b>Practise</b> and go.</li>
+          <li>Under <b>Word lists</b> tap <b>+ New list</b>, then <b>Paste a list</b>. The app gives you a ready-made instruction to copy. Paste it into your AI app and attach a photo of the page from your exercise book; copy what comes back into the app, example sentences and phonetics included.</li>
+          <li>If you have a date coming up, give the list a <b>target date</b>: the day the words have to be solid. It also works without one.</li>
+          <li>Back to <b>Practise</b>, pick the new list, go.</li>
         </ol>
-        <p>Everything else can wait. From here on the app knows by itself which word comes back when.</p>
-        <p className="help-callout">For every language you switch on there is already a <b>core vocabulary</b> waiting. So you can practise right away, even without a list of your own.</p>
+        <p>From now on the app decides which word comes back when. The next chapter says why.</p>
       </>
     ),
   },
   {
-    titel: "Where things are",
+    titel: "What SmartVoc does differently",
     text: (
       <>
+        <p>Most vocabulary programs let you work through a list until you know it. SmartVoc keeps a record for every single word: how long it lasts with you, how hard you find it, and when you are about to forget it. That is exactly when it comes back.</p>
+        <KritzelAbstaende titel="Every correct answer pushes the word further out" />
+        <p>That has two consequences that surprise people at first. Words that are solid disappear from the queue for weeks, so they cost you no time at all. And words you hesitated over are back tomorrow. Both are the reason why ten minutes a day does more than an hour on Saturday.</p>
+        <p>You cannot overrule this planning. What you do control: which words come in, how many per day, and how strictly the app marks your answers. That is further down under <b>Settings worth changing</b>. How the maths works is in the chapter <b>Behind it</b>.</p>
+      </>
+    ),
+  },
+  {
+    titel: "SmartVoc at a glance",
+    text: (
+      <>
+        <p>Four areas sit side by side at the bottom. Each answers a different question.</p>
+        <KritzelBereiche titel="Four areas, four questions" />
         <ul>
-          <li><b>Practise</b> is where the learning happens. Everything else only serves it.</li>
-          <li><b>Practice plan</b> answers: what is due when, and will I be ready in time?</li>
-          <li><b>Word lists</b> is your store of material.</li>
-          <li><b>Statistics</b> answers: where is it stuck, and am I getting better?</li>
+          <li><b>Practise</b>: what should I do now? This is where the learning happens.</li>
+          <li><b>Practice plan</b>: will I be ready in time? Your dates and where you stand.</li>
+          <li><b>Word lists</b>: where do my words come from? Creating, filling, managing.</li>
+          <li><b>Statistics</b>: where do I stand? What is solid, what is wobbly, and whether it is moving.</li>
         </ul>
-        <p>Top right the gear for settings, the question mark for this help.</p>
+        <p>Two buttons sit at the top right. The cog holds the <b>Settings</b>, the question mark this guide, the <b>Study tips</b> and the chapter <b>Behind it</b>.</p>
+        <p><b>The colours do not mean the same thing everywhere.</b> SmartVoc uses colour in two places, and the two scales measure different things. Confusing them means misreading the app.</p>
+        <p>The <b>five levels</b> apply to a single word. The bar reads from left to right:</p>
+        <ul>
+          <li><b>solid</b>: lasts longer than two weeks and only rarely comes back.</li>
+          <li><b>nearly</b>: lasts up to two weeks. Written out, the level is <b>nearly solid</b>.</li>
+          <li><b>wobbly</b>: lasts less than three days. Written out, <b>still wobbly</b>.</li>
+          <li><b>new</b>: practised only once or twice.</li>
+          <li><b>unpractised</b>: never asked yet.</li>
+        </ul>
+        <p>You will find this bar in the same form everywhere: under the card, on every list and in Statistics. Tapping an entry in the legend opens the words behind it.</p>
+        <p>The <b>traffic light</b> applies to a whole list. It only counts how many of the list's words have reached the level <b>solid</b>: from 95 per cent the list counts as <b>ready</b>, from 70 per cent as <b>on track</b>, below that as <b>behind</b>. You can move the thresholds.</p>
       </>
     ),
   },
   {
-    titel: "Getting words into the app",
+    titel: "The «Practise» area",
     text: (
       <>
-        <p>There are four ways. They differ only in how much you have to type yourself.</p>
-        <ol>
-          <li><b>Photo and AI:</b> for a whole page, without typing</li>
-          <li><b>Paste a list:</b> when you already have the text somewhere</li>
-          <li><b>A single word:</b> for additions</li>
-          <li><b>A shared list:</b> when someone sends you theirs</li>
-        </ol>
-
-        <h4>1. Photo and AI</h4>
-        <p>This is the way you will probably use most. It works with any AI that can read images.</p>
-        <ol>
-          <li>In the app: <b>+ New list</b>, then <b>Paste a list</b>.</li>
-          <li>Tap <b>Copy the AI prompt</b> at the bottom. A ready-made instruction is now on your clipboard.</li>
-          <li>Switch to your AI app, paste the instruction and attach a <b>photo of your page</b>.</li>
-          <li>The AI answers with a list. Copy it.</li>
-          <li>Back in SmartVoc, paste it into the big field, then <b>On to checking</b>.</li>
-        </ol>
-        <p>In the checking window every word stands on its own. Glance over it, fix what went wrong, and pick the list at the end. Photos get misread now and then, and this is the moment to notice. Not in the middle of the test.</p>
-
-        <h4>2. Paste a list</h4>
-        <p>The same window, just without the AI. One line per word, the two languages separated by a vertical bar, a dash, a colon or a tab:</p>
-        <p className="help-code">tree | der Baum<br />house | das Haus</p>
-        <p>Lines copied from a spreadsheet work straight away, because spreadsheets separate with tabs.</p>
-
-        <h4>3. A single word</h4>
-        <p>In an open list, under <b>View and edit the words</b>, tap <b>Add</b>. Word and translation are enough; an example sentence and the pronunciation can be left out or added later.</p>
-
-        <h4>4. A shared list</h4>
-        <p>Whoever shares a list gets a code. With <b>Take over a shared list</b> and that code you have your own copy. Your progress and theirs stay separate.</p>
+        <p>In the row above the card you choose what gets asked: the language, the direction, and one or several of your word lists, or one of the four <b>Smart lists</b> the app puts together itself. The selection may mix languages.</p>
+        <KritzelKarte titel="Question on the front, solution on the back" />
+        <p>Four <b>answer types</b> are available under the card. You can switch mid-session:</p>
+        <ul>
+          <li><b>Typing</b>: you write the answer yourself. The most demanding, and the most effective. When in doubt, this one.</li>
+          <li><b>Multiple choice</b>: you pick from several options. Easier, good at the start or when you are tired.</li>
+          <li><b>Self-check</b>: you think, turn the card over and judge yourself. Best to write the answer down first.</li>
+          <li><b>Browse only</b>: for skimming a list. Counts for nothing, neither progress nor statistics.</li>
+        </ul>
+        <p>The <b>direction</b> can be switched just as freely: foreign language to German, the other way round, or mixed. Change both regularly, otherwise your memory learns the pattern instead of the word.</p>
+        <p><b>There is a bar above and below the card.</b> They measure different things. Above the card is the <b>round progress</b>: how much of this round is done. Every word needs a certain number of correct answers for that. A mistake resets its counter, and the bar drops back a little.</p>
+        <p>Below the card is your <b>progress</b>: how the words in this selection spread across the five levels. The round progress starts fresh every round, your progress moves over weeks. In browse mode both are missing, because that mode changes nothing.</p>
+        <p><b>How your answer is marked.</b> When you type, the app compares your answer with the solution and reaches one of three verdicts: <b>right</b>, <b>nearly right</b> or <b>wrong</b>. Nearly right is not politeness, it counts differently from wrong. In Statistics, right and nearly right are counted together as <b>hits</b>.</p>
+        <ul>
+          <li>Typing slips are recognised as long as the answer is close enough to the solution. Depending on how close, they count as nearly right.</li>
+          <li>Accents and umlauts are treated leniently by default. Set to strict, “grun” instead of “grün” counts as a mistake.</li>
+          <li>The article counts half by default. You can make it optional or require it in full. If it does not count, it is not shown on the card at all; the gender is shown instead.</li>
+          <li>Capitalisation counts by default. <b>ss</b> and <b>ß</b> always count as the same.</li>
+        </ul>
+        <p>After each answer the app shows which characters were missing, surplus or different. If a verdict annoys you, the lever is in the settings under <b>Answer checking</b>.</p>
+        <p><b>When a round is over.</b> Every word in the selection has a goal for this round: a number of correct answers it needs. A wobbly word needs three, a new one two, a nearly solid or due one needs one. Once all goals are met, the round is done. That is why you see more cards than words, and why a mistake costs something: it resets that word's counter.</p>
+        <p>Two numbers limit how big a round gets in the first place:</p>
+        <ul>
+          <li><b>Due today</b> holds at most thirty words, at most ten of them brand new. You set both numbers yourself.</li>
+          <li>If a list's date falls within the next three days, these limits do not apply to its words. Holding words back shortly before a deadline would make no sense.</li>
+        </ul>
+        <p>After forty cards shown, the app also asks whether you want to stop for today. You can carry on regardless.</p>
       </>
     ),
   },
   {
-    titel: "Keeping a list in order",
+    titel: "The «Practice plan» area",
     text: (
       <>
-        <p>A word list is whatever you practise together: a page from your book, a unit, the material for a test. <b>Every word belongs to exactly one list.</b></p>
+        <p>The practice plan shows when each list has to be solid and how far along you are, as a calendar or as a list. Only lists you have given a <b>target date</b> appear here. All the others are practised as normal, they just do not show up here.</p>
+        <KritzelEndspurt titel="The closer the date, the tighter the repetitions" />
+        <p><b>The target date.</b> Give a list the day it has to be solid. You set it under <b>Word lists</b>, on the list itself.</p>
+        <p>From then on the app counts backwards: from about three weeks before the date it demands more confidence from those words, which brings them up more often. In the last few days the daily limit no longer applies to them. After the date everything returns to normal.</p>
+        <p>If you practise several lists together, the words of the list with the nearer date come up more often by themselves. You do not have to set anything for that.</p>
+        <p>The colour of a day shows how ready the list is. If several lists fall on one day, the colour shows the weakest.</p>
+        <p>Tap a day and you see which lists are involved, how many of their words are likely to be solid on the day, and you can start practising straight from there.</p>
+      </>
+    ),
+  },
+  {
+    titel: "The «Word lists» area",
+    text: (
+      <>
+        <p>All your words live in lists, and every word belongs to exactly one list. What a list is, is up to you: a page in your exercise book, a lesson, the material for a test.</p>
         <KritzelListe titel="First the list, then its words" />
-        <p>Open a list and you see the list itself first: target date, how far along you are, and the ways onward. The words sit one level deeper.</p>
-        <p>There you tap a row to select it, then use <b>Edit</b> or <b>Delete</b>. Several at once also works.</p>
-        <p>Two lists that belong together anyway can be <b>merged</b>. The words move over, the empty list disappears.</p>
+        <p>Four ways lead in. Picking the right one saves you the most work:</p>
+        <ul>
+          <li><b>Paste a list</b>: for a whole page. With the AI instruction you can have your AI app build it from a photo.</li>
+          <li><b>Type a single word</b>: for additions.</li>
+          <li><b>Take a shared list</b>: when someone has sent you a code or a link.</li>
+          <li><b>Read a spreadsheet</b>: Excel or CSV, web version only. The blank template sits right next to it.</li>
+        </ul>
+        <p><b>The route via AI.</b> It works with any AI that can read images. Tap <b>Copy AI prompt</b> in the app, switch to your AI app, paste the instruction and attach a photo of your page. Copy the answer back into the large field and tap <b>Continue to checking</b>.</p>
+        <p><b>The checking window.</b> Every word is listed there on its own, with all its details. Look over it and correct whatever went wrong. At the end you choose the list. Photos are misread now and then; this is where you catch it.</p>
+        <p><b>Changing lists and words.</b> When you open a list you first see the list itself: target date, progress and the actions. The words sit one level down under <b>View and edit words</b>. Tap a row there and use <b>Edit</b> or <b>Delete</b>; several at once works too.</p>
+        <p>Two lists that belong together can be <b>merged</b>. If you delete a list, its words are kept and only leave that list.</p>
+        <p><b>Exporting and sharing.</b> <b>Export</b> gives you your words back as text or as an Excel spreadsheet, in the same format the app reads back in, and without an account. <b>Share</b> sends a list to someone else; they get their own copy, and your progress stays separate. Sharing needs an account.</p>
+        <p><b>The four Smart lists.</b> Next to your own lists there are four the app puts together every day, across everything you have:</p>
+        <ul>
+          <li><b>Due today</b>: your portion for today, due words and new ones.</li>
+          <li><b>Due words</b>: everything that is up for review now.</li>
+          <li><b>Still wobbly</b>: exactly the words on the level <b>still wobbly</b>.</li>
+          <li><b>Due soon</b>: still solid, but coming up again shortly.</li>
+        </ul>
+        <p>You can look at them and practise them, but not change them. Below that there is also <b>All words</b>. That is not a Smart list, it is your whole collection.</p>
       </>
     ),
   },
   {
-    titel: "The target date",
+    titel: "The «Statistics» area",
     text: (
       <>
-        <p>Give a list the day of the test as its <b>target date</b>. It is the single entry that does the most for you.</p>
-        <p>From then on the app counts backwards. The closer the date, the more often the words of that list come up, so that they stick on the day and not three weeks later. If you practise several lists together, the ones with the nearer date come up more.</p>
-        <p>A list without a target date is not worse off. It simply runs alongside, at the normal pace.</p>
-      </>
-    ),
-  },
-  {
-    titel: "The practice plan",
-    text: (
-      <>
-        <p>The practice plan answers a single question: <b>will I be ready in time?</b></p>
-        <KritzelKalender titel="The colour says where you stand" />
-        <p>Green means: if the test were today, you would pass. Red means there is work ahead. If several lists fall on one day, the colour shows the weakest, because that one decides.</p>
-        <p>Tap a day and you see what it is about, and you can practise straight from there.</p>
-        <p>The plan only shows lists you have given a <b>target date</b>. All the others run alongside and do not appear here.</p>
-      </>
-    ),
-  },
-  {
-    titel: "Practising: the card",
-    text: (
-      <>
-        <KritzelKarte titel="Each side stays in its own language" />
-        <p>Question on the front, answer on the back. The example sentence appears on both sides, each in the language of that side. Otherwise the translation would sit next to the word you are supposed to translate.</p>
-        <p>The top of the card always says which way it is asking. With <b>Mixed</b> that changes from card to card, so the quick glance is worth it.</p>
-        <p>The button at the top right makes the card large and everything else disappear. Back with the same button, with <b>Esc</b>, or a tap beside it.</p>
-      </>
-    ),
-  },
-  {
-    titel: "The four answer types",
-    text: (
-      <>
-        <KritzelAntwortarten titel="Three count, one does not" />
-        <p><b>Typing.</b><br />You write the answer yourself. Harder than anything else and worth the most. If you cannot decide, take this one.</p>
-        <p><b>Multiple choice.</b><br />You pick from several options. Easier, because the answer is already there. Good at the start, or when you are tired.</p>
-        <p><b>Self-check.</b><br />You think, turn the card over, and judge for yourself whether you knew it.</p>
-        <p className="help-callout">Best write the answer on a piece of paper and only then check in the app. But no cheating: you are only cheating yourself out of the repetition.</p>
-        <p><b>Just flipping through.</b><br />The right choice when you simply want to run through a list quickly. For a new list, to see what is coming, or just before a test to skim. Important: this mode counts for nothing. It does not change your progress and shows up in no statistic.</p>
-      </>
-    ),
-  },
-  {
-    titel: "How well a word has stuck",
-    text: (
-      <>
+        <p>Statistics goes into detail. At the top you choose whether you are looking at all languages or one, all words or a particular list, and whether it covers the last 7, 30 or 90 days.</p>
         <KritzelLeiste titel="The same five levels everywhere" />
-        <p><b>stuck</b> means: holds for a long time, comes back rarely. <b>nearly</b>: almost there, a few more repetitions. <b>shaky</b>: comes back more often. <b>new</b>: freshly learnt. <b>not practised</b>: never asked yet.</p>
-        <p>You find this bar on the card, on every list and in the statistics. It is the same calculation everywhere, so the colours are comparable.</p>
-        <p>In the statistics, tapping an entry in the key opens the matching words.</p>
+        <ul>
+          <li><b>Stock</b>: how your words spread across the five levels.</li>
+          <li><b>Progress</b>: how many words came in, how much you practised, on how many days, and how many words newly reached the level <b>solid</b>.</li>
+          <li><b>Analyses</b>: how your answers turn out, what they fail on, how quickly a word becomes solid for you, how long your words last, how long your sessions are, and at what time of day you do best.</li>
+          <li><b>Sticking points</b> and <b>Stubborn</b>: the words that keep getting away from you. You can practise them straight from there.</li>
+        </ul>
+        <p>Analyses with too little data behind them are not shown at all. That is why the page is fairly empty at the start. It fills up.</p>
+      </>
+    ),
+  },
+  {
+    titel: "Settings worth changing",
+    text: (
+      <>
+        <p>The defaults follow the research on learning and suit most people. Three of them are still worth a look:</p>
+        <ul>
+          <li><b>Learning intensity</b>: how reliably you want to know a word when it comes back. More intense means practising more often, and more of it sticks. Less intense means fewer cards, and more slips away. There is no right answer here, only a trade.</li>
+          <li><b>New words per day</b>: your only lever on the quantity. Fewer new words means less backlog, not slower learning.</li>
+          <li><b>Answer checking</b>: how strictly accents, articles and capitalisation are marked.</li>
+        </ul>
+        <p>Beyond that there are smaller things that make daily use nicer: what appears on the card (phonetics, forms, example sentences), what the app opens with, the colour scheme and the card typeface. Everything can be reset individually, and whatever you have changed is marked.</p>
+        <p>Under <b>Advanced</b> you can watch the model do its arithmetic. You never need to.</p>
       </>
     ),
   },
@@ -168,20 +197,28 @@ export const ANLEITUNG_EN: Kapitel[] = [
     titel: "With or without an account",
     text: (
       <>
-        <p>The app works fully <b>without an account</b>. Everything you enter then lives on this device, and only there.</p>
-        <p>Sign in and three things follow: your progress is the same on <b>all your devices</b>, you can <b>share lists</b>, and your words survive if something happens to the device.</p>
-        <p>You can sign in at any later point. Whatever is already on the device, the app asks whether it should come along into the account.</p>
-        <p>You delete your account under <b>Settings</b> → “Account &amp; data”. That removes the data in the cloud too, and it cannot be undone.</p>
+        <p>The app runs completely without an account and completely without a connection. Without signing in, everything you enter stays on this device, and nowhere else.</p>
+        <p>Signing in adds three things: the same state on all your devices, <b>sharing</b> lists, and your words surviving if something happens to the device. You can sign in later at any time and take your existing lists with you.</p>
+        <p>You delete your account in the settings under <b>Account &amp; data</b>. That also removes the data on the server, and it cannot be undone.</p>
       </>
     ),
   },
   {
-    titel: "When something goes wrong",
+    titel: "Common questions",
     text: (
       <>
-        <p><b>A word is spelt wrong.</b> Open the list, go to <b>View and edit the words</b>, tap the row, choose <b>Edit</b>.</p>
-        <p><b>The app keeps asking words you no longer need.</b> Delete the list. The words themselves stay and only leave that one list.</p>
-        <p><b>Your progress no longer fits.</b> In Settings, under “Account &amp; data”, you can reset it: points, history and your daily run, in every language. Your words stay. It cannot be undone.</p>
+        <p className="help-frage"><b>Why is the same word back already?</b></p>
+        <p>Because you hesitated last time, or got it wrong. The app brings a word back shortly before you forget it, and for a wobbly word that is tomorrow.</p>
+        <p className="help-frage"><b>Why does the app ask me words I have known for ages?</b></p>
+        <p>Because even words that sit firmly need a refresh every few weeks; otherwise they do fade over the months. It is only a few cards, and they cost you almost no time.</p>
+        <p className="help-frage"><b>I was away for a week. How bad is it?</b></p>
+        <p>Not bad. The due words pile up, but <b>Due today</b> only gives you the portion for today. You do not get the whole backlog at once.</p>
+        <p className="help-frage"><b>A word is spelled wrong. How do I change it?</b></p>
+        <p>Open the list, <b>View and edit words</b>, tap the row, <b>Edit</b>. Everything can be changed or added there: the word, example sentences, phonetics, forms and gender.</p>
+        <p className="help-frage"><b>My progress is off. Can I start again?</b></p>
+        <p>In the settings under <b>Account &amp; data</b> you can reset your progress: points, history and daily streak, in every language. Your words stay. It cannot be undone.</p>
+        <p className="help-frage"><b>I want to leave SmartVoc. Do I get my words out?</b></p>
+        <p>Yes. <b>Export</b> gives you every list as text or as an Excel spreadsheet, without an account and without a detour.</p>
       </>
     ),
   },

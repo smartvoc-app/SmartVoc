@@ -10,12 +10,19 @@
  * an dem man sie sich in Ruhe ansehen kann.
  */
 import { Icon } from "../ui/Icon";
-import { txt } from "../lib/i18n";
+import { txt, getUiLang } from "../lib/i18n";
 import bild from "../assets/intro.jpg";
-import { DATENSCHUTZ, IMPRESSUM, DATENSCHUTZ_URL } from "../lib/recht";
+import { DATENSCHUTZ, IMPRESSUM, DATENSCHUTZ_EN, IMPRESSUM_EN, DATENSCHUTZ_URL } from "../lib/recht";
 
 export function UeberModal({ offen, onClose }: { offen: boolean; onClose: () => void }) {
   if (!offen) return null;
+  /* Die Rechtstexte gehen NICHT durch txt(): sie stehen als ganze Fassung je
+     Sprache in recht.ts. Ein Rechtstext satzweise zu uebersetzen erzeugt
+     Bruchstuecke, und ausgerechnet hier darf nichts danebengehen. Bis hierher
+     erschienen sie auch im englischen Modus deutsch. */
+  const en = getUiLang() === "en";
+  const datenschutz = en ? DATENSCHUTZ_EN : DATENSCHUTZ;
+  const impressum = en ? IMPRESSUM_EN : IMPRESSUM;
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal ueber-modal" onClick={(e) => e.stopPropagation()}>
@@ -28,10 +35,10 @@ export function UeberModal({ offen, onClose }: { offen: boolean; onClose: () => 
           <img className="ueber-bild" src={bild} alt="" />
 
           <p className="ueber-lead">
-            {txt("Ein Vokabeltrainer, der ausrechnet, wann ein Wort wiederkommt, statt es zu raten. Gemacht für Schülerinnen und Schüler, die eine Prüfung vor sich haben.")}
+            {txt("Ein Vokabeltrainer, der ausrechnet, wann ein Wort wiederkommt, statt es zu raten. Für alle, die Vokabeln lernen, vom Schulunterricht bis zum Selbststudium.")}
           </p>
 
-          {[[txt("Datenschutz"), DATENSCHUTZ], [txt("Impressum"), IMPRESSUM]].map(([titel, teile]: any) => (
+          {[[txt("Datenschutz"), datenschutz], [txt("Impressum"), impressum]].map(([titel, teile]: any) => (
             <div key={titel}>
               <h3 className="ueber-h">{titel}</h3>
               <div className="muted legal-body">

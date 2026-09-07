@@ -6,11 +6,12 @@ const d = require("docx");
 const { Document, Packer, Paragraph, TextRun, HeadingLevel, Table, TableRow, TableCell,
         WidthType, ShadingType, BorderStyle, PageBreak } = d;
 
-const T  = JSON.parse(fs.readFileSync("texte.json", "utf8"));
+const T  = JSON.parse(fs.readFileSync(process.env.EN ? "texte-en.json" : "texte.json", "utf8"));
 /* Teil A1 kommt aus dem Programmtext, nicht aus einer Zwischendatei.
    Sonst laufen Dokument und App auseinander, sobald ich beim Einbauen
    einen Satz noch anfasse -- und genau das ist passiert. */
-const B  = JSON.parse(fs.readFileSync("synthese-b.json", "utf8"));
+const B  = process.env.EN ? [] : JSON.parse(fs.readFileSync("synthese-b.json", "utf8"));
+const EN = !!process.env.EN;   // dieselbe Vorlage, andere Sprache
 
 const GRAU = "9A958B", GRUEN = "1E6B45", ROT = "9B2C2C", BRAUN = "8A4B00";
 const karte = {};
@@ -97,48 +98,48 @@ const k = [];
 
 // ------------------------------------------------------------------ Kopf
 k.push(new Paragraph({ text: "SmartVoc", heading: HeadingLevel.TITLE, spacing: { after: 60 } }));
-k.push(p("Sämtliche deutschen Texte der App", { size: 26, color: "5A554C", after: 40 }));
-k.push(p("Stand 7. September 2026 · aus dem Programmtext erzeugt (texte/sammle-texte.mjs)", { size: 19, color: GRAU, after: 320 }));
+k.push(p(EN ? "All English texts of the app" : "Sämtliche deutschen Texte der App", { size: 26, color: "5A554C", after: 40 }));
+k.push(p(EN ? "7 September 2026 · generated from the program text (texte/sammle-texte.mjs)" : "Stand 7. September 2026 · aus dem Programmtext erzeugt (texte/sammle-texte.mjs)", { size: 19, color: GRAU, after: 320 }));
 
-k.push(h("So arbeitest du damit", HeadingLevel.HEADING_2));
-k.push(p("Jeder Text trägt eine Nummer. Ändere den Text, aber lass die Nummer stehen. Kommentare kannst du als Word-Kommentar anhängen oder in eckigen Klammern dahinterschreiben."));
-k.push(p("Teil A sind die langen Texte, also die Hilfe und die Rechtstexte. Teil B sind die kurzen Beschriftungen: Knöpfe, Titel, Meldungen, Erklärzeilen. Sie sind nach Bereich der App geordnet."));
-k.push(p("In Teil A steht vor einer Bildbeschriftung das Wort „Bildbeschriftung“; Aufzählungspunkte sind eingerückt und mit · gekennzeichnet. Braun-kursive Klammern beschreiben, was die zugehörige Grafik zeigen muss — sie sind kein Text der App und tragen keine Nummer.", { color: "5A554C" }));
+k.push(h(EN ? "How to work with this" : "So arbeitest du damit", HeadingLevel.HEADING_2));
+k.push(p(EN ? "Every text carries a number. Change the text, but leave the number in place. Comments can be attached as Word comments or written in square brackets after the text." : "Jeder Text trägt eine Nummer. Ändere den Text, aber lass die Nummer stehen. Kommentare kannst du als Word-Kommentar anhängen oder in eckigen Klammern dahinterschreiben."));
+k.push(p(EN ? "Part A holds the long texts, that is the help and the legal notices. Part B holds the short labels: buttons, titles, messages, explanatory lines. They are ordered by area of the app." : "Teil A sind die langen Texte, also die Hilfe und die Rechtstexte. Teil B sind die kurzen Beschriftungen: Knöpfe, Titel, Meldungen, Erklärzeilen. Sie sind nach Bereich der App geordnet."));
+k.push(p(EN ? "In Part A, an image caption is preceded by the word “Bildbeschriftung”; bullet points are indented and marked with ·. Content that stays German on purpose (card examples, the AI prompt) is left as it is: the app translates into German, so a card shows German solutions." : "In Teil A steht vor einer Bildbeschriftung das Wort „Bildbeschriftung“; Aufzählungspunkte sind eingerückt und mit · gekennzeichnet. Braun-kursive Klammern beschreiben, was die zugehörige Grafik zeigen muss, sie sind kein Text der App und tragen keine Nummer.", { color: "5A554C" }));
 
 // -------------------------------------------------------------- Teil A
 k.push(new Paragraph({ children: [new PageBreak()] }));
-k.push(new Paragraph({ text: "Teil A: die langen Texte", heading: HeadingLevel.HEADING_1 }));
+k.push(new Paragraph({ text: EN ? "Part A: the long texts" : "Teil A: die langen Texte", heading: HeadingLevel.HEADING_1 }));
 
-k.push(h("A1 · Hilfe: Anleitung", HeadingLevel.HEADING_2));
+k.push(h(EN ? "A1 · Help: Guide" : "A1 · Hilfe: Anleitung", HeadingLevel.HEADING_2));
 for (const [titel, absaetze] of T.anleitung) {
   k.push(titelZeile(titel, HeadingLevel.HEADING_3));
   for (const [art, t] of absaetze) k.push(...langZeile(t, art));
 }
 
-k.push(h("A2 · Hilfe: Lerntipps", HeadingLevel.HEADING_2));
+k.push(h(EN ? "A2 · Help: Study tips" : "A2 · Hilfe: Lerntipps", HeadingLevel.HEADING_2));
 for (const [titel, text] of T.tipps) {
   k.push(titelZeile(titel, HeadingLevel.HEADING_3));
   k.push(...langZeile(text, "P"));
 }
 
-k.push(h("A3 · Hilfe: Dahinter", HeadingLevel.HEADING_2));
+k.push(h(EN ? "A3 · Help: Behind it" : "A3 · Hilfe: Dahinter", HeadingLevel.HEADING_2));
 k.push(...langZeile(T.theorie_lead, "P"));
 for (const [titel, absaetze] of T.theorie) {
   k.push(titelZeile(titel, HeadingLevel.HEADING_3));
   for (const [art, t] of absaetze) k.push(...langZeile(t, art));
 }
 
-k.push(h("A4 · Über SmartVoc", HeadingLevel.HEADING_2));
-k.push(...langZeile(T.ueber_lead, "P"));
-k.push(h("Datenschutz", HeadingLevel.HEADING_3));
+k.push(h(EN ? "A4 · About SmartVoc" : "A4 · Über SmartVoc", HeadingLevel.HEADING_2));
+if (T.ueber_lead) k.push(...langZeile(T.ueber_lead, "P"));
+k.push(h(EN ? "Privacy" : "Datenschutz", HeadingLevel.HEADING_3));
 for (const [art, t] of T.datenschutz) k.push(...langZeile(t, art));
-k.push(h("Impressum", HeadingLevel.HEADING_3));
+k.push(h(EN ? "Imprint" : "Impressum", HeadingLevel.HEADING_3));
 for (const [art, t] of T.impressum) k.push(...langZeile(t, art));
 
 // -------------------------------------------------------------- Teil B
 k.push(new Paragraph({ children: [new PageBreak()] }));
-k.push(new Paragraph({ text: "Teil B: die kurzen Beschriftungen", heading: HeadingLevel.HEADING_1 }));
-k.push(p("Nach Bereich der App geordnet. {n}, {p} und ähnliche Klammern sind Platzhalter für Zahlen und Namen; sie müssen genau so stehen bleiben.", { color: "5A554C", after: 240 }));
+k.push(new Paragraph({ text: EN ? "Part B: the short labels" : "Teil B: die kurzen Beschriftungen", heading: HeadingLevel.HEADING_1 }));
+k.push(p(EN ? "Ordered by area of the app. {n}, {p} and similar braces are placeholders for numbers and names; they have to stay exactly as they are." : "Nach Bereich der App geordnet. {n}, {p} und ähnliche Klammern sind Platzhalter für Zahlen und Namen; sie müssen genau so stehen bleiben.", { color: "5A554C", after: 240 }));
 
 const ordnung = ["Üben", "Übungsplan", "Wortlisten", "Statistik", "Einstellungen",
   "Anzeige-Einstellungen", "Erweiterte Werte", "Konto", "Hilfe (Rahmen)", "Über SmartVoc",
@@ -150,12 +151,35 @@ const ordnung = ["Üben", "Übungsplan", "Wortlisten", "Statistik", "Einstellung
   "Startbild", "Rahmen und Reiter", "Beschriftungen in den Zeichnungen",
   "Anmeldung", "Abgleich mit dem Konto", "Statistik (Auswertungen)", "Latein",
   "Lernmodell", "Rundensteuerung", "Datenhaltung", "Umbauten an alten Daten"];
+/* Die Bereichsnamen sind Ueberschriften des Dokuments, keine Texte der App --
+   sie stehen deshalb hier und nicht in i18n.en.ts. */
+const BEREICH_EN = {
+  "Üben": "Practise", "Übungsplan": "Practice plan", "Wortlisten": "Word lists",
+  "Statistik": "Statistics", "Einstellungen": "Settings",
+  "Anzeige-Einstellungen": "Display settings", "Erweiterte Werte": "Advanced values",
+  "Konto": "Account", "Hilfe (Rahmen)": "Help (frame)", "Über SmartVoc": "About SmartVoc",
+  "Liste einfügen und KI-Prompt": "Paste a list and AI prompt", "Wörter prüfen": "Checking words",
+  "Geteilte Liste übernehmen": "Taking a shared list", "Teilen": "Sharing",
+  "Listenwahl": "List picker", "Wort im Detail": "Word in detail", "Lernstand": "Progress",
+  "Lernstandsleiste": "Progress bar", "Rückfragen": "Confirmations", "Auswahlpillen": "Selection pills",
+  "Rückmeldungen": "Feedback", "Smart Lists": "Smart lists", "Lernstufen": "Levels",
+  "Ampel": "Traffic light", "Spalten und Wortarten": "Columns and parts of speech",
+  "Sprachen": "Languages", "Sprachpille": "Language pill", "Voreinstellungen": "Defaults",
+  "Gratis und Pro": "Free and Pro", "Kopfzeile": "Header",
+  "Lerntipp-Einblendung": "Study tip popup", "Lateinische Sonderzeichen": "Latin special characters",
+  "Startbild": "Splash screen", "Rahmen und Reiter": "Frame and tabs",
+  "Beschriftungen in den Zeichnungen": "Labels in the drawings", "Anmeldung": "Sign-in",
+  "Abgleich mit dem Konto": "Sync with the account", "Statistik (Auswertungen)": "Statistics (analyses)",
+  "Latein": "Latin", "Lernmodell": "Learning model", "Rundensteuerung": "Round control",
+  "Datenhaltung": "Data storage", "Umbauten an alten Daten": "Migrations of old data",
+};
+const bereichName = (g) => (EN ? (BEREICH_EN[g] || g) : g);
 const gruppen = T.oberflaeche;
 const rest = Object.keys(gruppen).filter(g => !ordnung.includes(g) && g !== "Nicht mehr verwendet").sort();
 for (const g of [...ordnung, ...rest]) {
   const e = gruppen[g];
   if (!e || !e.length) continue;
-  k.push(h(g + "  (" + e.length + ")", HeadingLevel.HEADING_2));
+  k.push(h(bereichName(g) + "  (" + e.length + ")", HeadingLevel.HEADING_2));
   k.push(tabelle(e.slice().sort((a, b) => a.localeCompare(b, "de"))));
   k.push(p("", { after: 200 }));
 }
@@ -167,8 +191,8 @@ const doc = new Document({
               children: k }],
 });
 Packer.toBuffer(doc).then(b => {
-  fs.writeFileSync("SmartVoc-Texte-Deutsch_v3.docx", b);
-  fs.writeFileSync("texte-karte-v3.json", JSON.stringify(karte, null, 1));
+  fs.writeFileSync(EN ? "SmartVoc-Texts-English.docx" : "SmartVoc-Texte-Deutsch_v3.docx", b);
+  fs.writeFileSync(EN ? "texte-karte-en.json" : "texte-karte-v3.json", JSON.stringify(karte, null, 1));
   const geaendert = [...ERSATZ.keys()].length;
   console.log("Teil A:", nA, "| Teil B:", nB, "| geänderte Beschriftungen:", geaendert);
 });

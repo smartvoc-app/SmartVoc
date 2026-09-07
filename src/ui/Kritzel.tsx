@@ -18,6 +18,7 @@
  * und allen drei Farbschemata von selbst.
  */
 import React from "react";
+import { txt } from "../lib/i18n";
 
 let lfd = 0;
 
@@ -63,8 +64,8 @@ export function KritzelKarte({ titel }: { titel?: string }) {
                 fontSize="15" fontFamily="var(--serif)">der Baum</text>
           <text x="240" y="72" textAnchor="middle" fill="var(--ink-faint)" stroke="none"
                 fontSize="9">Der Baum ist hoch.</text>
-          <text x="66" y="108" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">Frage</text>
-          <text x="240" y="108" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">Lösung</text>
+          <text x="66" y="108" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("Frage")}</text>
+          <text x="240" y="108" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("Lösung")}</text>
         </g>
       )}
     </Figur>
@@ -72,6 +73,10 @@ export function KritzelKarte({ titel }: { titel?: string }) {
 }
 
 /** Die vier Antwortarten — drei zusammen, eine abgesetzt. */
+/* Anmerkung: Diese Zeichnung bricht Woerter von Hand um ("Multiple-" /
+ * "Choice"). Die Haelften sind deshalb NICHT uebersetzbar -- ein halbes Wort
+ * ergibt keinen Schluessel. Sie steht in keiner Anleitung mehr; wer sie
+ * wieder einsetzt, muss die Beschriftungen vorher ganz machen. */
 export function KritzelAntwortarten({ titel }: { titel?: string }) {
   const K = (x: number, b: string, farbe: string) => (
     <g key={x}>
@@ -86,15 +91,15 @@ export function KritzelAntwortarten({ titel }: { titel?: string }) {
            strokeLinecap="round" strokeLinejoin="round">
           {K(6, "Eintippen", "var(--ink)")}
           {K(74, "Multiple-", "var(--ink)")}
-          <text x="105" y="52" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">Choice</text>
+          <text x="105" y="52" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">"Choice"</text>
           {K(142, "Selbst-", "var(--ink)")}
-          <text x="173" y="52" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">kontrolle</text>
+          <text x="173" y="52" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">"kontrolle"</text>
           <path d="M214 10v54" stroke="var(--line)" strokeDasharray="3 4" />
           <rect x="226" y="14" width="66" height="46" rx="5" fill="var(--bg-2)" stroke="var(--ink-faint)" strokeDasharray="4 3" />
-          <text x="259" y="36" textAnchor="middle" fill="var(--ink-soft)" stroke="none" fontSize="9">Nur durch-</text>
-          <text x="259" y="48" textAnchor="middle" fill="var(--ink-soft)" stroke="none" fontSize="9">blättern</text>
-          <text x="80" y="80" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">zählen für deinen Lernstand</text>
-          <text x="259" y="80" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">zählt nicht</text>
+          <text x="259" y="36" textAnchor="middle" fill="var(--ink-soft)" stroke="none" fontSize="9">"Nur durch-"</text>
+          <text x="259" y="48" textAnchor="middle" fill="var(--ink-soft)" stroke="none" fontSize="9">"blättern"</text>
+          <text x="80" y="80" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("zählen für deinen Lernstand")}</text>
+          <text x="259" y="80" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("zählt nicht")}</text>
         </g>
       )}
     </Figur>
@@ -120,9 +125,9 @@ export function KritzelKalender({ titel }: { titel?: string }) {
           {Tag(6, "9", "var(--ok)", "1 Liste")}
           {Tag(112, "12", "var(--warn)", "2 Listen")}
           {Tag(218, "19", "var(--bad)", "1 Liste")}
-          <text x="44" y="88" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">bereit</text>
-          <text x="150" y="88" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">auf Kurs</text>
-          <text x="256" y="88" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">im Rückstand</text>
+          <text x="44" y="88" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("bereit")}</text>
+          <text x="150" y="88" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("auf Kurs")}</text>
+          <text x="256" y="88" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("im Rückstand")}</text>
         </g>
       )}
     </Figur>
@@ -162,9 +167,9 @@ export function KritzelListe({ titel }: { titel?: string }) {
           <text x="16" y="30" fill="var(--ink)" stroke="none" fontSize="10" fontWeight="700">Unité 3</text>
           <path d="M16 40h98" stroke="var(--line)" />
           <rect x="16" y="48" width="98" height="18" rx="4" stroke="var(--line)" />
-          <text x="24" y="61" fill="var(--ink-soft)" stroke="none" fontSize="8.5">Wörter ansehen</text>
+          <text x="24" y="61" fill="var(--ink-soft)" stroke="none" fontSize="8.5">{txt("Wörter ansehen")}</text>
           <rect x="16" y="72" width="98" height="18" rx="4" stroke="var(--line)" />
-          <text x="24" y="85" fill="var(--ink-soft)" stroke="none" fontSize="8.5">zusammenführen</text>
+          <text x="24" y="85" fill="var(--ink-soft)" stroke="none" fontSize="8.5">{txt("zusammenführen")}</text>
 
           <path d="M136 58h28M156 52l8 6-8 6" stroke="var(--amber)" strokeWidth="2" />
 
@@ -206,7 +211,7 @@ export function KritzelStart({ titel }: { titel?: string }) {
           <rect x="6" y="16" width="76" height="72" rx="4" fill="var(--card)" />
           <path d="M22 16v72" stroke="var(--bad)" strokeWidth="1" opacity="0.5" />
           {[30, 42, 54, 66].map((y) => <path key={y} d={`M28 ${y}h48`} stroke="var(--line)" />)}
-          <text x="44" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">Foto</text>
+          <text x="44" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">{txt("Foto")}</text>
 
           {pfeil(88, "KI-App")}
 
@@ -218,8 +223,8 @@ export function KritzelStart({ titel }: { titel?: string }) {
               {i === 1 && <rect x="126" y={y - 8} width="60" height="13" rx="3" stroke="var(--amber)" strokeWidth="1.6" />}
             </g>
           ))}
-          <text x="156" y="80" textAnchor="middle" fill="var(--amber)" stroke="none" fontSize="8">korrigiert</text>
-          <text x="156" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">prüfen</text>
+          <text x="156" y="80" textAnchor="middle" fill="var(--amber)" stroke="none" fontSize="8">{txt("korrigiert")}</text>
+          <text x="156" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">{txt("prüfen")}</text>
 
           {pfeil(200)}
 
@@ -228,7 +233,7 @@ export function KritzelStart({ titel }: { titel?: string }) {
           <text x="262" y="50" textAnchor="middle" fill="var(--ink)" stroke="none"
                 fontSize="12" fontFamily="var(--serif)">la clé</text>
           <text x="262" y="66" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8">der Schlüssel</text>
-          <text x="262" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">üben</text>
+          <text x="262" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">{txt("üben")}</text>
         </g>
       )}
     </Figur>
@@ -252,7 +257,7 @@ export function KritzelAbstaende({ titel }: { titel?: string }) {
           {gut.slice(1).map(([x, t]) => (
             <text key={t} x={x} y="24" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="7.5">{t}</text>
           ))}
-          <text x="14" y="50" fill="var(--ink-soft)" stroke="none" fontSize="8.5">immer richtig</text>
+          <text x="14" y="50" fill="var(--ink-soft)" stroke="none" fontSize="8.5">{txt("immer richtig")}</text>
 
           {/* untere Reihe: ein Fehler in der Mitte */}
           <path d="M14 92h276" stroke="var(--line)" strokeWidth="1.3" />
@@ -261,10 +266,10 @@ export function KritzelAbstaende({ titel }: { titel?: string }) {
                     fill={fehler ? "var(--bad)" : "var(--ok)"} stroke="none" />
           ))}
           <path d="M104 74v10" stroke="var(--bad)" strokeWidth="1.6" />
-          <text x="104" y="70" textAnchor="middle" fill="var(--bad)" stroke="none" fontSize="7.5">Fehler</text>
+          <text x="104" y="70" textAnchor="middle" fill="var(--bad)" stroke="none" fontSize="7.5">{txt("Fehler")}</text>
           <path d="M110 104h22M126 100l6 4-6 4" stroke="var(--bad)" strokeWidth="1.4" />
-          <text x="150" y="110" fill="var(--ink-faint)" stroke="none" fontSize="7.5">wieder von vorn</text>
-          <text x="14" y="108" fill="var(--ink-soft)" stroke="none" fontSize="8.5">mit Fehler</text>
+          <text x="150" y="110" fill="var(--ink-faint)" stroke="none" fontSize="7.5">{txt("wieder von vorn")}</text>
+          <text x="14" y="108" fill="var(--ink-soft)" stroke="none" fontSize="8.5">{txt("mit Fehler")}</text>
         </g>
       )}
     </Figur>
@@ -314,18 +319,18 @@ export function KritzelEndspurt({ titel }: { titel?: string }) {
         <g filter={f} fill="none" strokeLinecap="round" strokeLinejoin="round">
           {/* Prüfungstag */}
           <path d="M246 14v100" stroke="var(--amber)" strokeWidth="2" strokeDasharray="4 3" />
-          <text x="246" y="10" textAnchor="middle" fill="var(--amber)" stroke="none" fontSize="8" fontWeight="700">Prüfung</text>
+          <text x="246" y="10" textAnchor="middle" fill="var(--amber)" stroke="none" fontSize="8" fontWeight="700">{txt("Prüfung")}</text>
 
           <path d="M14 40h276" stroke="var(--line)" strokeWidth="1.3" />
           {ohne.map((x) => <circle key={x} cx={x} cy="40" r="4" fill="var(--ok)" stroke="none" />)}
-          <text x="14" y="56" fill="var(--ink-soft)" stroke="none" fontSize="8.5">ohne Zieldatum</text>
+          <text x="14" y="56" fill="var(--ink-soft)" stroke="none" fontSize="8.5">{txt("ohne Zieldatum")}</text>
 
           <path d="M14 92h276" stroke="var(--line)" strokeWidth="1.3" />
           {mit.map((x) => <circle key={x} cx={x} cy="92" r="4" fill="var(--ok)" stroke="none" />)}
           <path d="M162 106h66" stroke="var(--amber)" strokeWidth="1.4" />
           <path d="M162 103v6M228 103v6" stroke="var(--amber)" strokeWidth="1.4" />
-          <text x="195" y="120" textAnchor="middle" fill="var(--amber)" stroke="none" fontSize="7.5">Endspurt</text>
-          <text x="14" y="108" fill="var(--ink-soft)" stroke="none" fontSize="8.5">mit Zieldatum</text>
+          <text x="195" y="120" textAnchor="middle" fill="var(--amber)" stroke="none" fontSize="7.5">{txt("Endspurt")}</text>
+          <text x="14" y="108" fill="var(--ink-soft)" stroke="none" fontSize="8.5">{txt("mit Zieldatum")}</text>
         </g>
       )}
     </Figur>
@@ -350,11 +355,11 @@ export function KritzelVergessen({ titel }: { titel?: string }) {
           <path d="M166 22C204 44 240 52 286 56" stroke="var(--ink)" strokeWidth="2" />
           <circle cx="92" cy="20" r="3.4" fill="var(--ok)" stroke="none" />
           <circle cx="166" cy="22" r="3.4" fill="var(--ok)" stroke="none" />
-          <text x="16" y="16" fill="var(--ink-faint)" stroke="none" fontSize="9">alles</text>
-          <text x="8" y="106" fill="var(--ink-faint)" stroke="none" fontSize="9">weg</text>
-          <text x="286" y="124" textAnchor="end" fill="var(--ink-faint)" stroke="none" fontSize="9">Zeit →</text>
-          <text x="186" y="98" fill="var(--bad)" stroke="none" fontSize="9">ohne Wiederholen</text>
-          <text x="176" y="14" fill="var(--ok)" stroke="none" fontSize="9">mit</text>
+          <text x="16" y="16" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("alles")}</text>
+          <text x="8" y="106" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("weg")}</text>
+          <text x="286" y="124" textAnchor="end" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("Zeit →")}</text>
+          <text x="186" y="98" fill="var(--bad)" stroke="none" fontSize="9">{txt("ohne Wiederholen")}</text>
+          <text x="176" y="14" fill="var(--ok)" stroke="none" fontSize="9">{txt("mit")}</text>
         </g>
       )}
     </Figur>
@@ -371,11 +376,11 @@ export function KritzelFenster({ titel }: { titel?: string }) {
                 fill="color-mix(in srgb, var(--ok) 18%, var(--card))" stroke="var(--ok)" strokeWidth="1.8" />
           <path d="M20 46h268" stroke="var(--ink-faint)" strokeWidth="1.3" />
           <path d="M28 18C56 60 84 76 288 82" stroke="var(--ink)" strokeWidth="2" />
-          <text x="66" y="96" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">zu früh</text>
-          <text x="150" y="96" textAnchor="middle" fill="var(--ok)" stroke="none" fontSize="9" fontWeight="700">jetzt</text>
-          <text x="240" y="96" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">zu spät</text>
-          <text x="66" y="34" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">weißt du noch</text>
-          <text x="240" y="34" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">ist weg</text>
+          <text x="66" y="96" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("zu früh")}</text>
+          <text x="150" y="96" textAnchor="middle" fill="var(--ok)" stroke="none" fontSize="9" fontWeight="700">{txt("jetzt")}</text>
+          <text x="240" y="96" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("zu spät")}</text>
+          <text x="66" y="34" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">{txt("weißt du noch")}</text>
+          <text x="240" y="34" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">{txt("ist weg")}</text>
         </g>
       )}
     </Figur>
@@ -392,10 +397,10 @@ export function KritzelTesteffekt({ titel }: { titel?: string }) {
           <rect x="192" y="20" width="72" height="72" rx="5"
                 fill="color-mix(in srgb, var(--ok) 20%, var(--card))" stroke="var(--ok)" strokeWidth="1.8" />
           <path d="M20 92h268" stroke="var(--ink-faint)" strokeWidth="1.3" />
-          <text x="70" y="108" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">5× durchlesen</text>
-          <text x="228" y="108" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">1× lesen, 4× abfragen</text>
-          <text x="70" y="52" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">fühlt sich sicher an</text>
-          <text x="228" y="12" textAnchor="middle" fill="var(--ok)" stroke="none" fontSize="9">bleibt hängen</text>
+          <text x="70" y="108" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("5× durchlesen")}</text>
+          <text x="228" y="108" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">{txt("1× lesen, 4× abfragen")}</text>
+          <text x="70" y="52" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("fühlt sich sicher an")}</text>
+          <text x="228" y="12" textAnchor="middle" fill="var(--ok)" stroke="none" fontSize="9">{txt("bleibt hängen")}</text>
         </g>
       )}
     </Figur>

@@ -1,0 +1,1556 @@
+{
+ "anleitung": [
+  [
+   "Start right away",
+   [
+    [
+     "P",
+     "There is nothing to set up. For every language you have switched on, a hundred words are ready. Tap Practise at the bottom, pick a list, and the first card is there."
+    ],
+    [
+     "S",
+     "From the page in your exercise book to the first card"
+    ],
+    [
+     "P",
+     "Your own words come in whenever you need them. It takes under two minutes:"
+    ],
+    [
+     "L",
+     "Under Word lists tap + New list, then Paste a list. The app gives you a ready-made instruction to copy. Paste it into your AI app and attach a photo of the page from your exercise book; copy what comes back into the app, example sentences and phonetics included."
+    ],
+    [
+     "L",
+     "If you have a date coming up, give the list a target date: the day the words have to be solid. It also works without one."
+    ],
+    [
+     "L",
+     "Back to Practise, pick the new list, go."
+    ],
+    [
+     "P",
+     "From now on the app decides which word comes back when. The next chapter says why."
+    ]
+   ]
+  ],
+  [
+   "What SmartVoc does differently",
+   [
+    [
+     "P",
+     "Most vocabulary programs let you work through a list until you know it. SmartVoc keeps a record for every single word: how long it lasts with you, how hard you find it, and when you are about to forget it. That is exactly when it comes back."
+    ],
+    [
+     "S",
+     "Every correct answer pushes the word further out"
+    ],
+    [
+     "P",
+     "That has two consequences that surprise people at first. Words that are solid disappear from the queue for weeks, so they cost you no time at all. And words you hesitated over are back tomorrow. Both are the reason why ten minutes a day does more than an hour on Saturday."
+    ],
+    [
+     "P",
+     "You cannot overrule this planning. What you do control: which words come in, how many per day, and how strictly the app marks your answers. That is further down under Settings worth changing. How the maths works is in the chapter Behind it."
+    ]
+   ]
+  ],
+  [
+   "SmartVoc at a glance",
+   [
+    [
+     "P",
+     "Four areas sit side by side at the bottom. Each answers a different question."
+    ],
+    [
+     "S",
+     "Four areas, four questions"
+    ],
+    [
+     "L",
+     "Practise: what should I do now? This is where the learning happens."
+    ],
+    [
+     "L",
+     "Practice plan: will I be ready in time? Your dates and where you stand."
+    ],
+    [
+     "L",
+     "Word lists: where do my words come from? Creating, filling, managing."
+    ],
+    [
+     "L",
+     "Statistics: where do I stand? What is solid, what is wobbly, and whether it is moving."
+    ],
+    [
+     "P",
+     "Two buttons sit at the top right. The cog holds the Settings, the question mark this guide, the Study tips and the chapter Behind it."
+    ],
+    [
+     "P",
+     "The colours do not mean the same thing everywhere. SmartVoc uses colour in two places, and the two scales measure different things. Confusing them means misreading the app."
+    ],
+    [
+     "P",
+     "The five levels apply to a single word. The bar reads from left to right:"
+    ],
+    [
+     "L",
+     "solid: lasts longer than two weeks and only rarely comes back."
+    ],
+    [
+     "L",
+     "nearly: lasts up to two weeks. Written out, the level is nearly solid."
+    ],
+    [
+     "L",
+     "wobbly: lasts less than three days. Written out, still wobbly."
+    ],
+    [
+     "L",
+     "new: practised only once or twice."
+    ],
+    [
+     "L",
+     "unpractised: never asked yet."
+    ],
+    [
+     "P",
+     "You will find this bar in the same form everywhere: under the card, on every list and in Statistics. Tapping an entry in the legend opens the words behind it."
+    ],
+    [
+     "P",
+     "The traffic light applies to a whole list. It only counts how many of the list's words have reached the level solid: from 95 per cent the list counts as ready, from 70 per cent as on track, below that as behind. You can move the thresholds."
+    ]
+   ]
+  ],
+  [
+   "The «Practise» area",
+   [
+    [
+     "P",
+     "In the row above the card you choose what gets asked: the language, the direction, and one or several of your word lists, or one of the four Smart lists the app puts together itself. The selection may mix languages."
+    ],
+    [
+     "S",
+     "Question on the front, solution on the back"
+    ],
+    [
+     "P",
+     "Four answer types are available under the card. You can switch mid-session:"
+    ],
+    [
+     "L",
+     "Typing: you write the answer yourself. The most demanding, and the most effective. When in doubt, this one."
+    ],
+    [
+     "L",
+     "Multiple choice: you pick from several options. Easier, good at the start or when you are tired."
+    ],
+    [
+     "L",
+     "Self-check: you think, turn the card over and judge yourself. Best to write the answer down first."
+    ],
+    [
+     "L",
+     "Browse only: for skimming a list. Counts for nothing, neither progress nor statistics."
+    ],
+    [
+     "P",
+     "The direction can be switched just as freely: foreign language to German, the other way round, or mixed. Change both regularly, otherwise your memory learns the pattern instead of the word."
+    ],
+    [
+     "P",
+     "There is a bar above and below the card. They measure different things. Above the card is the round progress: how much of this round is done. Every word needs a certain number of correct answers for that. A mistake resets its counter, and the bar drops back a little."
+    ],
+    [
+     "P",
+     "Below the card is your progress: how the words in this selection spread across the five levels. The round progress starts fresh every round, your progress moves over weeks. In browse mode both are missing, because that mode changes nothing."
+    ],
+    [
+     "P",
+     "How your answer is marked. When you type, the app compares your answer with the solution and reaches one of three verdicts: right, nearly right or wrong. Nearly right is not politeness, it counts differently from wrong. In Statistics, right and nearly right are counted together as hits."
+    ],
+    [
+     "L",
+     "Typing slips are recognised as long as the answer is close enough to the solution. Depending on how close, they count as nearly right."
+    ],
+    [
+     "L",
+     "Accents and umlauts are treated leniently by default. Set to strict, “grun” instead of “grün” counts as a mistake."
+    ],
+    [
+     "L",
+     "The article counts half by default. You can make it optional or require it in full. If it does not count, it is not shown on the card at all; the gender is shown instead."
+    ],
+    [
+     "L",
+     "Capitalisation counts by default. ss and ß always count as the same."
+    ],
+    [
+     "P",
+     "After each answer the app shows which characters were missing, surplus or different. If a verdict annoys you, the lever is in the settings under Answer checking."
+    ],
+    [
+     "P",
+     "When a round is over. Every word in the selection has a goal for this round: a number of correct answers it needs. A wobbly word needs three, a new one two, a nearly solid or due one needs one. Once all goals are met, the round is done. That is why you see more cards than words, and why a mistake costs something: it resets that word's counter."
+    ],
+    [
+     "P",
+     "Two numbers limit how big a round gets in the first place:"
+    ],
+    [
+     "L",
+     "Due today holds at most thirty words, at most ten of them brand new. You set both numbers yourself."
+    ],
+    [
+     "L",
+     "If a list's date falls within the next three days, these limits do not apply to its words. Holding words back shortly before a deadline would make no sense."
+    ],
+    [
+     "P",
+     "After forty cards shown, the app also asks whether you want to stop for today. You can carry on regardless."
+    ]
+   ]
+  ],
+  [
+   "The «Practice plan» area",
+   [
+    [
+     "P",
+     "The practice plan shows when each list has to be solid and how far along you are, as a calendar or as a list. Only lists you have given a target date appear here. All the others are practised as normal, they just do not show up here."
+    ],
+    [
+     "S",
+     "The closer the date, the tighter the repetitions"
+    ],
+    [
+     "P",
+     "The target date. Give a list the day it has to be solid. You set it under Word lists, on the list itself."
+    ],
+    [
+     "P",
+     "From then on the app counts backwards: from about three weeks before the date it demands more confidence from those words, which brings them up more often. In the last few days the daily limit no longer applies to them. After the date everything returns to normal."
+    ],
+    [
+     "P",
+     "If you practise several lists together, the words of the list with the nearer date come up more often by themselves. You do not have to set anything for that."
+    ],
+    [
+     "P",
+     "The colour of a day shows how ready the list is. If several lists fall on one day, the colour shows the weakest."
+    ],
+    [
+     "P",
+     "Tap a day and you see which lists are involved, how many of their words are likely to be solid on the day, and you can start practising straight from there."
+    ]
+   ]
+  ],
+  [
+   "The «Word lists» area",
+   [
+    [
+     "P",
+     "All your words live in lists, and every word belongs to exactly one list. What a list is, is up to you: a page in your exercise book, a lesson, the material for a test."
+    ],
+    [
+     "S",
+     "First the list, then its words"
+    ],
+    [
+     "P",
+     "Four ways lead in. Picking the right one saves you the most work:"
+    ],
+    [
+     "L",
+     "Paste a list: for a whole page. With the AI instruction you can have your AI app build it from a photo."
+    ],
+    [
+     "L",
+     "Type a single word: for additions."
+    ],
+    [
+     "L",
+     "Take a shared list: when someone has sent you a code or a link."
+    ],
+    [
+     "L",
+     "Read a spreadsheet: Excel or CSV, web version only. The blank template sits right next to it."
+    ],
+    [
+     "P",
+     "The route via AI. It works with any AI that can read images. Tap Copy AI prompt in the app, switch to your AI app, paste the instruction and attach a photo of your page. Copy the answer back into the large field and tap Continue to checking."
+    ],
+    [
+     "P",
+     "The checking window. Every word is listed there on its own, with all its details. Look over it and correct whatever went wrong. At the end you choose the list. Photos are misread now and then; this is where you catch it."
+    ],
+    [
+     "P",
+     "Changing lists and words. When you open a list you first see the list itself: target date, progress and the actions. The words sit one level down under View and edit words. Tap a row there and use Edit or Delete; several at once works too."
+    ],
+    [
+     "P",
+     "Two lists that belong together can be merged. If you delete a list, its words are kept and only leave that list."
+    ],
+    [
+     "P",
+     "Exporting and sharing. Export gives you your words back as text or as an Excel spreadsheet, in the same format the app reads back in, and without an account. Share sends a list to someone else; they get their own copy, and your progress stays separate. Sharing needs an account."
+    ],
+    [
+     "P",
+     "The four Smart lists. Next to your own lists there are four the app puts together every day, across everything you have:"
+    ],
+    [
+     "L",
+     "Due today: your portion for today, due words and new ones."
+    ],
+    [
+     "L",
+     "Due words: everything that is up for review now."
+    ],
+    [
+     "L",
+     "Still wobbly: exactly the words on the level still wobbly."
+    ],
+    [
+     "L",
+     "Due soon: still solid, but coming up again shortly."
+    ],
+    [
+     "P",
+     "You can look at them and practise them, but not change them. Below that there is also All words. That is not a Smart list, it is your whole collection."
+    ]
+   ]
+  ],
+  [
+   "The «Statistics» area",
+   [
+    [
+     "P",
+     "Statistics goes into detail. At the top you choose whether you are looking at all languages or one, all words or a particular list, and whether it covers the last 7, 30 or 90 days."
+    ],
+    [
+     "S",
+     "The same five levels everywhere"
+    ],
+    [
+     "L",
+     "Stock: how your words spread across the five levels."
+    ],
+    [
+     "L",
+     "Progress: how many words came in, how much you practised, on how many days, and how many words newly reached the level solid."
+    ],
+    [
+     "L",
+     "Analyses: how your answers turn out, what they fail on, how quickly a word becomes solid for you, how long your words last, how long your sessions are, and at what time of day you do best."
+    ],
+    [
+     "L",
+     "Sticking points and Stubborn: the words that keep getting away from you. You can practise them straight from there."
+    ],
+    [
+     "P",
+     "Analyses with too little data behind them are not shown at all. That is why the page is fairly empty at the start. It fills up."
+    ]
+   ]
+  ],
+  [
+   "Settings worth changing",
+   [
+    [
+     "P",
+     "The defaults follow the research on learning and suit most people. Three of them are still worth a look:"
+    ],
+    [
+     "L",
+     "Learning intensity: how reliably you want to know a word when it comes back. More intense means practising more often, and more of it sticks. Less intense means fewer cards, and more slips away. There is no right answer here, only a trade."
+    ],
+    [
+     "L",
+     "New words per day: your only lever on the quantity. Fewer new words means less backlog, not slower learning."
+    ],
+    [
+     "L",
+     "Answer checking: how strictly accents, articles and capitalisation are marked."
+    ],
+    [
+     "P",
+     "Beyond that there are smaller things that make daily use nicer: what appears on the card (phonetics, forms, example sentences), what the app opens with, the colour scheme and the card typeface. Everything can be reset individually, and whatever you have changed is marked."
+    ],
+    [
+     "P",
+     "Under Advanced you can watch the model do its arithmetic. You never need to."
+    ]
+   ]
+  ],
+  [
+   "With or without an account",
+   [
+    [
+     "P",
+     "The app runs completely without an account and completely without a connection. Without signing in, everything you enter stays on this device, and nowhere else."
+    ],
+    [
+     "P",
+     "Signing in adds three things: the same state on all your devices, sharing lists, and your words surviving if something happens to the device. You can sign in later at any time and take your existing lists with you."
+    ],
+    [
+     "P",
+     "You delete your account in the settings under Account & data. That also removes the data on the server, and it cannot be undone."
+    ]
+   ]
+  ],
+  [
+   "Common questions",
+   [
+    [
+     "P",
+     "Why is the same word back already?"
+    ],
+    [
+     "P",
+     "Because you hesitated last time, or got it wrong. The app brings a word back shortly before you forget it, and for a wobbly word that is tomorrow."
+    ],
+    [
+     "P",
+     "Why does the app ask me words I have known for ages?"
+    ],
+    [
+     "P",
+     "Because even words that sit firmly need a refresh every few weeks; otherwise they do fade over the months. It is only a few cards, and they cost you almost no time."
+    ],
+    [
+     "P",
+     "I was away for a week. How bad is it?"
+    ],
+    [
+     "P",
+     "Not bad. The due words pile up, but Due today only gives you the portion for today. You do not get the whole backlog at once."
+    ],
+    [
+     "P",
+     "A word is spelled wrong. How do I change it?"
+    ],
+    [
+     "P",
+     "Open the list, View and edit words, tap the row, Edit. Everything can be changed or added there: the word, example sentences, phonetics, forms and gender."
+    ],
+    [
+     "P",
+     "My progress is off. Can I start again?"
+    ],
+    [
+     "P",
+     "In the settings under Account & data you can reset your progress: points, history and daily streak, in every language. Your words stay. It cannot be undone."
+    ],
+    [
+     "P",
+     "I want to leave SmartVoc. Do I get my words out?"
+    ],
+    [
+     "P",
+     "Yes. Export gives you every list as text or as an Excel spreadsheet, without an account and without a detour."
+    ]
+   ]
+  ]
+ ],
+ "tipps": [
+  [
+   "A little every day beats a lot now and then",
+   "Ten to fifteen minutes a day does more than an hour at the weekend. In the gaps between sessions your brain does the rest by itself."
+  ],
+  [
+   "Think first, then turn the card over",
+   "Actually type your answer before you look at the solution. That effort of remembering is what makes a word stick, not looking at it again."
+  ],
+  [
+   "A word needs many encounters",
+   "Almost nobody knows a word after seeing it once. Meeting the same word again over several days is normal, and exactly how it should be."
+  ],
+  [
+   "Make friends with your mistakes",
+   "The words you got wrong are the valuable ones. In Statistics, “Stubborn” collects exactly those for focused practice."
+  ],
+  [
+   "Few new words, properly learnt",
+   "Eight to twelve new words a day is plenty. Better to really know a few than to half-know fifty."
+  ],
+  [
+   "Mix your words up",
+   "Practise in a jumble rather than one list straight through. It feels harder and trains your memory noticeably better."
+  ],
+  [
+   "Say the word under your breath",
+   "Read the word and mouth it silently as you go. The more senses join in, the better it sticks."
+  ],
+  [
+   "Learn the word in context",
+   "Put a new word into a small sentence or a picture in your head. “The dog barks” is easier to remember than “dog” on its own."
+  ],
+  [
+   "Practise both directions",
+   "First English to German, then German to English. You only really know a word once it works both ways."
+  ],
+  [
+   "Sleep finishes the job",
+   "What you practise in the evening settles overnight. A short review before bed often works particularly well."
+  ]
+ ],
+ "theorie_lead": "SmartVoc does not guess when a word comes back. It works it out, with a model researchers have been refining for over a hundred years. If you want to know why a word only reappears in three weeks, the answer is here.",
+ "theorie": [
+  [
+   "Forgetting is not a failure",
+   [
+    [
+     "P",
+     "In the late 19th century Hermann Ebbinghaus taught himself meaningless syllables and measured how much of them was still there after an hour, a day, a week. Out came the forgetting curve: freshly learnt material drops steeply at first and then ever more gently."
+    ],
+    [
+     "S",
+     "Every repetition makes the curve flatter"
+    ],
+    [
+     "P",
+     "What matters is not the loss but what happens afterwards. After every repetition the curve falls more gently than before. The word holds longer."
+    ],
+    [
+     "P",
+     "So forgetting is not a failure but the normal case. And the lever you can pull."
+    ]
+   ]
+  ],
+  [
+   "The best moment is just before you forget",
+   [
+    [
+     "P",
+     "Repeat too early and the word is still present, so the repetition does little. Repeat too late and it is gone, so you learn it again."
+    ],
+    [
+     "S",
+     "In between lies the window the app is looking for"
+    ],
+    [
+     "P",
+     "In between lies a window where a repetition does the most: when remembering just about works but costs effort. It is called spaced repetition, and the effect is among the best evidenced in learning research."
+    ],
+    [
+     "P",
+     "That window is exactly what the app looks for, word by word. Which is why a word you know well only comes back in three weeks, and one you hesitated over comes back tomorrow."
+    ]
+   ]
+  ],
+  [
+   "Retrieving beats re-reading",
+   [
+    [
+     "P",
+     "Remembering something makes it stick more than reading it again. The technical term is the testing effect."
+    ],
+    [
+     "S",
+     "Reading five times gives less than testing four times"
+    ],
+    [
+     "P",
+     "Reading a word list through five times does less for you than reading it once and testing yourself four times. Even though the reading feels considerably safer."
+    ],
+    [
+     "P",
+     "That is why typing is the recommended answer type, and why just flipping through is explicitly marked as not counting. And why it pays to really think before you turn the card over, uncomfortable as it is."
+    ]
+   ]
+  ],
+  [
+   "What the app knows about each word",
+   [
+    [
+     "P",
+     "Behind the scenes runs FSRS, a modern memory model. It keeps three numbers for every word:"
+    ],
+    [
+     "L",
+     "How long it holds. This grows after every correct answer. That is the flattening curve from above."
+    ],
+    [
+     "L",
+     "How stubborn it is. Some words are difficult no matter how often you practise them. Those come back more often and get marked as “persistent”."
+    ],
+    [
+     "L",
+     "How well you still know it right now. When this drops below your target, the word is due."
+    ],
+    [
+     "P",
+     "You can move that target in the settings. A higher target means: practise more often, more sticks. A lower one: fewer cards a day, more forgetting. There is no right answer here, only a trade you make yourself."
+    ],
+    [
+     "P",
+     "What the app does not do: it does not tune the model to you personally, and records nothing for that purpose. The model's numbers are the same for everyone."
+    ]
+   ]
+  ],
+  [
+   "Why things change before a test",
+   [
+    [
+     "P",
+     "Give a word list a target date and the app raises the target for those words as the date approaches."
+    ],
+    [
+     "P",
+     "That is not a second calculation but the same one with a stricter target. A higher retention target means shorter intervals, so the words come up more often. After the date everything falls back to your normal target."
+    ],
+    [
+     "P",
+     "In the last days before the date the app also lifts the daily cap for those words. It helps nobody if the test words of all things are the ones stuck at the limit."
+    ]
+   ]
+  ],
+  [
+   "Why learning is allowed to feel hard",
+   [
+    [
+     "P",
+     "Learning research has a term that sounds like a contradiction at first: desirable difficulties. It means hurdles that make practice harder in the moment and are worth more precisely because of it."
+    ],
+    [
+     "P",
+     "Spaced practice is one. Retrieving instead of re-reading is the second. The third is interleaving: practising words mixed up instead of one list after another in a block."
+    ],
+    [
+     "P",
+     "All three share the same catch. They feel worse than they are. Go through a list five times in a row and you feel secure, and a week later you are not. Practise mixed and spaced and you make more mistakes along the way and remember more at the end."
+    ],
+    [
+     "P",
+     "So how practice feels is a poor guide, and that is why the app takes the order out of your hands."
+    ]
+   ]
+  ],
+  [
+   "What the numbers you see mean",
+   [
+    [
+     "P",
+     "The round progress above the card applies to the current round only: how much of what you set out to do right now is done. It starts fresh with every round."
+    ],
+    [
+     "P",
+     "The mastery level is something else. It shows how all the words of this practice spread across the five levels, changes slowly over weeks, and is the same figure that appears as the traffic light in the practice plan and as the bar in the statistics."
+    ],
+    [
+     "P",
+     "It is the same calculation everywhere: the share of words that have stuck or nearly stuck."
+    ]
+   ]
+  ],
+  [
+   "What is in your hands",
+   [
+    [
+     "L",
+     "Regularity. Ten minutes a day beat an hour on Saturday, because the model builds on intervals and not on volume."
+    ],
+    [
+     "L",
+     "Honesty. With self-check, cheating only cheats you out of the repetition."
+    ],
+    [
+     "L",
+     "Few new words. Eight to twelve a day is plenty. Every new word creates future repetitions."
+    ]
+   ]
+  ],
+  [
+   "Further reading",
+   [
+    [
+     "L",
+     "Forgetting curve (Wikipedia): Ebbinghaus’ measurement and what follows from it"
+    ],
+    [
+     "L",
+     "Spaced repetition (Wikipedia): why intervals work"
+    ],
+    [
+     "L",
+     "Testing effect (Wikipedia): retrieving beats re-reading"
+    ],
+    [
+     "L",
+     "FSRS: the model this app calculates with"
+    ]
+   ]
+  ]
+ ],
+ "datenschutz": [
+  [
+   "P",
+   "In short: this app collects nothing about you that is not part of learning. It stores what you enter yourself, and how well you know your words. It needs no more than an email address, and only if you sign in."
+  ],
+  [
+   "H",
+   "What is stored"
+  ],
+  [
+   "P",
+   "Your words, word lists and settings. Along with that, your progress: for each word, when you last practised it, whether the answer was right, how often you have had it, and how firmly it currently sits according to the app's arithmetic. That is what determines when a word comes back."
+  ],
+  [
+   "P",
+   "If you sign in, additionally your email address and a display name you choose yourself."
+  ],
+  [
+   "H",
+   "Where it is kept"
+  ],
+  [
+   "P",
+   "Without signing in, everything stays on this device, in your browser's storage or the app's. The app also stores its own program files there so it works without an internet connection. You can remove both by clearing the site data or deleting the app."
+  ],
+  [
+   "P",
+   "If you sign in, everything is additionally stored on a server so you have the same state on several devices. That server is in Frankfurt am Main, Germany. It is operated by Supabase, Inc., a company based in the USA; the processing is covered by a data processing agreement with the European Commission's standard contractual clauses. The transfer is encrypted, and the database rules let only you reach your own data."
+  ],
+  [
+   "P",
+   "When connecting to the server, the upstream service Cloudflare sets a technical cookie to fend off automated access. It lives for half an hour and serves security only."
+  ],
+  [
+   "P",
+   "We run this database ourselves. That also means: as the publisher of the app we can in principle look at the stored data, like anyone who runs their own server. We only do so when it is necessary to operate the service, for example to track down a fault."
+  ],
+  [
+   "H",
+   "Why we are allowed to"
+  ],
+  [
+   "P",
+   "We do not ask your permission to store your progress, and there is a reason: it is the service you sign up for. Without it there would be nothing to sync. Consent would be the wrong basis here, because you could withdraw it and we would then have to stop the very service you had just signed up for. Legally we therefore rely on the performance of our contract with you."
+  ],
+  [
+   "P",
+   "The moment we wanted to use your data for anything else, say for analyses across several users, for research or for advertising, we would ask you first. Today we do none of that."
+  ],
+  [
+   "H",
+   "What does NOT happen"
+  ],
+  [
+   "P",
+   "No advertising, no tracking pixels, no passing on to third parties, no selling, no analysis across several users. What the app knows about your progress serves one purpose only: showing you the right words at the right time. It does not evaluate how you behave otherwise, and the learning algorithm is not adapted to you; it uses the same values for everyone."
+  ],
+  [
+   "H",
+   "Shared word lists"
+  ],
+  [
+   "P",
+   "When you share a word list, its contents are stored under a random code. Whoever has the code can take a copy. Your name is not attached, and your progress is not passed on."
+  ],
+  [
+   "H",
+   "Your rights"
+  ],
+  [
+   "P",
+   "You can ask what is stored about you, have it corrected, and you can export everything yourself as a file or delete your account entirely at any time. Export and deletion are in the settings under “Account & data”. Deleting also removes the data on the server, and it cannot be undone. For anything else, a message to the address given in the imprint is enough."
+  ],
+  [
+   "H",
+   "Children"
+  ],
+  [
+   "P",
+   "The app is for anyone learning vocabulary, from school lessons to studying on your own. It contains no advertising and no purchases."
+  ],
+  [
+   "P",
+   "Without an account we collect no personal data at all. Anyone under 16 should only create an account with a parent's agreement; none is needed for learning."
+  ],
+  [
+   "H",
+   "Responsible"
+  ],
+  [
+   "P",
+   "Martin Keller, Switzerland. Questions about data protection go to the address given in the imprint."
+  ]
+ ],
+ "impressum": [
+  [
+   "H",
+   "Publisher"
+  ],
+  [
+   "P",
+   "Martin Keller, Switzerland"
+  ],
+  [
+   "H",
+   "Contact"
+  ],
+  [
+   "P",
+   "Questions, faults and feedback go to the address given in the App Store."
+  ],
+  [
+   "H",
+   "Contents"
+  ],
+  [
+   "P",
+   "The core vocabulary supplied with the app and all its texts come from the publisher. The words you enter yourself are yours."
+  ],
+  [
+   "H",
+   "Work by others"
+  ],
+  [
+   "P",
+   "The repetition intervals are computed by FSRS, a freely available memory model. The typefaces are Source Serif 4, Hanken Grotesk and Patrick Hand, all under the SIL Open Font License."
+  ]
+ ],
+ "oberflaeche": {
+  "Rahmen und Reiter": [
+   "Back",
+   "SmartVoc",
+   "Account & sync",
+   "Account",
+   "Sign in",
+   "Settings",
+   "Practise",
+   "Practice plan"
+  ],
+  "Konto": [
+   "Password changed",
+   "Display name saved",
+   "Display name",
+   "Edit display name",
+   "No display name set yet. Until then the app shows your email address. Tap the pencil to set one.",
+   "Your words, lists and progress are synced and available on all your devices. Without a connection everything keeps working and catches up next time.",
+   "Sign out",
+   "New password",
+   "Repeat the new password",
+   "We will send you a link to set a new password.",
+   "Email",
+   "Back to sign in",
+   "Password",
+   "Forgotten your password?",
+   "On this device only",
+   "No connection, will catch up",
+   "If there is an account for this address, a reset link is on its way. Open it on this device.",
+   "The passwords do not match.",
+   "Account created. If a confirmation email arrives, confirm the address first.",
+   "Reset password",
+   "No account yet? Register"
+  ],
+  "Erweiterte Werte": [
+   "What the app calculates with",
+   "The memory model is called FSRS. For viewing only, nothing here can be changed.",
+   "Your thresholds",
+   "default",
+   "You can change these five in the advanced settings.",
+   "The model's nineteen adjusting screws",
+   "With these numbers the model works out how long a word holds. They come from the research and are the same for everyone, the app does not tune them to you and records nothing for that purpose.",
+   "Close",
+   "First hold: did not know it at all",
+   "days a new word holds when you did not know it the first time",
+   "First hold: with effort",
+   "the same when you had to think hard",
+   "the same when it came easily",
+   "Starting difficulty",
+   "how hard the app judges a word before it knows you",
+   "Difficulty: flattening",
+   "how quickly that first judgement gives way",
+   "Difficulty: swing",
+   "how far a single answer shifts the judgement",
+   "Difficulty: pull to the middle",
+   "how strongly it drifts back to the average over time",
+   "how much the staying power grows after a right answer",
+   "the longer a word already holds, the less is added",
+   "Bonus for a narrow recall",
+   "the more narrowly you still knew it, the more the repetition gives",
+   "how much staying power a word keeps after you forgot it again",
+   "After a slip: difficulty",
+   "how much the difficulty has a say in that",
+   "how much it counts that it held for a long time before",
+   "how much it counts how far away it already was",
+   "Deduction for “with effort”",
+   "how much less it gives when you had to think hard",
+   "Bonus for “easy”",
+   "how much more it gives when it came easily",
+   "what a second run on the same day still gives",
+   "Same day: damping",
+   "how surely you should know a word when it comes back",
+   "from this many days of staying power a word stops wobbling",
+   "Right answers until no longer “new”",
+   "this often a fresh word has to sit before it leaves the level",
+   "Learning intensity",
+   "how quickly the app assumes a word is settling in"
+  ],
+  "Hilfe (Rahmen)": [
+   "Guide",
+   "Study tips",
+   "Behind it",
+   "Help"
+  ],
+  "Geteilte Liste übernehmen": [
+   "Import list",
+   "Paste a code (VT-…) or link",
+   "Cancel",
+   "List not found. Please check the code.",
+   "Sharing is not available right now.",
+   "Could not load the list.",
+   "Shared list",
+   "You get your own copy; words you already have are skipped."
+  ],
+  "Listenwahl": [
+   "{n} words",
+   "{p} % solid",
+   "Name of the word list …",
+   "Add here"
+  ],
+  "Liste einfügen und KI-Prompt": [
+   "The clipboard is empty",
+   "The app cannot reach the clipboard. Paste the text by hand.",
+   "Paste",
+   "Nothing to copy? The AI prompt below fetches the list from a photo of the page.",
+   "From clipboard",
+   "Continue to check",
+   "dog | der Hund cat | die Katze",
+   "le chien | der Hund le chat | die Katze",
+   "el perro | der Hund la casa | das Haus",
+   "il cane | der Hund la casa | das Haus",
+   "o cão | der Hund a casa | das Haus",
+   "canis | canis, canis, m. | Nomen | der Hund liber | liber, librī, m. | Nomen | das Buch",
+   "Formen = die Stammformen (Nomen: Nominativ, Genitiv, Genus; Verb: die vier Stammformen; Deponens: drei; Adjektiv: die drei Genusformen). Bei unveränderlichen Wörtern leer.",
+   "Im Englischen leer, außer bei Wörtern, die es nur im Plural gibt (pl).",
+   "das Stichwort noch einmal, mit Längenzeichen über den langen Vokalen (amicus → amīcus). Keine Lautschrift.",
+   "IPA-Lautschrift des Fremdworts, ohne Klammern, mit Betonungszeichen; beim Nomen ohne den Artikel.",
+   "(Latin without an article, but with principal parts)"
+  ],
+  "Übungsplan": [
+   "All upcoming dates",
+   "all {n} are solid",
+   "{a} of {b} are not solid yet",
+   "runs alongside",
+   "Select {name}",
+   "Statistics",
+   "in {n} days",
+   "Which word list has to stick by when, and how far along you are. Only lists with a target date.",
+   "View",
+   "Calendar",
+   "List",
+   "All languages",
+   "Language",
+   "Previous month",
+   "Go to this month",
+   "Next month",
+   "Coming up",
+   "all dates",
+   "All dates",
+   "Nothing scheduled",
+   "Give a word list a target date under “Word lists” and it will show up here.",
+   "This week",
+   "Later",
+   "No date",
+   "Words from the list with the nearer date come up more often",
+   "{n} word lists selected",
+   "Practise together",
+   "Clear selection",
+   "{n} list",
+   "{n} lists"
+  ],
+  "Üben": [
+   "The four Smart lists",
+   "Got it",
+   "What would you like to practise?",
+   "Word lists",
+   "several possible",
+   "overdue",
+   "Smart lists",
+   "one of these",
+   "What do these mean?",
+   "Explanation",
+   "Done",
+   "Choose a word list",
+   "{n} word lists",
+   "Direction",
+   "randomly mixed",
+   "No word list chosen",
+   "Pick a word list or a Smart list above.",
+   "No word list of your own yet",
+   "You can practise straight away: a hundred words are ready for every language you have switched on. Add your own words here.",
+   "Create a word list",
+   "Nothing to practise here",
+   "Ready",
+   "One moment …",
+   "All solid: nothing due",
+   "Nothing is due here right now. Pick another word list above, or come back later.",
+   "Browsed through",
+   "You have looked at every card in this selection. Looking is not yet learning: switch to an answer type that counts.",
+   "Browse again",
+   "and {n} more",
+   "Round complete",
+   "Right",
+   "{n} right",
+   "Wrong",
+   "{n} wrong",
+   "Practise those {n} again",
+   "Done for today",
+   "Whole session again",
+   "Best come back tomorrow, that is what makes it stick",
+   "Just browsing: counts for nothing",
+   "Round progress",
+   "Leave full screen (Esc)",
+   "Enough for today? You have already done {n} cards.",
+   "Next",
+   "Show the card large",
+   "Hint",
+   "You wrote {wort}",
+   "Type in {sprache} …",
+   "Check",
+   "Think first, then reveal",
+   "Show again",
+   "Next card",
+   "Press Enter to continue",
+   "Be honest: it decides when the word comes back",
+   "Just browsing: no progress, no statistics",
+   "Answer type",
+   "Example sentences",
+   "Forms",
+   "Pronunciation",
+   "Stop practising",
+   "Just browsing",
+   "Your portion for today: words that are due, plus a few new ones.",
+   "Words due",
+   "You have not practised these words for a while. Refresh them now and they will stay.",
+   "Still wobbly",
+   "Words you have practised but do not know reliably yet.",
+   "Due soon",
+   "These are still solid. Refreshing them now costs little and keeps them that way.",
+   "Session",
+   "Choose another word list or a Smart list above.",
+   "You can practise straight away with the core vocabulary. Add your own words under “Word lists”.",
+   "{n} word will come back later",
+   "{n} words will come back later",
+   "“{liste}” is due today. All {n} words are in the round, the daily limit is suspended.",
+   "“{liste}” is due tomorrow. All {n} words are in the round, the daily limit is suspended.",
+   "“{liste}” is due in {t} days. All {n} words are in the round, the daily limit is suspended.",
+   "Show the solution"
+  ],
+  "Wörter prüfen": [
+   "Check words",
+   "Base form",
+   "Gender",
+   "Part of speech",
+   "Pronunciation",
+   "… in {sprache}",
+   "not specified",
+   "Separate several sentences with /",
+   "Translations, same order, separated with /",
+   "Add row",
+   "Use {n} word",
+   "Use {n} words"
+  ],
+  "Einstellungen": [
+   "changed",
+   "Default:",
+   "Back to the default",
+   "✓ Default",
+   "Data exported",
+   "DELETE",
+   "Deletion failed",
+   "At least one language must stay switched on",
+   "Reset to default",
+   "The defaults follow learning research: spaced practice, active recall and few new words a day. Change anything you like, whatever you changed is marked.",
+   "Word list when opening",
+   "At most per day",
+   "{n} cards",
+   "New words per day",
+   "{name} · {n} per day",
+   "Options in multiple choice",
+   "Study tips during practice",
+   "Latin",
+   "What the app opens with. You can always pick something else at the top.",
+   "Due today",
+   "Typing sticks best. Self-check means: turn the card over and judge for yourself. Browsing does not count towards your progress.",
+   "Typing",
+   "This is the most “Due today” will ever suggest. Not a goal and not a streak, the cap only stops two hundred due words from landing on you after a break.",
+   "How many brand-new words come in at most. This is your only lever on volume: the algorithm schedules each card on its own and knows no daily quota, a card you got wrong even comes back sooner, not later. Fewer new words therefore means less backlog, not slower learning.",
+   "How many options you get when choosing.",
+   "How firmly the app wants to hold a word before bringing it back. More intensive means more repetition and safer retention. Everything else the app handles by itself.",
+   "Normal",
+   "Short learning tips appear at natural breaks, never mid-answer, and can be dismissed.",
+   "Occasionally",
+   "Word-list traffic light",
+   "Every word list carries a coloured dot: ready, on track or behind. Here you set how many of a list's words have to be solid for each.",
+   "“ready” from {g} %, “on track” from {a} %",
+   "“Ready” from",
+   "“On track” from",
+   "Answer checking",
+   "Capitals count",
+   "“hund” instead of “Hund” is a mistake",
+   "Allow near misses",
+   "one typo still counts as nearly right",
+   "Strict umlauts and accents",
+   "“grun” instead of “grün” then counts as wrong",
+   "Article (der/die/das)",
+   "“ready” from {g} %",
+   "How a missing or wrong article is judged. Required means it has to be there. Optional means it is not looked at at all.",
+   "Languages",
+   "switch on and off",
+   "no words yet",
+   "Applies to Latin only. L2: the card shows the full learning form, but only the base form is asked for. L3: you type the principal parts in full, in any order.",
+   "L2 · head form",
+   "Length marks not required",
+   "ā ē ī ō ū may be left out",
+   "Look and language",
+   "App language",
+   "Device language",
+   "Appearance",
+   "follows the device",
+   "Colour scheme",
+   "applies to the whole app",
+   "Card",
+   "the practice card only",
+   "Card typeface",
+   "Back to the default look",
+   "The language of the app itself. Your words and word lists are untouched.",
+   "For the curious. The app runs well on its defaults. Everything here is optional and can be put back at any time.",
+   "1.0× (normal)",
+   "How quickly a word gains staying power when you get it right. Higher means the app assumes faster progress and asks less often (riskier); lower means more cautious and more often.",
+   "Example: three correct answers in a row → holds",
+   "Practice round: how often which words come up",
+   "The memory model",
+   "What the app calculates with: the retention target, the derived thresholds and the 19 model weights. For viewing only, the app does not tune these to you and records nothing for that purpose.",
+   "See the values",
+   "Account & data",
+   "Export data",
+   "Downloads all your words, lists, progress and settings as a backup file (JSON format).",
+   "Export",
+   "Reset settings",
+   "Puts every setting back to its recommended value. Your words, lists and progress stay.",
+   "Reset",
+   "Reset progress",
+   "Clears points and history. Your words and word lists stay.",
+   "Delete account",
+   "Deletes your data for good, on this device and in the cloud. This cannot be undone.",
+   "Deletes all data on this device. This cannot be undone.",
+   "Delete",
+   "Every setting goes back to the recommended value, including the look and the advanced numbers. Your words, lists and progress are untouched.",
+   "Reset to the recommended settings",
+   "This clears points, history and your daily run, in every language. Your words and word lists stay. It cannot be undone.",
+   "Progress reset",
+   "This deletes your data for good, on this device and in the cloud. You will be signed out afterwards.",
+   "This deletes every word, list and bit of progress on this device.",
+   "To confirm, type",
+   "Delete for good",
+   "About SmartVoc",
+   "Privacy and legal notice",
+   "Gentle",
+   "eight to twelve is the evidenced norm",
+   "Brisk",
+   "for exam weeks: more backlog",
+   "Required, full penalty",
+   "Required, small penalty",
+   "Optional. Not checked",
+   "Last practised list, carrying on",
+   "Last practised list, starting over",
+   "Preselect nothing",
+   "Often",
+   "The list for today. Due words and new ones, sensibly mixed.",
+   "The same list as last time, with the words that were still open.",
+   "The same list as last time, but starting over.",
+   "Nothing. You choose each time.",
+   "A word's example sentences appear on the solution side of the card: the sentence in the foreign language and its translation below.",
+   "The phonetic spelling appears in small type under the foreign word and shows how to pronounce it.",
+   "The forms you learn along with the word: principal parts in Latin, otherwise singular and plural or the irregular forms. They appear in small type under the foreign word and are never asked for.",
+   "follows the phone's setting",
+   "From how many days of expected retention a word counts as “solid” (green).",
+   "From how many days of retention a word moves from “still wobbly” (red) to “nearly solid” (orange).",
+   "Repetitions until no longer new",
+   "How often a new word has to be right before it grows out of the “new” level.",
+   "“Due soon” lead time (days)",
+   "How many days before its actual due date a word is already marked “due soon”.",
+   "“Stubborn” threshold (difficulty)",
+   "From which difficulty (0 to 10) an often-forgotten word counts as “stubborn”. The number of mistakes must also be reached.",
+   "Stubborn from this many mistakes",
+   "How many lapses a word needs to also count as “stubborn”.",
+   "Exam window (days)",
+   "This many days before the target date, the words of that list use the raised retention target from the next row. A higher target shortens the gap to the next review, so the words fall due earlier and come up more often.",
+   "Exam confidence",
+   "The retention target that applies inside the exam window. While the date is close, it replaces the usual target from the learning intensity.",
+   "Weight: wobbly words",
+   "How often red (wobbly) words come up in a round. Higher means more often. Together with the due words, they should be practised the most.",
+   "Weight: due words",
+   "How often due words come up for a refresh.",
+   "Weight: never practised",
+   "How often brand-new words come up that have never been practised.",
+   "How often freshly learned words come up.",
+   "How often nearly solid words come up. They need it least.",
+   "Round goal: wobbly words",
+   "How often you have to get a wobbly word right in a round (with gaps in between) before it counts as done for today.",
+   "How often a freshly learned word has to be right in a round.",
+   "Round goal: never practised",
+   "How often a brand-new word has to be right in a round.",
+   "How often a nearly solid word has to be right in a round.",
+   "Round goal: due words",
+   "How often a due word has to be right to count as refreshed.",
+   "After a break of this many minutes, the app starts the round afresh so it matches your current standing.",
+   "Show “enough for today” from",
+   "From this many cards in a round, the app suggests a break."
+  ],
+  "Teilen": [
+   "Share “{liste}”",
+   "Take my word list “{liste}” into SmartVoc:",
+   "Whoever opens the code or link gets their own copy of the list, changes there do not affect your list.",
+   "Code",
+   "Link",
+   "Share …"
+  ],
+  "Statistik": [
+   "Selection",
+   "Everything",
+   "What should the figures cover?",
+   "every language, every word list",
+   "every word list in this language",
+   "Single word lists",
+   "No words yet",
+   "Nothing in this selection yet",
+   "Tap an entry in the key to see those words",
+   "Progress",
+   "new in your lists",
+   "words practised",
+   "newly learnt",
+   "answers given",
+   "days practised",
+   "In the chosen period",
+   "How your answers turn out",
+   "Only the accent out of place, still counts as a hit",
+   "How quickly something sticks",
+   "attempts",
+   "or fewer, until half your words are solid",
+   "How long you practise",
+   "minutes",
+   "per session: {n} sessions in this period",
+   "average",
+   "earlier",
+   "Your best time to learn",
+   "Between {zeit} you do best: {a} % right, compared with {b} % at your weakest time.",
+   "Where you trip up",
+   "what it comes down to",
+   "{n} of your {g} answers were not right first time. This is why:",
+   "Nothing was practised in this period yet.",
+   "Stubborn",
+   "practised often, forgotten again and again",
+   "See all {n}",
+   "Review",
+   "All words with their progress",
+   "a sortable table",
+   "Advanced",
+   "Retention target and how long words hold",
+   "For {n} often-practised words the stored history does not reach back 3 months. The numbers there are likely too low.",
+   "{p} per cent right",
+   "All words",
+   "A hit is any answer that was not completely off. A missing accent or two letters swapped counts too. A word that has never been asked shows a dash.",
+   "Word",
+   "Level",
+   "holds",
+   "due",
+   "Hit rate",
+   "What counts as a hit?",
+   "{n} days",
+   "Nothing at this level",
+   "Pick a different level above",
+   "how many days the word holds at the moment before it comes back.",
+   "when the app shows it next.",
+   "the share of right answers for this word.",
+   "You knew these words once and then forgot them again. More repetition helps less here than a memory hook.",
+   "forgotten again {n} times",
+   "Your retention target",
+   "how surely you should know a word when it comes back",
+   "Higher means more cards a day and less forgetting. Lower means fewer cards and more slipping away. You can change it in the settings.",
+   "Until a word sticks",
+   "days",
+   "on average, from first sight to solid",
+   "Counted from the first time you saw a word to the day it was first solid. Two axes on the same thing: the attempts in the overview say how much work it took, the days here say how much patience. Only then does the question of how long a word holds make sense.",
+   "How long your words hold",
+   "on average",
+   "How long a word holds is the number of days it stays solid after the last right answer. Then the app asks it again. It grows with every right answer, that is exactly the forgetting curve getting gentler. Short does not mean bad: every new word starts at one day.",
+   "1 word more than in the period before, it is going up.",
+   "{n} more words than in the period before, it is going up.",
+   "Counted here are only words that are solid today. On top of that, {n} word still is not, despite many attempts, below under “Stubborn”.",
+   "Counted here are only words that are solid today. On top of that, {n} words still are not, despite many attempts, below under “Stubborn”."
+  ],
+  "Über SmartVoc": [
+   "Privacy",
+   "Legal notice",
+   "The same statement on the web:"
+  ],
+  "Wort im Detail": [
+   "never practised",
+   "still open",
+   "Principal parts",
+   "nouns only",
+   "Example 1",
+   "Example 2",
+   "Edit"
+  ],
+  "Wortlisten": [
+   "There are no words in that file",
+   "That file could not be read",
+   "Template downloaded: fill it in and read it back",
+   "Word added",
+   "New word list",
+   "Word list “{name}” deleted",
+   "This list has no words yet",
+   "Sharing did not work. You need an account to share.",
+   "Translation missing",
+   "Paste a list",
+   "type it, paste it, or have your AI app build it from a photo",
+   "Take over a shared list",
+   "someone sent you a link",
+   "Read a sheet",
+   "Excel or CSV: web version only",
+   "Download a blank template",
+   "Excel file with all columns, ready to fill in",
+   "Add words",
+   "Where do the words come from?",
+   "At the end the app asks which list the words should go into.",
+   "Create an empty list",
+   "Name and target date, words later",
+   "Type a single word",
+   "the same form as when editing",
+   "Merge lists",
+   "Which list should the words from “{name}” move into? This list is gone afterwards.",
+   "There is no second list in this language.",
+   "The words from “{a}” move into “{b}”, and “{a}” is gone afterwards. Words already in “{b}” are not added twice.",
+   "Merge",
+   "{n} words taken over · {d} duplicates left out",
+   "{n} words taken over",
+   "Delete word list",
+   "The word list “{name}” will be deleted. The words themselves are kept and only leave this list.",
+   "Delete word",
+   "Delete words",
+   "The word will be deleted for good, along with its progress. This cannot be undone.",
+   "{n} words will be deleted for good, along with their progress. This cannot be undone.",
+   "Word deleted",
+   "Into which list?",
+   "Target date",
+   "Usually the day of the test. The closer it gets, the more often the words of this list come up. Without a date the list simply runs alongside.",
+   "Target date removed",
+   "Remove target date",
+   "New word",
+   "Edit word",
+   "Tap a field, then pick a character",
+   "Save",
+   "New list",
+   "Name of the list …",
+   "Leave it empty and the list simply runs alongside.",
+   "Create",
+   "The app puts the four Smart lists together fresh every day, across all your word lists. You cannot change them, only view and practise them.",
+   "No words here yet",
+   "That did not work. Please try again.",
+   "Shared",
+   "Copied to the clipboard",
+   "Spreadsheet downloaded",
+   "Export words",
+   "{n} words from “{name}”, in the same format the app reads back in.",
+   "As text",
+   "to the clipboard, to paste or keep",
+   "share or copy to the clipboard, one line per word",
+   "As a spreadsheet",
+   "Excel file (.xlsx), web version only",
+   "Search in this list …",
+   "The app puts this list together fresh every day. Nothing can be changed here.",
+   "Add",
+   "{n} selected",
+   "Tap a row to select it",
+   "Select all",
+   "Nothing found",
+   "Try another search, or clear the field",
+   "Back to the list. The ways to fill it are there.",
+   "No target date",
+   "Rename",
+   "Share",
+   "View and edit the words",
+   "search, change, delete",
+   "Merge with another list",
+   "the words move over, this list disappears",
+   "Origin",
+   "Created by",
+   "Created",
+   "Last changed",
+   "Delete this word list",
+   "{n} matches",
+   "No list",
+   "Your lists",
+   "Target date {d}",
+   "No word list of your own yet. Create one above, or practise with the core vocabulary.",
+   "Whole collection",
+   "Search for a word, across all languages",
+   "Clear the search",
+   "der Hund",
+   "Der Hund läuft im Garten.",
+   "Ich sehe das Mädchen.",
+   "Die Rose ist rot.",
+   "das Buch",
+   "Der Hund läuft durch den Garten.",
+   "das Kind",
+   "Das Kind öffnet die Tür.",
+   "Jedes Kind bekommt einen Apfel.",
+   "{n} words deleted",
+   "{n} word ready to import",
+   "{n} words ready to import",
+   "Taken from someone else"
+  ],
+  "Anzeige-Einstellungen": [
+   "Always show",
+   "Never show",
+   "Selectable while practising",
+   "always on the card",
+   "never on the card",
+   "a switch under the card, you decide each session"
+  ],
+  "Spalten und Wortarten": [
+   "Gender",
+   "German",
+   "Example sentence 1 in German",
+   "Example sentence 2 in German",
+   "m pl",
+   "f pl",
+   "n pl",
+   "masculine",
+   "neuter",
+   "masculine, plural only",
+   "feminine, plural only",
+   "neuter, plural only",
+   "plural only",
+   "Noun",
+   "Verb",
+   "Adjective",
+   "Adverb",
+   "Pronoun",
+   "Numeral",
+   "Preposition",
+   "Conjunction",
+   "Phrase"
+  ],
+  "Lernmodell": [
+   "still wobbly",
+   "not practised yet"
+  ],
+  "Latein": [
+   "Nearly: check the spelling of the principal parts",
+   "Check the principal parts again"
+  ],
+  "Sprachen": [
+   "French",
+   "English",
+   "Spanish",
+   "Italian",
+   "Portuguese"
+  ],
+  "Ampel": [
+   "On track",
+   "Behind",
+   "How many of the list's words have stuck: {g} % and up is ready, {a} % and up is on track, below that you are behind."
+  ],
+  "Smart Lists": [
+   "Due and new words sensibly mixed",
+   "Due now, the best moment to refresh",
+   "Practised already, but not solid yet",
+   "Still solid, but due again soon"
+  ],
+  "Statistik (Auswertungen)": [
+   "Accents and length marks",
+   "counts as a hit",
+   "another word",
+   "der / die / das",
+   "longer"
+  ],
+  "Lernstufen": [
+   "unpractised",
+   "nearly solid",
+   "solid",
+   "nearly",
+   "wobbly",
+   "new"
+  ],
+  "Datenhaltung": [
+   "Words without a list"
+  ],
+  "Anmeldung": [
+   "Passwords cannot be reset in the app. Open SmartVoc in a browser to do it."
+  ],
+  "Abgleich mit dem Konto": [
+   "Local data saved as a backup",
+   "Device switched to this account. The previous data is kept on the device as a backup.",
+   "This device already holds words and lists.",
+   "OK, move them into this account",
+   "Cancel, start empty (your existing data stays on the device as a backup)"
+  ],
+  "Beschriftungen in den Zeichnungen": [
+   "Question",
+   "Solution",
+   "count towards your progress",
+   "does not count",
+   "on track",
+   "behind",
+   "View words",
+   "merge",
+   "photo",
+   "check",
+   "practise",
+   "always right",
+   "mistake",
+   "back to the start",
+   "with a mistake",
+   "Exam",
+   "without a target date",
+   "final stretch",
+   "with a target date",
+   "time →",
+   "without repetition",
+   "too early",
+   "too late",
+   "you still know it",
+   "gone",
+   "read 5×",
+   "read 1×, test 4×",
+   "feels secure",
+   "sticks",
+   "browse",
+   "1 list",
+   "2 lists",
+   "der Baum",
+   "Der Baum ist hoch.",
+   "\"blättern\"",
+   "der Schlüssel"
+  ],
+  "Lernstand": [
+   "Progress",
+   "read only",
+   "How well it sits",
+   "Answered right",
+   "{n} ×",
+   "Answered wrong",
+   "Next practice",
+   "In the list"
+  ],
+  "Lernstandsleiste": [
+   "History",
+   "building up, this line fills from today",
+   "No history yet. From today the app records where you stand each day.",
+   "{n} word in total",
+   "{n} words in total"
+  ],
+  "Weitere (index)": [
+   "Core vocabulary {kuerzel} · Level {n}"
+  ]
+ }
+}

@@ -46,7 +46,7 @@ const seite = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SmartVoc — Datenschutz und Impressum</title>
+<title>SmartVoc – Datenschutz und Impressum · Privacy and imprint</title>
 <meta name="description" content="Datenschutzerklärung und Impressum der Vokabeltrainer-App SmartVoc.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Hanken+Grotesk:wght@400;600;700&display=swap">
 <style>
@@ -76,6 +76,13 @@ const seite = `<!doctype html>
   .zurueck { display:inline-block; margin-top:34px; color:var(--rost);
              text-decoration:none; font-weight:600; }
   .zurueck:hover { text-decoration:underline; }
+  /* Die englische Fassung steht auf derselben Seite, nicht unter einer
+     eigenen Adresse: Apple hinterlegt EINE Adresse, und die muss fuer jeden
+     Pruefer lesbar sein. */
+  .sprachwechsel { margin-top:38px; padding-top:24px; border-top:1px solid var(--linie); }
+  .sprachwechsel a { font-weight:600; text-decoration:none; }
+  .sprachwechsel a:hover { text-decoration:underline; }
+  #english h2:first-of-type { border-top:none; padding-top:0; margin-top:22px; }
 </style>
 </head>
 <body>
@@ -86,6 +93,11 @@ const seite = `<!doctype html>
       <p class="stand">Stand: ${heute}</p>
 ${teil("Datenschutz", abschnitte("DATENSCHUTZ"))}
 ${teil("Impressum", abschnitte("IMPRESSUM"))}
+      <div class="sprachwechsel"><a href="#english">In English</a></div>
+      <div id="english" lang="en">
+${teil("Privacy", abschnitte("DATENSCHUTZ_EN"))}
+${teil("Imprint", abschnitte("IMPRESSUM_EN"))}
+      </div>
       <a class="zurueck" href="./">Zurück zu SmartVoc</a>
     </div>
   </div>

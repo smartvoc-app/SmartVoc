@@ -91,10 +91,10 @@ function kapitelAus(quelle, name) {
   return kapitel;
 }
 
-function tippsAus(quelle) {
+function tippsAus(quelle, suffix = "DE") {
   const s = lies(quelle);
-  const start = s.indexOf("export const TIPPS_DE");
-  const block = s.slice(start, s.indexOf("export const ANLEITUNG_DE"));
+  const start = s.indexOf(`export const TIPPS_${suffix}`);
+  const block = s.slice(start, s.indexOf(`export const ANLEITUNG_${suffix}`));
   const out = [];
   const re = /\{\s*h:\s*"/g;
   let m;
@@ -398,6 +398,39 @@ T.oberflaeche = ohneDoppel(oberflaeche(), [
   ...[...T.anleitung, ...T.theorie].flatMap(([titel, teile]) => [titel, ...teile.map((x) => x[1])]),
   ...[...T.datenschutz, ...T.impressum].map((x) => x[1]),
 ]);
+
+/* Die englische Fassung, aus denselben Funktionen und denselben Quellen --
+ * nur mit den englischen Bezeichnern. Sie ist das Gegenstueck fuer das
+ * englische Worddokument; die Beschriftungen kommen aus i18n.en.ts. */
+function englischeBeschriftungen() {
+  const s = lies("src/lib/i18n.en.ts");
+  const karte = {};
+  for (const m of s.matchAll(/^\s*"((?:[^"\\]|\\.)*)"\s*:\s*"((?:[^"\\]|\\.)*)",?\s*$/gm))
+    karte[m[1].replace(/\\"/g, '"')] = m[2].replace(/\\"/g, '"');
+  const aus = {};
+  for (const [bereich, liste] of Object.entries(T.oberflaeche)) {
+    const uebersetzt = liste.map((d) => karte[d] || d);
+    if (uebersetzt.length) aus[bereich] = uebersetzt;
+  }
+  return aus;
+}
+
+const EN = {
+  anleitung: kapitelAus("src/components/help.en.tsx", "ANLEITUNG_EN"),
+  tipps: tippsAus("src/components/help.en.tsx", "EN"),
+  theorie_lead: (() => {
+    const s = lies("src/components/help.en.tsx");
+    const i = s.indexOf("THEORIE_LEAD_EN");
+    return i < 0 ? "" : zeichenkette(s, s.indexOf('"', i)).text;
+  })(),
+  theorie: kapitelAus("src/components/help.en.tsx", "THEORIE_EN"),
+  datenschutz: rechtAus("DATENSCHUTZ_EN"),
+  impressum: rechtAus("IMPRESSUM_EN"),
+  oberflaeche: englischeBeschriftungen(),
+};
+writeFileSync(join(hier, "texte-en.json"), JSON.stringify(EN, null, 1) + "\n", "utf8");
+console.log("englisch:", EN.anleitung.length, "Kapitel,",
+  Object.values(EN.oberflaeche).flat().length, "Beschriftungen");
 
 writeFileSync(join(hier, "texte.json"), JSON.stringify(T, null, 1) + "\n", "utf8");
 

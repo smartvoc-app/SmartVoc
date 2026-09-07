@@ -685,7 +685,7 @@
    ]
   ]
  ],
- "ueber_lead": "Ein Vokabeltrainer, der ausrechnet, wann ein Wort wiederkommt, statt es zu raten. Gemacht für Schülerinnen und Schüler, die eine Prüfung vor sich haben.",
+ "ueber_lead": "Ein Vokabeltrainer, der ausrechnet, wann ein Wort wiederkommt, statt es zu raten. Für alle, die Vokabeln lernen, vom Schulunterricht bis zum Selbststudium.",
  "datenschutz": [
   [
    "P",
@@ -1063,6 +1063,8 @@
    "Zurück zur Voreinstellung",
    "✓ Voreinstellung",
    "Daten exportiert",
+   "LÖSCHEN",
+   "Löschen fehlgeschlagen",
    "Mindestens eine Sprache muss aktiv bleiben",
    "Auf Voreinstellung",
    "Die Voreinstellungen folgen der Lernpsychologie: verteiltes Üben, aktives Abrufen und wenige neue Wörter pro Tag. Du darfst alles ändern. Was du verstellt hast, ist markiert.",
@@ -1139,14 +1141,14 @@
    "Konto löschen",
    "Löscht deine Daten endgültig, lokal und in der Cloud. Das kann nicht rückgängig gemacht werden.",
    "Löscht alle Daten auf diesem Gerät. Das kann nicht rückgängig gemacht werden.",
+   "Löschen",
    "Alle Einstellungen gehen auf die Voreinstellungen zurück, auch das Aussehen und die erweiterten Werte. Deine Wörter, Listen und Lernstände bleiben unberührt.",
    "Auf die Voreinstellungen zurückgesetzt",
    "Das löscht Punkte, Verlauf und die Tagesserie, und zwar in allen Sprachen. Deine Wörter und Wortlisten bleiben. Rückgängig machen lässt es sich nicht.",
    "Lernstand zurückgesetzt",
    "Das löscht deine Daten endgültig, auf diesem Gerät und in der Cloud. Danach wirst du abgemeldet.",
    "Das löscht alle Vokabeln, Listen und Fortschritte auf diesem Gerät.",
-   "Tippe LÖSCHEN zum Bestätigen",
-   "LÖSCHEN",
+   "Zum Bestätigen tippe",
    "Endgültig löschen",
    "Über SmartVoc",
    "Datenschutz und Impressum",
@@ -1201,8 +1203,7 @@
    "Wie oft ein fälliges Wort zur Auffrischung richtig sein muss.",
    "Nach so vielen Minuten Pause beginnt die App die Übungsrunde frisch, damit sie zum aktuellen Stand passt.",
    "Hinweis „Genug für heute“ ab",
-   "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor.",
-   "Löschen"
+   "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor."
   ],
   "Teilen": [
    "„{liste}“ teilen",
@@ -1495,32 +1496,42 @@
    "Abbrechen, leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
   ],
   "Beschriftungen in den Zeichnungen": [
-   "1 Liste",
-   "2 Listen",
-   "der Baum",
-   "Der Baum ist hoch.",
+   "Frage",
    "Lösung",
-   "blättern",
    "zählen für deinen Lernstand",
    "zählt nicht",
    "auf Kurs",
    "im Rückstand",
    "Wörter ansehen",
    "zusammenführen",
+   "Foto",
    "prüfen",
-   "der Schlüssel",
    "üben",
+   "immer richtig",
+   "Fehler",
+   "wieder von vorn",
    "mit Fehler",
    "Prüfung",
    "ohne Zieldatum",
+   "Endspurt",
    "mit Zieldatum",
+   "Zeit →",
    "ohne Wiederholen",
    "zu früh",
    "zu spät",
    "weißt du noch",
    "ist weg",
+   "5× durchlesen",
+   "1× lesen, 4× abfragen",
    "fühlt sich sicher an",
-   "bleibt hängen"
+   "bleibt hängen",
+   "blättern",
+   "1 Liste",
+   "2 Listen",
+   "der Baum",
+   "Der Baum ist hoch.",
+   "\"blättern\"",
+   "der Schlüssel"
   ],
   "Lernstand": [
    "Lernstand",
@@ -1538,6 +1549,9 @@
    "Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.",
    "{n} Wort insgesamt",
    "{n} Wörter insgesamt"
+  ],
+  "Weitere (index)": [
+   "Grundwortschatz {kuerzel} · Stufe {n}"
   ]
  }
 }

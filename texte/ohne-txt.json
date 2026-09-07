@@ -147,8 +147,7 @@
   "Wie oft ein fälliges Wort zur Auffrischung richtig sein muss.",
   "Nach so vielen Minuten Pause beginnt die App die Übungsrunde frisch, damit sie zum aktuellen Stand passt.",
   "Hinweis „Genug für heute“ ab",
-  "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor.",
-  "Löschen"
+  "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor."
  ],
  "src/components/Stats.tsx": [
   "1 Wort mehr als im Zeitraum davor. Es geht aufwärts.",
@@ -201,32 +200,13 @@
   "Abbrechen, leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
  ],
  "src/ui/Kritzel.tsx": [
+  "blättern",
   "1 Liste",
   "2 Listen",
   "der Baum",
   "Der Baum ist hoch.",
-  "Lösung",
-  "blättern",
-  "zählen für deinen Lernstand",
-  "zählt nicht",
-  "auf Kurs",
-  "im Rückstand",
-  "Wörter ansehen",
-  "zusammenführen",
-  "prüfen",
-  "der Schlüssel",
-  "üben",
-  "mit Fehler",
-  "Prüfung",
-  "ohne Zieldatum",
-  "mit Zieldatum",
-  "ohne Wiederholen",
-  "zu früh",
-  "zu spät",
-  "weißt du noch",
-  "ist weg",
-  "fühlt sich sicher an",
-  "bleibt hängen"
+  "\"blättern\"",
+  "der Schlüssel"
  ],
  "src/ui/MasteryBar.tsx": [
   "{n} Wort insgesamt",

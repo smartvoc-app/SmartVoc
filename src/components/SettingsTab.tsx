@@ -188,7 +188,7 @@ export function SettingsTab() {
   const cloudActive = auth.configured && !!auth.user;
   const doExport = () => { exportAllData(new Date().toISOString()); toast("Daten exportiert", "download"); };
   const doDelete = async () => {
-    if (confirmText.trim().toUpperCase() !== "LÖSCHEN") return;
+    if (confirmText.trim().toUpperCase() !== txt("LÖSCHEN").toUpperCase()) return;
     setDelBusy(true); setDelErr("");
     try {
       if (cloudActive) await deleteCloudAccount();
@@ -197,7 +197,7 @@ export function SettingsTab() {
       location.reload();
     } catch (e: any) {
       setDelBusy(false);
-      setDelErr("Löschen fehlgeschlagen: " + (e?.message || e));
+      setDelErr(txt("Löschen fehlgeschlagen") + ": " + (e?.message || e));
     }
   };
   // Language visibility. Purely a display filter — switching a language off
@@ -645,7 +645,7 @@ export function SettingsTab() {
         </Field>
         <Field title={txt("Konto löschen")} desc={cloudActive ? txt("Löscht deine Daten endgültig, lokal und in der Cloud. Das kann nicht rückgängig gemacht werden.") : txt("Löscht alle Daten auf diesem Gerät. Das kann nicht rückgängig gemacht werden.")}>
           <button className="btn btn-sm" style={{ borderColor: "var(--red)", color: "var(--red)" }} onClick={() => { setConfirmText(""); setDelErr(""); setDelOpen(true); }}>
-            <Icon name="trash" size={15} /> Löschen
+            <Icon name="trash" size={15} /> {txt("Löschen")}
           </button>
         </Field>
       </div>
@@ -665,9 +665,9 @@ export function SettingsTab() {
           {cloudActive
             ? txt("Das löscht deine Daten endgültig, auf diesem Gerät und in der Cloud. Danach wirst du abgemeldet.")
             : txt("Das löscht alle Vokabeln, Listen und Fortschritte auf diesem Gerät.")}
-          {" "}{txt("Tippe LÖSCHEN zum Bestätigen")} <b style={{ color: "var(--ink)" }}>{txt("LÖSCHEN")}</b>.
+          {" "}{txt("Zum Bestätigen tippe")} <b style={{ color: "var(--ink)" }}>{txt("LÖSCHEN")}</b>.
         </>}
-        knopf={txt("Endgültig löschen")} aus={delBusy || confirmText.trim().toUpperCase() !== "LÖSCHEN"}
+        knopf={txt("Endgültig löschen")} aus={delBusy || confirmText.trim().toUpperCase() !== txt("LÖSCHEN").toUpperCase()}
         onClose={() => !delBusy && setDelOpen(false)} tun={doDelete}>
         <input className="field" style={{ marginTop: 12 }} placeholder={txt("LÖSCHEN")} value={confirmText}
           onChange={(e) => setConfirmText(e.target.value)} autoFocus />

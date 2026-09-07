@@ -3,11 +3,12 @@
  * change — the UI shows whatever the manifest contains. Everything is bundled
  * → works offline; activation creates normal user data (syncs via Phase 3). */
 import { fk, isLatinPair, PAIRS } from "../../lib/pairs";
+import { txt } from "../../lib/i18n";
 
 const mods = import.meta.glob("./*/stufe*.json", { eager: true }) as Record<string, any>;
 
 export interface StarterEntry {
-  pair: string; stufe: number; count: number; label: string; key: string; words: any[];
+  pair: string; stufe: number; count: number; key: string; words: any[];
 }
 
 const shortOf = (pair: string) => PAIRS[pair]?.short || pair.split("-")[0].toUpperCase();
@@ -18,8 +19,18 @@ export const STARTERS: StarterEntry[] = Object.entries(mods).map(([path, mod]) =
   const pair = data.pair || (m ? m[1] : "");
   const stufe = data.stufe || (m ? parseInt(m[2], 10) : 1);
   const words = data.words || [];
-  return { pair, stufe, count: words.length, label: `Grundwortschatz ${shortOf(pair)} · Stufe ${stufe}`, key: `${pair}:${stufe}`, words };
+  return { pair, stufe, count: words.length, key: `${pair}:${stufe}`, words };
 }).sort((a, b) => a.pair.localeCompare(b.pair) || a.stufe - b.stufe);
+
+/* Der Name entsteht ERST beim Anlegen, nicht beim Laden des Moduls.
+ *
+ * Das Verzeichnis oben wird gebaut, sobald die Datei importiert wird -- also
+ * bevor App.tsx die Oberflaechensprache gesetzt hat. Ein hier gebildeter Name
+ * waere immer deutsch, auch auf einer englischen Oberflaeche. Danach ist er
+ * ein gewoehnlicher Listenname, also Nutzerdaten: eine bestehende Liste wird
+ * nie nachtraeglich umbenannt. */
+export const starterLabel = (e: StarterEntry) =>
+  txt("Grundwortschatz {kuerzel} · Stufe {n}", { kuerzel: shortOf(e.pair), n: e.stufe });
 
 export const starterKey = (pair: string, stufe: number) => `${pair}:${stufe}`;
 export const getStarter = (pair: string, stufe: number) => STARTERS.find((s) => s.pair === pair && s.stufe === stufe);
@@ -65,10 +76,10 @@ export function activateStarter(store: any, pair: string, stufe: number) {
   const fresh = mapped.filter((w: any) => !existing.has(keyOf(w)));
 
   if (fresh.length) {
-    const listId = store.addList(entry.label, pair, { herkunft: "grundwortschatz" });
+    const listId = store.addList(starterLabel(entry), pair, { herkunft: "grundwortschatz" });
     store.addWords(fresh.map((w: any) => ({ ...w, lists: [listId], source: "seed", review: false })));
   }
   if (!already) store.setSettings({ activatedStarters: [...activated, entry.key] });
 
-  return { added: fresh.length, already, label: entry.label };
+  return { added: fresh.length, already, label: starterLabel(entry) };
 }
