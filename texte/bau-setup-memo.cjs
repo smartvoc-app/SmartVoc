@@ -120,6 +120,7 @@ k.push(tab(["Name", "Art", "Wozu"], [
 k.push(p("Zeilenschutz (RLS) ist auf beiden Tabellen aktiv: Anonyme Abfragen liefern nichts, jeder Nutzer sieht nur seine eigenen Zeilen. Die Schemadefinition liegt im Repo unter schema.sql.", { color: "5A554C" }));
 k.push(h2("Einstellungen, die zu kennen sind"));
 k.push(p("Bestätigungsmail beim Anlegen eines Kontos ist eingeschaltet. Der Versand läuft über eigenes SMTP (Abschnitt 7) — der eingebaute Versand von Supabase ist auf wenige Mails pro Stunde begrenzt und nur zum Entwickeln gedacht.", { punkt: true }));
+k.push(p("Am 7. September 2026 von Anfang bis Ende geprüft: Konto anlegen, Bestätigungsmail über eigenes SMTP, Link zurück auf smartvoc.app, Daten schreiben, delete_account, Konto danach nicht mehr vorhanden. Die Funktion darf also aus auth.users löschen — das ist Apples Anforderung an eine wirksame Kontolöschung.", { punkt: true }));
 k.push(p("Site URL und Redirect URLs müssen auf https://smartvoc.app zeigen, sonst führen die Links aus Bestätigungs- und Zurücksetzen-Mails ins Leere.", { punkt: true }));
 
 // ------------------------------------------------------------------ 7
@@ -203,8 +204,7 @@ k.push(tab(["Symptom", "Wahrscheinliche Ursache", "Erster Schritt"], [
 k.push(h1("12  Offen und wiederkehrend"));
 k.push(h2("Offen"));
 k.push(p("Apple Developer Program lösen — Voraussetzung für jede Veröffentlichung.", { punkt: true }));
-k.push(p("Eigenes SMTP in Supabase eintragen und die Vorlage der Bestätigungsmail anpassen.", { punkt: true }));
-k.push(p("Kontolöschung mit einem echten Konto von Anfang bis Ende durchspielen. Die Datenbankfunktion ist vorhanden und die Rechte stimmen; ob sie aus auth.users löschen darf, ist ungeprüft.", { punkt: true }));
+k.push(p("Vorlage der Bestätigungsmail anpassen — sie trägt noch den Standardtext von Supabase.", { punkt: true }));
 k.push(p("Sign in with Apple — verlangt Apple, sobald eine andere Anmeldung über Dritte angeboten wird. Derzeit gibt es nur E-Mail und Passwort, also noch nicht nötig.", { punkt: true }));
 k.push(h2("Wiederkehrend"));
 k.push(p("September 2027: Verlängerung von smartvoc.app.", { punkt: true }));
