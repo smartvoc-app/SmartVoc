@@ -741,4 +741,7 @@ export const EN: Record<string, string> = {
   "Daten auf diesem Gerät": "Data on this device",
   "Das löscht deine Daten endgültig, auf diesem Gerät und auf dem Server. Danach wirst du abgemeldet.": "This permanently deletes your data, on this device and on the server. You will be signed out afterwards.",
   "Das löscht alle Vokabeln, Listen und Fortschritte auf diesem Gerät. Dein Konto auf dem Server bleibt bestehen; beim nächsten Anmelden kommt alles zurück.": "This deletes all words, lists and progress on this device. Your account on the server stays; signing in again brings everything back.",
+  "Aktuelles Passwort": "Current password",
+  "Das aktuelle Passwort stimmt nicht.": "That is not your current password.",
+  "Deine Wörter bleiben auf diesem Gerät": "Your words stay on this device",
 };

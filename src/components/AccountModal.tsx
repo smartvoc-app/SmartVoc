@@ -35,6 +35,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
   const [delBusy, setDelBusy] = useState(false);
   const [delErr, setDelErr] = useState("");
   const [confirmText, setConfirmText] = useState("");
+  const [altesPw, setAltesPw] = useState("");
   const [nameDraft, setNameDraft] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -50,7 +51,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
   useEffect(() => {
     if (open && !auth.recovering) {
       setMode("in");
-      setEmail(""); setPassword(""); setPassword2(""); setUsername("");
+      setEmail(""); setPassword(""); setPassword2(""); setUsername(""); setAltesPw("");
       setEditingName(false); setNameDraft("");
       setError(""); setInfo("");
     }
@@ -58,7 +59,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
 
   if (!open && !auth.recovering) return null;
 
-  const switchMode = (m: Mode) => { setMode(m); setError(""); setInfo(""); setPassword(""); setPassword2(""); };
+  const switchMode = (m: Mode) => { setMode(m); setError(""); setInfo(""); setPassword(""); setPassword2(""); setAltesPw(""); };
 
   /* Mindestlaenge statt Zeichenklassen.
    *
@@ -82,10 +83,24 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
     if (mode === "newpw") {
       if (password.length < PW_MIN) { setBusy(false); setError(txt("Mindestens {n} Zeichen.", { n: PW_MIN })); return; }
       if (password !== password2) { setBusy(false); setError(txt("Passwörter stimmen nicht überein.")); return; }
+      /* Wer angemeldet ist, muss das alte Passwort kennen.
+       *
+       * Sonst genuegt ein unbeaufsichtigtes Geraet, um jemanden aus seinem
+       * eigenen Konto auszusperren. Geprueft wird, indem wir uns mit dem
+       * alten Passwort noch einmal anmelden -- schlaegt das fehl, passiert
+       * nichts weiter; die bestehende Sitzung bleibt.
+       *
+       * NICHT verlangt wird es nach dem Link aus der Zuruecksetzen-Mail:
+       * dort ist der ganze Sinn, dass man das alte eben nicht mehr weiss.
+       * Die Mail selbst ist dann der Nachweis. */
+      if (!auth.recovering) {
+        const pruefung = await auth.signIn(auth.email || "", altesPw);
+        if (pruefung.error) { setBusy(false); setError(txt("Das aktuelle Passwort stimmt nicht.")); return; }
+      }
       const r = await auth.updatePassword(password);
       setBusy(false);
       if (r.error) { setError(r.error); return; }
-      setPassword(""); setPassword2("");
+      setPassword(""); setPassword2(""); setAltesPw("");
       toast(txt("Passwort geändert"), "check");
       onClose();
       return;
@@ -203,7 +218,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
               <span className="g">{txt("E-Mail")}</span>
               <span className="lern-wert">{auth.email}</span>
             </div>
-            <button className="li" onClick={() => { setMode("newpw"); setPassword(""); setPassword2(""); setError(""); setInfo(""); }}>
+            <button className="li" onClick={() => { setMode("newpw"); setPassword(""); setPassword2(""); setAltesPw(""); setError(""); setInfo(""); }}>
               <span className="g">{txt("Passwort ändern")}</span>
               <Icon name="arrowRight" size={14} />
             </button>
@@ -211,7 +226,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
             <div className="grp">{txt("Konto beenden")}</div>
             <button className="li" onClick={() => auth.signOut()}>
               <span className="g">{txt("Abmelden")}</span>
-              <span className="lern-wert">{txt("Daten bleiben auf dem Server")}</span>
+              <span className="lern-wert">{txt("Deine Wörter bleiben auf diesem Gerät")}</span>
             </button>
             <button className="li li-gefahr" onClick={() => { setConfirmText(""); setDelErr(""); setDelOpen(true); }}>
               <span className="g">{txt("Konto löschen")}</span>
@@ -221,12 +236,23 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
         ) : mode === "newpw" ? (
           <div className="col" style={{ gap: 10 }}>
             <div className="muted" style={{ fontSize: 12.5, lineHeight: 1.45 }}>{txt("Setze ein neues Passwort für {wer}.", { wer: auth.email || txt("dein Konto") })}</div>
-            <input className="field" type="password" placeholder={txt("Neues Passwort")} value={password} autoComplete="new-password" autoFocus
+            {!auth.recovering && (
+              <input className="field" type="password" placeholder={txt("Aktuelles Passwort")} value={altesPw} autoComplete="current-password" autoFocus
+                onChange={(e) => setAltesPw(e.target.value)} />
+            )}
+            <input className="field" type="password" placeholder={txt("Neues Passwort")} value={password} autoComplete="new-password" autoFocus={auth.recovering}
               onChange={(e) => setPassword(e.target.value)} />
             <input className="field" type="password" placeholder={txt("Neues Passwort wiederholen")} value={password2} autoComplete="new-password"
               onChange={(e) => setPassword2(e.target.value)} onKeyDown={(e) => e.key === "Enter" && submit()} />
+            <div className="pw-regeln">
+              <Regel text={txt("Mindestens {n} Zeichen", { n: PW_MIN })}
+                zustand={!password ? "offen" : password.length >= PW_MIN ? "gut" : "schlecht"} />
+              <Regel text={txt("Beide Eingaben stimmen überein")}
+                zustand={!password2 ? "offen" : password === password2 ? "gut" : "schlecht"} />
+            </div>
             {error && <div className="badge red" style={{ alignSelf: "flex-start" }}><span className="dot" />{error}</div>}
-            <button className="btn btn-primary" onClick={submit} disabled={busy || !password || !password2}>
+            <button className="btn btn-primary" onClick={submit}
+              disabled={busy || !password || !password2 || password.length < PW_MIN || password !== password2 || (!auth.recovering && !altesPw)}>
               {busy ? <Icon name="refresh" size={15} /> : <Icon name="check" size={15} />} {txt("Passwort speichern")}
             </button>
           </div>
