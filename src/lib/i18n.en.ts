@@ -729,4 +729,6 @@ export const EN: Record<string, string> = {
   "dein Konto": "your account",
   "Passwort speichern": "Save password",
   "Link senden": "Send link",
+  "Mindestens {n} Zeichen": "At least {n} characters",
+  "Beide Eingaben stimmen überein": "Both entries match",
 };

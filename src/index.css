@@ -1999,3 +1999,17 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus
             padding: 8px 12px; border-radius: 12px;
             background: color-mix(in srgb, var(--amber) 12%, var(--card));
             color: var(--amber-deep); font-size: 11.5px; line-height: 1.4; }
+
+/* Die beiden Passwortbedingungen beim Anlegen eines Kontos.
+   Ein Satz sagt nicht, ob die Bedingung schon erfuellt ist -- ein Zeichen
+   davor tut es. Offen bleibt grau: wer noch nicht getippt hat, hat nichts
+   falsch gemacht, und ein rotes Kreuz auf einem leeren Feld schimpft ohne
+   Anlass. */
+.pw-regeln { display: flex; flex-direction: column; gap: 4px; margin-top: -2px; }
+.pw-regel { display: flex; align-items: center; gap: 7px; font-size: 12px; line-height: 1.3;
+            color: var(--ink-faint); transition: color .15s ease; }
+.pw-regel > svg { flex: none; }
+.pw-regel .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+                 margin: 0 3.5px; flex: none; }
+.pw-regel[data-zustand="gut"] { color: var(--ok); }
+.pw-regel[data-zustand="schlecht"] { color: var(--bad); }

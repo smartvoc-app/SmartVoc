@@ -105,6 +105,19 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
     if (r.error) toast(r.error, "x"); else toast(txt("Anzeigename gespeichert"), "check");
   };
 
+  /* Zwei Bedingungen, zwei Zeilen, jede mit ihrem Zustand.
+   *
+   * Ein Satz "Mindestens acht Zeichen" sagt nicht, ob man sie schon hat.
+   * Deshalb je Bedingung ein Zeichen davor: offen, erfuellt oder verletzt.
+   * Erfuellt wird gruen, verletzt rot -- aber erst, wenn im Feld etwas
+   * steht. Wer noch nicht getippt hat, hat nichts falsch gemacht. */
+  const Regel = ({ zustand, text }: { zustand: "offen" | "gut" | "schlecht"; text: string }) => (
+    <div className="pw-regel" data-zustand={zustand}>
+      {zustand === "offen" ? <span className="dot" /> : <Icon name={zustand === "gut" ? "check" : "x"} size={13} />}
+      <span>{text}</span>
+    </div>
+  );
+
   const titles: Record<Mode, string> = {
     in: txt("Anmelden"), up: txt("Konto erstellen"), reset: txt("Passwort zurücksetzen"), newpw: txt("Neues Passwort setzen"),
   };
@@ -188,10 +201,11 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
               <>
                 <input className="field" type="password" placeholder={txt("Passwort wiederholen")} value={password2} autoComplete="new-password"
                   onChange={(e) => setPassword2(e.target.value)} onKeyDown={(e) => e.key === "Enter" && submit()} />
-                <div className="muted" style={{ fontSize: 12, marginTop: -4 }}>
-                  {pwUngleich ? txt("Die beiden Passwörter stimmen nicht überein.")
-                    : pwSchwach ? txt("Noch zu kurz: mindestens {n} Zeichen.", { n: PW_MIN })
-                    : txt("Mindestens {n} Zeichen. Länger ist besser als kompliziert.", { n: PW_MIN })}
+                <div className="pw-regeln">
+                  <Regel text={txt("Mindestens {n} Zeichen", { n: PW_MIN })}
+                    zustand={!password ? "offen" : password.length >= PW_MIN ? "gut" : "schlecht"} />
+                  <Regel text={txt("Beide Eingaben stimmen überein")}
+                    zustand={!password2 ? "offen" : password === password2 ? "gut" : "schlecht"} />
                 </div>
               </>
             )}
