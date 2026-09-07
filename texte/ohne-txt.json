@@ -43,13 +43,6 @@
   "Lernintensität",
   "wie schnell die App annimmt, dass ein Wort fester wird"
  ],
- "src/components/ImportShareModal.tsx": [
-  "Liste nicht gefunden. Bitte den Code prüfen.",
-  "Teilen ist gerade nicht möglich.",
-  "Konnte die Liste nicht laden.",
-  "Geteilte Liste",
-  "Du bekommst eine eigene Kopie; bereits vorhandene Wörter werden übersprungen."
- ],
  "src/components/PasteModal.tsx": [
   "dog | der Hund cat | die Katze",
   "le chien | der Hund le chat | die Katze",

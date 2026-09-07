@@ -204,7 +204,7 @@ export function PasteModal({ open, pair, onParsed, onClose, initialText }: { ope
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 560, width: "94vw" }}>
         <div className="modal-head">
-          <div className="modal-title">{txt("Einfügen")} <span className="muted" style={{ fontSize: 14, fontWeight: 500 }}>· {P.foreignLabel} ⇄ Deutsch</span></div>
+          <div className="modal-title">{txt("Einfügen")} <span className="muted" style={{ fontSize: 14, fontWeight: 500 }}>· {txt(P.foreignLabel)} ⇄ {txt(P.nativeLabel)}</span></div>
           <button className="icon-btn" style={{ width: 34, height: 34 }} onClick={onClose}><Icon name="x" size={16} /></button>
         </div>
 

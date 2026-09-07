@@ -171,6 +171,13 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
    * Deshalb je Bedingung ein Zeichen davor: offen, erfuellt oder verletzt.
    * Erfuellt wird gruen, verletzt rot -- aber erst, wenn im Feld etwas
    * steht. Wer noch nicht getippt hat, hat nichts falsch gemacht. */
+  /* Eine Adresse ohne @ oder ohne Punkt dahinter kann keine sein. Die
+   * Pruefung bleibt absichtlich grob: sie faengt den Tippfehler ab, sie
+   * entscheidet nicht, welche Adressen es gibt. Ohne sie ging "pruef" ans
+   * Netz und kam als Serverfehler zurueck -- waehrend das Passwort daneben
+   * schon vor dem Absenden sagt, was ihm fehlt. */
+  const mailOk = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+
   const Regel = ({ zustand, text }: { zustand: "offen" | "gut" | "schlecht"; text: string }) => (
     <div className="pw-regel" data-zustand={zustand}>
       {zustand === "offen" ? <span className="dot" /> : <Icon name={zustand === "gut" ? "check" : "x"} size={13} />}
@@ -286,6 +293,8 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
                 <input className="field" type="password" placeholder={txt("Passwort wiederholen")} value={password2} autoComplete="new-password"
                   onChange={(e) => setPassword2(e.target.value)} onKeyDown={(e) => e.key === "Enter" && submit()} />
                 <div className="pw-regeln">
+                  <Regel text={txt("Eine gültige E-Mail-Adresse")}
+                    zustand={!email.trim() ? "offen" : mailOk(email) ? "gut" : "schlecht"} />
                   <Regel text={txt("Mindestens {n} Zeichen", { n: PW_MIN })}
                     zustand={!password ? "offen" : password.length >= PW_MIN ? "gut" : "schlecht"} />
                   <Regel text={txt("Beide Eingaben stimmen überein")}
@@ -296,7 +305,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
             {error && <div className="badge red" style={{ alignSelf: "flex-start" }}><span className="dot" />{error}</div>}
             {info && <div className="muted" style={{ fontSize: 12.5 }}>{info}</div>}
             <button className="btn btn-primary" onClick={submit}
-              disabled={busy || !email.trim() || !password || (mode === "up" && (password.length < PW_MIN || password !== password2))}>
+              disabled={busy || !email.trim() || !password || (mode === "up" && (!mailOk(email) || password.length < PW_MIN || password !== password2))}>
               {busy ? <Icon name="refresh" size={15} /> : <Icon name="check" size={15} />} {mode === "in" ? txt("Anmelden") : txt("Registrieren")}
             </button>
             <div className="row" style={{ justifyContent: "space-between", flexWrap: "wrap" }}>

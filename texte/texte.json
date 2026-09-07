@@ -119,7 +119,7 @@
     ],
     [
      "P",
-     "Die Ampel gilt je Liste. Sie zählt nur, wie viele Wörter einer Liste schon auf der Stufe sitzt stehen: ab 95 Prozent gilt die Liste als bereit, ab 70 Prozent als auf Kurs, darunter als im Rückstand. Die Schwellen kannst du verstellen."
+     "Die Ampel gilt je Liste. Sie zählt, wie viele Wörter einer Liste schon sitzt oder sitzt fast erreicht haben: ab 95 Prozent gilt die Liste als bereit, ab 70 Prozent als auf Kurs, darunter als im Rückstand. Die Schwellen kannst du verstellen."
     ]
    ]
   ],
@@ -886,6 +886,7 @@
    "Zurück zum Anmelden",
    "Passwort",
    "Passwort wiederholen",
+   "Eine gültige E-Mail-Adresse",
    "Registrieren",
    "Noch kein Konto? Registrieren",
    "Schon registriert? Anmelden",
@@ -947,18 +948,18 @@
    "Hilfe"
   ],
   "Geteilte Liste übernehmen": [
-   "Liste importieren",
-   "Code (VT-…) oder Link einfügen",
-   "Abbrechen",
    "Liste nicht gefunden. Bitte den Code prüfen.",
    "Teilen ist gerade nicht möglich.",
    "Konnte die Liste nicht laden.",
    "Geteilte Liste",
-   "Du bekommst eine eigene Kopie; bereits vorhandene Wörter werden übersprungen."
+   "Liste importieren",
+   "Code (VT-…) oder Link einfügen",
+   "Du bekommst eine eigene Kopie; bereits vorhandene Wörter werden übersprungen.",
+   "Abbrechen"
   ],
   "Listenwahl": [
    "{n} Wörter",
-   "{p} % sitzen",
+   "{p} % sitzen ganz oder fast",
    "Name der Wortliste …",
    "Hier hinzufügen"
   ],
@@ -1157,6 +1158,8 @@
    "ā ē ī ō ū dürfen fehlen",
    "Bedienung",
    "Sprache der App",
+   "Deutsch",
+   "Englisch",
    "Gerätesprache",
    "Erscheinungsbild",
    "folgt dem Gerät",
@@ -1167,10 +1170,14 @@
    "Kartenschrift",
    "Zurück zum voreingestellten Aussehen",
    "Die Sprache der Bedienung. Deine Wörter und Wortlisten bleiben davon unberührt.",
+   "Erweiterte Einstellungen",
+   "einklappen ▾",
+   "ausklappen ▸",
    "Für Neugierige. Mit den Voreinstellungen läuft die App gut. Alles hier ist freiwillig und jederzeit zurückzustellen.",
    "1,0× (normal)",
    "Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher heißt: Die App nimmt schnellere Fortschritte an und fragt seltener nach. Das ist riskanter. Niedriger heißt vorsichtiger und häufiger.",
-   "Beispiel: 3× richtig hintereinander → hält",
+   "Beispiel: 3× richtig hintereinander → hält ~{n} Tage.",
+   "Beispiel: 3× richtig hintereinander → hält ~{n} statt ~{v} Tage.",
    "Übungsrunde: wie oft welche Wörter drankommen",
    "Das Gedächtnis-Modell",
    "Womit die App rechnet: das Behaltensziel, die abgeleiteten Schwellen und die 19 Modell-Gewichte. Nur zum Ansehen. Die App passt diese Werte nicht an dich an und zeichnet dafür auch nichts auf.",
@@ -1463,7 +1470,6 @@
   ],
   "Spalten und Wortarten": [
    "Genus",
-   "Deutsch",
    "Beispielsatz 1 deutsch",
    "Beispielsatz 2 deutsch",
    "m pl",
@@ -1495,7 +1501,6 @@
   ],
   "Sprachen": [
    "Französisch",
-   "Englisch",
    "Spanisch",
    "Italienisch",
    "Portugiesisch"
@@ -1503,7 +1508,7 @@
   "Ampel": [
    "Auf Kurs",
    "Im Rückstand",
-   "So viele Wörter der Liste sitzen schon: ab {g} % bereit, ab {a} % auf Kurs, darunter im Rückstand."
+   "So viele Wörter der Liste sitzen schon ganz oder fast: ab {g} % bereit, ab {a} % auf Kurs, darunter im Rückstand."
   ],
   "Smart Lists": [
    "Fälliges und Neues sinnvoll gemischt",

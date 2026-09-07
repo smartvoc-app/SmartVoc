@@ -690,7 +690,7 @@ export function WordList() {
                   bei dem man am Platzhalter erkannte, was hineingehoert -- und
                   sobald etwas drinstand, gar nicht mehr. */}
               <div className="fz-block">
-                <FeldEingabe feld={isLat ? txt("Grundform") : P.foreignLabel}
+                <FeldEingabe feld={isLat ? txt("Grundform") : txt(P.foreignLabel)}
                   wert={draft.fgn} onChange={(v) => setDraft({ ...draft, fgn: v })} />
                 {/* Stammformen kennt nur Latein. Die Wortart kennt jede
                     Sprache -- ein englisches "under" ist genauso eine
@@ -705,17 +705,17 @@ export function WordList() {
                   onChange={(v) => setDraft({ ...draft, genus: v })} />
                 <FeldAuswahl feld={txt("Wortart")} hinweis={txt("optional")} wert={draft.wortart} werte={WORTARTEN}
                   onChange={(v) => setDraft({ ...draft, wortart: v })} />
-                <FeldEingabe feld={P.nativeLabel} wert={draft.de}
+                <FeldEingabe feld={txt(P.nativeLabel)} wert={draft.de}
                   onChange={(v) => setDraft({ ...draft, de: v })} />
                 <FeldEingabe feld={txt("Lautschrift")} hinweis={txt("optional")} wert={draft.phon}
                   onChange={(v) => setDraft({ ...draft, phon: v })} />
-                <FeldEingabe feld={txt("Beispielsatz 1")} hinweis={P.foreignLabel} wert={draft.ex1}
+                <FeldEingabe feld={txt("Beispielsatz 1")} hinweis={txt(P.foreignLabel)} wert={draft.ex1}
                   mehrzeilig onChange={(v) => setDraft({ ...draft, ex1: v })} />
-                <FeldEingabe feld={txt("Beispielsatz 1")} hinweis={P.nativeLabel} wert={draft.ex1de}
+                <FeldEingabe feld={txt("Beispielsatz 1")} hinweis={txt(P.nativeLabel)} wert={draft.ex1de}
                   mehrzeilig onChange={(v) => setDraft({ ...draft, ex1de: v })} />
-                <FeldEingabe feld={txt("Beispielsatz 2")} hinweis={P.foreignLabel} wert={draft.ex2}
+                <FeldEingabe feld={txt("Beispielsatz 2")} hinweis={txt(P.foreignLabel)} wert={draft.ex2}
                   mehrzeilig onChange={(v) => setDraft({ ...draft, ex2: v })} />
-                <FeldEingabe feld={txt("Beispielsatz 2")} hinweis={P.nativeLabel} wert={draft.ex2de}
+                <FeldEingabe feld={txt("Beispielsatz 2")} hinweis={txt(P.nativeLabel)} wert={draft.ex2de}
                   mehrzeilig onChange={(v) => setDraft({ ...draft, ex2de: v })} />
               </div>
               {/* Der Lernstand -- derselbe Block wie in der Statistik. */}
@@ -1016,8 +1016,8 @@ export function WordList() {
 
             {sichtbar.length > 0 && (
               <div className="wz-kopf">
-                <span className="wz-f">{P.foreignLabel}</span>
-                <span className="wz-d">{P.nativeLabel}</span>
+                <span className="wz-f">{txt(P.foreignLabel)}</span>
+                <span className="wz-d">{txt(P.nativeLabel)}</span>
               </div>
             )}
           </div>
@@ -1053,7 +1053,7 @@ export function WordList() {
             {l && (
               <button className="pill pill-on" onClick={() => setDatumOffen(true)}>
                 <Icon name="calendar" size={14} />
-                <span>{l.dueDate ? new Date(l.dueDate).toLocaleDateString("de-CH", { weekday: "short", day: "numeric", month: "numeric" }) : txt("Kein Zieldatum")}</span>
+                <span>{l.dueDate ? new Date(l.dueDate).toLocaleDateString(LOCALE(), { weekday: "short", day: "numeric", month: "numeric" }) : txt("Kein Zieldatum")}</span>
               </button>
             )}
             {l && !istSystemliste && (
@@ -1211,7 +1211,7 @@ export function WordList() {
             const st = listenStand[l.id];
             const tage = l.dueDate ? Math.ceil((l.dueDate - Date.now()) / 86400000) : null;
             const sub = [txt("{n} Wörter", { n: st?.total ?? 0 })];
-            if (l.dueDate) sub.push(txt("Zieldatum {d}", { d: new Date(l.dueDate).toLocaleDateString("de-CH", { day: "numeric", month: "numeric" }) })
+            if (l.dueDate) sub.push(txt("Zieldatum {d}", { d: new Date(l.dueDate).toLocaleDateString(LOCALE(), { day: "numeric", month: "numeric" }) })
               + (tage != null && tage >= 0 && tage <= 14 ? " · " + (tage === 0 ? txt("heute") : tage === 1 ? txt("morgen") : txt("in {n} Tagen", { n: tage })) : ""));
             return (
               <button key={l.id} className="li" onClick={() => setOffen({ art: "liste", ref: l.id })}>

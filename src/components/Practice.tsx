@@ -828,7 +828,7 @@ export function Practice() {
           optionen={[
             { wert: "f2n", label: `${P.foreignLabel} → ${P.nativeLabel}` },
             { wert: "n2f", label: `${P.nativeLabel} → ${P.foreignLabel}` },
-            { wert: "mixed", label: `${P.nativeLabel} ⇄ ${P.foreignLabel}`, sub: txt("zufällig gemischt") },
+            { wert: "mixed", label: `${txt(P.nativeLabel)} ⇄ ${txt(P.foreignLabel)}`, sub: txt("zufällig gemischt") },
           ]}
           onWahl={(v) => { store.setSettings({ direction: v }); restartCard(); }}
         />

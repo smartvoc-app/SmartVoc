@@ -223,7 +223,7 @@ export function PlanTab() {
             <span>{nurPair ? (PAIRS[nurPair]?.foreignLabel || nurPair) : txt("Alle Sprachen")}</span>
             <select value={nurPair} aria-label={txt("Sprache")} onChange={(e) => { setNurPair(e.target.value); setPicked([]); }}>
               <option value="">{txt("Alle Sprachen")}</option>
-              {sichtbar.map((pp: any) => <option key={pp.id} value={pp.id}>{pp.foreignLabel} ⇄ {pp.nativeLabel}</option>)}
+              {sichtbar.map((pp: any) => <option key={pp.id} value={pp.id}>{txt(pp.foreignLabel)} ⇄ {txt(pp.nativeLabel)}</option>)}
             </select>
           </label>
         )}
@@ -267,7 +267,7 @@ export function PlanTab() {
         <div className="cal-legend">
           {toneLegend(settings).map((t) => (
             <span key={t.tone} className="cal-leg">
-              <span className={"cal-leg-feld " + TONE_KLASSE[t.tone]} />{txt(t.label)}
+              <span className={"cal-leg-feld " + TONE_KLASSE[t.tone]} />{t.label}
             </span>
           ))}
         </div>

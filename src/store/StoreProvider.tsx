@@ -275,7 +275,13 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       const a = 0.4;
       const ema = s.seen === 0 ? score : s.ema * (1 - a) + score * a;
       const streak = verdict === "correct" ? (s.streak || 0) + 1 : 0;
-      const history = [...s.history, { score, verdict, ts: Date.now(), errorType }].slice(-30);
+      /* s.history kann fehlen: der Vorgabewert oben greift nur, wenn der
+       * Eintrag GANZ fehlt. Ein halber Eintrag kommt aus einer von Hand
+       * bearbeiteten Sicherungsdatei oder von einem Geraet mit aelterem
+       * Stand -- und ein Spread ueber undefined beendet die App mit einem
+       * weissen Bildschirm, mitten in der Uebung. */
+      const bisher = Array.isArray(s.history) ? s.history : [];
+      const history = [...bisher, { score, verdict, ts: Date.now(), errorType }].slice(-30);
       const firstTs = s.firstTs || Date.now();   // erstes Mal gesehen
       return {
         ...prev,

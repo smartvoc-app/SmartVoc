@@ -61,7 +61,7 @@ export function ReviewModal({ open, rows, pair, onConfirm, onClose }: { open: bo
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 920, width: "96vw" }}>
         <div className="modal-head">
-          <div className="modal-title">{txt("Wörter prüfen")} <span className="muted" style={{ fontSize: 14, fontWeight: 500 }}>· {P.foreignLabel} ⇄ Deutsch</span></div>
+          <div className="modal-title">{txt("Wörter prüfen")} <span className="muted" style={{ fontSize: 14, fontWeight: 500 }}>· {txt(P.foreignLabel)} ⇄ {txt(P.nativeLabel)}</span></div>
           <button className="icon-btn" style={{ width: 34, height: 34 }} onClick={onClose}><Icon name="x" size={16} /></button>
         </div>
         <div className="muted" style={{ fontSize: 13.5, margin: "0 2px 12px" }}>

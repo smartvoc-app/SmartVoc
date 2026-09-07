@@ -54,7 +54,7 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
     onClose();
   }
 
-  const pairLabel = payload ? (PAIRS[payload.pair]?.foreignLabel + " ⇄ Deutsch") : "";
+  const pairLabel = payload ? (txt(PAIRS[payload.pair]?.foreignLabel || "") + " ⇄ " + txt(PAIRS[payload.pair]?.nativeLabel || "")) : "";
 
   return (
     <div className="modal-backdrop" onClick={onClose}>

@@ -465,7 +465,7 @@ export function SettingsTab() {
           const n = store.vocab.filter((w: any) => w.pair === pp.id).length;
           return (
             <button key={pp.id} className={"li" + (an ? " sel" : "")} onClick={() => togglePair(pp.id)} aria-pressed={an}>
-              <span className="g">{pp.foreignLabel} ⇄ {pp.nativeLabel}
+              <span className="g">{txt(pp.foreignLabel)} ⇄ {txt(pp.nativeLabel)}
                 <div className="m">{n ? txt("{n} Wörter", { n }) : txt("noch keine Wörter")}</div>
               </span>
             </button>
@@ -519,7 +519,7 @@ export function SettingsTab() {
         <div className="set-body">
 
         <ZeileWert titel={txt("Sprache der App")}
-          wert={settings.uiLang === "de" ? "Deutsch" : settings.uiLang === "en" ? "Englisch" : txt("Gerätesprache")}
+          wert={settings.uiLang === "de" ? txt("Deutsch") : settings.uiLang === "en" ? txt("Englisch") : txt("Gerätesprache")}
           onClick={() => setBlatt("uiLang")} />
 
         <div className="grp">{txt("Erscheinungsbild")} <span className="hint">— {txt("folgt dem Gerät")}</span></div>
@@ -579,9 +579,9 @@ export function SettingsTab() {
       {/* F-SETTINGS-ADVANCED: collapsible expert section */}
       <div className="set-section">
         <button className="set-section-h set-section-toggle" onClick={() => setAdvOpen((o) => !o)} style={{ width: "100%", background: "none", border: "none", cursor: "pointer" }}>
-          <Icon name="gear" size={16} /> Erweiterte Einstellungen
+          <Icon name="gear" size={16} /> {txt("Erweiterte Einstellungen")}
           <span className="grow" />
-          <span className="faint" style={{ fontSize: 12 }}>{advOpen ? "einklappen ▾" : "ausklappen ▸"}</span>
+          <span className="faint" style={{ fontSize: 12 }}>{advOpen ? txt("einklappen ▾") : txt("ausklappen ▸")}</span>
         </button>
         {advOpen && (
           <>
@@ -594,7 +594,15 @@ export function SettingsTab() {
               desc={txt("Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher heißt: Die App nimmt schnellere Fortschritte an und fragt seltener nach. Das ist riskanter. Niedriger heißt vorsichtiger und häufiger.")}>
               <div className="col" style={{ gap: 6, width: "100%" }}>
                 <SliderControl value={speed} min={0.6} max={1.6} step={0.05} onChange={(v: number) => set("learningSpeed", v)} fmt={(v: number) => v.toFixed(2) + "×"} />
-                <div className="set-rec" style={{ fontSize: 12.5 }}>{txt("Beispiel: 3× richtig hintereinander → hält")} <b>~{Math.round(haeltAtSpeed)} statt ~{Math.round(haeltBase)} Tage</b>.</div>
+                {/* Der Vergleich lohnt sich nur, wenn etwas verstellt ist. Auf der
+                    Voreinstellung standen beide Zahlen gleich da ("~46 statt ~46"),
+                    und "statt ... Tage" lief ausserhalb von txt(), stand also auch
+                    in der englischen Fassung deutsch. */}
+                <div className="set-rec" style={{ fontSize: 12.5 }}>
+                  {speed === DEFAULTS.learningSpeed
+                    ? txt("Beispiel: 3× richtig hintereinander → hält ~{n} Tage.", { n: Math.round(haeltBase) })
+                    : txt("Beispiel: 3× richtig hintereinander → hält ~{n} statt ~{v} Tage.", { n: Math.round(haeltAtSpeed), v: Math.round(haeltBase) })}
+                </div>
                 {speed !== DEFAULTS.learningSpeed && <button className="btn btn-ghost btn-sm" style={{ alignSelf: "flex-end" }} onClick={() => resetCfg("learningSpeed")}><Icon name="refresh" size={13} /> {txt("Auf Voreinstellung")}</button>}
               </div>
             </Field>
