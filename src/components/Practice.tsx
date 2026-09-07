@@ -698,8 +698,8 @@ export function Practice() {
         <div className="col" style={{ gap: 12 }}>
           {CHIP_HELP.map((c) => (
             <div key={c.label}>
-              <div style={{ fontWeight: 700, fontSize: 14 }}>{c.label}</div>
-              <div className="muted" style={{ fontSize: 13.5, marginTop: 2 }}>{c.text}</div>
+              <div style={{ fontWeight: 700, fontSize: 14 }}>{txt(c.label)}</div>
+              <div className="muted" style={{ fontSize: 13.5, marginTop: 2 }}>{txt(c.text)}</div>
             </div>
           ))}
         </div>
@@ -751,7 +751,7 @@ export function Practice() {
                       <span className="g">{l.name}
                         <div className="m">
                           <span className="stand-punkt" style={{ background: farbe }} />{txt(stand)}
-                          {" · " + txt("{p} % sitzen", { p: pct })}
+                          {" · " + txt("{p} % sitzen ganz oder fast", { p: pct })}
                           {days != null && " · " + (days < 0 ? txt("überfällig") : days === 0 ? txt("heute") : txt("in {n} Tagen", { n: days }))}
                         </div>
                       </span>

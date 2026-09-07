@@ -180,7 +180,7 @@ export function Stats() {
                         <button key={l.id} className={"li" + (an ? " sel" : "")}
                           onClick={() => setzeUmfang(statPair, an ? settings.statLists.filter((x: string) => x !== l.id) : [...settings.statLists, l.id])}>
                           <span className="g">{l.name}
-                            {st.total > 0 && <div className="m">{txt("{n} Wörter", { n: st.total })} · {txt("{p} % sitzen", { p: st.pct })}</div>}
+                            {st.total > 0 && <div className="m">{txt("{n} Wörter", { n: st.total })} · {txt("{p} % sitzen ganz oder fast", { p: st.pct })}</div>}
                           </span>
                           {st.total > 0 && <span className="ltab-dot" style={{ background: st.farbe, marginRight: 0, alignSelf: "center" }} />}
                         </button>

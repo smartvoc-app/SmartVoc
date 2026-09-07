@@ -27,32 +27,52 @@ import { spalten, TRENNER, WORTARTEN, GENUS } from "../lib/export";
  *    normal — and dropping the empty shifted "Tiere" into the example slot.
  *    Inner empties are kept now; only trailing ones go, since they carry
  *    nothing. */
-function columns(s: string): string[] {
+/* So viele Spalten hat die Vollform -- gezaehlt, nicht von Hand gefuehrt. */
+const VOLL = spalten("", "").length;
+
+export function columns(s: string): string[] {
   let p: string[];
   if (s.includes("|")) p = s.split("|");
   else if (s.includes("\t")) p = s.split("\t");
   else if (/\s{2,}/.test(s)) p = s.split(/\s{2,}/);
   else p = s.split(/\s*[–—:-]\s*/);
   p = p.map((x) => x.trim());
+  /* Leere Felder am Zeilenende wegnehmen -- eine von Hand getippte Zeile
+   * endet oft auf einem ueberzaehligen Trennstrich.
+   *
+   * ABER: die Vollform wird an ihrer Spaltenzahl erkannt, und ihre letzten
+   * Felder sind meistens leer -- Aussprache fuellt fast niemand aus. Wurde
+   * hier gekuerzt, zerfiel "cat |  |  |  | die Katze |  |  |  |  | " zu
+   * fuenf Spalten, galt als Kurzform und die Uebersetzung landete in der
+   * Aussprache. Was die App ausgibt, las sie also NICHT verlustfrei ein.
+   * Deshalb bleibt die Vollform unangetastet. */
+  if (p.length === VOLL) return p;
   while (p.length && p[p.length - 1] === "") p.pop();
   return p;
 }
 
 /* Eine Zeile in ein Wort. EIN Spaltensatz fuer alle Sprachen (lib/export.ts):
  *
- *   Fremdsprache | Lernform | Wortart | Deutsch | Bsp1 | Bsp1 dt | Bsp2 | Bsp2 dt | Aussprache
+ *   Fremdsprache | Formen | Genus | Wortart | Deutsch |
+ *   Bsp1 | Bsp1 dt | Bsp2 | Bsp2 dt | Aussprache
  *
  * Kuerzere Zeilen sind von Hand getippt und behalten ihre alte Bedeutung --
  * deshalb entscheidet die Spaltenzahl, nicht der Inhalt. Bei vier Spalten
  * gehen die beiden Lesarten auseinander: Latein meint dort seine
  * Stammformen, alle anderen zwei Beispielsaetze. Also entscheidet das Paar.
  */
-function zeileZuWort(p: string[], isLat: boolean) {
+export function zeileZuWort(p: string[], isLat: boolean) {
   const kopf = isLat ? "grundform" : "fgn";
   const w: any = { [kopf]: p[0] || "" };
   if (p.length >= 10) {
     w.lernform = p[1]; w.genus = p[2]; w.wortart = p[3]; w.de = p[4];
-    w.examples = [p[5], p[7]]; w.examplesDe = [p[6], p[8]];
+    /* Satz und Uebersetzung gehoeren zusammen und werden als Paar verworfen,
+     * wenn der Satz fehlt -- sonst stuende die Uebersetzung beim falschen
+     * Satz. Die Kurzformen filtern schon immer; das Vollformat schrieb
+     * stattdessen ["", ""] und zeigte zwei leere Beispielzeilen an. */
+    const paare = [[p[5], p[6]], [p[7], p[8]]].filter(([satz]) => satz);
+    w.examples = paare.map(([satz]) => satz);
+    w.examplesDe = paare.map(([, uebers]) => uebers || "");
     w.phonetic = p[9];
     return w;
   }

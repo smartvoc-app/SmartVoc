@@ -139,8 +139,16 @@ export function scoreAnswer(user: string, correct: string, opts?: ScoreOpts): Sc
   }
 
   // Umlauts / accents only
-  if (!strictAccents && fold(userOrig) === fold(corrOrig)) {
-    return finalize({ score: 0.8, verdict: "almost", note: "Mind the umlauts / accents", targetDiff, userDiff, errorType: "accent" });
+  if (fold(userOrig) === fold(corrOrig)) {
+    if (!strictAccents) {
+      return finalize({ score: 0.8, verdict: "almost", note: "Mind the umlauts / accents", targetDiff, userDiff, errorType: "accent" });
+    }
+    /* Streng gestellt heisst: der Akzent ist der Fehler. Ohne diesen Zweig
+     * fiel der Fall eine Regel weiter in die Tippfehler-Pruefung -- "grun"
+     * gegen "gruen" ist ein Zeichen Abstand und kam als "fast richtig"
+     * zurueck. Der Schalter verspricht aber "gilt dann als falsch", und
+     * hatte so ausser einer anderen Fehlerart keine sichtbare Wirkung. */
+    return { score: 0, verdict: "wrong", note: "Mind the umlauts / accents", targetDiff, userDiff, errorType: "accent" };
   }
 
   // Near miss (typos)

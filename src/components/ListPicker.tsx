@@ -58,7 +58,7 @@ export function ListPicker({ open, title, subtitle, onPick, onClose, pair }) {
               <span className="grow">{l.name}
                 {(() => { const st = stand(l); return st.total > 0 ? (
                   <div className="muted" style={{ fontSize: 12, fontWeight: 400 }}>
-                    {txt("{n} Wörter", { n: st.total })} · {txt("{p} % sitzen", { p: st.pct })}
+                    {txt("{n} Wörter", { n: st.total })} · {txt("{p} % sitzen ganz oder fast", { p: st.pct })}
                   </div>) : null; })()}
               </span>
               {(() => { const st = stand(l); return st.total > 0 ? (

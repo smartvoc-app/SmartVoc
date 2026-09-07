@@ -69,6 +69,6 @@ export function toneLegend(_settings: Partial<Settings> = {}): { tone: Tone; lab
  * umschlägt. Die Schwellen kommen aus den Einstellungen, damit hier nie
  * eine andere Zahl steht als dort. */
 export function ampelSatz(settings: Partial<Settings> = {}): string {
-  return txt("So viele Wörter der Liste sitzen schon: ab {g} % bereit, ab {a} % auf Kurs, darunter im Rückstand.",
+  return txt("So viele Wörter der Liste sitzen schon ganz oder fast: ab {g} % bereit, ab {a} % auf Kurs, darunter im Rückstand.",
     { g: settings.readyGreen ?? 95, a: settings.readyAmber ?? 70 });
 }

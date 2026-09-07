@@ -25,7 +25,7 @@ export const TRENNER = " | ";
  * unterscheiden -- und wer die falsche ausfuellte, bekam beim Einlesen
  * Unsinn.
  *
- * Jetzt neun Spalten, immer dieselben, in derselben Reihenfolge. Was eine
+ * Jetzt zehn Spalten, immer dieselben, in derselben Reihenfolge. Was eine
  * Sprache nicht kennt, bleibt leer: "Lernform" fuellt nur Latein aus. Eine
  * leere Spalte kostet nichts; zwei Formate kosten jedes Mal eine
  * Verwechslung.

@@ -28,10 +28,10 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
     setBusy(true); setError(""); setPayload(null);
     try {
       const p = await fetchShared(parseCode(raw));
-      if (!p || !p.words) setError("Liste nicht gefunden. Bitte den Code prüfen.");
+      if (!p || !p.words) setError(txt("Liste nicht gefunden. Bitte den Code prüfen."));
       else setPayload(p);
     } catch (e: any) {
-      setError(e?.message === "not-configured" ? "Teilen ist gerade nicht möglich." : "Konnte die Liste nicht laden.");
+      setError(e?.message === "not-configured" ? txt("Teilen ist gerade nicht möglich.") : txt("Konnte die Liste nicht laden."));
     }
     setBusy(false);
   }
@@ -41,7 +41,7 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
     const pair = payload.pair;
     if (store.settings.pair !== pair) store.setSettings({ pair, selectedLists: [], statLists: [] });
     /* Eine uebernommene Liste behaelt, von wem sie kam. */
-    const listId = store.addList(payload.name || "Geteilte Liste", pair,
+    const listId = store.addList(payload.name || txt("Geteilte Liste"), pair,
       { herkunft: "geteilt", autor: (payload as any).autor || undefined });
     const isLat = isLatinPair(pair);
     const key = (w: any) => (isLat ? ((w.grundform || "") + "|" + (w.de || "")) : ((w[fk(pair)] || "") + "|" + (w.de || ""))).toLowerCase();
@@ -77,9 +77,9 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
           {payload && (
             <div className="panel" style={{ padding: 14 }}>
               <div style={{ fontWeight: 700, fontSize: 15 }}>{payload.name}</div>
-              <div className="muted" style={{ fontSize: 13, marginTop: 3 }}>{pairLabel} · {payload.words.length} Wört{payload.words.length === 1 ? "" : "er"}</div>
+              <div className="muted" style={{ fontSize: 13, marginTop: 3 }}>{pairLabel} · {txt(payload.words.length === 1 ? "{n} Wort" : "{n} Wörter", { n: payload.words.length })}</div>
               <div className="faint" style={{ fontSize: 12, marginTop: 8, display: "flex", gap: 6, alignItems: "center" }}>
-                <Icon name="sparkle" size={13} /> Du bekommst eine eigene Kopie; bereits vorhandene Wörter werden übersprungen.
+                <Icon name="sparkle" size={13} /> {txt("Du bekommst eine eigene Kopie; bereits vorhandene Wörter werden übersprungen.")}
               </div>
             </div>
           )}

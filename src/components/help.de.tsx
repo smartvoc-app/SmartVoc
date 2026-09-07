@@ -113,7 +113,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
           <li><b>ungeübt</b>: noch nie abgefragt.</li>
         </ul>
         <p>Diese Leiste findest du überall gleich: unter der Karte, an jeder Liste und in der Statistik. Ein Tipp auf einen Eintrag der Legende öffnet die Wörter dahinter.</p>
-        <p>Die <b>Ampel</b> gilt je Liste. Sie zählt nur, wie viele Wörter einer Liste schon auf der Stufe <b>sitzt</b> stehen: ab 95 Prozent gilt die Liste als <b>bereit</b>, ab 70 Prozent als <b>auf Kurs</b>, darunter als <b>im Rückstand</b>. Die Schwellen kannst du verstellen.</p>
+        <p>Die <b>Ampel</b> gilt je Liste. Sie zählt, wie viele Wörter einer Liste schon <b>sitzt</b> oder <b>sitzt fast</b> erreicht haben: ab 95 Prozent gilt die Liste als <b>bereit</b>, ab 70 Prozent als <b>auf Kurs</b>, darunter als <b>im Rückstand</b>. Die Schwellen kannst du verstellen.</p>
       </>
     ),
   },

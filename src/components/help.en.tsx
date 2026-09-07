@@ -81,7 +81,7 @@ export const ANLEITUNG_EN: Kapitel[] = [
           <li><b>unpractised</b>: never asked yet.</li>
         </ul>
         <p>You will find this bar in the same form everywhere: under the card, on every list and in Statistics. Tapping an entry in the legend opens the words behind it.</p>
-        <p>The <b>traffic light</b> applies to a whole list. It only counts how many of the list's words have reached the level <b>solid</b>: from 95 per cent the list counts as <b>ready</b>, from 70 per cent as <b>on track</b>, below that as <b>behind</b>. You can move the thresholds.</p>
+        <p>The <b>traffic light</b> applies to a whole list. It counts how many of the list's words have reached <b>solid</b> or <b>nearly solid</b>: from 95 per cent the list counts as <b>ready</b>, from 70 per cent as <b>on track</b>, below that as <b>behind</b>. You can move the thresholds.</p>
       </>
     ),
   },
