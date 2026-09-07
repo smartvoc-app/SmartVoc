@@ -51,7 +51,17 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
 
   if (!open && !auth.recovering) return null;
 
-  const switchMode = (m: Mode) => { setMode(m); setError(""); setInfo(""); };
+  const switchMode = (m: Mode) => { setMode(m); setError(""); setInfo(""); setPassword(""); setPassword2(""); };
+
+  /* Mindestlaenge statt Zeichenklassen.
+   *
+   * "Mindestens ein Sonderzeichen" erzeugt "Passwort1!" -- laenger und
+   * schwerer zu erraten wird davon nichts. Laenge ist das, was zaehlt, und
+   * sie laesst sich auf einer Handytastatur auch eintippen. Acht Zeichen
+   * liegen ueber der Supabase-Vorgabe von sechs. */
+  const PW_MIN = 8;
+  const pwSchwach = password.length > 0 && password.length < PW_MIN;
+  const pwUngleich = password2.length > 0 && password !== password2;
 
   const submit = async () => {
     setBusy(true); setError(""); setInfo("");
@@ -59,24 +69,28 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
       const r = await auth.resetPassword(email.trim());
       setBusy(false);
       if (r.error) { setError(r.error); return; }
-      setInfo("Wenn es zu dieser Adresse ein Konto gibt, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.");
+      setInfo(txt("Wenn es zu dieser Adresse ein Konto gibt, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät."));
       return;
     }
     if (mode === "newpw") {
-      if (password.length < 6) { setBusy(false); setError("Mindestens 6 Zeichen."); return; }
-      if (password !== password2) { setBusy(false); setError("Passwörter stimmen nicht überein."); return; }
+      if (password.length < PW_MIN) { setBusy(false); setError(txt("Mindestens {n} Zeichen.", { n: PW_MIN })); return; }
+      if (password !== password2) { setBusy(false); setError(txt("Passwörter stimmen nicht überein.")); return; }
       const r = await auth.updatePassword(password);
       setBusy(false);
       if (r.error) { setError(r.error); return; }
       setPassword(""); setPassword2("");
-      toast("Passwort geändert", "check");
+      toast(txt("Passwort geändert"), "check");
       onClose();
       return;
+    }
+    if (mode === "up") {
+      if (password.length < PW_MIN) { setBusy(false); setError(txt("Mindestens {n} Zeichen.", { n: PW_MIN })); return; }
+      if (password !== password2) { setBusy(false); setError(txt("Passwörter stimmen nicht überein.")); return; }
     }
     const r = mode === "in" ? await auth.signIn(email.trim(), password) : await auth.signUp(email.trim(), password, username);
     setBusy(false);
     if (r.error) { setError(r.error); return; }
-    if (mode === "up" && !auth.user) { setInfo("Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse."); return; }
+    if (mode === "up" && !auth.user) { setInfo(txt("Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse.")); return; }
     onClose();
   };
 
@@ -88,11 +102,11 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
     const name = nameDraft.trim();
     if (!name || name === auth.username) return;
     const r = await auth.updateUsername(name);
-    if (r.error) toast(r.error, "x"); else toast("Anzeigename gespeichert", "check");
+    if (r.error) toast(r.error, "x"); else toast(txt("Anzeigename gespeichert"), "check");
   };
 
   const titles: Record<Mode, string> = {
-    in: "Anmelden", up: "Account erstellen", reset: "Passwort zurücksetzen", newpw: "Neues Passwort setzen",
+    in: txt("Anmelden"), up: txt("Konto erstellen"), reset: txt("Passwort zurücksetzen"), newpw: txt("Neues Passwort setzen"),
   };
 
   return (
@@ -125,7 +139,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
               <div className="muted" style={{ fontSize: 12.5, marginTop: -8 }}>{txt("Noch kein Anzeigename gesetzt. Bis dahin zeigt die App deine E-Mail-Adresse. Tippe auf den Stift, um einen festzulegen.")}</div>
             )}
             {auth.username && !editingName && <div className="faint" style={{ fontSize: 12, marginTop: -8 }}>{auth.email}</div>}
-            <div className="badge slate" style={{ alignSelf: "flex-start" }}><span className="dot" />{STATUS_LABEL[status]}</div>
+            <div className="badge slate" style={{ alignSelf: "flex-start" }}><span className="dot" />{txt(STATUS_LABEL[status])}</div>
             <div className="muted" style={{ fontSize: 12.5, lineHeight: 1.45 }}>
               {txt("Deine Wörter, Listen und Fortschritte werden abgeglichen und stehen auf allen deinen Geräten zur Verfügung. Ohne Netz läuft alles weiter und wird beim nächsten Mal nachgeholt.")}
             </div>
@@ -135,14 +149,14 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
           </div>
         ) : mode === "newpw" ? (
           <div className="col" style={{ gap: 10 }}>
-            <div className="muted" style={{ fontSize: 12.5, lineHeight: 1.45 }}>Setze ein neues Passwort für {auth.email || "deinen Account"}.</div>
+            <div className="muted" style={{ fontSize: 12.5, lineHeight: 1.45 }}>{txt("Setze ein neues Passwort für {wer}.", { wer: auth.email || txt("dein Konto") })}</div>
             <input className="field" type="password" placeholder={txt("Neues Passwort")} value={password} autoComplete="new-password" autoFocus
               onChange={(e) => setPassword(e.target.value)} />
             <input className="field" type="password" placeholder={txt("Neues Passwort wiederholen")} value={password2} autoComplete="new-password"
               onChange={(e) => setPassword2(e.target.value)} onKeyDown={(e) => e.key === "Enter" && submit()} />
             {error && <div className="badge red" style={{ alignSelf: "flex-start" }}><span className="dot" />{error}</div>}
             <button className="btn btn-primary" onClick={submit} disabled={busy || !password || !password2}>
-              {busy ? <Icon name="refresh" size={15} /> : <Icon name="check" size={15} />} Passwort speichern
+              {busy ? <Icon name="refresh" size={15} /> : <Icon name="check" size={15} />} {txt("Passwort speichern")}
             </button>
           </div>
         ) : mode === "reset" ? (
@@ -153,7 +167,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
             {error && <div className="badge red" style={{ alignSelf: "flex-start" }}><span className="dot" />{error}</div>}
             {info && <div className="muted" style={{ fontSize: 12.5 }}>{info}</div>}
             <button className="btn btn-primary" onClick={submit} disabled={busy || !email.trim()}>
-              {busy ? <Icon name="refresh" size={15} /> : <Icon name="check" size={15} />} Link senden
+              {busy ? <Icon name="refresh" size={15} /> : <Icon name="check" size={15} />} {txt("Link senden")}
             </button>
             <button className="btn btn-ghost btn-sm" onClick={() => switchMode("in")}>{txt("Zurück zum Anmelden")}</button>
           </div>
@@ -167,14 +181,29 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
               onChange={(e) => setEmail(e.target.value)} />
             <input className="field" type="password" placeholder={txt("Passwort")} value={password} autoComplete={mode === "in" ? "current-password" : "new-password"}
               onChange={(e) => setPassword(e.target.value)} onKeyDown={(e) => e.key === "Enter" && submit()} />
+            {/* Beim Anlegen zweimal: ein Tippfehler im Passwort faellt sonst
+                erst auf, wenn man sich das naechste Mal anmelden will -- und
+                dann hilft nur noch das Zuruecksetzen per E-Mail. */}
+            {mode === "up" && (
+              <>
+                <input className="field" type="password" placeholder={txt("Passwort wiederholen")} value={password2} autoComplete="new-password"
+                  onChange={(e) => setPassword2(e.target.value)} onKeyDown={(e) => e.key === "Enter" && submit()} />
+                <div className="muted" style={{ fontSize: 12, marginTop: -4 }}>
+                  {pwUngleich ? txt("Die beiden Passwörter stimmen nicht überein.")
+                    : pwSchwach ? txt("Noch zu kurz: mindestens {n} Zeichen.", { n: PW_MIN })
+                    : txt("Mindestens {n} Zeichen. Länger ist besser als kompliziert.", { n: PW_MIN })}
+                </div>
+              </>
+            )}
             {error && <div className="badge red" style={{ alignSelf: "flex-start" }}><span className="dot" />{error}</div>}
             {info && <div className="muted" style={{ fontSize: 12.5 }}>{info}</div>}
-            <button className="btn btn-primary" onClick={submit} disabled={busy || !email.trim() || !password}>
-              {busy ? <Icon name="refresh" size={15} /> : <Icon name="check" size={15} />} {mode === "in" ? "Anmelden" : "Registrieren"}
+            <button className="btn btn-primary" onClick={submit}
+              disabled={busy || !email.trim() || !password || (mode === "up" && (password.length < PW_MIN || password !== password2))}>
+              {busy ? <Icon name="refresh" size={15} /> : <Icon name="check" size={15} />} {mode === "in" ? txt("Anmelden") : txt("Registrieren")}
             </button>
             <div className="row" style={{ justifyContent: "space-between", flexWrap: "wrap" }}>
               <button className="btn btn-ghost btn-sm" onClick={() => switchMode(mode === "in" ? "up" : "in")}>
-                {mode === "in" ? "Noch kein Konto? Registrieren" : "Schon registriert? Anmelden"}
+                {mode === "in" ? txt("Noch kein Konto? Registrieren") : txt("Schon registriert? Anmelden")}
               </button>
               {mode === "in" && <button className="btn btn-ghost btn-sm" onClick={() => switchMode("reset")}>{txt("Passwort vergessen?")}</button>}
             </div>

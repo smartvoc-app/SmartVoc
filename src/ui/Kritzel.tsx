@@ -91,13 +91,13 @@ export function KritzelAntwortarten({ titel }: { titel?: string }) {
            strokeLinecap="round" strokeLinejoin="round">
           {K(6, "Eintippen", "var(--ink)")}
           {K(74, "Multiple-", "var(--ink)")}
-          <text x="105" y="52" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">"Choice"</text>
+          <text x="105" y="52" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">Choice</text>
           {K(142, "Selbst-", "var(--ink)")}
-          <text x="173" y="52" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">"kontrolle"</text>
+          <text x="173" y="52" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="9">kontrolle</text>
           <path d="M214 10v54" stroke="var(--line)" strokeDasharray="3 4" />
           <rect x="226" y="14" width="66" height="46" rx="5" fill="var(--bg-2)" stroke="var(--ink-faint)" strokeDasharray="4 3" />
-          <text x="259" y="36" textAnchor="middle" fill="var(--ink-soft)" stroke="none" fontSize="9">"Nur durch-"</text>
-          <text x="259" y="48" textAnchor="middle" fill="var(--ink-soft)" stroke="none" fontSize="9">"blättern"</text>
+          <text x="259" y="36" textAnchor="middle" fill="var(--ink-soft)" stroke="none" fontSize="9">Nur durch-</text>
+          <text x="259" y="48" textAnchor="middle" fill="var(--ink-soft)" stroke="none" fontSize="9">blättern</text>
           <text x="80" y="80" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("zählen für deinen Lernstand")}</text>
           <text x="259" y="80" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">{txt("zählt nicht")}</text>
         </g>

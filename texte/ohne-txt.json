@@ -5,12 +5,7 @@
  ],
  "src/components/AccountModal.tsx": [
   "Nur auf diesem Gerät",
-  "Ohne Netz, wird nachgeholt",
-  "Wenn es zu dieser Adresse ein Konto gibt, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.",
-  "Passwörter stimmen nicht überein.",
-  "Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse.",
-  "Passwort zurücksetzen",
-  "Noch kein Konto? Registrieren"
+  "Ohne Netz, wird nachgeholt"
  ],
  "src/components/FsrsValuesModal.tsx": [
   "Erster Halt: gar nicht gewusst",
@@ -194,18 +189,12 @@
  "src/sync/auth.tsx": [
   "Das Passwort lässt sich in der App nicht zurücksetzen. Öffne SmartVoc dafür im Browser."
  ],
- "src/sync/SyncBridge.tsx": [
-  "Auf diesem Gerät liegen bereits Wörter und Listen.",
-  "OK, in dieses Konto übernehmen",
-  "Abbrechen, leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
- ],
  "src/ui/Kritzel.tsx": [
-  "blättern",
   "1 Liste",
   "2 Listen",
   "der Baum",
   "Der Baum ist hoch.",
-  "\"blättern\"",
+  "blättern",
   "der Schlüssel"
  ],
  "src/ui/MasteryBar.tsx": [
