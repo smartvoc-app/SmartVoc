@@ -90,7 +90,24 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
     const r = mode === "in" ? await auth.signIn(email.trim(), password) : await auth.signUp(email.trim(), password, username);
     setBusy(false);
     if (r.error) { setError(r.error); return; }
-    if (mode === "up" && !auth.user) { setInfo(txt("Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse.")); return; }
+    /* Nach dem Anlegen wechseln wir auf das Anmeldefenster.
+     *
+     * Vorher blieb die Maske stehen, mit allen Feldern noch gefuellt und
+     * einem Satz darunter -- man sah nicht, ob etwas passiert war, und der
+     * naechste Schritt (anmelden) war nirgends zu sehen. Die Adresse bleibt
+     * stehen, damit sie nach dem Bestaetigen nicht nochmal getippt werden
+     * muss; die Passwoerter werden geleert.
+     *
+     * Der Satz ist bestimmt formuliert, nicht im Konjunktiv: Wenn wir hier
+     * landen, gibt es keine Sitzung, und das heisst, die Adresse muss
+     * bestaetigt werden. */
+    if (mode === "up" && !auth.user) {
+      setMode("in");
+      setPassword(""); setPassword2(""); setUsername("");
+      setError("");
+      setInfo(txt("Konto erstellt. Wir haben dir eine E-Mail geschickt: bestätige die Adresse, dann kannst du dich hier anmelden."));
+      return;
+    }
     onClose();
   };
 

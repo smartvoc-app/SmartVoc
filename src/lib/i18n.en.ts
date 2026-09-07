@@ -569,7 +569,6 @@ export const EN: Record<string, string> = {
   "Italienisch": "Italian",
   "Konjunktion": "Conjunction",
   "Konnte die Liste nicht laden.": "Could not load the list.",
-  "Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse.": "Account created. If a confirmation email arrives, confirm the address first.",
   "Leere Vorlage herunterladen": "Download a blank template",
   "Liste nicht gefunden. Bitte den Code prüfen.": "List not found. Please check the code.",
   "Lokale Daten als Sicherung gespeichert": "Local data saved as a backup",
@@ -731,4 +730,5 @@ export const EN: Record<string, string> = {
   "Link senden": "Send link",
   "Mindestens {n} Zeichen": "At least {n} characters",
   "Beide Eingaben stimmen überein": "Both entries match",
+  "Konto erstellt. Wir haben dir eine E-Mail geschickt: bestätige die Adresse, dann kannst du dich hier anmelden.": "Account created. We have sent you an email: confirm the address, then you can sign in here.",
 };

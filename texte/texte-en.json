@@ -829,7 +829,7 @@
    "At least {n} characters.",
    "The passwords do not match.",
    "Password changed",
-   "Account created. If a confirmation email arrives, confirm the address first.",
+   "Account created. We have sent you an email: confirm the address, then you can sign in here.",
    "Display name saved",
    "Create account",
    "Reset password",
