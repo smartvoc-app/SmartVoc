@@ -38,3 +38,24 @@ hydrateFromNative().then(entferneAltesProtokoll).finally(() => {
     </ToastHost>
   );
 });
+
+/* Nach neuen Fassungen sehen, ohne dass jemand neu laden muss.
+ *
+ * `registerType: "autoUpdate"` prueft nur beim Laden der Seite. Wer den Tab
+ * offen laesst -- und das tut man bei einer Lern-App -- bleibt beliebig lange
+ * auf der alten Fassung und wundert sich, dass Korrekturen nicht ankommen.
+ * Genau das ist in der Erprobung mehrfach passiert.
+ *
+ * Deshalb zusaetzlich nachfragen, wenn der Tab wieder in den Vordergrund
+ * kommt, und einmal pro Stunde. Findet der Browser eine neue Fassung,
+ * uebernimmt sie der Dienst-Arbeiter (skipWaiting) und laedt die Seite neu.
+ * Auf iOS gibt es keinen Dienst-Arbeiter; dort faellt das leise aus. */
+if ("serviceWorker" in navigator) {
+  const nachsehen = () => navigator.serviceWorker.getRegistration()
+    .then((r) => r?.update())
+    .catch(() => {});
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") nachsehen();
+  });
+  setInterval(nachsehen, 60 * 60 * 1000);
+}
