@@ -87,7 +87,7 @@
     ],
     [
      "P",
-     "Zwei Farbskalen, nicht eine. SmartVoc färbt an zwei Stellen, und die beiden bedeuten Verschiedenes. Wer sie verwechselt, liest die App falsch."
+     "Die Farben bedeuten nicht überall dasselbe. SmartVoc färbt an zwei Stellen, und die beiden Skalen messen Verschiedenes. Wer sie verwechselt, liest die App falsch."
     ],
     [
      "P",
@@ -148,7 +148,7 @@
     ],
     [
      "L",
-     "Selbstkontrolle: du überlegst, drehst um und beurteilst selbst. Schreib die Lösung vorher auf ein Blatt, sonst fällt das Urteil zu freundlich aus."
+     "Selbstkontrolle: du überlegst, drehst um und beurteilst selbst. Am besten schreibst du die Lösung vorher auf ein Blatt."
     ],
     [
      "L",
@@ -160,7 +160,7 @@
     ],
     [
      "P",
-     "Zwei Anzeigen, zwei verschiedene Dinge. Über der Karte steht der Übungsfortschritt: wie viel von dieser Runde erledigt ist. Jedes Wort braucht dafür eine bestimmte Zahl richtiger Antworten. Ein Fehler setzt seinen Zähler zurück, und der Balken geht ein Stück zurück."
+     "Über und unter der Karte steht je ein Balken. Sie messen Verschiedenes. Über der Karte steht der Übungsfortschritt: wie viel von dieser Runde erledigt ist. Jedes Wort braucht dafür eine bestimmte Zahl richtiger Antworten. Ein Fehler setzt seinen Zähler zurück, und der Balken geht ein Stück zurück."
     ],
     [
      "P",
@@ -192,11 +192,23 @@
     ],
     [
      "P",
-     "Warum eine Übung endet. Heute dran schlägt höchstens dreißig Karten vor, und höchstens zehn davon sind ganz neue Wörter. Beide Zahlen sind einstellbar. Nach vierzig Karten schlägt die App außerdem eine Pause vor. Wörter aus einer Liste, deren Termin in den nächsten drei Tagen liegt, zählen gegen keine dieser Grenzen."
+     "Wann eine Runde zu Ende ist. Jedes Wort der Auswahl hat in dieser Runde ein Ziel: eine Anzahl richtiger Antworten, die es braucht. Ein wackelndes Wort braucht drei, ein neues zwei, ein fast sitzendes oder fälliges eine. Sind alle Ziele erreicht, ist die Runde fertig. Deshalb siehst du mehr Karten als Wörter, und deshalb kostet ein Fehler etwas: Er setzt den Zähler dieses Wortes zurück."
     ],
     [
      "P",
-     "Latein läuft eigens. Statt eines einzelnen Wortes lernst du Stammformen. In der Stufe L2 zeigt die Karte die volle Lernform und fragt nur die Grundform ab. In L3 gibst du die Stammformen vollständig ein; die Reihenfolge ist egal."
+     "Wie groß eine Runde überhaupt wird, begrenzen zwei Zahlen:"
+    ],
+    [
+     "L",
+     "In Heute dran liegen höchstens dreißig Wörter, davon höchstens zehn ganz neue. Beide Zahlen stellst du selbst ein."
+    ],
+    [
+     "L",
+     "Steht der Termin einer Liste in den nächsten drei Tagen, gelten diese Grenzen für ihre Wörter nicht. Kurz vor einem Termin wäre es unsinnig, Wörter zurückzuhalten."
+    ],
+    [
+     "P",
+     "Nach vierzig gezeigten Karten fragt die App außerdem, ob du für heute aufhören willst. Weitermachen kannst du trotzdem."
     ]
    ]
   ],
@@ -213,7 +225,7 @@
     ],
     [
      "P",
-     "Das Zieldatum. Gib einer Liste den Tag, an dem sie sitzen muss, meist der Tag der Prüfung. Vergeben wird es unter Wortlisten, an der Liste selbst."
+     "Das Zieldatum. Gib einer Liste den Tag, an dem sie sitzen muss. Vergeben wird es unter Wortlisten, an der Liste selbst."
     ],
     [
      "P",

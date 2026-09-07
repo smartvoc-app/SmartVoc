@@ -22,6 +22,11 @@
  * fuenf Stufen je Wort, drei Farben je Liste. Sie werden sonst verwechselt,
  * weil sie weit auseinander eingefuehrt wurden.
  *
+ * Latein steht NICHT drin, obwohl ein Review es als Luecke meldete. Wer
+ * Latein lernt, sieht die Stammformen auf der ersten Karte, und die
+ * Einstellung erklaert L2 und L3 an Ort und Stelle. Ein Absatz in der
+ * Anleitung haette ihn alle anderen mitlesen lassen, fuer nichts.
+ *
  * Jedes Kapitel ist gleich gebaut: ein Satz, worum es geht, dann die
  * Zeichnung, dann die Handgriffe in der Reihenfolge, in der man sie
  * braucht. Fett steht, was auf dem Bildschirm auch so heißt. */
@@ -98,7 +103,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
           <li><b>Statistik</b>: wo stehe ich? Was sitzt, was wackelt, und ob es vorwärtsgeht.</li>
         </ul>
         <p>Oben rechts liegen zwei Knöpfe. Hinter dem Zahnrad stehen die <b>Einstellungen</b>, hinter dem Fragezeichen diese Anleitung, die <b>Lerntipps</b> und das Kapitel <b>Dahinter</b>.</p>
-        <p><b>Zwei Farbskalen, nicht eine.</b> SmartVoc färbt an zwei Stellen, und die beiden bedeuten Verschiedenes. Wer sie verwechselt, liest die App falsch.</p>
+        <p><b>Die Farben bedeuten nicht überall dasselbe.</b> SmartVoc färbt an zwei Stellen, und die beiden Skalen messen Verschiedenes. Wer sie verwechselt, liest die App falsch.</p>
         <p>Die <b>fünf Stufen</b> gelten je Wort. Die Leiste liest sich von links nach rechts:</p>
         <ul>
           <li><b>sitzt</b>: hält länger als zwei Wochen und kommt nur noch selten zurück.</li>
@@ -122,11 +127,11 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <ul>
           <li><b>Eintippen</b>: du schreibst die Antwort selbst. Am anstrengendsten, bringt am meisten. Im Zweifel diese.</li>
           <li><b>Multiple-Choice</b>: du wählst aus mehreren Möglichkeiten. Leichter, gut für den Anfang oder wenn du müde bist.</li>
-          <li><b>Selbstkontrolle</b>: du überlegst, drehst um und beurteilst selbst. Schreib die Lösung vorher auf ein Blatt, sonst fällt das Urteil zu freundlich aus.</li>
+          <li><b>Selbstkontrolle</b>: du überlegst, drehst um und beurteilst selbst. Am besten schreibst du die Lösung vorher auf ein Blatt.</li>
           <li><b>Nur durchblättern</b>: zum Überfliegen einer Liste. Zählt für nichts, weder Lernstand noch Statistik.</li>
         </ul>
         <p>Die <b>Richtung</b> ist ebenso umschaltbar: Fremdsprache zu Deutsch, umgekehrt, oder gemischt. Wechsle beides regelmäßig ab, sonst merkt sich dein Gedächtnis das Muster statt das Wort.</p>
-        <p><b>Zwei Anzeigen, zwei verschiedene Dinge.</b> Über der Karte steht der <b>Übungsfortschritt</b>: wie viel von dieser Runde erledigt ist. Jedes Wort braucht dafür eine bestimmte Zahl richtiger Antworten. Ein Fehler setzt seinen Zähler zurück, und der Balken geht ein Stück zurück.</p>
+        <p><b>Über und unter der Karte steht je ein Balken.</b> Sie messen Verschiedenes. Über der Karte steht der <b>Übungsfortschritt</b>: wie viel von dieser Runde erledigt ist. Jedes Wort braucht dafür eine bestimmte Zahl richtiger Antworten. Ein Fehler setzt seinen Zähler zurück, und der Balken geht ein Stück zurück.</p>
         <p>Unter der Karte steht der <b>Lernstand</b>: wie sich die Wörter dieser Auswahl auf die fünf Stufen verteilen. Der Fortschritt beginnt bei jeder Runde neu, der Lernstand bewegt sich über Wochen. Beim Durchblättern fehlen beide, weil dieser Modus nichts verändert.</p>
         <p><b>Wie deine Antwort bewertet wird.</b> Beim Eintippen vergleicht die App deine Antwort mit der Lösung und fällt eines von drei Urteilen: <b>richtig</b>, <b>fast richtig</b> oder <b>falsch</b>. Fast richtig ist keine Höflichkeit, es zählt anders als falsch. In der Statistik werden richtig und fast richtig zusammen als <b>Treffer</b> gezählt.</p>
         <ul>
@@ -136,8 +141,13 @@ export const ANLEITUNG_DE: Kapitel[] = [
           <li>Groß- und Kleinschreibung zählt in der Voreinstellung. <b>ss</b> und <b>ß</b> gelten immer als gleich.</li>
         </ul>
         <p>Nach jeder Antwort zeigt die App, welche Zeichen fehlten, überflüssig waren oder abwichen. Wenn dich eine Bewertung ärgert, liegt der Hebel in den Einstellungen unter <b>Antwortprüfung</b>.</p>
-        <p><b>Warum eine Übung endet.</b> <b>Heute dran</b> schlägt höchstens dreißig Karten vor, und höchstens zehn davon sind ganz neue Wörter. Beide Zahlen sind einstellbar. Nach vierzig Karten schlägt die App außerdem eine Pause vor. Wörter aus einer Liste, deren Termin in den nächsten drei Tagen liegt, zählen gegen keine dieser Grenzen.</p>
-        <p><b>Latein läuft eigens.</b> Statt eines einzelnen Wortes lernst du Stammformen. In der Stufe <b>L2</b> zeigt die Karte die volle Lernform und fragt nur die Grundform ab. In <b>L3</b> gibst du die Stammformen vollständig ein; die Reihenfolge ist egal.</p>
+        <p><b>Wann eine Runde zu Ende ist.</b> Jedes Wort der Auswahl hat in dieser Runde ein Ziel: eine Anzahl richtiger Antworten, die es braucht. Ein wackelndes Wort braucht drei, ein neues zwei, ein fast sitzendes oder fälliges eine. Sind alle Ziele erreicht, ist die Runde fertig. Deshalb siehst du mehr Karten als Wörter, und deshalb kostet ein Fehler etwas: Er setzt den Zähler dieses Wortes zurück.</p>
+        <p>Wie groß eine Runde überhaupt wird, begrenzen zwei Zahlen:</p>
+        <ul>
+          <li>In <b>Heute dran</b> liegen höchstens dreißig Wörter, davon höchstens zehn ganz neue. Beide Zahlen stellst du selbst ein.</li>
+          <li>Steht der Termin einer Liste in den nächsten drei Tagen, gelten diese Grenzen für ihre Wörter nicht. Kurz vor einem Termin wäre es unsinnig, Wörter zurückzuhalten.</li>
+        </ul>
+        <p>Nach vierzig gezeigten Karten fragt die App außerdem, ob du für heute aufhören willst. Weitermachen kannst du trotzdem.</p>
       </>
     ),
   },
@@ -147,7 +157,7 @@ export const ANLEITUNG_DE: Kapitel[] = [
       <>
         <p>Der Übungsplan zeigt, wann welche Liste sitzen muss und wie weit du bist, als Kalender oder als Liste. Hier erscheinen nur Listen, denen du ein <b>Zieldatum</b> gegeben hast. Alle anderen werden ganz normal abgefragt, tauchen hier aber nicht auf.</p>
         <KritzelEndspurt titel="Je näher der Termin, desto enger die Wiederholungen" />
-        <p><b>Das Zieldatum.</b> Gib einer Liste den Tag, an dem sie sitzen muss, meist der Tag der Prüfung. Vergeben wird es unter <b>Wortlisten</b>, an der Liste selbst.</p>
+        <p><b>Das Zieldatum.</b> Gib einer Liste den Tag, an dem sie sitzen muss. Vergeben wird es unter <b>Wortlisten</b>, an der Liste selbst.</p>
         <p>Von da an rechnet die App rückwärts: Ab etwa drei Wochen vor dem Termin verlangt sie von diesen Wörtern mehr Sicherheit, wodurch sie öfter drankommen. In den letzten Tagen fällt für sie die Tagesgrenze weg. Nach dem Termin ist alles wieder normal.</p>
         <p>Übst du mehrere Listen zusammen, kommen die Wörter der Liste mit dem näheren Termin von selbst häufiger. Dafür musst du nichts einstellen.</p>
         <p>Die Farbe eines Tages ist die <b>Ampel</b> der Liste, die an diesem Tag fällig ist, also dieselbe dreistufige Skala wie im Überblick, nicht die fünf Stufen. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste.</p>
