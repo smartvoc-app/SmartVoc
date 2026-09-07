@@ -3,7 +3,7 @@
  *
  * Vier Stellen sprachen bisher ueber dieselben Spalten, und drei davon
  * widersprachen sich: der KI-Prompt nannte sieben Spalten und behauptete
- * im naechsten Satz, es seien acht; die Excel-Vorlage liess die deutschen
+ * im naechsten Satz, es seien acht; die Excel-Vorlage ließ die deutschen
  * Beispielsaetze ganz weg und setzte die Aussprache an eine andere Stelle;
  * der Einleser suchte sich die Spalten ueber Ueberschriften zusammen.
  *

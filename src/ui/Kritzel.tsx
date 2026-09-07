@@ -183,6 +183,147 @@ export function KritzelListe({ titel }: { titel?: string }) {
   );
 }
 
+/** Der Weg von der Heftseite zur ersten Karte. Drei Stationen, und die
+ *  mittlere ist die, die man sonst überspringt. */
+export function KritzelStart({ titel }: { titel?: string }) {
+  const pfeil = (x: number) => (
+    <path d={`M${x} 52h22M${x + 14} 46l8 6-8 6`} stroke="var(--amber)" strokeWidth="2" />
+  );
+  return (
+    <Figur vb="0 0 300 116" titel={titel}>
+      {(f) => (
+        <g filter={f} fill="none" stroke="var(--ink)" strokeWidth="1.5"
+           strokeLinecap="round" strokeLinejoin="round">
+          {/* Heftseite */}
+          <rect x="6" y="16" width="76" height="72" rx="4" fill="var(--card)" />
+          <path d="M22 16v72" stroke="var(--bad)" strokeWidth="1" opacity="0.5" />
+          {[30, 42, 54, 66].map((y) => <path key={y} d={`M28 ${y}h48`} stroke="var(--line)" />)}
+          <text x="44" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">Foto</text>
+
+          {pfeil(88)}
+
+          {/* Prüfen-Fenster: eine Zeile ist sichtbar korrigiert */}
+          <rect x="118" y="16" width="76" height="72" rx="4" fill="var(--card)" />
+          {[32, 46, 60].map((y, i) => (
+            <g key={y}>
+              <rect x="126" y={y - 8} width="60" height="13" rx="3" stroke="var(--line)" />
+              {i === 1 && <rect x="126" y={y - 8} width="60" height="13" rx="3" stroke="var(--amber)" strokeWidth="1.6" />}
+            </g>
+          ))}
+          <text x="156" y="80" textAnchor="middle" fill="var(--amber)" stroke="none" fontSize="8">korrigiert</text>
+          <text x="156" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">prüfen</text>
+
+          {pfeil(200)}
+
+          {/* Fertige Karte */}
+          <rect x="230" y="16" width="64" height="72" rx="4" fill="var(--card)" />
+          <text x="262" y="50" textAnchor="middle" fill="var(--ink)" stroke="none"
+                fontSize="12" fontFamily="var(--serif)">la clé</text>
+          <text x="262" y="66" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8">der Schlüssel</text>
+          <text x="262" y="102" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">üben</text>
+        </g>
+      )}
+    </Figur>
+  );
+}
+
+/** Wachsende Abstände — und was ein Fehler daran ändert. Das ist der Kern
+ *  der App, und er war bisher nur in Sätzen erklärt. */
+export function KritzelAbstaende({ titel }: { titel?: string }) {
+  const gut: [number, string][] = [[24, ""], [58, "1 Tag"], [104, "3 Tage"], [170, "8 Tage"], [268, "3 Wochen"]];
+  const schlecht: [number, boolean][] = [[24, false], [58, false], [104, true], [134, false], [180, false], [252, false]];
+  return (
+    <Figur vb="0 0 300 128" titel={titel}>
+      {(f) => (
+        <g filter={f} fill="none" strokeLinecap="round" strokeLinejoin="round">
+          {/* obere Reihe: alles richtig */}
+          <path d="M14 34h276" stroke="var(--line)" strokeWidth="1.3" />
+          {gut.map(([x], i) => (
+            <circle key={x} cx={x} cy="34" r={i === 0 ? 3.5 : 4} fill="var(--ok)" stroke="none" />
+          ))}
+          {gut.slice(1).map(([x, t]) => (
+            <text key={t} x={x} y="24" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="7.5">{t}</text>
+          ))}
+          <text x="14" y="50" fill="var(--ink-soft)" stroke="none" fontSize="8.5">immer richtig</text>
+
+          {/* untere Reihe: ein Fehler in der Mitte */}
+          <path d="M14 92h276" stroke="var(--line)" strokeWidth="1.3" />
+          {schlecht.map(([x, fehler]) => (
+            <circle key={x} cx={x} cy="92" r="4"
+                    fill={fehler ? "var(--bad)" : "var(--ok)"} stroke="none" />
+          ))}
+          <path d="M104 74v10" stroke="var(--bad)" strokeWidth="1.6" />
+          <text x="104" y="70" textAnchor="middle" fill="var(--bad)" stroke="none" fontSize="7.5">Fehler</text>
+          <path d="M110 104h22M126 100l6 4-6 4" stroke="var(--bad)" strokeWidth="1.4" />
+          <text x="150" y="110" fill="var(--ink-faint)" stroke="none" fontSize="7.5">wieder von vorn</text>
+          <text x="14" y="108" fill="var(--ink-soft)" stroke="none" fontSize="8.5">mit Fehler</text>
+        </g>
+      )}
+    </Figur>
+  );
+}
+
+/** Die vier Bereiche, jeder mit der Frage, die er beantwortet. */
+export function KritzelBereiche({ titel }: { titel?: string }) {
+  const B: [string, string][] = [
+    ["Üben", "Was jetzt?"], ["Übungsplan", "Rechtzeitig?"],
+    ["Wortlisten", "Woher?"], ["Statistik", "Wo stehe ich?"],
+  ];
+  return (
+    <Figur vb="0 0 300 104" titel={titel}>
+      {(f) => (
+        <g filter={f} fill="none" stroke="var(--ink)" strokeWidth="1.4"
+           strokeLinecap="round" strokeLinejoin="round">
+          {B.map(([name, frage], i) => {
+            const x = 8 + i * 73;
+            return (
+              <g key={name}>
+                {/* Sprechblase mit der Frage */}
+                <rect x={x} y="10" width="66" height="24" rx="7" fill="var(--card)" stroke="var(--line)" />
+                <path d={`M${x + 28} 34l5 7 5-7`} fill="var(--card)" stroke="var(--line)" />
+                <text x={x + 33} y="26" textAnchor="middle" fill="var(--ink-soft)" stroke="none" fontSize="8">{frage}</text>
+                {/* Reiter */}
+                <rect x={x} y="52" width="66" height="34" rx="6"
+                      fill={i === 0 ? "color-mix(in srgb, var(--ok) 16%, var(--card))" : "var(--card)"} />
+                <text x={x + 33} y="73" textAnchor="middle" fill="var(--ink)" stroke="none"
+                      fontSize="9" fontWeight={i === 0 ? "700" : "400"}>{name}</text>
+              </g>
+            );
+          })}
+        </g>
+      )}
+    </Figur>
+  );
+}
+
+/** Wie ein Zieldatum die Wiederholungen zusammenzieht. */
+export function KritzelEndspurt({ titel }: { titel?: string }) {
+  const ohne = [22, 52, 96, 156, 232];
+  const mit = [22, 52, 92, 130, 162, 188, 210, 228];
+  return (
+    <Figur vb="0 0 300 128" titel={titel}>
+      {(f) => (
+        <g filter={f} fill="none" strokeLinecap="round" strokeLinejoin="round">
+          {/* Prüfungstag */}
+          <path d="M246 14v100" stroke="var(--amber)" strokeWidth="2" strokeDasharray="4 3" />
+          <text x="246" y="10" textAnchor="middle" fill="var(--amber)" stroke="none" fontSize="8" fontWeight="700">Prüfung</text>
+
+          <path d="M14 40h276" stroke="var(--line)" strokeWidth="1.3" />
+          {ohne.map((x) => <circle key={x} cx={x} cy="40" r="4" fill="var(--ok)" stroke="none" />)}
+          <text x="14" y="56" fill="var(--ink-soft)" stroke="none" fontSize="8.5">ohne Zieldatum</text>
+
+          <path d="M14 92h276" stroke="var(--line)" strokeWidth="1.3" />
+          {mit.map((x) => <circle key={x} cx={x} cy="92" r="4" fill="var(--ok)" stroke="none" />)}
+          <path d="M162 106h66" stroke="var(--amber)" strokeWidth="1.4" />
+          <path d="M162 103v6M228 103v6" stroke="var(--amber)" strokeWidth="1.4" />
+          <text x="195" y="120" textAnchor="middle" fill="var(--amber)" stroke="none" fontSize="7.5">Endspurt</text>
+          <text x="14" y="108" fill="var(--ink-soft)" stroke="none" fontSize="8.5">mit Zieldatum</text>
+        </g>
+      )}
+    </Figur>
+  );
+}
+
 /* ============================================================= Theorie */
 
 /** Die Vergessenskurve, und was Wiederholen daran ändert. */
@@ -225,7 +366,7 @@ export function KritzelFenster({ titel }: { titel?: string }) {
           <text x="66" y="96" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">zu früh</text>
           <text x="150" y="96" textAnchor="middle" fill="var(--ok)" stroke="none" fontSize="9" fontWeight="700">jetzt</text>
           <text x="240" y="96" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="9">zu spät</text>
-          <text x="66" y="34" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">weisst du noch</text>
+          <text x="66" y="34" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">weißt du noch</text>
           <text x="240" y="34" textAnchor="middle" fill="var(--ink-faint)" stroke="none" fontSize="8.5">ist weg</text>
         </g>
       )}

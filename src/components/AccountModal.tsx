@@ -59,7 +59,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
       const r = await auth.resetPassword(email.trim());
       setBusy(false);
       if (r.error) { setError(r.error); return; }
-      setInfo("Falls diese E-Mail registriert ist, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.");
+      setInfo("Wenn es zu dieser Adresse ein Konto gibt, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.");
       return;
     }
     if (mode === "newpw") {
@@ -76,7 +76,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
     const r = mode === "in" ? await auth.signIn(email.trim(), password) : await auth.signUp(email.trim(), password, username);
     setBusy(false);
     if (r.error) { setError(r.error); return; }
-    if (mode === "up" && !auth.user) { setInfo("Account erstellt. Falls E-Mail-Bestätigung aktiv ist, bestätige zuerst die Mail."); return; }
+    if (mode === "up" && !auth.user) { setInfo("Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse."); return; }
     onClose();
   };
 
@@ -88,7 +88,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
     const name = nameDraft.trim();
     if (!name || name === auth.username) return;
     const r = await auth.updateUsername(name);
-    if (r.error) toast(r.error, "x"); else toast("Benutzername gespeichert", "check");
+    if (r.error) toast(r.error, "x"); else toast("Anzeigename gespeichert", "check");
   };
 
   const titles: Record<Mode, string> = {
@@ -109,7 +109,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
               {editingName ? (
                 <span className="row" style={{ gap: 6, alignItems: "center" }}>
                   Angemeldet als
-                  <input className="mini-input" autoFocus placeholder={txt("Benutzername")} value={nameDraft}
+                  <input className="mini-input" autoFocus placeholder={txt("Anzeigename")} value={nameDraft}
                     onChange={(e) => setNameDraft(e.target.value)} onBlur={commitUsername}
                     onKeyDown={(e) => e.key === "Enter" && (e.target as HTMLInputElement).blur()} />
                 </span>
@@ -117,17 +117,17 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
                 <>
                   Angemeldet als <b style={{ color: "var(--ink)" }}>{auth.username || auth.email}</b>
                   <button className="icon-btn" style={{ width: 26, height: 26, marginLeft: 6, verticalAlign: "-6px" }}
-                    title={txt("Benutzername bearbeiten")} onClick={startEditName}><Icon name="edit" size={12} /></button>
+                    title={txt("Anzeigename bearbeiten")} onClick={startEditName}><Icon name="edit" size={12} /></button>
                 </>
               )}
             </div>
             {!auth.username && !editingName && (
-              <div className="muted" style={{ fontSize: 12.5, marginTop: -8 }}>{txt("Noch kein Benutzername gesetzt. Bisher zeigt die App deine E-Mail-Adresse. Tippe auf den Stift, um einen festzulegen.")}</div>
+              <div className="muted" style={{ fontSize: 12.5, marginTop: -8 }}>{txt("Noch kein Anzeigename gesetzt. Bis dahin zeigt die App deine E-Mail-Adresse. Tippe auf den Stift, um einen festzulegen.")}</div>
             )}
             {auth.username && !editingName && <div className="faint" style={{ fontSize: 12, marginTop: -8 }}>{auth.email}</div>}
             <div className="badge slate" style={{ alignSelf: "flex-start" }}><span className="dot" />{STATUS_LABEL[status]}</div>
             <div className="muted" style={{ fontSize: 12.5, lineHeight: 1.45 }}>
-              Deine Wörter, Listen und Fortschritte werden mit der Cloud synchronisiert und stehen auf deinen Geräten zur Verfügung. Offline läuft alles weiter und wird beim nächsten Mal nachgeholt.
+              {txt("Deine Wörter, Listen und Fortschritte werden abgeglichen und stehen auf allen deinen Geräten zur Verfügung. Ohne Netz läuft alles weiter und wird beim nächsten Mal nachgeholt.")}
             </div>
             <div className="modal-foot">
               <button className="btn btn-ghost" onClick={() => auth.signOut()}>{txt("Abmelden")}</button>
@@ -160,7 +160,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
         ) : (
           <div className="col" style={{ gap: 10 }}>
             {mode === "up" && (
-              <input className="field" type="text" placeholder={txt("Benutzername")} value={username} autoComplete="nickname"
+              <input className="field" type="text" placeholder={txt("Anzeigename")} value={username} autoComplete="nickname"
                 onChange={(e) => setUsername(e.target.value)} />
             )}
             <input className="field" type="email" placeholder={txt("E-Mail")} value={email} autoComplete="email"
@@ -174,7 +174,7 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
             </button>
             <div className="row" style={{ justifyContent: "space-between", flexWrap: "wrap" }}>
               <button className="btn btn-ghost btn-sm" onClick={() => switchMode(mode === "in" ? "up" : "in")}>
-                {mode === "in" ? "Noch kein Account? Registrieren" : "Schon registriert? Anmelden"}
+                {mode === "in" ? "Noch kein Konto? Registrieren" : "Schon registriert? Anmelden"}
               </button>
               {mode === "in" && <button className="btn btn-ghost btn-sm" onClick={() => switchMode("reset")}>{txt("Passwort vergessen?")}</button>}
             </div>

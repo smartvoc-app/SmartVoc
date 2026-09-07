@@ -12,7 +12,7 @@ import { STUFE_FARBE as TONE, STUFE_KURZ as LEG } from "../lib/stufen";
 /* „Ungeübt" ist keine Leistung, sondern deren Abwesenheit -- in der Leiste
  * traegt es deshalb die Farbe der leeren Bahn, nicht eine eigene Fuellung.
  * Vorher fuellte es grau, und eine Liste mit 220 ungeuebten Woertern zeigte
- * einen randvollen Balken: das liest sich als "fertig" und heisst das
+ * einen randvollen Balken: das liest sich als "fertig" und heißt das
  * Gegenteil. Seit die Prozentzahl daneben weggefallen ist, widerspricht dem
  * auch nichts mehr. Der Punkt in der Legende bleibt grau -- dort muss man
  * die Stufe erkennen koennen. */
@@ -55,9 +55,9 @@ export function MasteryTrend({ days }: { days: { d: string; c: number[] }[] }) {
   const recent = days.slice(-21);
   return (
     <div className="mtrend">
-      <div className="mtrend-head">{txt("Verlauf")} <span className="faint">{txt("· baut sich auf, füllt sich ab jetzt")}</span></div>
+      <div className="mtrend-head">{txt("Verlauf")} <span className="faint">{txt("baut sich auf — ab heute füllt sich diese Linie")}</span></div>
       {recent.length === 0 ? (
-        <div className="muted" style={{ fontSize: 12.5 }}>{txt("Noch keine Verlaufsdaten. Ab heute wird täglich ein Schnappschuss gespeichert.")}</div>
+        <div className="muted" style={{ fontSize: 12.5 }}>{txt("Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.")}</div>
       ) : (
         <div className="mtrend-cols">
           {recent.map((day) => {

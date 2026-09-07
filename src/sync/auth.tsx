@@ -88,7 +88,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     let redirectTo = window.location.origin + import.meta.env.BASE_URL;
     if (Capacitor.isNativePlatform()) {
       const web = (import.meta.env.VITE_WEB_URL as string | undefined)?.trim();
-      if (!web) return { error: "Passwort-Zurücksetzen ist in dieser App-Fassung nicht eingerichtet. Bitte im Browser zurücksetzen." };
+      if (!web) return { error: "Das Passwort lässt sich in der App nicht zurücksetzen. Öffne SmartVoc dafür im Browser." };
       redirectTo = web.replace(/\/*$/, "/");
     }
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });

@@ -2,7 +2,7 @@
  * Eine Pille, die eine Wahl trifft.
  *
  * Vorher lag ueber jeder dieser Pillen ein unsichtbares <select> mit
- * `opacity: 0`. Der Griff sass richtig, aber das aufgeklappte Menue nicht:
+ * `opacity: 0`. Der Griff saß richtig, aber das aufgeklappte Menue nicht:
  * Browser setzen das Klappmenue eines unsichtbar gemachten Auswahlfeldes
  * nicht zuverlaessig an dessen Stelle, und auf breiten Bildschirmen sprang
  * es quer ueber die Seite. Der Trick war noetig, weil die Pille geschlossen

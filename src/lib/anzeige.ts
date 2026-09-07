@@ -100,7 +100,7 @@ export function genusDeutsch(de: string, genusFremd?: string): string {
   if (a.startsWith("das ")) return "n";
   if (!a.startsWith("die ")) return "";
   /* "die" ist die eine zweideutige Stelle: weiblich oder Plural. Aus dem
-   * Fremdwort laesst sich das nicht schliessen -- "trousers" ist Plural,
+   * Fremdwort laesst sich das nicht schließen -- "trousers" ist Plural,
    * "die Hose" nicht; "parents" ist Plural, "die Eltern" auch. Wo die
    * Angabe unsicher ist, wird gar keine gemacht: nichts zu behaupten ist
    * besser, als etwas Falsches zu behaupten. */

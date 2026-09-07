@@ -133,7 +133,7 @@ export function PasteModal({ open, pair, onParsed, onClose, initialText }: { ope
    * unregelmaessige Formen. Deshalb zwei Regeln statt einer. */
   const formenRegel = isLat
     ? "Formen = die Stammformen (Nomen: Nominativ, Genitiv, Genus; Verb: die vier Stammformen; Deponens: drei; Adjektiv: die drei Genusformen). Bei unveränderlichen Wörtern leer.\n"
-    : `Formen = was man zum Wort mitlernt: beim Nomen Singular und Plural, beim Verb die Gegenwart oder die unregelmässigen Formen. Beispiele: "child, children" · "aller: je vais, tu vas, il va". Ist alles regelmässig, lass es leer.\n`;
+    : `Formen = was man zum Wort mitlernt: beim Nomen Singular und Plural, beim Verb die Gegenwart oder die unregelmäßigen Formen. Beispiele: "child, children" · "aller: je vais, tu vas, il va". Ist alles regelmäßig, lass es leer.\n`;
 
   /* Der Prompt hat zwei Aufgaben, und sie sind verschieden streng:
    *
@@ -142,7 +142,7 @@ export function PasteModal({ open, pair, onParsed, onClose, initialText }: { ope
    * uebernommen werden, auch wenn die KI es anders uebersetzt haette. Was
    * darauf zusaetzlich steht -- Beispielsaetze, Lautschrift, Geschlecht,
    * Stammformen -- wird ebenfalls abgeschrieben statt neu erfunden.
-   * Nur was FEHLT, ergaenzt die KI. Vorher hiess es "was du nicht weisst,
+   * Nur was FEHLT, ergaenzt die KI. Vorher hiess es "was du nicht weißt,
    * lässt du leer"; damit kam von einer abfotografierten Heftseite eine
    * Liste ohne einen einzigen Beispielsatz zurueck.
    *
@@ -158,19 +158,19 @@ export function PasteModal({ open, pair, onParsed, onClose, initialText }: { ope
     `Gib NUR eine Tabelle aus, eine Zeile pro Wort, Spalten getrennt durch " | ", in genau dieser Reihenfolge:\n${COLS}\n\n` +
     `Jede Zeile hat genau ${nCols} Spalten, also ${nCols - 1} Trennstriche — auch um leere Felder herum.\n` +
     formenRegel +
-    `Genus = das Geschlecht des Fremdworts, genau eines von: ${GENUS.join(", ")}. Nur bei Nomen, sonst leer.${isLat ? "" : P.foreignLabel === "English" ? " Im Englischen leer, ausser bei Wörtern, die es nur im Plural gibt (pl)." : ""}\n` +
+    `Genus = das Geschlecht des Fremdworts, genau eines von: ${GENUS.join(", ")}. Nur bei Nomen, sonst leer.${isLat ? "" : P.foreignLabel === "Englisch" ? " Im Englischen leer, außer bei Wörtern, die es nur im Plural gibt (pl)." : ""}\n` +
     `Wortart = genau eines von: ${WORTARTEN.join(", ")}. Nichts anderes, keine Abkürzungen.\n` +
     `Beispielsätze: zwei verschiedene, kurz und einfach, auf ${sprache}; daneben jeweils die deutsche Übersetzung.\n` +
     `Aussprache = ${isLat
       ? "das Stichwort noch einmal, mit Längenzeichen über den langen Vokalen (amicus → amīcus). Keine Lautschrift."
       : "IPA-Lautschrift des Fremdworts, ohne Klammern, mit Betonungszeichen; beim Nomen ohne den Artikel."}\n` +
-    `Nomen mit Artikel, auf beiden Seiten${isLat ? " (Latein ohne Artikel, dafür mit Stammformen)" : ""}. Schweizer Schreibung: „ss" statt „ß".\n` +
+    `Nomen mit Artikel, auf beiden Seiten${isLat ? " (Latein ohne Artikel, dafür mit Stammformen)" : ""}. Deutsche Rechtschreibung mit ß.\n` +
     `Verwende " | " nirgends im Text selbst. Keine Nummerierung, keine Überschrift, kein weiterer Text.`;
 
   const copyPrompt = () => navigator.clipboard?.writeText(aiPrompt).then(() => { setCopied(true); setTimeout(() => setCopied(false), 1600); });
   const pasteClipboard = async () => {
     try { const t = await navigator.clipboard.readText(); if (t) setText(t); else toast("Zwischenablage ist leer", "x"); }
-    catch { toast("Kein Zugriff auf die Zwischenablage — bitte manuell einfügen", "x"); }
+    catch { toast("Die App kommt nicht an die Zwischenablage. Füg den Text von Hand ein.", "x"); }
   };
 
   const proceed = () => {
@@ -194,7 +194,7 @@ export function PasteModal({ open, pair, onParsed, onClose, initialText }: { ope
         <div className="tips-intro" style={{ marginBottom: 12 }}>
           Füge eine Wortliste ein — eine Zeile pro Wort, Spalten getrennt durch Tab, „|", „–" oder „:".
           {isLat ? " Kurz genügt: Grundform | Formen | Wortart | Deutsch." : ` Kurz genügt: ${P.foreignLabel} | Deutsch.`}
-          {" "}{txt("Nichts zum Kopieren? Der KI-Prompt unten holt dir die Liste aus einem Foto der Heftseite.")}
+          {" "}{txt("Nichts zum Kopieren? Der KI-Prompt unten holt dir die Wörter aus einem Foto deiner Heftseite.")}
         </div>
 
         <textarea className="field" style={{ minHeight: 150, resize: "vertical", fontFamily: "var(--mono)", fontSize: 16 }}

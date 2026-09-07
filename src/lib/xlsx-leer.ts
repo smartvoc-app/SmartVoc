@@ -6,7 +6,7 @@
  *
  * Der dynamische Import sorgt schon dafür, dass sie nie GELADEN wird. Sie
  * läge aber trotzdem als eigene Datei im App-Paket und machte den Download
- * grösser, für eine Funktion, die die App nicht hat. Deshalb zeigt der
+ * größer, für eine Funktion, die die App nicht hat. Deshalb zeigt der
  * iOS-Build `xlsx` auf diese Datei (siehe resolve.alias in vite.config.ts).
  *
  * Wirft absichtlich statt still nichts zu tun: sollte je ein Aufruf hierher

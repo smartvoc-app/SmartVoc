@@ -47,7 +47,7 @@ export function effectiveRetentionFor(word: any, settings: any, lists?: any[], n
     const daysLeft = (l.dueDate - now) / 86400000;
     if (daysLeft < 0) continue;                                  // vorbei → kein Einfluss
     if (daysLeft <= CFG.examWindowDays) { target = Math.max(target, CFG.examRetention); continue; }
-    // V18: ausserhalb des Endspurt-Fensters eine RAMPE statt nichts.
+    // V18: außerhalb des Endspurt-Fensters eine RAMPE statt nichts.
     //
     // Warum überhaupt: werden mehrere Listen zusammen geübt, sollen Wörter aus
     // der Liste mit dem näheren Termin häufiger drankommen. Genau das tut ein

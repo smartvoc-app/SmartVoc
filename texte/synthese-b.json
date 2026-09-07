@@ -1,0 +1,618 @@
+[
+ [
+  "B-006",
+  "angepasst",
+  "{n} Wort kommt später zur Wiederholung zurück",
+  "{n} Wort kommt später wieder",
+  "Der Vorschlag lautete «kommt in dieser Runde nochmal». Das ist falsch: Die Zeile steht auf der Rundenauswertung, und die Zahl ist total − sitNow, also Wörter für eine künftige Sitzung. «später» bleibt, die Doppelung «zur Wiederholung zurück» fällt weg."
+ ],
+ [
+  "B-007",
+  "angepasst",
+  "{n} Wörter kommen später zur Wiederholung zurück",
+  "{n} Wörter kommen später wieder",
+  "Siehe B-006."
+ ],
+ [
+  "B-020",
+  "ja",
+  "Die sitzen noch, aber es wäre bald wieder Zeit zum Auffrischen, damit du sie nicht wieder vergisst.",
+  "Die sitzen noch. Jetzt aufzufrischen kostet wenig und hält sie fest.",
+  "Begründung mit Nutzen statt mit Angst, und «wieder» stand zweimal."
+ ],
+ [
+  "B-021",
+  "angepasst",
+  "Die vier Schnellzugriffe",
+  "Die vier Smart Lists",
+  "Der Befund stimmt: vier Namen für dieselben vier Listen. Als durchgehenden Namen wähle ich «Smart Lists» statt des vorgeschlagenen «automatische Listen» — er knüpft an den Produktnamen an und steht schon in der Anleitung. Betrifft B-062, B-072, B-073, B-146."
+ ],
+ [
+  "B-022",
+  "ja",
+  "Die Wörter, die du heute üben solltest — die App mischt fällige und neue Wörter sinnvoll zusammen.",
+  "Deine Tagesportion: fällige Wörter, dazu ein paar neue.",
+  "«sinnvoll zusammen» ist Selbstlob ohne Auskunft."
+ ],
+ [
+  "B-023",
+  "ja",
+  "Diese Wörter hast du schon länger nicht geübt. Wenn du sie jetzt auffrischst, bleiben sie besser sitzen.",
+  "Diese Wörter hast du länger nicht geübt. Frischst du sie jetzt auf, bleiben sie sitzen.",
+  "Kürzer, gleiche Aussage."
+ ],
+ [
+  "B-026",
+  "angepasst",
+  "Du hast alle Karten dieser Auswahl angesehen. Versuche jetzt, sie durch einen anderen Lernmodus aktiv abzufragen.",
+  "Du hast alle Karten dieser Auswahl angesehen. Angesehen ist noch nicht gelernt — wechsle zu einer Antwortart, die zählt.",
+  "«Lernmodus» war der dritte Name für die Antwortart. «jetzt» gestrichen, es steht schon im Satz."
+ ],
+ [
+  "B-030",
+  "angepasst",
+  "Erfasse deine erste Wortliste, dann kann es losgehen.",
+  "Du kannst sofort üben: Für jede eingeschaltete Sprache liegen hundert Wörter bereit. Eigene Wörter fügst du hier hinzu.",
+  "Der wichtigste Textfehler in Teil B — der Satz behauptet beim allerersten Start, ohne eigene Liste gehe nichts. Der Vorschlag war grammatisch fehlerhaft («Eigene Wörter kommst du hier hinzufügen»)."
+ ],
+ [
+  "B-041",
+  "ja",
+  "In dieser Auswahl ist gerade nichts dran. Wähle oben eine andere Wortliste oder komme später wieder.",
+  "Hier ist gerade nichts fällig. Wähle oben eine andere Wortliste oder komm später wieder.",
+  "«dran» und «Auswahl» sind beide unscharf."
+ ],
+ [
+  "B-045",
+  "ja",
+  "Lege unter „Wortlisten“ eine Liste an oder füge Wörter hinzu.",
+  "Du kannst sofort mit dem Grundwortschatz üben. Eigene Wörter legst du unter „Wortlisten“ an.",
+  "Siehe B-030."
+ ],
+ [
+  "B-050",
+  "ja",
+  "Noch keine Wortliste gespeichert",
+  "Noch keine eigene Wortliste",
+  "Siehe B-030."
+ ],
+ [
+  "B-064",
+  "nein",
+  "überfällig",
+  null,
+  "Vorgeschlagen war Grossschreibung als Etikett. Die Zeichenkette steht aber mitten im Satz, hinter einem Mittelpunkt und neben txt(«heute») und txt(«in {n} Tagen») — beide klein. Groß geschrieben stünde sie als einzige heraus (Practice.tsx:755)."
+ ],
+ [
+  "B-071",
+  "nein",
+  "Wackeln noch",
+  null,
+  "Vorgeschlagen war «Noch unsicher», weil der Name der Smart List fast gleich lautet wie die Lernstufe «wackelt noch». Die Ähnlichkeit ist aber der Inhalt: engine.ts:240 filtert genau stufe === «sitzt_schlecht». Ein anderer Name würde die Verbindung verdecken, statt sie zu klären."
+ ],
+ [
+  "B-072",
+  "angepasst",
+  "Wähle oben eine andere Wortliste oder einen Schnellzugriff.",
+  "Wähle oben eine andere Wortliste oder eine Smart List.",
+  "Siehe B-021."
+ ],
+ [
+  "B-073",
+  "angepasst",
+  "Wähle oben eine Wortliste oder einen Schnellzugriff.",
+  "Wähle oben eine Wortliste oder eine Smart List.",
+  "Siehe B-021."
+ ],
+ [
+  "B-121",
+  "ja",
+  "abtippen, einfügen oder von einer KI über Texterkennung erstellen lassen",
+  "abtippen, einfügen — oder von einer KI aus einem Foto erstellen lassen",
+  "«über Texterkennung» ist technisch falsch: Es liest ein Sprachmodell das Bild."
+ ],
+ [
+  "B-125",
+  "ja",
+  "Am Ende fragt die App, in welche Liste sie sollen.",
+  "Am Ende fragt die App, in welche Liste die Wörter kommen sollen.",
+  "«sie» hatte keinen Bezug."
+ ],
+ [
+  "B-131",
+  "ja",
+  "Das hat nicht geklappt",
+  "Das hat nicht geklappt. Versuch es nochmal.",
+  "Eine Fehlermeldung ohne nächsten Schritt lässt die Benutzerin stehen."
+ ],
+ [
+  "B-145",
+  "ja",
+  "Diese Liste stellt die App täglich neu zusammen. Hier lässt sich nichts ändern.",
+  "Diese Liste stellt die App täglich neu zusammen. Ändern lässt sich hier nichts.",
+  "Klang wie eine Fehlermeldung."
+ ],
+ [
+  "B-146",
+  "angepasst",
+  "Diese vier Listen stellt die App jeden Tag neu zusammen, quer über deine Wortlisten. Du kannst sie nicht ändern, nur ansehen und üben.",
+  "Die vier Smart Lists stellt die App jeden Tag neu zusammen, quer über deine Wortlisten. Du kannst sie nicht ändern, nur ansehen und üben.",
+  "Siehe B-021."
+ ],
+ [
+  "B-153",
+  "angepasst",
+  "Excel oder Numbers, nur in der Webversion",
+  "Excel-Datei (.xlsx), nur in der Webversion",
+  "Der Befund stimmt, die vorgeschlagene Lösung nicht: B-152 und B-153 sind zwei verschiedene Funktionen. Der Import nimmt .xlsx, .xls und .csv (B-152 ist also richtig), der Export schreibt ausschließlich .xlsx (WordList.tsx:873). «Excel oder CSV» wäre für den Export falsch."
+ ],
+ [
+  "B-185",
+  "angepasst",
+  "Noch keine Wortliste. Lege oben eine an.",
+  "Noch keine eigene Wortliste. Lege oben eine an — oder üb mit dem Grundwortschatz.",
+  "Siehe B-030."
+ ],
+ [
+  "B-193",
+  "ja",
+  "Teilen fehlgeschlagen. Bist du angemeldet?",
+  "Teilen hat nicht geklappt. Zum Teilen brauchst du ein Konto.",
+  "Die Rückfrage schiebt die Diagnose der Benutzerin zu; die App weiß die Antwort selbst."
+ ],
+ [
+  "B-217",
+  "ja",
+  "Zurück, dort stehen die Wege zum Füllen",
+  "Zurück zur Liste — dort stehen die Wege, sie zu füllen.",
+  "Ohne Bezugswort schwer zu lesen."
+ ],
+ [
+  "B-220",
+  "ja",
+  "{n} T",
+  "{n} Tage",
+  "Die Abkürzung erklärt sich nicht und kommt sonst nirgends vor."
+ ],
+ [
+  "B-258",
+  "ja",
+  "in {n} T",
+  "in {n} Tagen",
+  "Siehe B-220."
+ ],
+ [
+  "B-231",
+  "ja",
+  "Als Treffer zählt jede Antwort, die nicht ganz daneben war. Ein fehlender Akzent oder ein Buchstabendreher zählt also auch. Ein Wort, das noch nie abgefragt wurde, zeigt einen Strich.",
+  "Als Treffer zählt jede Antwort, die nicht ganz daneben war — ein fehlender Akzent oder ein Buchstabendreher also auch. Ein Wort, das noch nie abgefragt wurde, zeigt einen Strich.",
+  "Drei Sätze zu zweien, ohne Verlust."
+ ],
+ [
+  "B-236",
+  "angepasst",
+  "Bei {n} vielgeübten Wörtern reicht der gespeicherte Verlauf nicht über die vollen 3 Monate. Die Antwortzahlen sind dort eher zu niedrig.",
+  "Bei {n} oft geübten Wörtern reicht der gespeicherte Verlauf nicht 3 Monate zurück. Die Zahlen sind dort eher zu niedrig.",
+  "«vielgeübt» weg, ja. Aber «zu niedrig» bleibt: Der Vorschlag «zu tief» ist ein Helvetismus, und der größte Zielmarkt ist Deutschland. Schweizer Schreibung (ss statt ß) behalten wir, schweizerische Wortwahl nicht."
+ ],
+ [
+  "B-250",
+  "ja",
+  "Gezählt sind nur Wörter, die heute sitzen. Dazu kommen {n} Wörter, die es trotz vieler Versuche nicht tun. Sie stehen unten unter „Hartnäckig“.",
+  "Gezählt sind nur Wörter, die heute sitzen. Dazu kommen {n} Wörter, die trotz vieler Versuche nicht sitzen. Sie stehen unten unter „Hartnäckig“.",
+  "«die es nicht tun» bezog sich grammatisch auf nichts."
+ ],
+ [
+  "B-251",
+  "ja",
+  "Gezählt sind nur Wörter, die heute sitzen. Dazu kommt {n} Wort, das es trotz vieler Versuche nicht tut. Es steht unten unter „Hartnäckig“.",
+  "Gezählt sind nur Wörter, die heute sitzen. Dazu kommt {n} Wort, das trotz vieler Versuche nicht sitzt. Es steht unten unter „Hartnäckig“.",
+  "Siehe B-250."
+ ],
+ [
+  "B-252",
+  "ja",
+  "Gezählt wird vom ersten Mal, als du ein Wort gesehen hast, bis zu dem Tag, an dem es zum ersten Mal saß. Zwei Achsen für dieselbe Sache: die Versuche in der Übersicht sagen, wie viel Arbeit es war, bis zur ersten Beherrschung des Wortes. Erst danach ist die Frage sinnvoll, wie lange ein Wort dann hält.",
+  "Gezählt wird vom ersten Mal, als du ein Wort gesehen hast, bis zu dem Tag, an dem es zum ersten Mal saß. Erst danach ist die zweite Frage sinnvoll: wie lange ein Wort dann hält.",
+  "Der Satz über die «zwei Achsen» erklärte eine Darstellungsentscheidung statt der Zahl."
+ ],
+ [
+  "B-268",
+  "ja",
+  "Nur der Akzent daneben zählt als richtig",
+  "Nur der Akzent daneben zählt als Treffer",
+  "«richtig» kollidiert mit dem Urteil «fast richtig», das ein Akzentfehler auf der Karte bekommt. In der Statistik heißt es «Treffer» — so auch in B-231."
+ ],
+ [
+  "B-291",
+  "ja",
+  "Zwischen {zeit} Uhr sitzt bei dir am meisten: {a} % richtig gegen {b} % zur schwächsten Zeit.",
+  "Zwischen {zeit} Uhr triffst du am besten: {a} % richtig, gegenüber {b} % zu deiner schwächsten Zeit.",
+  "«gegen» las sich wie eine Subtraktion."
+ ],
+ [
+  "B-295",
+  "ja",
+  "✓ Empfohlen",
+  "✓ Voreinstellung",
+  "«Empfohlen» ist eine Wertung, «Voreinstellung» eine Tatsache. Siehe B-310."
+ ],
+ [
+  "B-299",
+  "ja",
+  "Ab welcher Schwierigkeit (0 bis 10) ein oft vergessenes Wort als „hartnäckig“ gilt, zusammen mit der Fehleranzahl.",
+  "Ab welcher Schwierigkeit (0 bis 10) ein oft vergessenes Wort als „hartnäckig“ gilt. Die Fehleranzahl muss zusätzlich erreicht sein.",
+  "Der Nachsatz nennt eine zweite Bedingung und war leicht zu überlesen."
+ ],
+ [
+  "B-302",
+  "ja",
+  "Abfrage-Form",
+  "Antwortart",
+  "Vereinheitlichung mit B-011. «Abfrage-Form» kommt sonst nirgends vor."
+ ],
+ [
+  "B-303",
+  "ja",
+  "Account löschen",
+  "Konto löschen",
+  "Durchgehend «Konto». Betrifft B-494, B-503, B-630, B-662."
+ ],
+ [
+  "B-310",
+  "ja",
+  "Auf Standard",
+  "Auf Voreinstellung",
+  "«Standard», «Voreinstellung» und «Empfehlung» meinten dasselbe. Betrifft B-333, B-436, B-437, B-472."
+ ],
+ [
+  "B-333",
+  "ja",
+  "Empfohlen:",
+  "Voreinstellung:",
+  "Siehe B-310."
+ ],
+ [
+  "B-436",
+  "ja",
+  "Zurück zum Standard-Aussehen",
+  "Zurück zum voreingestellten Aussehen",
+  "Siehe B-310."
+ ],
+ [
+  "B-437",
+  "ja",
+  "Zurück zur Empfehlung",
+  "Zurück zur Voreinstellung",
+  "Siehe B-310."
+ ],
+ [
+  "B-472",
+  "ja",
+  "Standard",
+  "Voreinstellung",
+  "Siehe B-310."
+ ],
+ [
+  "B-343",
+  "ja",
+  "Für Neugierige. Die App funktioniert mit den Standardwerten optimal. Alles hier ist freiwillig und jederzeit zurücksetzbar.",
+  "Für Neugierige. Mit den Voreinstellungen läuft die App gut. Alles hier ist freiwillig und jederzeit zurückzustellen.",
+  "«funktioniert optimal» widerspricht dem Kapitel Dahinter, das richtig sagt: es gibt kein Optimum, sondern einen Tausch."
+ ],
+ [
+  "B-346",
+  "ja",
+  "Gelb ab",
+  "«auf Kurs» ab",
+  "Die Einstellung hiess nach der Farbe, die Ampel nach dem Zustand. Wer die Schwelle verstellt, sucht den Zustand."
+ ],
+ [
+  "B-356",
+  "ja",
+  "Grün ab",
+  "«bereit» ab",
+  "Siehe B-346."
+ ],
+ [
+  "B-354",
+  "ja",
+  "Gilt nur für das Paar Latein ⇄ Deutsch. L2: die Karte zeigt die volle Lernform, abgefragt wird nur die Grundform. L3: du gibst die vollständigen Stammformen ein (Reihenfolge egal).",
+  "Gilt nur für Latein. L2: Die Karte zeigt die volle Lernform, abgefragt wird nur die Grundform. L3: Du gibst die vollständigen Stammformen ein, die Reihenfolge ist egal.",
+  "«das Paar Latein ⇄ Deutsch» ist ein Begriff aus dem Datenmodell."
+ ],
+ [
+  "B-364",
+  "ja",
+  "Jede Wortliste trägt einen farbigen Punkt: grün heißt bereit, gelb heißt fast so weit, rot heißt da fehlt noch viel. Hier legst du fest, wie viele Wörter einer Liste dafür sitzen müssen.",
+  "Jede Wortliste trägt einen farbigen Punkt: bereit, auf Kurs oder im Rückstand. Hier legst du fest, wie viele Wörter einer Liste dafür sitzen müssen.",
+  "Bisher standen nur die Farben, nicht ihre Bedeutung."
+ ],
+ [
+  "B-370",
+  "angepasst",
+  "Lädt alle deine Wörter, Listen, Fortschritte und Einstellungen als JSON-Datei herunter.",
+  "Lädt alle deine Wörter, Listen, Fortschritte und Einstellungen als Sicherungsdatei herunter (Format JSON).",
+  "«JSON-Datei» sagt der Zielgruppe nichts. Das Format bleibt aber in Klammern stehen — wer die Datei weiterverarbeiten will, braucht die Angabe."
+ ],
+ [
+  "B-373",
+  "ja",
+  "Lernintensität",
+  "Lernintensität",
+  "Bleibt. «Lerntempo» (B-375) und «Behaltensziel» bezeichnen dieselbe Einstellung; «Behaltensziel» nur noch dort, wo die Zahl selbst gemeint ist."
+ ],
+ [
+  "B-375",
+  "ja",
+  "Lerntempo",
+  "Lernintensität",
+  "Siehe B-373."
+ ],
+ [
+  "B-389",
+  "ja",
+  "Nötig · kleiner Abzug",
+  "Nötig, kleiner Abzug",
+  "Ein Trennzeichen genügt."
+ ],
+ [
+  "B-390",
+  "ja",
+  "Nötig · voller Abzug",
+  "Nötig, voller Abzug",
+  "Siehe B-389."
+ ],
+ [
+  "B-403",
+  "ja",
+  "Tippe zum Bestätigen",
+  "Tippe LÖSCHEN zum Bestätigen",
+  "Ohne das Wort weiß niemand, was zu tippen ist."
+ ],
+ [
+  "B-411",
+  "ja",
+  "Wie gut die App ein Wort im Gedächtnis halten will, bevor sie es zur Wiederholung bringt. Intensiver = häufigere Wiederholung, sicherer im Behalten. Alles Weitere regelt die App automatisch.",
+  "Wie gut die App ein Wort im Gedächtnis halten will, bevor sie es zur Wiederholung bringt. Intensiver heißt häufiger üben und sicherer behalten. Alles Weitere regelt die App.",
+  "Das Gleichheitszeichen als Wort funktioniert in einer Tabelle, nicht im Fliesstext."
+ ],
+ [
+  "B-422",
+  "ja",
+  "Wie oft rote (wackelnde) Wörter in einer Runde drankommen. Höher = häufiger. Sollten zusammen mit fälligen am meisten geübt werden.",
+  "Wie oft rote (wackelnde) Wörter in einer Runde drankommen. Höher heißt häufiger. Sie sollten zusammen mit den fälligen am meisten geübt werden.",
+  "Siehe B-411."
+ ],
+ [
+  "B-423",
+  "ja",
+  "Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher = die App nimmt schnellere Fortschritte an und fragt seltener nach (riskanter); niedriger = vorsichtiger, häufiger.",
+  "Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher heißt: Die App nimmt schnellere Fortschritte an und fragt seltener nach — das ist riskanter. Niedriger heißt vorsichtiger und häufiger.",
+  "Siehe B-411."
+ ],
+ [
+  "B-424",
+  "ja",
+  "Wie viele ganz neue Wörter höchstens dazukommen. Das ist dein einziger Hebel auf die Menge: der Lernalgorithmus plant jede Karte für sich und kennt kein Tagespensum. Eine falsch beantwortete Karte kommt sogar früher wieder, nicht später. Weniger neue Wörter heißt also weniger Rückstau, nicht langsameres Lernen.",
+  "Wie viele ganz neue Wörter höchstens dazukommen. Das ist dein einziger Hebel auf die Menge: Die App plant jede Karte für sich und kennt kein Tagespensum. Weniger neue Wörter heißt also weniger Rückstau, nicht langsameres Lernen.",
+  "Fünf Sätze neben einem Schieberegler. Der Satz über die falsch beantwortete Karte gehört ins Kapitel Dahinter."
+ ],
+ [
+  "B-494",
+  "ja",
+  "Account erstellt. Falls E-Mail-Bestätigung aktiv ist, bestätige zuerst die Mail.",
+  "Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse.",
+  "«Falls E-Mail-Bestätigung aktiv ist» war eine Aussage über die Konfiguration des Servers."
+ ],
+ [
+  "B-495",
+  "ja",
+  "Benutzername",
+  "Anzeigename",
+  "Der Name dient nicht zum Anmelden. Betrifft B-496, B-497, B-504."
+ ],
+ [
+  "B-496",
+  "ja",
+  "Benutzername bearbeiten",
+  "Anzeigename bearbeiten",
+  "Siehe B-495."
+ ],
+ [
+  "B-497",
+  "ja",
+  "Benutzername gespeichert",
+  "Anzeigename gespeichert",
+  "Siehe B-495."
+ ],
+ [
+  "B-504",
+  "ja",
+  "Noch kein Benutzername gesetzt. Bisher zeigt die App deine E-Mail-Adresse. Tippe auf den Stift, um einen festzulegen.",
+  "Noch kein Anzeigename gesetzt. Bis dahin zeigt die App deine E-Mail-Adresse. Tippe auf den Stift, um einen festzulegen.",
+  "Siehe B-495."
+ ],
+ [
+  "B-498",
+  "ja",
+  "Deine Wörter, Listen und Fortschritte werden mit der Cloud synchronisiert und stehen auf deinen Geräten zur Verfügung. Offline läuft alles weiter und wird beim nächsten Mal nachgeholt.",
+  "Deine Wörter, Listen und Fortschritte werden abgeglichen und stehen auf allen deinen Geräten zur Verfügung. Ohne Netz läuft alles weiter und wird beim nächsten Mal nachgeholt.",
+  "«Cloud synchronisiert» → «abgeglichen», wie in der Spezifikation."
+ ],
+ [
+  "B-500",
+  "ja",
+  "Falls diese E-Mail registriert ist, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.",
+  "Wenn es zu dieser Adresse ein Konto gibt, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.",
+  "Formularsprache."
+ ],
+ [
+  "B-503",
+  "ja",
+  "Noch kein Account? Registrieren",
+  "Noch kein Konto? Registrieren",
+  "Siehe B-303."
+ ],
+ [
+  "B-532",
+  "ja",
+  "Kein Zugriff auf die Zwischenablage — bitte manuell einfügen",
+  "Die App kommt nicht an die Zwischenablage. Füg den Text von Hand ein.",
+  "«Kein Zugriff auf» klingt nach Systemmeldung."
+ ],
+ [
+  "B-534",
+  "ja",
+  "Nichts zum Kopieren? Der KI-Prompt unten holt dir die Liste aus einem Foto der Heftseite.",
+  "Nichts zum Kopieren? Der KI-Prompt unten holt dir die Wörter aus einem Foto deiner Heftseite.",
+  "Es sind die Wörter; die Liste legst du selbst an."
+ ],
+ [
+  "B-558",
+  "ja",
+  "Sharing ist nicht verfügbar.",
+  "Teilen ist gerade nicht möglich.",
+  "Einziger Anglizismus in diesem Bereich."
+ ],
+ [
+  "B-584",
+  "ja",
+  "· baut sich auf, füllt sich ab jetzt",
+  "baut sich auf — ab heute füllt sich diese Linie",
+  "Ohne den Zusammenhang der Grafik nicht zu verstehen."
+ ],
+ [
+  "B-587",
+  "ja",
+  "Noch keine Verlaufsdaten. Ab heute wird täglich ein Schnappschuss gespeichert.",
+  "Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.",
+  "«Schnappschuss» ist Entwicklersprache."
+ ],
+ [
+  "B-630",
+  "ja",
+  "Account & Sync",
+  "Konto & Abgleich",
+  "Zwei Anglizismen in einer Beschriftung; «Sync» taucht sonst nirgends auf."
+ ],
+ [
+  "B-657",
+  "ja",
+  "Passwort-Zurücksetzen ist in dieser App-Fassung nicht eingerichtet. Bitte im Browser zurücksetzen.",
+  "Das Passwort lässt sich in der App nicht zurücksetzen. Öffne SmartVoc dafür im Browser.",
+  "Erklärte der Benutzerin ein Entwicklungsproblem statt einen Weg."
+ ],
+ [
+  "B-658",
+  "ja",
+  "Abbrechen – leer starten (die Daten bleiben als Backup auf dem Gerät)",
+  "Abbrechen — leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)",
+  "«Backup» → «Sicherung»."
+ ],
+ [
+  "B-662",
+  "ja",
+  "OK – in diesen Account übernehmen",
+  "OK — in dieses Konto übernehmen",
+  "Siehe B-303."
+ ],
+ [
+  "B-672",
+  "nein",
+  "Wörter ohne Liste",
+  null,
+  "Vorgeschlagen war, den Text zu streichen, weil laut Spezifikation jedes Wort zu genau einer Liste gehört. Der Text ist aber kein Überbleibsel: StoreProvider.tsx:343 legt je Sprachpaar eine Systemliste dieses Namens an, damit die Regel überhaupt gilt. Nicht der Text ist falsch, sondern die Spezifikation unvollständig — Kapitel 6 wird ergänzt."
+ ],
+ [
+  "S-01",
+  "ja",
+  "English",
+  "Englisch",
+  "Aufnahme 01 zeigt „Auf English eintippen …“. Der Platzhalter wird mit der Eigenbezeichnung der Sprache gefüllt; in einem deutschen Satz braucht es den deutschen Namen. Betrifft Sprachwahl, Richtungswahl und die Sprachenliste in den Einstellungen. „Latein“ brach die Regel ohnehin schon."
+ ],
+ [
+  "S-02",
+  "ja",
+  "Français",
+  "Französisch",
+  "Siehe S-01."
+ ],
+ [
+  "S-03",
+  "ja",
+  "Español",
+  "Spanisch",
+  "Siehe S-01."
+ ],
+ [
+  "S-04",
+  "ja",
+  "Italiano",
+  "Italienisch",
+  "Siehe S-01."
+ ],
+ [
+  "S-05",
+  "ja",
+  "Português",
+  "Portugiesisch",
+  "Siehe S-01."
+ ],
+ [
+  "V3-01",
+  "ja",
+  "Einzelnes Wort suchen, über alle Sprachen",
+  "Wort suchen, über alle Sprachen",
+  "Aufnahme 13: Der Platzhalter wird im Feld abgeschnitten („… über alle Sprach“). „Einzelnes“ trägt nichts bei."
+ ],
+ [
+  "V3-02",
+  "ja",
+  "grün ab {g} %",
+  "bereit ab {g} %",
+  "Aufnahme 21 zeigt als Wert „grün ab 95 %“, während die Erklärung darunter von bereit, auf Kurs und im Rückstand spricht. Wer die Schwelle sucht, sucht den Zustand, nicht die Farbe."
+ ],
+ [
+  "V3-03",
+  "ja",
+  "grün ab {g} %, gelb ab {a} %",
+  "bereit ab {g} %, auf Kurs ab {a} %",
+  "Siehe V3-02."
+ ],
+ [
+  "V3-04",
+  "ja",
+  "{p} % bereit",
+  "{p} % sitzen",
+  "Aufnahme 09 zeigt „Im Rückstand · 54 % bereit“. „Bereit“ ist zugleich der Name der obersten Ampelstufe, also liest sich die Zeile widersprüchlich. Gezählt werden die Wörter auf der Stufe sitzt — „% sitzen“ sagt genau das."
+ ],
+ [
+  "V3-05",
+  "angepasst",
+  "Länger nicht geübt, jetzt auffrischen",
+  "Jetzt fällig — der beste Moment zum Auffrischen",
+  "Der Befund stimmt: Fällig heißt, dass der berechnete Abstand um ist; bei einem frischen Wort ist das nach einem Tag, nicht nach langer Zeit. Der Vorschlag lautete „Der Abstand ist abgelaufen“ — das ist zwar richtig, benennt aber den Rechenweg statt den Nutzen."
+ ],
+ [
+  "V3-06",
+  "ja",
+  "Gerät auf diesen Account umgestellt — die vorherigen Daten liegen als Backup auf dem Gerät.",
+  "Gerät auf dieses Konto umgestellt — die vorherigen Daten liegen als Sicherung auf dem Gerät.",
+  "Letzter Rest der Vereinheitlichung: „Account“ und „Backup“ in einer Zeile, während dieselbe Abfolge daneben schon „Konto“ und „Sicherung“ sagt."
+ ],
+ [
+  "V3-07",
+  "ja",
+  "Lokale Daten als Backup gesichert",
+  "Lokale Daten als Sicherung gespeichert",
+  "Siehe V3-06."
+ ],
+ [
+  "V3-08",
+  "ja",
+  "zählt als richtig",
+  "zählt als Treffer",
+  "Aufnahme 17 zeigt die Zeile bei „333 Tippfehler“, während die Einstellungen sagen „ein Tippfehler zählt noch als fast richtig“ und die Karte drei Urteile fällt. Der Nachbareintrag wurde schon auf „Treffer“ umgestellt; hier fehlte derselbe Schritt. Dann heißt dieselbe Sache überall gleich: auf der Karte fast richtig, in der Statistik Treffer."
+ ]
+]

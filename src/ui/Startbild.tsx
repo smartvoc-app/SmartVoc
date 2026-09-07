@@ -11,7 +11,7 @@
  * und unten nahtlos anschliessen -- das Bild ist schmaler als ein hohes
  * Telefon, und `contain` laesst sonst zwei Streifen stehen.
  *
- * Der Merker steht ausserhalb der Komponente: React darf sie neu einhaengen,
+ * Der Merker steht außerhalb der Komponente: React darf sie neu einhaengen,
  * ohne dass das Bild ein zweites Mal kommt. Ein echter Neustart laedt die
  * Seite neu, und dann ist auch der Merker wieder falsch.
  */

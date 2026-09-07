@@ -21,7 +21,7 @@ export function ListPicker({ open, title, subtitle, onPick, onClose, pair }) {
   const { lists, addList, vocab, stats, settings } = useStore();
   const pairLists = pair ? lists.filter((l) => l.pair === pair) : lists;
   /* Der Stand steht auch hier -- eine Wortliste ohne ihren Stand zu zeigen
-   * heisst, den Nutzer blind waehlen zu lassen. */
+   * heißt, den Nutzer blind waehlen zu lassen. */
   const stand = (l: any) => listReadiness(l, vocab, stats, retentionFor(settings), settings);
   const [choice, setChoice] = useState(pairLists[0] ? pairLists[0].id : "__new");
   const [newName, setNewName] = useState("");
@@ -58,7 +58,7 @@ export function ListPicker({ open, title, subtitle, onPick, onClose, pair }) {
               <span className="grow">{l.name}
                 {(() => { const st = stand(l); return st.total > 0 ? (
                   <div className="muted" style={{ fontSize: 12, fontWeight: 400 }}>
-                    {txt("{n} Wörter", { n: st.total })} · {txt("{p} % bereit", { p: st.pct })}
+                    {txt("{n} Wörter", { n: st.total })} · {txt("{p} % sitzen", { p: st.pct })}
                   </div>) : null; })()}
               </span>
               {(() => { const st = stand(l); return st.total > 0 ? (

@@ -15,7 +15,7 @@ export const SMART_ACCESS: SmartList[] = [
   { ref: "heute", label: "Heute dran", icon: "calendar", tone: "green",
     kurz: "Fälliges und Neues sinnvoll gemischt" },
   { ref: "due", label: "Fällige Wörter", icon: "target", tone: "amber",
-    kurz: "Länger nicht geübt, jetzt auffrischen" },
+    kurz: "Jetzt fällig — der beste Moment zum Auffrischen" },
   { ref: "wackeln", label: "Wackeln noch", icon: "flame", tone: "red",
     kurz: "Schon geübt, sitzt aber noch nicht sicher" },
   { ref: "baldfaellig", label: "Bald fällig", icon: "clock", tone: "amber",

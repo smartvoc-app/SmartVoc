@@ -159,7 +159,7 @@ export function WordList() {
         const examplesDe = behalten.map((x) => x[1]);
 
         /* Die erste Spalte traegt das Wort. Ihre Ueberschrift ist der Name
-         * der Sprache ("Español", "Latein"), also wird zuerst danach
+         * der Sprache ("Spanisch", "Latein"), also wird zuerst danach
          * gesucht; sonst nach den bekannten Bezeichnungen, und zuletzt
          * bleibt die erste Spalte uebrig, die noch keine Rolle hat. */
         const belegt = new Set([deK, ex1K, ex1deK, ex2K, ex2deK, exK, phK, lfK, waK, geK].filter(Boolean) as string[]);
@@ -177,7 +177,7 @@ export function WordList() {
       setBusy(false);
       if (!parsed.length) { toast(txt("In dieser Datei stehen keine Wörter"), "x"); return; }
       setReviewRows(parsed);          // derselbe Weg wie beim Einfügen: erst ansehen, dann übernehmen
-    } catch (e) { setBusy(false); toast(txt("Diese Datei liess sich nicht lesen"), "x"); }
+    } catch (e) { setBusy(false); toast(txt("Diese Datei ließ sich nicht lesen"), "x"); }
   }, [toast, isLat]);
 
   const ladeVorlage = async () => {
@@ -362,7 +362,7 @@ export function WordList() {
     try {
       const token = await publishList({ name: l.name, pair, words });
       setShareName(l.name); setShareToken(token);
-    } catch (e) { toast("Teilen fehlgeschlagen — bist du angemeldet?", "x"); }
+    } catch (e) { toast("Teilen hat nicht geklappt. Zum Teilen brauchst du ein Konto.", "x"); }
   };
 
   /* Beispielsaetze und ihre Uebersetzungen gehoeren paarweise zusammen und
@@ -430,7 +430,7 @@ export function WordList() {
   // contain any punctuation, and "|" / ";" are already column separators here.
 /* Beispielzeilen der Vorlage, im EINEN Spaltensatz:
      Fremdsprache | Lernform | Wortart | Deutsch | Bsp1 | Bsp1 dt | Bsp2 | Bsp2 dt | Aussprache
-   Die Lernform bleibt ausserhalb des Lateinischen leer -- genau so, wie es
+   Die Lernform bleibt außerhalb des Lateinischen leer -- genau so, wie es
    auch ausgefuellt aussehen soll. Die letzte Zeile zeigt absichtlich eine
    halb leere: nur die Uebersetzung, den Rest holt die App oder man traegt
    ihn spaeter nach. */
@@ -482,7 +482,7 @@ export function WordList() {
           ihn braucht: in das Fenster selbst, als Knopf neben dem Textfeld. */}
       <button className="li" onClick={() => { setQuellenBlatt(null); setPasteSeed(""); setPasteOpen(true); }}>
         <Icon name="list" size={15} />
-        <span className="g">{txt("Liste einfügen")}<div className="m">{txt("abtippen, einfügen oder von einer KI abschreiben lassen")}</div></span>
+        <span className="g">{txt("Liste einfügen")}<div className="m">{txt("abtippen, einfügen — oder von einer KI aus einem Foto erstellen lassen")}</div></span>
         <Icon name="arrowRight" size={14} />
       </button>
       {isConfigured && (
@@ -525,7 +525,7 @@ export function WordList() {
               <button className="icon-btn" style={{ width: 34, height: 34 }} onClick={() => setQuellenBlatt(null)}><Icon name="x" size={16} /></button>
             </div>
             <p className="said" style={{ marginTop: 0 }}>
-              {quellenBlatt === "neu" ? txt("Woher kommen die Wörter?") : txt("Am Ende fragt die App, in welche Liste sie sollen.")}
+              {quellenBlatt === "neu" ? txt("Woher kommen die Wörter?") : txt("Am Ende fragt die App, in welche Liste die Wörter kommen sollen.")}
             </p>
             <div className="list">
               {quellenBlatt === "neu" ? (
@@ -647,7 +647,7 @@ export function WordList() {
                 <button className="icon-btn" style={{ width: 34, height: 34 }} onClick={() => setDatumOffen(false)}><Icon name="x" size={16} /></button>
               </div>
               <p className="said" style={{ marginTop: 0 }}>
-                {txt("Meist der Tag der Prüfung. Je näher er rückt, desto häufiger kommen die Wörter dieser Liste. Ohne Datum läuft die Liste nebenher.")}
+                {txt("Meist der Tag der Prüfung. Je näher er rückt, desto häufiger kommen die Wörter dieser Liste. Ohne Datum wird die Liste normal abgefragt.")}
               </p>
               <input type="date" className="field" style={{ width: "100%" }}
                 value={l.dueDate ? new Date(l.dueDate).toISOString().slice(0, 10) : ""}
@@ -749,7 +749,7 @@ export function WordList() {
               value={nlName} onChange={(e) => setNlName(e.target.value)} />
             {/* Nur ein Datumsfeld. Zwei Wahlzeilen fuer "mit" und "ohne"
                 waren eine Frage, die das leere Feld schon beantwortet:
-                nichts eingetragen heisst kein Zieldatum. */}
+                nichts eingetragen heißt kein Zieldatum. */}
             <div className="grp">{txt("Zieldatum")} <span className="hint">— {txt("optional")}</span></div>
             <div className="row" style={{ gap: 8 }}>
               <input type="date" className="field grow" value={nlDatum}
@@ -761,7 +761,7 @@ export function WordList() {
               )}
             </div>
             <div className="faint" style={{ fontSize: 11.5, marginTop: 6 }}>
-              {txt("Leer lassen heisst: die Liste läuft nebenher.")}
+              {txt("Leer lassen heißt: die Liste läuft nebenher.")}
             </div>
             <div className="modal-foot">
               <button className="btn btn-ghost" onClick={() => setNeueListe(false)}>{txt("Abbrechen")}</button>
@@ -781,7 +781,7 @@ export function WordList() {
               <div className="modal-title">{txt("Smart Lists")}</div>
               <button className="icon-btn" style={{ width: 34, height: 34 }} onClick={() => setSmartHilfe(false)}><Icon name="x" size={16} /></button>
             </div>
-            <p className="said">{txt("Diese vier Listen stellt die App jeden Tag neu zusammen, quer über deine Wortlisten. Du kannst sie nicht ändern, nur ansehen und üben.")}</p>
+            <p className="said">{txt("Die vier Smart Lists stellt die App jeden Tag neu zusammen, quer über deine Wortlisten. Du kannst sie nicht ändern, nur ansehen und üben.")}</p>
             <div className="list">
               {SMART_ACCESS.map((sm) => (
                 <div className="li" key={sm.ref}>
@@ -857,7 +857,7 @@ export function WordList() {
       text: alsText(woerterImBlick, pair, foreign),
     });
     setExportBlatt(false);
-    if (wie === "gescheitert") { toast(txt("Das hat nicht geklappt"), "x"); return; }
+    if (wie === "gescheitert") { toast(txt("Das hat nicht geklappt. Versuch es nochmal."), "x"); return; }
     toast(wie === "geteilt" ? txt("Geteilt") : txt("In die Zwischenablage kopiert"), "check");
   };
 
@@ -873,7 +873,7 @@ export function WordList() {
       XLSX.writeFile(wb, dateiname(titelImBlick) + ".xlsx");
       setExportBlatt(false);
       toast(txt("Tabelle heruntergeladen"), "download");
-    } catch (e) { toast(txt("Das hat nicht geklappt"), "x"); }
+    } catch (e) { toast(txt("Das hat nicht geklappt. Versuch es nochmal."), "x"); }
   };
 
   /* Dasselbe Blatt wie beim Hineinholen, nur andersherum -- gleiche Form,
@@ -897,7 +897,7 @@ export function WordList() {
           {istWeb() && (
             <button className="li" onClick={() => exportTabelle()}>
               <Icon name="download" size={15} />
-              <span className="g">{txt("Als Tabelle")}<div className="m">{txt("Excel oder Numbers, nur in der Webversion")}</div></span>
+              <span className="g">{txt("Als Tabelle")}<div className="m">{txt("Excel-Datei (.xlsx), nur in der Webversion")}</div></span>
               <Icon name="arrowRight" size={14} />
             </button>
           )}
@@ -982,7 +982,7 @@ export function WordList() {
 
             {!bearbeitbar ? (
               <div className="quiet links" style={{ paddingTop: 8 }}>
-                {txt("Diese Liste stellt die App täglich neu zusammen. Hier lässt sich nichts ändern.")}
+                {txt("Diese Liste stellt die App täglich neu zusammen. Ändern lässt sich hier nichts.")}
               </div>
             ) : (
               /* Drei Knoepfe derselben Form: was man mit der Liste tun kann.
@@ -1026,7 +1026,7 @@ export function WordList() {
             {sichtbar.length ? sichtbar.map(wortZeile) : (
               <div className="empty">
                 <div className="big">{q ? txt("Nichts gefunden") : txt("Noch keine Wörter")}</div>
-                <div>{q ? txt("Anderer Suchbegriff, oder das Feld leeren") : txt("Zurück, dort stehen die Wege zum Füllen")}</div>
+                <div>{q ? txt("Anderer Suchbegriff, oder das Feld leeren") : txt("Zurück zur Liste — dort stehen die Wege, sie zu füllen.")}</div>
               </div>
             )}
           </div>
@@ -1086,7 +1086,7 @@ export function WordList() {
         )}
 
         {/* Der Weg zu den Wörtern -- eine Zeile wie jede andere, mit der
-            Zahl daneben, damit man weiss, was einen erwartet. */}
+            Zahl daneben, damit man weiß, was einen erwartet. */}
         <button className="li li-woerter" onClick={() => { setListenSuche(""); setGewaehlt([]); setWoerterOffen(true); }}>
           <Icon name="list" size={15} />
           <span className="g">{txt("Wörter ansehen und bearbeiten")}
@@ -1143,7 +1143,7 @@ export function WordList() {
   /* Die Suche geht ueber ALLE zugeschalteten Sprachen, nicht nur die
    * aktuelle. Erst dadurch traegt die Zeile "Liste · Sprachpaar" eine
    * Auskunft: stuende dort immer dasselbe Paar, waere sie ueberfluessig.
-   * Und wer sucht, weiss oft nicht mehr, in welcher Sprache das Wort lag --
+   * Und wer sucht, weiß oft nicht mehr, in welcher Sprache das Wort lag --
    * genau deshalb sucht er ja. */
   const treffer = query.trim()
     ? vocab.filter((w: any) => {
@@ -1227,7 +1227,7 @@ export function WordList() {
               </button>
             );
           }) : (
-            <div className="quiet">{txt("Noch keine Wortliste. Lege oben eine an.")}</div>
+            <div className="quiet">{txt("Noch keine eigene Wortliste. Lege oben eine an — oder üb mit dem Grundwortschatz.")}</div>
           )}
 
           {pairLists.length > 0 && (
@@ -1254,7 +1254,13 @@ export function WordList() {
 
           {/* „Alle Wörter“ ist der Rückfall, nicht der Einstieg — deshalb
               zuletzt und abgesetzt. Als Reiter an erster Stelle stand es
-              vor den Listen, um die es eigentlich geht. */}
+              vor den Listen, um die es eigentlich geht.
+
+              Eine Trennlinie allein genügte nicht: Die Zeile stand weiter
+              unter der Überschrift „Smart Lists“, und wer vier Listen liest
+              und fünf Zeilen sieht, zählt nach. Eine eigene Überschrift
+              beendet den Block eindeutig. */}
+          <div className="grp">{txt("Gesamtbestand")}</div>
           <button className="li li-alle" onClick={() => setOffen({ art: "alle", ref: "" })}>
             <Icon name="list" size={15} />
             <span className="g">{txt("Alle Wörter")}</span>
@@ -1270,7 +1276,7 @@ export function WordList() {
           und die Treffer erscheinen darueber. */}
       <div className="search wl-suche">
         <Icon name="search" size={17} />
-        <input className="field" placeholder={txt("Einzelnes Wort suchen, über alle Sprachen")}
+        <input className="field" placeholder={txt("Wort suchen, über alle Sprachen")}
           value={query} onChange={(e) => setQuery(e.target.value)} />
         {query && (
           <button className="such-x" onClick={() => setQuery("")} aria-label={txt("Suche leeren")}>

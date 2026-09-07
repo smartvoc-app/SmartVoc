@@ -21,7 +21,7 @@ export async function translateWord(text: string, from: string, to: string) {
   try {
     if (!llmFeaturesEnabled()) throw new Error("no-llm");
     const claude = (window as any).claude;
-    const langName = ({ en: "English", fr: "French", de: "German" } as any)[to] || "German";
+    const langName = ({ en: "Englisch", fr: "French", de: "German" } as any)[to] || "German";
     const prompt =
       `Translate this single school-vocabulary word or short phrase into ${langName}. ` +
       `Reply with ONLY the translation — no quotes, no notes, no alternatives. ` +

@@ -31,7 +31,7 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
       if (!p || !p.words) setError("Liste nicht gefunden — Code prüfen.");
       else setPayload(p);
     } catch (e: any) {
-      setError(e?.message === "not-configured" ? "Sharing ist nicht verfügbar." : "Konnte die Liste nicht laden.");
+      setError(e?.message === "not-configured" ? "Teilen ist gerade nicht möglich." : "Konnte die Liste nicht laden.");
     }
     setBusy(false);
   }

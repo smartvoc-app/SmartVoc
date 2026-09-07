@@ -3,7 +3,7 @@
  * auseinanderlaufen. Zwei Darstellungen derselben Zahl: Balken mit Prozent,
  * wo Platz ist; ein Ampelpunkt, wo keiner ist.
  *
- * „Bereit" heisst: das Wort sitzt oder sitzt fast. Ungeübte und neue Wörter
+ * „Bereit" heißt: das Wort sitzt oder sitzt fast. Ungeübte und neue Wörter
  * zählen nicht dagegen, sie zählen einfach nicht mit — sie stehen im Nenner,
  * denn eine Liste mit 200 ungeübten Wörtern ist nicht bereit. */
 import type { Settings } from "./types";

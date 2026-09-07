@@ -148,7 +148,7 @@ export function PlanTab() {
     window.dispatchEvent(new CustomEvent("vt-tab", { detail: "stats" }));
   };
 
-  /* Die Zeile sagt, was zu tun ist, nicht bloss einen Prozentsatz: „in 11
+  /* Die Zeile sagt, was zu tun ist, nicht bloß einen Prozentsatz: „in 11
    * Tagen · 9 von 24 sitzen noch nicht". */
   const zeilenText = (t: any) => {
     const offen = t.prof.total - ((t.prof.dist.sitzt || 0) + (t.prof.dist.sitzt_fast || 0));
@@ -201,7 +201,7 @@ export function PlanTab() {
     <div className="plantab">
       {/* Eine Überschrift, bevor irgendetwas gezeigt wird. Der Kalender stand
           ohne ein Wort da: wer die App zum ersten Mal öffnet, sieht farbige
-          Tage und weiss nicht, wovon sie handeln. Der Name des Reiters unten
+          Tage und weiß nicht, wovon sie handeln. Der Name des Reiters unten
           in der Leiste ist keine Erklärung. */}
       <div className="tab-kopf">
         <div className="section-title">{txt("Übungsplan")}</div>
@@ -231,7 +231,7 @@ export function PlanTab() {
 
       {ansicht === "kalender" && <div className="cal">
         <div className="cal-head">
-          <button className="icon-btn" title={txt("Voriger Monat")} onClick={() => shiftMonth(-1)}><Icon name="chevron-left" size={16} /></button>
+          <button className="icon-btn" title={txt("Vorangegangener Monat")} onClick={() => shiftMonth(-1)}><Icon name="chevron-left" size={16} /></button>
           <button className="cal-title" onClick={toThisMonth} title={txt("Zum heutigen Monat")}>
             {MONTH_NAME(cursor.m)} {cursor.y}
           </button>
@@ -286,7 +286,7 @@ export function PlanTab() {
             {openList.length === 0 ? (
               <div className="empty">
                 <div className="big">{txt("Kein Termin")}</div>
-                <div>{txt("Gib einer Wortliste unter „Wortlisten“ ein Zieldatum, dann erscheint sie hier.")}</div>
+                <div>{txt("Du kannst einer Wortliste unter „Wortlisten“ ein Zieldatum geben, dann erscheint sie hier.")}</div>
               </div>
             ) : <div className="col" style={{ gap: 8 }}>{openList.map(planZeile)}</div>}
           </>
@@ -314,7 +314,7 @@ export function PlanTab() {
             )}
             {!termine.length && !ohneTermin.length && (
               <div className="empty"><div className="big">{txt("Kein Termin")}</div>
-                <div>{txt("Gib einer Wortliste unter „Wortlisten“ ein Zieldatum, dann erscheint sie hier.")}</div></div>
+                <div>{txt("Du kannst einer Wortliste unter „Wortlisten“ ein Zieldatum geben, dann erscheint sie hier.")}</div></div>
             )}
           </>
         )}

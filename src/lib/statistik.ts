@@ -61,8 +61,8 @@ export function antwortBilanz(antworten: Antwort[]) {
  * Was danebenlag, nicht wie oft. Gezählt werden Antworten, die nicht auf
  * Anhieb saßen — die vier Arten kommen aus der Bewertung selbst. */
 export const FEHLERART = {
-  accent:  { name: "Akzente und Längenstriche", was: "zählt als richtig",   gilt: "fast" },
-  typo:    { name: "Tippfehler",                was: "zählt als richtig",   gilt: "fast" },
+  accent:  { name: "Akzente und Längenstriche", was: "zählt als Treffer",   gilt: "fast" },
+  typo:    { name: "Tippfehler",                was: "zählt als Treffer",   gilt: "fast" },
   wrong:   { name: "Ganz daneben",              was: "ein anderes Wort",    gilt: "falsch" },
   article: { name: "Artikel",                   was: "der / die / das",     gilt: "falsch" },
 } as const;
@@ -130,11 +130,11 @@ export const BLOECKE = [[6, 9], [9, 12], [12, 15], [15, 18], [18, 21], [21, 24]]
 
 export function stundenprofil(antworten: Antwort[]) {
   const b = BLOECKE.map(([a, e]) => ({ von: a, bis: e, label: `${a}–${e}`, n: 0, richtig: 0 }));
-  let ausserhalb = 0;
+  let außerhalb = 0;
   for (const a of antworten) {
     const h = new Date(a.ts).getHours();
     const treffer = b.find((x) => h >= x.von && h < x.bis);
-    if (!treffer) { ausserhalb++; continue; }            // 0–6 Uhr: zu selten für einen eigenen Block
+    if (!treffer) { außerhalb++; continue; }            // 0–6 Uhr: zu selten für einen eigenen Block
     treffer.n++;
     if (a.verdict !== "wrong") treffer.richtig++;
   }
@@ -153,7 +153,7 @@ export function stundenprofil(antworten: Antwort[]) {
    * Schwelle, ab der „deine beste Lernzeit" mehr ist als eine Laune der
    * Stichprobe. */
   const vorsprung = beste && zweiter ? beste.anteil - zweiter.anteil : 0;
-  return { bloecke: mit, beste, schwaechste, ausserhalb,
+  return { bloecke: mit, beste, schwaechste, außerhalb,
            belastbar: belastbar.length >= 2 && vorsprung >= 5 };
 }
 
@@ -161,7 +161,7 @@ export function stundenprofil(antworten: Antwort[]) {
  * Aus den täglichen Schnappschüssen: wie viele Wörter mehr heute auf „sitzt"
  * oder „sitzt fast" stehen als am Anfang des Zeitraums. Ein Zuwachs, kein
  * Bestand — deshalb kann er auch negativ sein. */
-/* Wie viele Wörter an einem Stichtag sassen. Nimmt den jüngsten
+/* Wie viele Wörter an einem Stichtag saßen. Nimmt den jüngsten
  * Schnappschuss, der nicht nach dem Stichtag liegt. */
 function sitztAn(trends: any, pairs: string[], tag: string) {
   let n = 0, belegt = false;

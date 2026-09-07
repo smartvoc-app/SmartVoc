@@ -23,11 +23,17 @@ const lies = (p) => readFileSync(join(wurzel, p), "utf8");
 
 /* Eine Zeichenkette in TypeScript, mit Maskierungen. Ein blosses /"([^"]*)"/
  * bricht an jedem \" im Text ab -- und die gibt es in der Prosa. */
+/* Was hinter einem Backslash steht. Ohne diese Tabelle landete "\n" als
+ * Buchstabe "n" im Text -- im Dokument stand "der Hundnliber" statt zweier
+ * Zeilen. Der Umbruch wird zum Leerzeichen, weil eine Beschriftung im
+ * Dokument einzeilig steht. */
+const ENTKOMMEN = { n: " ", r: " ", t: " " };
+
 function zeichenkette(s, i) {
   const q = s[i];
   let out = "", j = i + 1;
   while (j < s.length) {
-    if (s[j] === "\\") { out += s[j + 1]; j += 2; continue; }
+    if (s[j] === "\\") { out += ENTKOMMEN[s[j + 1]] ?? s[j + 1]; j += 2; continue; }
     if (s[j] === q) return { text: out, ende: j + 1 };
     out += s[j++];
   }
@@ -199,6 +205,22 @@ function ohneKommentare(s) {
  * erkennt man an den Umlauten und an einer Handvoll Woerter, die in
  * Programmtext nicht vorkommen. */
 const DEUTSCH = /[äöüÄÖÜß]|\b(der|die|das|den|dem|ein|eine|einen|und|oder|nicht|kein|keine|dein|deine|mit|ohne|auf|für|ist|sind|war|wird|hast|kannst|willst|dich|dir|noch|schon|jetzt|hier|alle|jede|jeder|Wort|Wörter|Liste|Listen|Sprache|Karte|Übung|Konto)\b/;
+/* Bezeichner aus dem Programm, die keine Beschriftung sind. Sie kamen
+ * bisher durch, weil CSS-Klassen wie "card-dir" oder "wl-alle" an der
+ * Wortgrenze auf "dir" bzw. "alle" passen und die Deutsch-Erkennung damit
+ * ansprang -- und weil Dateien aus NUR_BESCHRIFTUNG die Erkennung ganz
+ * uebersprangen. Beides faellt hier heraus, bevor es ins Dokument geraet. */
+const PROGRAMM = [
+  /^\.{1,2}\//,                  // ./fsrs, ../lib/engine
+  /^var\(/,                      // var(--blue)
+  /^[a-z0-9]+(?:[ -][a-z0-9]+)*-[a-z0-9]+(?:[ -][a-z0-9]+)*$/, // card-dir-arrow, li li-alle
+  /^[a-z]+[A-Z][A-Za-z0-9]*$/,    // beispieleModus, formenAn
+];
+/* Der Bindestrich in Regel 3 ist entscheidend: ohne ihn faellt auch
+ * "sitzt fast", "wackelt noch" oder "f pl" heraus -- lauter echte
+ * Beschriftungen, die genauso aus kleinen Woertern mit Trenner bestehen. */
+const istProgramm = (t) => PROGRAMM.some((r) => r.test(t));
+
 const TECHNIK = /^(https?:|[./]|[a-z0-9_-]+\.(ts|tsx|js|json|png|svg|css)$)|^[a-z][A-Za-z0-9]*$|^[A-Z_]+$/;
 
 /* Bruchstuecke aus dem Programmtext. Der JSX-Textknoten ">…<" faengt
@@ -211,7 +233,7 @@ const PLATZHALTER_WEG = (x) => x.replace(/\{[a-zA-Z_][a-zA-Z0-9_]*\}/g, "");
 function istBeschriftung(t) {
   const x = t.trim();
   if (x.length < 3 || x.length > 400) return false;
-  if (TECHNIK.test(x)) return false;
+  if (TECHNIK.test(x) || istProgramm(x)) return false;
   if (BRUCHSTUECK.test(x)) return false;
   if (/[{}<>]/.test(PLATZHALTER_WEG(x))) return false;
   if (!DEUTSCH.test(x)) return false;
@@ -253,7 +275,7 @@ function oberflaeche() {
   const ohneTxt = [];
   const pfade = [...dateien(join(wurzel, "src"))]
     .map((p) => relative(wurzel, p))
-    .filter((p) => !/i18n|help\.(de|en)\.tsx|seed\.ts|schemes|xlsx-leer/.test(p))
+    .filter((p) => !/i18n|help\.(de|en)\.tsx|seed\.ts|schemes|xlsx-leer|migrate\.ts/.test(p))
     .sort((a, b) => (BEREICH[a] ? 0 : 1) - (BEREICH[b] ? 0 : 1) || a.localeCompare(b));
 
   for (const p of pfade) {
@@ -267,10 +289,17 @@ function oberflaeche() {
      * "Geschlecht", "Als Text" und ein Dutzend weiterer Beschriftungen
      * weg -- kurze Woerter ohne Umlaut sehen fuer eine Heuristik nicht
      * deutsch aus. */
-    const nimm = (text, durchTxt) => {
+    /* Drei Wege, und der dritte ist neu. In Dateien aus NUR_BESCHRIFTUNG
+     * steht NUR Anzeigetext -- dort darf die Bezeichner-Sperre nicht
+     * greifen. Sie warf sonst genau die sichtbarsten Woerter der App weg:
+     * "sitzt", "fast", "wackelt", "neu" und "bereit" sind einzelne
+     * Kleinbuchstabenwoerter und sehen fuer eine Heuristik aus wie
+     * Programmbezeichner. Sie stehen unter jeder Lernstandsleiste. */
+    const nimm = (text, durchTxt, roh2) => {
       const t = text.trim();
       if (gesehen.has(t)) return;
-      if (durchTxt) { if (t.length < 2 || /^[a-z0-9_.:-]+$/.test(t)) return; }
+      if (roh2) { if (t.length < 2 || istProgramm(t)) return; }   // aus einer Beschriftungstabelle
+      else if (durchTxt) { if (t.length < 2 || /^[a-z0-9_.:-]+$/.test(t) || istProgramm(t)) return; }
       else if (!istBeschriftung(t)) return;
       gesehen.add(t); treffer.push(t);
       if (!durchTxt) ohneTxt.push([p, t]);
@@ -290,6 +319,31 @@ function oberflaeche() {
       re2.lastIndex = t.ende;
       nimm(t.text, alles);
     }
+
+    /* 2b) Zwei Beschriftungstabellen, die die Sperre oben wegwirft.
+     * "sitzt", "fast", "wackelt", "neu" sind einzelne Kleinbuchstaben-
+     * woerter und sehen fuer eine Heuristik aus wie Programmbezeichner --
+     * sie stehen aber unter jeder Lernstandsleiste und gehoeren damit zu
+     * den sichtbarsten Woertern der App. Die Tabellen beim Namen zu nennen
+     * ist ehrlicher als die Heuristik weiter aufzuweichen: daneben stehen
+     * in derselben Datei STUFE_FARBE und STUFE_BADGE, und deren Werte
+     * ("var(--ok)", "green") sind gerade keine Beschriftung. */
+    for (const name of ["STUFE_KURZ", "STUFE_LANG"]) {
+      const i = roh.indexOf("const " + name);
+      if (i < 0) continue;
+      const start = roh.indexOf("{", i), ende = roh.indexOf("}", start);
+      if (start < 0 || ende < 0) continue;
+      for (const m of roh.slice(start, ende).matchAll(/:\s*"([^"]+)"/g)) nimm(m[1], true, true);
+    }
+
+    /* Ebenso die sechs Sprachnamen. Sie stehen in der Sprachwahl, in der
+     * Richtungswahl und im Satz "Auf {sprache} eintippen ..." -- und
+     * fehlten bisher ganz, weil "English" und "Español" fuer eine
+     * Deutsch-Erkennung nicht deutsch sind. Genau deshalb gehoeren sie
+     * ins Dokument: sie sind der Grund, warum dort "Auf English
+     * eintippen" steht. */
+    if (/pairs\.ts$/.test(p))
+      for (const m of roh.matchAll(/label:\s*"([^"]+)"/g)) nimm(m[1], true, true);
 
     // 3) JSX-Textknoten: >Text<
     for (const j of roh.matchAll(/>([^<>{}]{3,300})</g)) nimm(entitaeten(j[1]), false);

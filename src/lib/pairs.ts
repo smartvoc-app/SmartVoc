@@ -1,7 +1,7 @@
 /* ===================================================================
  * Sprachen und Sprachpaare.
  *
- * Ein Sprachpaar heisst "<fremd>-<mutter>", also "en-de". Diese Kennung
+ * Ein Sprachpaar heißt "<fremd>-<mutter>", also "en-de". Diese Kennung
  * steht an jedem Wort und an jeder Wortliste und ist damit gespeicherte
  * Wirklichkeit -- sie darf sich nie ruecklaufend aendern. Sie darf aber
  * WACHSEN: ein spaeteres "en-es" macht keine einzige bestehende Zeile
@@ -30,11 +30,11 @@ export interface Sprache { code: string; label: string; short: string }
  * Selbstbezeichnung, die ein Schueler wiedererkennt. */
 export const SPRACHEN: Record<string, Sprache> = {
   de: { code: "de", label: "Deutsch",    short: "DE" },
-  en: { code: "en", label: "English",    short: "EN" },
-  fr: { code: "fr", label: "Français",   short: "FR" },
-  es: { code: "es", label: "Español",    short: "ES" },
-  it: { code: "it", label: "Italiano",   short: "IT" },
-  pt: { code: "pt", label: "Português",  short: "PT" },
+  en: { code: "en", label: "Englisch",    short: "EN" },
+  fr: { code: "fr", label: "Französisch",   short: "FR" },
+  es: { code: "es", label: "Spanisch",    short: "ES" },
+  it: { code: "it", label: "Italienisch",   short: "IT" },
+  pt: { code: "pt", label: "Portugiesisch",  short: "PT" },
   la: { code: "la", label: "Latein",     short: "LA" },
 };
 
@@ -90,6 +90,6 @@ export const fk = (pair: PairId | string) => (PAIRS[pair] || PAIRS["en-de"]).for
 export const isLatinPair = (pair: PairId | string) => fremdVon(pair as string) === "la";
 
 /* Ein Wort ist ueb-bar, wenn beide Seiten da sind. Latein nutzt Lernformen
- * statt einer blossen Zeichenkette. */
+ * statt einer bloßen Zeichenkette. */
 export const practiceable = (w: Word) =>
   !!(w && w.de && (isLatinPair(w.pair) ? (w.grundform || w.lernform) : w[fk(w.pair)]));

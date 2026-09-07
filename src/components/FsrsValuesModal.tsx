@@ -72,7 +72,7 @@ export function FsrsValuesModal({ open, onClose, settings }: any) {
           <div>
             <div className="modal-title">{txt("Womit die App rechnet")}</div>
             <div className="muted" style={{ fontSize: 13, marginTop: 2 }}>
-              {txt("Das Gedächtnis-Modell heisst FSRS. Nur zum Ansehen, hier lässt sich nichts verstellen.")}
+              {txt("Das Gedächtnis-Modell heißt FSRS. Nur zum Ansehen, hier lässt sich nichts verstellen.")}
             </div>
           </div>
           <button className="icon-btn" style={{ width: 34, height: 34 }} onClick={onClose}><Icon name="x" size={16} /></button>
@@ -82,7 +82,7 @@ export function FsrsValuesModal({ open, onClose, settings }: any) {
           <div className="wertkopf">
             <span className="section-title" style={{ fontSize: 12.5 }}>{txt("Deine Schwellen")}</span>
             <span className="wz-zahl faint" style={{ fontSize: 10.5 }}>{txt("deine")}</span>
-            <span className="wz-zahl faint" style={{ fontSize: 10.5 }}>{txt("Standard")}</span>
+            <span className="wz-zahl faint" style={{ fontSize: 10.5 }}>{txt("Voreinstellung")}</span>
           </div>
           <Schwelle name="Behaltensziel" erklaerung="wie sicher du ein Wort können sollst, wenn es wiederkommt"
             wert={`${Math.round(ret * 100)} %`} standard="90 %" />
@@ -92,7 +92,7 @@ export function FsrsValuesModal({ open, onClose, settings }: any) {
             wert={`${cfg.S2} T`} standard="14 T" />
           <Schwelle name="Richtige bis „nicht mehr neu“" erklaerung="so oft muss ein frisches Wort sitzen, bevor es die Stufe verlässt"
             wert={`${cfg.MIN_REPS}×`} standard="2×" />
-          <Schwelle name="Lerntempo" erklaerung="wie schnell die App annimmt, dass ein Wort fester wird"
+          <Schwelle name="Lernintensität" erklaerung="wie schnell die App annimmt, dass ein Wort fester wird"
             wert={`${cfg.learningSpeed}×`} standard="1×" />
           <div className="faint" style={{ fontSize: 11.5, marginTop: 8 }}>
             {txt("Diese fünf kannst du in den erweiterten Einstellungen verstellen.")}
@@ -111,7 +111,7 @@ export function FsrsValuesModal({ open, onClose, settings }: any) {
         </div>
 
         <div className="modal-foot" style={{ marginTop: 14 }}>
-          <button className="btn btn-primary" onClick={onClose}>{txt("Schliessen")}</button>
+          <button className="btn btn-primary" onClick={onClose}>{txt("Schließen")}</button>
         </div>
       </div>
     </div>

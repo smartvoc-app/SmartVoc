@@ -62,7 +62,7 @@ function Header({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
       <div className="topbar-spacer" />
       {auth.configured && (
         <>
-          <button className="tipbtn" title={txt("Account & Sync")} onClick={() => setAccountOpen(true)} style={{ gap: 8 }}>
+          <button className="tipbtn" title={txt("Konto & Abgleich")} onClick={() => setAccountOpen(true)} style={{ gap: 8 }}>
             <span className="dot" style={{ width: 8, height: 8, borderRadius: "50%", background: SYNC_DOT[status] }} />
             {auth.user ? (auth.username || txt("Konto")) : txt("Anmelden")}
           </button>
@@ -139,7 +139,7 @@ export function App() {
    * ein Wechsel von hell auf dunkel das gewählte Schema nicht. */
   useEffect(() => {
     const r = document.documentElement.dataset;
-    /* Die alten Beige-Schemata heissen jetzt anders. Wer „leinen" oder
+    /* Die alten Beige-Schemata heißen jetzt anders. Wer „leinen" oder
      * „altpapier" gespeichert hat, bekommt das nachfolgende Schema statt
      * eines Bildschirms ohne Farben. */
     const ALT: Record<string, string> = { leinen: "tinte", altpapier: "graphit" };

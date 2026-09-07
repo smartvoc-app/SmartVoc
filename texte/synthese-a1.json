@@ -1,0 +1,412 @@
+[
+ [
+  "Sofort loslegen",
+  [
+   [
+    "P",
+    "Du musst nichts vorbereiten. Für jede Sprache, die eingeschaltet ist, liegen hundert Wörter bereit. Tipp unten auf Üben, wähle eine Liste, und die erste Karte steht da."
+   ],
+   [
+    "P",
+    "Eigene Wörter kommen dazu, sobald du sie brauchst. Das dauert keine zwei Minuten:"
+   ],
+   [
+    "L",
+    "Unter Wortlisten auf + Neue Liste und einen Weg wählen. Am schnellsten geht Liste einfügen: Der mitgelieferte KI-Prompt holt die Wörter aus einem Foto deiner Heftseite, samt Beispielsätzen und Lautschrift."
+   ],
+   [
+    "L",
+    "Steht ein Termin an, gib der Liste ein Zieldatum: den Tag, an dem die Wörter sitzen müssen. Ohne Termin geht es auch."
+   ],
+   [
+    "L",
+    "Zurück auf Üben, die neue Liste wählen, los."
+   ],
+   [
+    "S",
+    "Von der Heftseite zur ersten Karte"
+   ],
+   [
+    "G",
+    "Drei Felder nebeneinander, verbunden durch Pfeile: links ein abfotografiertes Heft, in der Mitte das Prüfen-Fenster mit drei Beispielzeilen und einer sichtbar korrigierten Stelle, rechts die fertige Wortkarte."
+   ],
+   [
+    "P",
+    "Ab jetzt entscheidet die App, welches Wort wann wiederkommt. Warum, steht im nächsten Kapitel."
+   ]
+  ]
+ ],
+ [
+  "Was SmartVoc anders macht",
+  [
+   [
+    "P",
+    "Die meisten Vokabelprogramme lassen dich eine Liste durchgehen, bis du sie kannst. SmartVoc führt für jedes Wort einzeln Buch: wie lange es bei dir hält, wie schwer es dir fällt, und wann du kurz davor bist, es zu vergessen. Genau dann kommt es zurück."
+   ],
+   [
+    "S",
+    "Jede richtige Antwort schiebt das Wort weiter nach hinten"
+   ],
+   [
+    "G",
+    "Ein Zeitstrahl über sechs Wochen. Oben ein Wort als Punktreihe mit wachsenden Abständen, beschriftet mit 1 Tag, 3 Tage, 8 Tage, 3 Wochen. Darunter dieselbe Reihe für ein Wort mit einem Fehler in der Mitte: dort fällt der Abstand auf einen Tag zurück und beginnt wieder zu wachsen."
+   ],
+   [
+    "P",
+    "Das hat zwei Folgen, die anfangs überraschen. Wörter, die sitzen, verschwinden für Wochen aus der Abfrage — dafür brauchst du keine Zeit mehr. Und Wörter, bei denen du gezögert hast, sind morgen schon wieder da. Beides ist der Grund, warum zehn Minuten am Tag mehr bringen als eine Stunde am Samstag."
+   ],
+   [
+    "P",
+    "Diese Planung kannst du nicht überstimmen. Was du in der Hand hast: welche Wörter dazukommen, wie viele pro Tag, und wie streng die App prüft. Das steht im Kapitel Einstellungen, die sich lohnen. Wie gerechnet wird, steht im Kapitel Dahinter."
+   ]
+  ]
+ ],
+ [
+  "SmartVoc im Überblick",
+  [
+   [
+    "P",
+    "Unten stehen vier Bereiche nebeneinander. Jeder beantwortet eine andere Frage."
+   ],
+   [
+    "S",
+    "Vier Bereiche, vier Fragen"
+   ],
+   [
+    "G",
+    "Die Reiterleiste in Originalgrösse, über jedem Reiter eine Sprechblase mit der Frage, die er beantwortet."
+   ],
+   [
+    "L",
+    "Üben — was soll ich jetzt tun? Hier wird gelernt."
+   ],
+   [
+    "L",
+    "Übungsplan — bin ich rechtzeitig fertig? Deine Termine und wie du dazu stehst."
+   ],
+   [
+    "L",
+    "Wortlisten — woher kommen meine Wörter? Anlegen, füllen, verwalten."
+   ],
+   [
+    "L",
+    "Statistik — wo stehe ich? Was sitzt, was wackelt, und ob es vorwärtsgeht."
+   ],
+   [
+    "P",
+    "Oben rechts liegen zwei Knöpfe. Hinter dem Zahnrad stehen die Einstellungen, hinter dem Fragezeichen diese Anleitung, die Lerntipps und das Kapitel Dahinter."
+   ],
+   [
+    "P",
+    "Zwei Farbskalen, nicht eine. SmartVoc färbt an zwei Stellen, und die beiden bedeuten Verschiedenes. Wer sie verwechselt, liest die App falsch."
+   ],
+   [
+    "P",
+    "Die fünf Stufen gelten je Wort, und die Leiste liest sich von links nach rechts: sitzt hält länger als zwei Wochen und kommt selten zurück. sitzt fast — in der Leiste kurz fast — hält bis zu zwei Wochen. wackelt noch — kurz wackelt — hält weniger als drei Tage. neu ist frisch begonnen, ungeübt noch nie abgefragt. Diese Leiste findest du überall gleich: unter der Karte, an jeder Liste und in der Statistik. Ein Tipp auf einen Eintrag der Legende öffnet die Wörter dahinter."
+   ],
+   [
+    "P",
+    "Die Ampel gilt je Liste. Sie zählt nur, wie viele Wörter einer Liste schon auf der Stufe sitzt stehen: ab 95 Prozent gilt die Liste als bereit, ab 70 Prozent als auf Kurs, darunter als im Rückstand. Die Schwellen kannst du verstellen."
+   ]
+  ]
+ ],
+ [
+  "Bereich «Üben»",
+  [
+   [
+    "P",
+    "In der Zeile über der Karte wählst du, was abgefragt wird: die Sprache, die Richtung und eine oder mehrere Wortlisten — oder eine der vier Smart Lists, die die App selbst zusammenstellt. Die Auswahl darf Sprachen mischen."
+   ],
+   [
+    "S",
+    "Alles, was auf der Karte steht"
+   ],
+   [
+    "G",
+    "Dieselbe Karte von vorn und von hinten, mit Beschriftungspfeilen auf Übersetzungsrichtung, Fremdwort, Lautschrift, Formen, Geschlecht, Beispielsatz mit Übersetzung. Oberhalb der Karte der Übungsfortschritt, unterhalb die fünffarbige Lernstandsleiste, jeweils angepfeilt und benannt."
+   ],
+   [
+    "P",
+    "Vier Antwortarten stehen unter der Karte zur Wahl. Du kannst mitten in der Übung umschalten:"
+   ],
+   [
+    "L",
+    "Eintippen — du schreibst die Antwort selbst. Am anstrengendsten, bringt am meisten. Im Zweifel diese."
+   ],
+   [
+    "L",
+    "Multiple-Choice — du wählst aus mehreren Möglichkeiten. Leichter, gut für den Anfang oder wenn du müde bist."
+   ],
+   [
+    "L",
+    "Selbstkontrolle — du überlegst, drehst um und beurteilst selbst. Schreib die Lösung vorher auf ein Blatt, sonst fällt das Urteil zu freundlich aus."
+   ],
+   [
+    "L",
+    "Nur durchblättern — zum Überfliegen einer Liste. Zählt für nichts: kein Lernstand, keine Statistik."
+   ],
+   [
+    "P",
+    "Die Richtung ist ebenso umschaltbar: Fremdsprache zu Deutsch, umgekehrt, oder gemischt. Wechsle beides regelmäßig ab, sonst merkt sich dein Gedächtnis das Muster statt das Wort."
+   ],
+   [
+    "P",
+    "Zwei Anzeigen, zwei verschiedene Dinge. Über der Karte steht der Übungsfortschritt: wie viel von dieser Runde erledigt ist. Jedes Wort braucht dafür eine bestimmte Zahl richtiger Antworten; ein Fehler setzt seinen Zähler zurück, und der Balken geht ein Stück zurück. Unter der Karte steht der Lernstand: wie sich die Wörter dieser Auswahl auf die fünf Stufen verteilen. Der Fortschritt beginnt bei jeder Runde neu, der Lernstand bewegt sich über Wochen. Beim Durchblättern fehlen beide, weil dieser Modus nichts verändert."
+   ],
+   [
+    "P",
+    "Wie deine Antwort bewertet wird. Beim Eintippen vergleicht die App deine Antwort mit der Lösung und fällt eines von drei Urteilen: richtig, fast richtig oder falsch. Fast richtig ist keine Höflichkeit — es zählt anders als falsch. In der Statistik werden richtig und fast richtig zusammen als Treffer gezählt."
+   ],
+   [
+    "L",
+    "Tippfehler werden erkannt, solange die Antwort der Lösung nahe genug kommt. Sie gelten je nach Ähnlichkeit als fast richtig."
+   ],
+   [
+    "L",
+    "Akzente und Umlaute sind in der Voreinstellung nachsichtig. Auf streng gestellt zählt „grun“ statt „grün“ als Fehler."
+   ],
+   [
+    "L",
+    "Der Artikel zählt in der Voreinstellung halb mit. Du kannst ihn freiwillig machen oder voll verlangen. Zählt er nicht, steht er gar nicht erst auf der Karte — dafür das Geschlecht."
+   ],
+   [
+    "L",
+    "Groß- und Kleinschreibung zählt in der Voreinstellung."
+   ],
+   [
+    "P",
+    "Nach jeder Antwort zeigt die App, welche Zeichen fehlten, überflüssig waren oder abwichen. Wenn dich eine Bewertung ärgert, liegt der Hebel in den Einstellungen unter Antwortprüfung."
+   ],
+   [
+    "P",
+    "Warum eine Übung endet. Heute dran schlägt höchstens dreißig Karten vor, und höchstens zehn davon sind ganz neue Wörter. Beide Zahlen sind einstellbar. Nach vierzig Karten schlägt die App außerdem eine Pause vor. Wörter aus einer Liste, deren Termin in den nächsten drei Tagen liegt, zählen gegen keine dieser Grenzen."
+   ],
+   [
+    "P",
+    "Latein läuft eigens. Statt eines einzelnen Wortes lernst du Stammformen. In der Stufe L2 zeigt die Karte die volle Lernform und fragt nur die Grundform ab. In L3 gibst du die Stammformen vollständig ein; die Reihenfolge ist egal."
+   ]
+  ]
+ ],
+ [
+  "Bereich «Übungsplan»",
+  [
+   [
+    "P",
+    "Der Übungsplan zeigt, wann welche Liste sitzen muss und wie weit du bist — als Kalender oder als Liste. Hier erscheinen nur Listen, denen du ein Zieldatum gegeben hast. Alle anderen werden ganz normal abgefragt, tauchen hier aber nicht auf."
+   ],
+   [
+    "S",
+    "Je näher der Termin, desto enger die Wiederholungen"
+   ],
+   [
+    "G",
+    "Zwei Zeitstrahlen auf dasselbe Prüfungsdatum zu. Oben eine Liste ohne Termin: gleichmässig wachsende Abstände. Unten dieselbe Liste mit Termin: ab drei Wochen vor dem Datum rücken die Punkte sichtbar zusammen. Am Datum eine senkrechte Linie, danach weiten sich die Abstände wieder auf das obere Muster."
+   ],
+   [
+    "P",
+    "Das Zieldatum. Gib einer Liste den Tag, an dem sie sitzen muss — meist der Tag der Prüfung. Vergeben wird es unter Wortlisten, an der Liste selbst. Von da an rechnet die App rückwärts: Ab etwa drei Wochen vor dem Termin verlangt sie von diesen Wörtern mehr Sicherheit, wodurch sie öfter drankommen. In den letzten Tagen fällt für sie die Tagesgrenze weg. Nach dem Termin ist alles wieder normal."
+   ],
+   [
+    "P",
+    "Übst du mehrere Listen zusammen, kommen die Wörter der Liste mit dem näheren Termin von selbst häufiger. Dafür musst du nichts einstellen."
+   ],
+   [
+    "P",
+    "Die Farbe eines Tages ist die Ampel der Liste, die an diesem Tag fällig ist — dieselbe dreistufige Skala wie im Überblick beschrieben, nicht die fünf Stufen. Liegen mehrere Listen auf einem Tag, zeigt die Farbe die schwächste. Tipp einen Tag an: Dann siehst du, um welche Listen es geht, wie viele ihrer Wörter am Stichtag voraussichtlich sitzen werden, und du kannst von dort direkt üben."
+   ]
+  ]
+ ],
+ [
+  "Bereich «Wortlisten»",
+  [
+   [
+    "P",
+    "Alle deine Wörter liegen in Listen, und jedes Wort gehört zu genau einer Liste. Was eine Liste ist, bestimmst du: eine Heftseite, eine Lektion, der Stoff einer Prüfung."
+   ],
+   [
+    "S",
+    "Vier Wege, ein Prüfschritt"
+   ],
+   [
+    "G",
+    "Vier Eingänge links (Foto mit KI, Tastatur, Code, Tabelle), die alle in dasselbe Prüfen-Fenster in der Mitte laufen und von dort in eine Liste rechts. Der Weg „Einzelnes Wort“ geht sichtbar am Prüfen vorbei direkt in die Liste."
+   ],
+   [
+    "P",
+    "Vier Wege führen hinein. Den richtigen zu wählen erspart dir die meiste Arbeit:"
+   ],
+   [
+    "L",
+    "Liste einfügen — für eine ganze Heftseite. Mit dem KI-Prompt sogar aus einem Foto."
+   ],
+   [
+    "L",
+    "Einzelnes Wort eintippen — für Nachträge."
+   ],
+   [
+    "L",
+    "Geteilte Liste übernehmen — wenn dir jemand einen Code oder Link geschickt hat."
+   ],
+   [
+    "L",
+    "Tabelle einlesen — Excel oder CSV, nur in der Webversion. Die leere Vorlage gibt es gleich daneben."
+   ],
+   [
+    "P",
+    "Der Weg über die KI. Er funktioniert mit jeder KI, die Bilder lesen kann. In der App auf KI-Prompt kopieren tippen, in deine KI-App wechseln, den Auftrag einfügen und ein Foto deiner Heftseite dazuhängen. Die Antwort kopierst du zurück ins große Feld und gehst auf Weiter zum Prüfen."
+   ],
+   [
+    "P",
+    "Das Prüfen-Fenster. Dort steht jedes Wort einzeln, mit allen Angaben. Schau kurz drüber und korrigiere, was schiefgelaufen ist. Am Schluss wählst du die Liste. Fotos werden gerne einmal falsch gelesen; hier fällt es auf."
+   ],
+   [
+    "P",
+    "Listen und Wörter ändern. Öffnest du eine Liste, siehst du zuerst die Liste selbst: Zieldatum, Lernstand und die Handgriffe. Die Wörter liegen eine Ebene tiefer unter Wörter ansehen und bearbeiten. Dort tippst du eine Zeile an und benutzt Bearbeiten oder Löschen; mehrere auf einmal gehen auch. Zwei Listen, die zusammengehören, lassen sich zusammenführen. Löschst du eine Liste, bleiben ihre Wörter erhalten und verlassen nur diese Liste."
+   ],
+   [
+    "P",
+    "Exportieren und Teilen. Über Exportieren bekommst du deine Wörter als Text oder als Excel-Tabelle zurück, im selben Format, das die App auch wieder einliest — ohne Konto. Über Teilen schickst du eine Liste an jemanden; die andere Person bekommt eine eigene Kopie, euer Lernstand bleibt getrennt. Teilen braucht ein Konto."
+   ],
+   [
+    "P",
+    "Die vier Smart Lists. Neben deinen eigenen Listen stehen vier Listen, die die App täglich selbst zusammenstellt, quer über alles, was du hast: Heute dran (deine Tagesportion aus Fälligem und Neuem), Fällige Wörter, Wackeln noch (genau die Wörter auf der Stufe wackelt noch) und Bald fällig. Ansehen und üben ja, ändern nein. Darunter steht außerdem Alle Wörter — das ist keine Smart List, sondern dein ganzer Bestand."
+   ]
+  ]
+ ],
+ [
+  "Bereich «Statistik»",
+  [
+   [
+    "P",
+    "Die Statistik geht ins Detail. Oben wählst du, ob du alle Sprachen ansiehst oder eine, alle Wörter oder eine bestimmte Liste, und ob es um die letzten 7, 30 oder 90 Tage geht."
+   ],
+   [
+    "S",
+    "Dieselben fünf Stufen überall"
+   ],
+   [
+    "G",
+    "Die fünffarbige Lernstandsleiste groß, jede Stufe benannt und mit der Haltedauer beschriftet, ab der sie beginnt; daneben dieselbe Leiste verkleinert an den drei Orten, an denen sie sonst erscheint (Karte, Liste, Statistik)."
+   ],
+   [
+    "L",
+    "Bestand — wie sich deine Wörter auf die fünf Stufen verteilen."
+   ],
+   [
+    "L",
+    "Fortschritt — wie viele Wörter dazugekommen sind, wie viel du geübt hast, an wie vielen Tagen, und wie viele Wörter neu die Stufe sitzt erreicht haben."
+   ],
+   [
+    "L",
+    "Auswertungen — wie deine Antworten ausgehen, woran sie scheitern, wie schnell ein Wort bei dir sitzt, wie lange deine Wörter halten, wie lang deine Sitzungen sind und zu welcher Tageszeit du am besten triffst."
+   ],
+   [
+    "L",
+    "Stolpersteine und Hartnäckig — die Wörter, die dir immer wieder entwischen. Von dort kannst du sie direkt üben."
+   ],
+   [
+    "P",
+    "Auswertungen, für die zu wenige Daten da sind, zeigt die App gar nicht erst an. Am Anfang ist die Seite deshalb ziemlich leer. Das gibt sich."
+   ]
+  ]
+ ],
+ [
+  "Einstellungen, die sich lohnen",
+  [
+   [
+    "P",
+    "Die Voreinstellungen folgen der Lernforschung und passen für die meisten. Drei Schrauben lohnen trotzdem einen Blick:"
+   ],
+   [
+    "L",
+    "Lernintensität — wie sicher du ein Wort können sollst, wenn es wiederkommt. Intensiver heißt: häufiger üben, dafür sitzt mehr. Lockerer heißt: weniger Karten, dafür rutscht mehr weg. Ein Richtig gibt es nicht, nur einen Tausch."
+   ],
+   [
+    "L",
+    "Neue Wörter pro Tag — dein einziger Hebel auf die Menge. Weniger neue Wörter heißt weniger Rückstau, nicht langsameres Lernen."
+   ],
+   [
+    "L",
+    "Antwortprüfung — wie streng Akzente, Artikel und Groß- und Kleinschreibung bewertet werden."
+   ],
+   [
+    "P",
+    "Dazu kommen Kleinigkeiten, die den Alltag angenehmer machen: was auf der Karte zu sehen ist (Lautschrift, Formen, Beispielsätze), womit die App aufmacht, Farbschema und Kartenschrift. Alles lässt sich einzeln zurücksetzen; was du verstellt hast, ist markiert."
+   ],
+   [
+    "P",
+    "Unter Erweitert kannst du dem Modell beim Rechnen zusehen. Nötig ist das nie."
+   ]
+  ]
+ ],
+ [
+  "Mit oder ohne Konto",
+  [
+   [
+    "P",
+    "Die App läuft vollständig ohne Konto und vollständig ohne Netzverbindung. Ohne Anmeldung liegt alles, was du einträgst, auf diesem Gerät, und nur dort."
+   ],
+   [
+    "P",
+    "Meldest du dich an, kommt dreierlei dazu: derselbe Stand auf allen deinen Geräten, Listen teilen, und deine Wörter überleben, wenn dem Gerät etwas zustößt. Anmelden kannst du dich jederzeit später und deine bisherigen Listen dabei übernehmen."
+   ],
+   [
+    "P",
+    "Dein Konto löschst du in den Einstellungen unter Konto & Daten. Damit verschwinden auch die Daten auf dem Server. Das lässt sich nicht rückgängig machen."
+   ]
+  ]
+ ],
+ [
+  "Häufige Fragen",
+  [
+   [
+    "H",
+    "Warum kommt dasselbe Wort schon wieder?"
+   ],
+   [
+    "P",
+    "Weil du zuletzt gezögert hast oder danebenlagst. Die App bringt ein Wort zurück, kurz bevor du es vergisst — bei einem wackeligen Wort ist das morgen."
+   ],
+   [
+    "H",
+    "Warum fragt die App Wörter ab, die ich längst kann?"
+   ],
+   [
+    "P",
+    "Weil auch sicher sitzende Wörter alle paar Wochen eine Auffrischung brauchen; sonst gehen sie über die Monate doch verloren. Es sind wenige Karten, und sie kosten kaum Zeit."
+   ],
+   [
+    "H",
+    "Ich war eine Woche weg — wie schlimm ist es?"
+   ],
+   [
+    "P",
+    "Nicht schlimm. Die fälligen Wörter sammeln sich an, aber Heute dran gibt dir nur die Tagesportion. Du bekommst nicht den ganzen Rückstand auf einmal."
+   ],
+   [
+    "H",
+    "Ein Wort ist falsch geschrieben. Wie ändere ich es?"
+   ],
+   [
+    "P",
+    "Liste öffnen, Wörter ansehen und bearbeiten, Zeile antippen, Bearbeiten. Dort lässt sich alles ändern oder nachtragen: Wort, Beispielsatz, Lautschrift, Formen und Geschlecht."
+   ],
+   [
+    "H",
+    "Mein Lernstand stimmt nicht mehr. Kann ich neu anfangen?"
+   ],
+   [
+    "P",
+    "In den Einstellungen unter Konto & Daten lässt sich der Fortschritt zurücksetzen: Punkte, Verlauf und Tagesserie, in allen Sprachen. Deine Wörter bleiben. Rückgängig machen lässt es sich nicht."
+   ],
+   [
+    "H",
+    "Ich möchte weg von SmartVoc. Bekomme ich meine Wörter mit?"
+   ],
+   [
+    "P",
+    "Ja. Exportieren gibt dir jede Liste als Text oder als Excel-Tabelle heraus, ohne Konto und ohne Umweg."
+   ]
+  ]
+ ]
+]

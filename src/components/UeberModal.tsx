@@ -55,7 +55,7 @@ export function UeberModal({ offen, onClose }: { offen: boolean; onClose: () => 
         </div>
 
         <div className="modal-foot">
-          <button className="btn btn-primary" onClick={onClose}>{txt("Schliessen")}</button>
+          <button className="btn btn-primary" onClick={onClose}>{txt("Schließen")}</button>
         </div>
       </div>
     </div>

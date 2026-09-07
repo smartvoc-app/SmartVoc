@@ -13,7 +13,7 @@ export function TipPopup({ tip, onClose }: { tip: { h: string; b: string } | nul
         <div className="tip-h">{tip.h}</div>
         <div className="tip-b">{tip.b}</div>
       </div>
-      <button className="icon-btn" style={{ width: 30, height: 30 }} title={txt("Schliessen")} onClick={onClose}><Icon name="x" size={14} /></button>
+      <button className="icon-btn" style={{ width: 30, height: 30 }} title={txt("Schließen")} onClick={onClose}><Icon name="x" size={14} /></button>
     </div>
   );
 }

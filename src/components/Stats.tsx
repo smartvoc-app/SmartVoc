@@ -19,7 +19,7 @@ import {
 import { STUFE_FARBE as STUFE_TONE, STUFE_LANG as STUFE_LABEL } from "../lib/stufen";
 const ZEITRAUM_NAME: Record<number, string> = { 7: "7 Tage", 30: "30 Tage", 90: "3 Monate" };
 
-/* Eine Kennzahl: gross die Zahl mit ihrer Einheit, klein die Bedingung
+/* Eine Kennzahl: groß die Zahl mit ihrer Einheit, klein die Bedingung
  * darunter. Die Einheit gehört zur Zahl — „4" allein ist keine Aussage. */
 const Kennzahl = ({ zahl, einheit, satz }: any) => (
   <div className="kpi"><b>{zahl}{einheit && <u>{einheit}</u>}</b><span>{satz}</span></div>
@@ -58,7 +58,7 @@ export function Stats() {
   const [sort, setSort] = useState({ key: "priority", dir: 1 });
 
   /* Der Umfang gilt für alles darunter und steht im Standard auf allen
-   * Sprachen. Eine Sprache zu wählen heisst: alle ihre Listen. Einzelne
+   * Sprachen. Eine Sprache zu wählen heißt: alle ihre Listen. Einzelne
    * Listen wählt man nur, wenn man es ausdrücklich tut. */
   const statPair: string | null = settings.statPair || null;
   const ret = retentionFor(settings);
@@ -180,7 +180,7 @@ export function Stats() {
                         <button key={l.id} className={"li" + (an ? " sel" : "")}
                           onClick={() => setzeUmfang(statPair, an ? settings.statLists.filter((x: string) => x !== l.id) : [...settings.statLists, l.id])}>
                           <span className="g">{l.name}
-                            {st.total > 0 && <div className="m">{txt("{n} Wörter", { n: st.total })} · {txt("{p} % bereit", { p: st.pct })}</div>}
+                            {st.total > 0 && <div className="m">{txt("{n} Wörter", { n: st.total })} · {txt("{p} % sitzen", { p: st.pct })}</div>}
                           </span>
                           {st.total > 0 && <span className="ltab-dot" style={{ background: st.farbe, marginRight: 0, alignSelf: "center" }} />}
                         </button>
@@ -280,7 +280,7 @@ export function Stats() {
                   <div className="dlist">
                     <span><u style={{ background: "var(--ok)" }} /><b>{bilanz.richtig}</b> {txt("richtig")}</span>
                     <span><u style={{ background: "var(--bad)" }} /><b>{bilanz.falsch}</b> {txt("falsch")}</span>
-                    <span className="faint">{txt("Nur der Akzent daneben zählt als richtig")}</span>
+                    <span className="faint">{txt("Nur der Akzent daneben zählt als Treffer")}</span>
                   </div>
                 </div>
               </div>
@@ -293,8 +293,8 @@ export function Stats() {
                   <LiegendeBalken klassen={versuche.klassen} />
                   {hartnaeckig.length > 0 && (
                     <p className="said faint">{txt(hartnaeckig.length === 1
-                      ? "Gezählt sind nur Wörter, die heute sitzen. Dazu kommt {n} Wort, das es trotz vieler Versuche nicht tut. Es steht unten unter „Hartnäckig“."
-                      : "Gezählt sind nur Wörter, die heute sitzen. Dazu kommen {n} Wörter, die es trotz vieler Versuche nicht tun. Sie stehen unten unter „Hartnäckig“.",
+                      ? "Gezählt sind nur Wörter, die heute sitzen. Dazu kommt {n} Wort, das trotz vieler Versuche nicht sitzt. Es steht unten unter „Hartnäckig“."
+                      : "Gezählt sind nur Wörter, die heute sitzen. Dazu kommen {n} Wörter, die trotz vieler Versuche nicht sitzen. Sie stehen unten unter „Hartnäckig“.",
                       { n: hartnaeckig.length })}</p>
                   )}
                 </div>
@@ -329,18 +329,18 @@ export function Stats() {
                     ))}
                   </div>
                   <div className="barlab">{stunden.bloecke.map((b) => <span key={b.label}>{b.label}</span>)}</div>
-                  <p className="said">{txt("Zwischen {zeit} Uhr sitzt bei dir am meisten: {a} % richtig gegen {b} % zur schwächsten Zeit.",
+                  <p className="said">{txt("Zwischen {zeit} Uhr triffst du am besten: {a} % richtig, gegenüber {b} % zu deiner schwächsten Zeit.",
                     { zeit: stunden.beste.label, a: stunden.beste.anteil, b: stunden.schwaechste?.anteil ?? 0 })}</p>
                 </div>
               )}
 
-              {/* Stolpersteine: die Zahl gross links, dann der Balken. Nichts
+              {/* Stolpersteine: die Zahl groß links, dann der Balken. Nichts
                   daran ist anzutippen — welche Wörter es waren, hilft nicht. */}
               {fehler.gesamt > 0 && (
                 <>
                   <div className="grp"><Icon name="flame" size={14} />{txt("Deine Stolpersteine")} <em>— {txt("woran es scheitert")}</em></div>
                   <div className="card">
-                  <div className="quiet links">{txt("{n} deiner {g} Antworten sassen nicht auf Anhieb. Das war der Grund:", { n: fehler.gesamt, g: bilanz.gesamt })}</div>
+                  <div className="quiet links">{txt("{n} deiner {g} Antworten saßen nicht auf Anhieb. Das war der Grund:", { n: fehler.gesamt, g: bilanz.gesamt })}</div>
                   <div className="stumble">
                     {fehler.zeilen.map((z) => (
                       <div className="st" key={z.k}>
@@ -395,7 +395,7 @@ export function Stats() {
           </div>
 
           {gekappt > 0 && zeitraum === 90 && (
-            <div className="quiet">{txt("Bei {n} vielgeübten Wörtern reicht der gespeicherte Verlauf nicht über die vollen 3 Monate. Die Antwortzahlen sind dort eher zu niedrig.", { n: gekappt })}</div>
+            <div className="quiet">{txt("Bei {n} oft geübten Wörtern reicht der gespeicherte Verlauf nicht 3 Monate zurück. Die Zahlen sind dort eher zu niedrig.", { n: gekappt })}</div>
           )}
         </>
       )}
@@ -458,7 +458,7 @@ function AlleWoerter({ rows, stats, fgnOf, filter, setFilter, sort, setSort, cou
       </div>
 
       {trefferInfo && (
-        <div className="infonote">{txt("Als Treffer zählt jede Antwort, die nicht ganz daneben war. Ein fehlender Akzent oder ein Buchstabendreher zählt also auch. Ein Wort, das noch nie abgefragt wurde, zeigt einen Strich.")}</div>
+        <div className="infonote">{txt("Als Treffer zählt jede Antwort, die nicht ganz daneben war — ein fehlender Akzent oder ein Buchstabendreher also auch. Ein Wort, das noch nie abgefragt wurde, zeigt einen Strich.")}</div>
       )}
 
       <table className="wtable">
@@ -478,7 +478,7 @@ function AlleWoerter({ rows, stats, fgnOf, filter, setFilter, sort, setSort, cou
             <tr key={r.w.id} onClick={() => onWort(r.w)}>
               <td className="w">{fgnOf(r.w)}<div className="w-de">{r.w[NATIVE]}</div></td>
               <td><span className="dot" style={{ background: STUFE_TONE[r.stufe] }} />{txt(STUFE_LABEL[r.stufe])}</td>
-              <td>{r.prof.haeltTage ? txt("{n} T", { n: Math.round(r.prof.haeltTage) }) : "—"}</td>
+              <td>{r.prof.haeltTage ? txt("{n} Tage", { n: Math.round(r.prof.haeltTage) }) : "—"}</td>
               <td>{dranAm(r.prof)}</td>
               <td>{r.seen ? treffer(stats, r) + " %" : "—"}</td>
             </tr>
@@ -505,7 +505,7 @@ const treffer = (stats: any, r: any) => {
 const dranAm = (p: any) => {
   if (p.due == null) return "—";
   const t = Math.round((p.due - Date.now()) / 86400000);
-  return t < 0 ? txt("jetzt") : t === 0 ? txt("heute") : t === 1 ? txt("morgen") : txt("in {n} T", { n: t });
+  return t < 0 ? txt("jetzt") : t === 0 ? txt("heute") : t === 1 ? txt("morgen") : txt("in {n} Tagen", { n: t });
 };
 
 /* =============================================== Hartnäckig (Bildschirm) */
@@ -551,7 +551,7 @@ function Erweitert({ settings, tageSitzt, halte, onZurueck }: any) {
       <div className="grp"><Icon name="target" size={14} />{txt("Dein Behaltensziel")}</div>
       <div className="card">
         <Kennzahl zahl={ziel + " %"} satz={txt("so sicher sollst du ein Wort können, wenn es wiederkommt")} />
-        <p className="said faint">{txt("Höher heisst: mehr Karten am Tag, dafür weniger Vergessen. Tiefer heisst: weniger Karten, dafür rutscht mehr weg. Einstellen kannst du es in den Einstellungen.")}</p>
+        <p className="said faint">{txt("Bei 90 Prozent plant die App so, dass du von zehn wiederkehrenden Wörtern etwa neun noch weißt. Ein höheres Ziel verkürzt die Abstände: mehr Karten pro Tag, dafür vergisst du weniger. Ein tieferes Ziel verlängert sie: weniger Karten, dafür rutscht mehr weg. Einstellbar unter „Lernintensität“.")}</p>
       </div>
 
       {tageSitzt.belegt && (
@@ -561,7 +561,7 @@ function Erweitert({ settings, tageSitzt, halte, onZurueck }: any) {
             <Kennzahl zahl={Math.round(tageSitzt.schnitt)} einheit={txt("Tage")}
               satz={txt("im Schnitt, vom ersten Mal bis „sitzt“")} />
             <StehendeBalken klassen={tageSitzt.klassen} />
-            <p className="said faint">{txt("Gezählt wird vom ersten Mal, das du ein Wort gesehen hast, bis zu dem Tag, an dem es zum ersten Mal sass. Zwei Achsen für dieselbe Sache: die Versuche in der Übersicht sagen, wie viel Arbeit es war, die Tage hier, wie viel Geduld. Erst danach ist die Frage sinnvoll, wie lange ein Wort dann hält.")}</p>
+            <p className="said faint">{txt("Gezählt wird vom ersten Mal, als du ein Wort gesehen hast, bis zu dem Tag, an dem es zum ersten Mal saß. Erst danach ist die zweite Frage sinnvoll: wie lange ein Wort dann hält.")}</p>
           </div>
         </>
       )}
@@ -572,7 +572,7 @@ function Erweitert({ settings, tageSitzt, halte, onZurueck }: any) {
           <div className="card">
             <Kennzahl zahl={Math.round(halte.schnitt)} einheit={txt("Tage")} satz={txt("im Schnitt")} />
             <StehendeBalken klassen={halte.klassen} />
-            <p className="said faint">{txt("Die Haltedauer ist die Zahl der Tage, die ein Wort nach der letzten richtigen Antwort noch sitzt. Danach fragt die App es wieder. Mit jeder richtigen Antwort wächst sie. Das ist die Vergessenskurve, die flacher wird. Kurz heisst nicht schlecht: jedes neue Wort fängt bei einem Tag an.")}</p>
+            <p className="said faint">{txt("Die Haltedauer ist die Zahl der Tage, die ein Wort nach der letzten richtigen Antwort statistisch gesehen noch sitzt. Danach fragt die App es wieder. Mit jeder richtigen Antwort wächst sie. Das ist die Vergessenskurve, die flacher wird. Kurz heißt nicht schlecht: jedes neue Wort fängt bei einem Tag an.")}</p>
           </div>
         </>
       )}

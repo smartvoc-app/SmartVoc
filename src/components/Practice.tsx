@@ -27,8 +27,8 @@ import { lernTipps } from "./Help";
  * practice.jsx — the flashcard trainer.
  * =================================================================== */
 /* Die vier Antwortarten -- Beschriftung und Symbol an EINER Stelle, damit
- * Waehler und Pille nicht auseinanderlaufen. "Multiple-Choice" heisst so,
- * weil es so heisst; "Auswählen" war meine Erfindung. */
+ * Waehler und Pille nicht auseinanderlaufen. "Multiple-Choice" heißt so,
+ * weil es so heißt; "Auswählen" war meine Erfindung. */
 /* Der Merker fuer "nichts gewaehlt". Ein eigener Wert, kein leerer String:
  * so bleibt "noch nie etwas gewaehlt" (undefined) von "bewusst geleert"
  * unterscheidbar. */
@@ -55,7 +55,7 @@ export function Practice() {
   /* ---- Richtung und Sprache gehoeren an die KARTE ----------------------
    *
    * Frueher galt beides fuer die ganze Runde: eine Sprache, eine Richtung.
-   * Damit liess sich weder gemischt abfragen noch der Uebungsplan ueber
+   * Damit ließ sich weder gemischt abfragen noch der Uebungsplan ueber
    * Sprachgrenzen hinweg ueben.
    *
    * Jetzt entscheidet jede Karte fuer sich. Die Richtung "gemischt" wird
@@ -156,7 +156,7 @@ export function Practice() {
   const scopeTokens = nichtsGewaehlt ? [] : (validMulti.length ? validMulti : [effective.kind + ":" + effective.ref]);
   const selKey = scopeTokens.join("|");
   /* Die Auswahl ist EINE Menge. Was gewaehlt ist, steht in scopeTokens --
-   * egal ob eines oder mehrere. Setzen heisst: diese Menge neu schreiben,
+   * egal ob eines oder mehrere. Setzen heißt: diese Menge neu schreiben,
    * einmal fuer die Anzeige (multiSel) und einmal fuer die Dauer
    * (practiceSel, nur bei genau einem). */
   const setzeAuswahl = (toks: string[]) => {
@@ -165,7 +165,7 @@ export function Practice() {
     setMultiSel(toks);
   };
   const isActiveTok = (tok: string) => scopeTokens.includes(tok);
-  /* Smart Lists und Wortlisten schliessen einander aus: eine Smart List
+  /* Smart Lists und Wortlisten schließen einander aus: eine Smart List
    * rechnet die App taeglich neu, eine Wortliste steht fest. Beides
    * gleichzeitig zu meinen ergaebe keinen Umfang, den man beschreiben kann. */
   /* Auch eine Smart List laesst sich wieder abwaehlen. Vorher wurde sie nur
@@ -225,11 +225,11 @@ export function Practice() {
   const [session, setSession] = useState([]); // recent verdicts
   const [tip, setTip] = useState(null);        // current study-tip popup (Phase 6)
   const [focus, setFocus] = useState(false);   // V2: zoom / focus card mode
-  /* Zwei mal zwei Antworten heisst halb so breite Zellen. Ein langes Wort
+  /* Zwei mal zwei Antworten heißt halb so breite Zellen. Ein langes Wort
    * ("die Geschwindigkeit") passt dann nicht mehr -- statt es abzuschneiden
    * oder die Kaesten unterschiedlich hoch werden zu lassen, verkleinert sich
    * die Schrift so weit wie noetig und nicht weiter. Gemessen wird nach dem
-   * Zeichnen, weil vorher niemand weiss, wie breit "Geschwindigkeit" in der
+   * Zeichnen, weil vorher niemand weiß, wie breit "Geschwindigkeit" in der
    * gewaehlten Schrift ist. */
   const choicesRef = useRef<HTMLDivElement | null>(null);
   const [enoughAck, setEnoughAck] = useState(false);   // F-CARD-UI: "genug für heute" dismissed
@@ -295,7 +295,7 @@ export function Practice() {
     save(LS.offeneRunde, offen.length ? { pair, sel: selKey, ids: offen, zeit: Date.now() } : null);
   };
   // F-CARD-UI: leave the round any time — no dialog (FSRS is saved after each answer).
-  /* Abbrechen heisst: Auswahl leeren. Vorher setzte es auf "Heute dran"
+  /* Abbrechen heißt: Auswahl leeren. Vorher setzte es auf "Heute dran"
    * zurueck, und wer ohnehin dort war, sah gar nichts geschehen. */
   const leaveRun = () => {
     flushRef.current(); merkeOffene();
@@ -615,7 +615,7 @@ export function Practice() {
    * Eine Karteikarte, in der man blättern muss, ist keine Karteikarte. Der
    * Inhalt wird deshalb so lange verkleinert, bis er in die Karte passt --
    * in Schritten, nicht stufenlos, damit die Schrift nicht bei jeder Karte
-   * eine andere Grösse hat. Erst wenn selbst die kleinste Stufe nicht
+   * eine andere Größe hat. Erst wenn selbst die kleinste Stufe nicht
    * reicht (sehr lange Beispielsätze in einer sehr flachen Karte), darf
    * innen gescrollt werden. Das ist der Ausnahmefall, nicht die Regel. */
   const centerRef = useRef<HTMLDivElement | null>(null);
@@ -646,7 +646,7 @@ export function Practice() {
   }, [pickerOpen]);
 
   /* Schrift der Antwortkaesten an die Laenge anpassen. Erst auf 1 zuruecksetzen,
-   * damit ein kurzes Wort nach einem langen wieder gross wird, dann in Schritten
+   * damit ein kurzes Wort nach einem langen wieder groß wird, dann in Schritten
    * verkleinern, solange etwas ueberlaeuft -- hoechstens bis 0.72, darunter
    * waere es nicht mehr angenehm zu lesen. */
   useLayoutEffect(() => {
@@ -683,16 +683,16 @@ export function Practice() {
     : resolveSmart(ref, pairVocabAll, stats, settings.masteryCorrect, { retention: retentionFor(settings) }).filter(practiceable).length;
   // FR3-5: kindgerechte Erklärung der vier Schnellzugriffe (als Möglichkeit formuliert).
   const CHIP_HELP = [
-    { label: "Heute dran", text: "Die Wörter, die du heute üben solltest — die App mischt Fälliges und Neues sinnvoll zusammen." },
-    { label: "Fällige Wörter", text: "Diese Wörter hast du schon länger nicht geübt. Wenn du sie jetzt auffrischst, bleiben sie besser sitzen." },
+    { label: "Heute dran", text: "Deine Tagesportion: fällige Wörter, dazu ein paar neue." },
+    { label: "Fällige Wörter", text: "Diese Wörter hast du länger nicht geübt. Frischst du sie jetzt auf, bleiben sie sitzen." },
     { label: "Wackeln noch", text: "Wörter, die du schon geübt hast, die aber noch nicht sicher sitzen." },
-    { label: "Bald fällig", text: "Die sitzen noch, aber es wäre bald wieder Zeit zum Auffrischen, damit sie sicher bleiben." },
+    { label: "Bald fällig", text: "Die sitzen noch. Jetzt aufzufrischen kostet wenig und hält sie fest." },
   ];
   const chipsHelpEl = chipsHelp ? (
     <div className="modal-backdrop" onClick={() => setChipsHelp(false)}>
       <div className="modal" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 440 }}>
         <div className="modal-head">
-          <div className="modal-title">{txt("Die vier Schnellzugriffe")}</div>
+          <div className="modal-title">{txt("Die vier Smart Lists")}</div>
           <button className="icon-btn" style={{ width: 34, height: 34 }} onClick={() => setChipsHelp(false)}><Icon name="x" size={16} /></button>
         </div>
         <div className="col" style={{ gap: 12 }}>
@@ -716,7 +716,7 @@ export function Practice() {
   /* Der Waehler als Blatt statt als aufklappender Bereich.
    *
    * Die anderen beiden Pillen oeffnen ein Menue, das sich ueber die Seite
-   * legt und beim Klick daneben wieder schliesst. Der Umfang tat etwas
+   * legt und beim Klick daneben wieder schließt. Der Umfang tat etwas
    * anderes: er schob die Seite auseinander und blieb offen. Gleiche Form
    * fuer gleiche Handlung -- also auch hier ein Blatt.
    *
@@ -751,7 +751,7 @@ export function Practice() {
                       <span className="g">{l.name}
                         <div className="m">
                           <span className="stand-punkt" style={{ background: farbe }} />{txt(stand)}
-                          {" · " + txt("{p} % bereit", { p: pct })}
+                          {" · " + txt("{p} % sitzen", { p: pct })}
                           {days != null && " · " + (days < 0 ? txt("überfällig") : days === 0 ? txt("heute") : txt("in {n} Tagen", { n: days }))}
                         </div>
                       </span>
@@ -869,12 +869,12 @@ export function Practice() {
           {pairLists.length ? (
             <>
               <div className="big">{txt("Keine Wortliste gewählt")}</div>
-              <div>{txt("Wähle oben eine Wortliste oder einen Schnellzugriff.")}</div>
+              <div>{txt("Wähle oben eine Wortliste oder eine Smart List.")}</div>
             </>
           ) : (
             <>
-              <div className="big">{txt("Noch keine Wortliste gespeichert")}</div>
-              <div>{txt("Erfasse deine erste Wortliste, dann kann es losgehen.")}</div>
+              <div className="big">{txt("Noch keine eigene Wortliste")}</div>
+              <div>{txt("Du kannst sofort üben: Für jede eingeschaltete Sprache liegen hundert Wörter bereit. Eigene Wörter fügst du hier hinzu.")}</div>
               <button className="btn btn-primary" style={{ marginTop: 14 }}
                 onClick={() => window.dispatchEvent(new CustomEvent("vt-tab", { detail: "lists" }))}>
                 <Icon name="plus" size={15} /> {txt("Wortliste anlegen")}
@@ -892,7 +892,7 @@ export function Practice() {
         {scopeBar}
         <div className="empty">
           <div className="big">{txt("Hier gibt es nichts zu üben")}</div>
-          <div>{txt(pairLists.length ? "Wähle oben eine andere Wortliste oder einen Schnellzugriff." : "Lege unter „Wortlisten“ eine Liste an oder füge Wörter hinzu.")}</div>
+          <div>{txt(pairLists.length ? "Wähle oben eine andere Wortliste oder eine Smart List." : "Du kannst sofort mit dem Grundwortschatz üben. Eigene Wörter legst du unter „Wortlisten“ an.")}</div>
         </div>
       </div>
     );
@@ -912,7 +912,7 @@ export function Practice() {
           {scopeBar}
           <div className="empty">
             <div className="big">{txt("Alles sitzt, nichts fällig")}</div>
-            <div>{txt("In dieser Auswahl ist gerade nichts dran. Wähle oben eine andere Wortliste oder einen Schnellzugriff. Oder komm später wieder.")}</div>
+            <div>{txt("Hier ist gerade nichts fällig. Wähle oben eine andere Wortliste oder komm später wieder.")}</div>
           </div>
         </div>
       );
@@ -924,7 +924,7 @@ export function Practice() {
           {scopeBar}
           <div className="empty round-done">
             <div className="big">{txt("Durchgeblättert")}</div>
-            <div className="round-tally">{txt("Du hast alle Karten dieser Auswahl angesehen. Durchblättern zählt für nichts: kein Lernstand, keine Statistik.")}</div>
+            <div className="round-tally">{txt("Du hast alle Karten dieser Auswahl angesehen. Angesehen ist noch nicht gelernt — wechsle zu einer Antwortart, die zählt.")}</div>
             <div className="round-actions">
               <button className="btn btn-primary" onClick={leaveRun}>{txt("Fertig")}</button>
               <button className="btn btn-ghost btn-sm" onClick={() => beginRun(runWordsRef.current, true)}><Icon name="refresh" size={14} /> {txt("Nochmal durchblättern")}</button>
@@ -979,7 +979,7 @@ export function Practice() {
           )}
 
           {back > 0 && (
-            <div className="round-tally">{txt(back === 1 ? "{n} Wort kommt später zur Wiederholung zurück, das ist so gedacht" : "{n} Wörter kommen später zur Wiederholung zurück, das ist so gedacht", { n: back })}</div>
+            <div className="round-tally">{txt(back === 1 ? "{n} Wort kommt später wieder" : "{n} Wörter kommen später wieder", { n: back })}</div>
           )}
 
           {grown.length > 0 && (
@@ -1009,7 +1009,7 @@ export function Practice() {
 
   /* Beispielsätze gibt es jetzt paarweise: `examples` in der Fremdsprache,
    * `examplesDe` mit den Übersetzungen, gleicher Index. Gezeigt wird immer die
-   * Sprache des Worts, das gerade gross auf der Karte steht — sonst stünde eine
+   * Sprache des Worts, das gerade groß auf der Karte steht — sonst stünde eine
    * Übersetzung neben einem Wort, das man erst noch übersetzen soll.
    *
    * Unverändert bleibt: nur auf der LÖSUNGSSEITE. Ein Beispielsatz enthält das
@@ -1103,7 +1103,7 @@ export function Practice() {
   return (
     <div className={"practice-wrap" + (focus ? " focus-on" : "")}
       onClick={focus ? (e) => { if (e.target === e.currentTarget) setFocus(false); } : undefined}>
-      {/* Im Vollbild steht der Ausgang ausserhalb der Bühne. Er kann dort
+      {/* Im Vollbild steht der Ausgang außerhalb der Bühne. Er kann dort
           nicht als Teil der Karte gelesen werden -- und `position: fixed`
           hilft nicht: die Bühne setzt `perspective`, und das macht sie zum
           Bezugsrahmen für alles Feste darin. */}
@@ -1151,7 +1151,7 @@ export function Practice() {
             </div>
           )}
           {!focus && (
-            <button className="card-expand" title={txt("Karte gross zeigen")} onClick={() => setFocus(true)}>
+            <button className="card-expand" title={txt("Karte groß zeigen")} onClick={() => setFocus(true)}>
               <Icon name="expand" size={16} />
             </button>
           )}
@@ -1241,7 +1241,7 @@ export function Practice() {
                 <input ref={inputRef} className="field field-h" placeholder={txt("Auf {sprache} eintippen …", { sprache: labelOf(tgtKey) })}
                   value={input} onChange={(e) => setInput(e.target.value)} autoComplete="off"
                   autoCorrect="off" autoCapitalize="off" spellCheck="false" />
-                {/* Im Vollbild nur der Pfeil: dort ist die Karte gross und alles
+                {/* Im Vollbild nur der Pfeil: dort ist die Karte groß und alles
                     andere soll klein sein. Ausserhalb steht das Wort dabei --
                     wer die App zum ersten Mal oeffnet, soll nicht raten. */}
                 <button className={"btn btn-primary btn-h" + (focus ? " btn-rund" : "")}
@@ -1270,11 +1270,16 @@ export function Practice() {
                   {txt(mode === "recall" ? "Lösung zeigen" : "Umdrehen")} <Icon name="arrowRight" size={16} />
                 </button>
               </div>
-              <div className="toolbelt">
-                <span className="faint">
-                  {txt(mode === "recall" ? "Erst selber überlegen, dann aufdecken" : "Nur anschauen, das zählt nicht")}
-                </span>
-              </div>
+              {/* Beim Durchblättern stand hier ein zweiter Hinweis, während
+                  das Band über der Karte schon "Nur durchblättern, zählt für
+                  nichts" sagte -- zweimal dieselbe Auskunft auf einem
+                  Bildschirm. Der Hinweis zur Selbstkontrolle bleibt: der
+                  sagt etwas anderes. */}
+              {mode === "recall" && (
+                <div className="toolbelt">
+                  <span className="faint">{txt("Erst selber überlegen, dann aufdecken")}</span>
+                </div>
+              )}
             </>
           )
         ) : result ? (

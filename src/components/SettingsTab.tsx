@@ -108,10 +108,10 @@ function Blatt({ offen, titel, desc, rec, atRec, onZuruecksetzen, onClose, child
         <div style={{ marginTop: 12 }}>{children}</div>
         {rec != null && (
           <div className="setz-rec">
-            <span>{txt("Empfohlen:")} <b>{rec}</b></span>
+            <span>{txt("Voreinstellung:")} <b>{rec}</b></span>
             {!atRec && onZuruecksetzen && (
               <button className="btn btn-ghost btn-sm" onClick={onZuruecksetzen}>
-                <Icon name="refresh" size={13} /> {txt("Zurück zur Empfehlung")}
+                <Icon name="refresh" size={13} /> {txt("Zurück zur Voreinstellung")}
               </button>
             )}
           </div>
@@ -128,9 +128,9 @@ function Field({ title, desc, recLabel, atRec, children }: any) {
   return (
     <div className="set-row">
       <div className="set-info">
-        <div className="set-title">{title}{atRec && <span className="rec-pill">{txt("✓ Empfohlen")}</span>}</div>
+        <div className="set-title">{title}{atRec && <span className="rec-pill">{txt("✓ Voreinstellung")}</span>}</div>
         {desc && <div className="set-desc">{desc}</div>}
-        {recLabel != null && !atRec && <div className="set-rec">{txt("Empfohlen:")} <b>{recLabel}</b></div>}
+        {recLabel != null && !atRec && <div className="set-rec">{txt("Voreinstellung:")} <b>{recLabel}</b></div>}
       </div>
       <div className="set-control">{children}</div>
     </div>
@@ -148,9 +148,9 @@ const TEMPI = [
 const TEMPO_NAME = (n: number) => (TEMPI.find((t) => t.n === n) || { name: String(n) }).name;
 
 const ARTIKEL: Record<string,string> = {
-  "required-full": "Nötig · voller Abzug",
-  "required-partial": "Nötig · kleiner Abzug",
-  "optional": "Freiwillig · wird nicht geprüft",
+  "required-full": "Nötig, voller Abzug",
+  "required-partial": "Nötig, kleiner Abzug",
+  "optional": "Freiwillig. Wird nicht geprüft",
 };
 
 /* Dieselben Namen wie in Practice (MODE_NAME). „Auswählen" stand nur hier
@@ -211,7 +211,7 @@ export function SettingsTab() {
 
   /* Latein zeigt seine Zeile nur, wenn es zugeschaltet ist. */
   const lateinAktiv = activeIds.some((id) => isLatinPair(id));
-  /* Die beiden alten Beige-Schemata heissen jetzt anders; wer sie
+  /* Die beiden alten Beige-Schemata heißen jetzt anders; wer sie
      gespeichert hat, sieht den Nachfolger ausgewaehlt statt gar nichts. */
   const SCHEMA_ALT: Record<string, string> = { leinen: "tinte", altpapier: "graphit" };
   const schemaJetzt = SCHEMA_ALT[settings.scheme] || settings.scheme || "kladde";
@@ -236,7 +236,7 @@ export function SettingsTab() {
     <Field title={txt(title)} desc={txt(desc)} recLabel={fmt ? fmt((DEFAULTS as any)[k]) : (DEFAULTS as any)[k]} atRec={cfgVal(k) === (DEFAULTS as any)[k]}>
       <div className="col" style={{ gap: 6, width: "100%" }}>
         <SliderControl value={cfgVal(k)} min={min} max={max} step={step} onChange={(v: number) => set(k, v)} fmt={fmt} />
-        {cfgVal(k) !== (DEFAULTS as any)[k] && <button className="btn btn-ghost btn-sm" style={{ alignSelf: "flex-end" }} onClick={() => resetCfg(k)}><Icon name="refresh" size={13} /> {txt("Auf Standard")}</button>}
+        {cfgVal(k) !== (DEFAULTS as any)[k] && <button className="btn btn-ghost btn-sm" style={{ alignSelf: "flex-end" }} onClick={() => resetCfg(k)}><Icon name="refresh" size={13} /> {txt("Auf Voreinstellung")}</button>}
       </div>
     </Field>
   );
@@ -271,7 +271,8 @@ export function SettingsTab() {
         <ZeileWert titel={txt("Höchstens pro Tag")} atRec={atR("dailyGoal")}
           wert={txt("{n} Karten", { n: settings.dailyGoal })} onClick={() => setBlatt("dailyGoal")} />
         <ZeileWert titel={txt("Neue Wörter pro Tag")} atRec={atR("newPerDay")}
-          wert={txt(TEMPO_NAME(settings.newPerDay))} onClick={() => setBlatt("newPerDay")} />
+          wert={txt("{name} · {n} pro Tag", { name: txt(TEMPO_NAME(settings.newPerDay)), n: settings.newPerDay })}
+          onClick={() => setBlatt("newPerDay")} />
         <ZeileWert titel={txt("Vorschläge bei Multiple-Choice")} atRec={atR("choicesCount")}
           wert={String(settings.choicesCount)} onClick={() => setBlatt("choicesCount")} />
         <ZeileWert titel={txt("Lernintensität")} atRec={(settings.targetRetention ?? 0.9) === 0.9}
@@ -313,7 +314,7 @@ export function SettingsTab() {
               onClick={() => set("startAuswahl", v)}>
               <span className="g">{txt(START[v])}
                 <div className="m">{txt({
-                  heute: "Die Tagesliste. Fällliges und Neues, sinnvoll gemischt.",
+                  heute: "Die Tagesliste. Fälliges und Neues, sinnvoll gemischt.",
                   weiter: "Dieselbe Liste wie zuletzt, und zwar mit den Wörtern, die noch offen waren.",
                   neu: "Dieselbe Liste wie zuletzt, aber von vorn.",
                   leer: "Nichts. Du wählst jedes Mal selbst.",
@@ -324,7 +325,7 @@ export function SettingsTab() {
       </Blatt>
 
       <Blatt offen={blatt === "mode"} titel={txt("Antwortart")} onClose={() => setBlatt(null)}
-        desc={txt("Eintippen prägt am stärksten ein. Selbstkontrolle heisst: umdrehen und selbst beurteilen. Durchblättern zählt nicht für den Lernstand.")}
+        desc={txt("Eintippen prägt am stärksten ein. Selbstkontrolle heißt: umdrehen und selbst beurteilen. Durchblättern zählt nicht für den Lernstand.")}
         rec={txt("Eintippen")} atRec={atR("mode")} onZuruecksetzen={() => set("mode", R.mode)}>
         <div className="list">
           {Object.keys(MODUS).map((v) => (
@@ -336,7 +337,7 @@ export function SettingsTab() {
       </Blatt>
 
       <Blatt offen={blatt === "dailyGoal"} titel={txt("Höchstens pro Tag")} onClose={() => setBlatt(null)}
-        desc={txt("So viele Karten schlägt „Heute dran“ höchstens vor. Kein Ziel und keine Serie. Die Grenze schützt nur davor, nach einer Pause von zweihundert fälligen Wörtern erschlagen zu werden.")}
+        desc={txt("So viele Karten schlägt „Heute dran“ höchstens vor. Die Grenze verhindert, nach einer längeren Lernpause von zu vielen fälligen Wörtern erschlagen zu werden.")}
         rec={txt("{n} Karten", { n: R.dailyGoal })} atRec={atR("dailyGoal")} onZuruecksetzen={() => set("dailyGoal", R.dailyGoal)}>
         <SliderControl value={settings.dailyGoal} min={10} max={80} step={5} onChange={(v: number) => set("dailyGoal", v)} />
       </Blatt>
@@ -346,7 +347,7 @@ export function SettingsTab() {
           der Zahl daneben beantworten dieselbe Frage in einer Sprache, die
           man ohne Selbstversuch versteht. */}
       <Blatt offen={blatt === "newPerDay"} titel={txt("Neue Wörter pro Tag")} onClose={() => setBlatt(null)}
-        desc={txt("Wie viele ganz neue Wörter höchstens dazukommen. Das ist dein einziger Hebel auf die Menge: der Lernalgorithmus plant jede Karte für sich und kennt kein Tagespensum. Eine falsch beantwortete Karte kommt sogar früher wieder, nicht später. Weniger neue Wörter heisst also weniger Rückstau, nicht langsameres Lernen.")}
+        desc={txt("Wie viele ganz neue Wörter höchstens dazukommen. Das ist dein einziger Hebel auf die Menge: Die App plant jede Karte für sich und kennt kein Tagespensum. Weniger neue Wörter heißt also weniger Rückstau, nicht langsameres Lernen.")}
         rec={txt(TEMPO_NAME(R.newPerDay))} atRec={atR("newPerDay")} onZuruecksetzen={() => set("newPerDay", R.newPerDay)}>
         <div className="list">
           {TEMPI.map((t) => (
@@ -365,7 +366,7 @@ export function SettingsTab() {
       </Blatt>
 
       <Blatt offen={blatt === "intensity"} titel={txt("Lernintensität")} onClose={() => setBlatt(null)}
-        desc={txt("Wie gut die App ein Wort im Gedächtnis halten will, bevor sie es zur Wiederholung bringt. Intensiver = häufigere Wiederholung, sicherer im Behalten. Alles Weitere regelt die App automatisch.")}
+        desc={txt("Wie gut die App ein Wort im Gedächtnis halten will, bevor sie es zur Wiederholung bringt. Intensiver heißt häufiger üben und sicherer behalten. Alles Weitere regelt die App.")}
         rec={txt("Normal")} atRec={(settings.targetRetention ?? 0.9) === 0.9}
         onZuruecksetzen={() => setSettings({ lernIntensity: "normal", targetRetention: 0.9 })}>
         <Seg value={(settings.targetRetention ?? 0.9) >= 0.95 ? "intensiv" : (settings.targetRetention ?? 0.9) <= 0.85 ? "locker" : "normal"}
@@ -386,18 +387,18 @@ export function SettingsTab() {
       </Blatt>
 
       <Blatt offen={blatt === "ready"} titel={txt("Ampel der Wortlisten")} onClose={() => setBlatt(null)}
-        desc={txt("Jede Wortliste trägt einen farbigen Punkt: grün heisst bereit, gelb heisst fast so weit, rot heisst da fehlt noch viel. Hier legst du fest, wie viele Wörter einer Liste dafür sitzen müssen.")}
-        rec={txt("grün ab {g} %, gelb ab {a} %", { g: 95, a: 70 })}
+        desc={txt("Jede Wortliste trägt einen farbigen Punkt: bereit, auf Kurs oder im Rückstand. Hier legst du fest, wie viele Wörter einer Liste dafür sitzen müssen.")}
+        rec={txt("bereit ab {g} %, auf Kurs ab {a} %", { g: 95, a: 70 })}
         atRec={atR("readyGreen") && atR("readyAmber")}
         onZuruecksetzen={() => setSettings({ readyGreen: 95, readyAmber: 70 })}>
         <div className="col" style={{ gap: 14 }}>
           <div>
-            <div className="setz-t" style={{ marginBottom: 6 }}>{txt("Grün ab")}</div>
+            <div className="setz-t" style={{ marginBottom: 6 }}>{txt("«bereit» ab")}</div>
             <SliderControl value={settings.readyGreen ?? 95} min={80} max={100} step={1}
               onChange={(v: number) => set("readyGreen", Math.max(v, (settings.readyAmber ?? 70) + 1))} fmt={(v: number) => v + " %"} />
           </div>
           <div>
-            <div className="setz-t" style={{ marginBottom: 6 }}>{txt("Gelb ab")}</div>
+            <div className="setz-t" style={{ marginBottom: 6 }}>{txt("«auf Kurs» ab")}</div>
             <SliderControl value={settings.readyAmber ?? 70} min={40} max={94} step={1}
               onChange={(v: number) => set("readyAmber", Math.min(v, (settings.readyGreen ?? 95) - 1))} fmt={(v: number) => v + " %"} />
           </div>
@@ -409,11 +410,11 @@ export function SettingsTab() {
       <div className="set-section">
         <div className="set-section-h"><Icon name="check" size={16} /> {txt("Antwortprüfung")}</div>
         <div className="set-body">
-        {/* Umgedreht gefragt: der Schalter heisst jetzt, was er tut, wenn er
-            an ist — und an ist er ab Werk. Gross- und Kleinschreibung ist im
+        {/* Umgedreht gefragt: der Schalter heißt jetzt, was er tut, wenn er
+            an ist — und an ist er ab Werk. Groß- und Kleinschreibung ist im
             Deutschen bedeutungstragend („das Essen" gegen „das essen"), und
             eine Rechtschreibung, die man nicht übt, lernt man nicht. */}
-        <ZeileSchalter titel={txt("Gross- und Kleinschreibung zählt")} sub={txt("„hund“ statt „Hund“ ist ein Fehler")}
+        <ZeileSchalter titel={txt("Groß- und Kleinschreibung zählt")} sub={txt("„hund“ statt „Hund“ ist ein Fehler")}
           value={!settings.lenientCase} onChange={(v: boolean) => set("lenientCase", !v)} />
         <ZeileSchalter titel={txt("Fast richtig zulassen")} sub={txt("ein Tippfehler zählt noch als fast richtig")}
           value={settings.acceptPartial} onChange={(v: boolean) => set("acceptPartial", v)} />
@@ -431,13 +432,13 @@ export function SettingsTab() {
         <div className="set-section-h"><Icon name="calendar" size={16} /> {txt("Übungsplan")}</div>
         <div className="set-body">
         <ZeileWert titel={txt("Ampel der Wortlisten")} atRec={atR("readyGreen") && atR("readyAmber")}
-          wert={txt("grün ab {g} %", { g: settings.readyGreen ?? 95 })}
+          wert={txt("bereit ab {g} %", { g: settings.readyGreen ?? 95 })}
           onClick={() => setBlatt("ready")} />
         </div>
       </div>
 
       <Blatt offen={blatt === "artikel"} titel={txt("Artikel (der/die/das)")} onClose={() => setBlatt(null)}
-        desc={txt("Wie ein fehlender oder falscher Artikel bewertet wird. Nötig heisst: er muss stehen. Freiwillig heisst: er wird gar nicht angeschaut.")}
+        desc={txt("Wie ein fehlender oder falscher Artikel bewertet wird. Nötig heißt: er muss stehen. Freiwillig heißt: er wird gar nicht angeschaut.")}
         rec={txt(ARTIKEL[R.articleMode])} atRec={atR("articleMode")} onZuruecksetzen={() => set("articleMode", R.articleMode)}>
         <div className="list">
           {Object.keys(ARTIKEL).map((v) => (
@@ -474,7 +475,7 @@ export function SettingsTab() {
 
       {([[ "beispiele", BEISPIELE, "Beispielsätze", "Die Beispielsätze eines Wortes stehen auf der Lösungsseite der Karte — der Satz in der Fremdsprache und darunter seine Übersetzung."],
          [ "phonetik", PHONETIK, "Lautschrift", "Die Lautschrift steht klein unter dem Fremdwort und sagt, wie man es ausspricht."],
-         [ "formen", FORMEN, "Formen", "Die Formen, die man zum Wort mitlernt: bei Latein die Stammformen, sonst Singular und Plural oder die unregelmässigen Formen. Sie stehen klein unter dem Fremdwort und werden nie abgefragt."]] as any[]).map(([schl, feld, titel, desc]) => (
+         [ "formen", FORMEN, "Formen", "Die Formen, die man zum Wort mitlernt: bei Latein die Stammformen, sonst Singular und Plural oder die unregelmäßigen Formen. Sie stehen klein unter dem Fremdwort und werden nie abgefragt."]] as any[]).map(([schl, feld, titel, desc]) => (
         <Blatt key={schl} offen={blatt === schl} titel={txt(titel)} onClose={() => setBlatt(null)}
           desc={txt(desc)}
           rec={txt(ANZEIGE_NAME.waehlbar)} atRec={modusVon(settings, feld) === "waehlbar"}
@@ -493,9 +494,9 @@ export function SettingsTab() {
       {/* Das Blatt zu Latein trägt beide Einstellungen: eine eigene Box für
           zwei Zeilen war zu viel Gehäuse für zu wenig Inhalt. */}
       <Blatt offen={blatt === "latein"} titel={txt("Latein")} onClose={() => setBlatt(null)}
-        desc={txt("Gilt nur für das Paar Latein ⇄ Deutsch. L2: die Karte zeigt die volle Lernform, abgefragt wird nur die Grundform. L3: du gibst die vollständigen Stammformen ein (Reihenfolge egal).")}
+        desc={txt("Gilt nur für Latein. L2: Die Karte zeigt die volle Lernform, abgefragt wird nur die Grundform. L3: Du gibst die vollständigen Stammformen ein, die Reihenfolge ist egal.")}
         rec={txt("L2 · Grundform")} atRec={atR("latinMode")} onZuruecksetzen={() => set("latinMode", R.latinMode)}>
-        <div className="grp" style={{ paddingTop: 0 }}>{txt("Abfrage-Form")}</div>
+        <div className="grp" style={{ paddingTop: 0 }}>{txt("Antwortart")}</div>
         {[["L2", "L2 · Grundform"], ["L3", "L3 · volle Lernform"]].map(([v, l]) => (
           <button key={v} className={"li" + (settings.latinMode === v ? " sel" : "")} onClick={() => set("latinMode", v)}>
             <span className="g">{txt(l)}</span>
@@ -517,7 +518,7 @@ export function SettingsTab() {
         <div className="set-body">
 
         <ZeileWert titel={txt("Sprache der App")}
-          wert={settings.uiLang === "de" ? "Deutsch" : settings.uiLang === "en" ? "English" : txt("Gerätesprache")}
+          wert={settings.uiLang === "de" ? "Deutsch" : settings.uiLang === "en" ? "Englisch" : txt("Gerätesprache")}
           onClick={() => setBlatt("uiLang")} />
 
         <div className="grp">{txt("Erscheinungsbild")} <span className="hint">— {txt("folgt dem Gerät")}</span></div>
@@ -553,7 +554,7 @@ export function SettingsTab() {
         {!(atR("appearance") && schemaJetzt === "kladde" && atR("cardStyle") && atR("cardFont")) && (
           <button className="btn btn-ghost btn-sm" style={{ alignSelf: "center" }}
             onClick={() => { set("appearance", "auto"); set("scheme", "kladde"); set("cardStyle", "ruled"); set("cardFont", "serif"); }}>
-            <Icon name="refresh" size={13} /> {txt("Zurück zum Standard-Aussehen")}
+            <Icon name="refresh" size={13} /> {txt("Zurück zum voreingestellten Aussehen")}
           </button>
         )}
         </div>
@@ -561,7 +562,7 @@ export function SettingsTab() {
 
       <Blatt offen={blatt === "uiLang"} titel={txt("Sprache der App")} onClose={() => setBlatt(null)}
         desc={txt("Die Sprache der Bedienung. Deine Wörter und Wortlisten bleiben davon unberührt.")}>
-        {[["de", "Deutsch", ""], ["en", "English", ""], ["", "Gerätesprache", "folgt der Einstellung des Telefons"]].map(([v, l, sub]) => (
+        {[["de", "Deutsch", ""], ["en", "Englisch", ""], ["", "Gerätesprache", "folgt der Einstellung des Telefons"]].map(([v, l, sub]) => (
           <button key={v || "auto"} className={"li" + ((settings.uiLang || "") === v ? " sel" : "")}
             onClick={() => set("uiLang", v || undefined)} aria-pressed={(settings.uiLang || "") === v}>
             <span className="g">{l === "Gerätesprache" ? txt(l) : l}{sub && <div className="m">{txt(sub)}</div>}</span>
@@ -584,16 +585,16 @@ export function SettingsTab() {
         {advOpen && (
           <>
             <div className="muted" style={{ fontSize: 13, padding: "12px 18px 0", maxWidth: 560 }}>
-              {txt("Für Neugierige. Die App funktioniert mit den Standardwerten optimal. Alles hier ist freiwillig und jederzeit zurücksetzbar.")}
+              {txt("Für Neugierige. Mit den Voreinstellungen läuft die App gut. Alles hier ist freiwillig und jederzeit zurückzustellen.")}
             </div>
 
-            <Field title={txt("Lerntempo")} atRec={cfgVal("learningSpeed") === DEFAULTS.learningSpeed}
+            <Field title={txt("Lernintensität")} atRec={cfgVal("learningSpeed") === DEFAULTS.learningSpeed}
               recLabel={txt("1,0× (normal)")}
-              desc={txt("Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher = die App nimmt schnellere Fortschritte an und fragt seltener nach (riskanter); niedriger = vorsichtiger, häufiger.")}>
+              desc={txt("Wie schnell ein Wort an Festigkeit gewinnt, wenn du es richtig hast. Höher heißt: Die App nimmt schnellere Fortschritte an und fragt seltener nach — das ist riskanter. Niedriger heißt vorsichtiger und häufiger.")}>
               <div className="col" style={{ gap: 6, width: "100%" }}>
                 <SliderControl value={speed} min={0.6} max={1.6} step={0.05} onChange={(v: number) => set("learningSpeed", v)} fmt={(v: number) => v.toFixed(2) + "×"} />
                 <div className="set-rec" style={{ fontSize: 12.5 }}>{txt("Beispiel: 3× richtig hintereinander → hält")} <b>~{Math.round(haeltAtSpeed)} statt ~{Math.round(haeltBase)} Tage</b>.</div>
-                {speed !== DEFAULTS.learningSpeed && <button className="btn btn-ghost btn-sm" style={{ alignSelf: "flex-end" }} onClick={() => resetCfg("learningSpeed")}><Icon name="refresh" size={13} /> {txt("Auf Standard")}</button>}
+                {speed !== DEFAULTS.learningSpeed && <button className="btn btn-ghost btn-sm" style={{ alignSelf: "flex-end" }} onClick={() => resetCfg("learningSpeed")}><Icon name="refresh" size={13} /> {txt("Auf Voreinstellung")}</button>}
               </div>
             </Field>
 
@@ -601,13 +602,13 @@ export function SettingsTab() {
             {advParam("S1", "Schwelle „sitzt fast“ (Tage)", "Ab wie vielen Tagen Haltbarkeit ein Wort von „wackelt noch“ (rot) auf „sitzt fast“ (orange) wechselt.", 1, 10, 1, (v: number) => `${v} T`)}
             {advParam("MIN_REPS", "Wiederholungen bis „nicht mehr neu“", "Wie oft ein neues Wort richtig sein muss, bevor es aus der Stufe „neu / frisch“ herauswächst.", 1, 5, 1)}
             {advParam("PUFFER", "Vorlauf „bald fällig“ (Tage)", "Wie viele Tage vor dem eigentlichen Fälligkeitstag ein Wort schon als „bald fällig“ markiert wird.", 0, 7, 1, (v: number) => `${v} T`)}
-            {advParam("D_LEECH", "Schwelle „hartnäckig“ (Zähigkeit)", "Ab welcher Schwierigkeit (0 bis 10) ein oft vergessenes Wort als „hartnäckig“ gilt, zusammen mit der Fehleranzahl.", 4, 10, 1)}
+            {advParam("D_LEECH", "Schwelle „hartnäckig“ (Zähigkeit)", "Ab welcher Schwierigkeit (0 bis 10) ein oft vergessenes Wort als „hartnäckig“ gilt. Die Fehleranzahl muss zusätzlich erreicht sein.", 4, 10, 1)}
             {advParam("LAPSE_LEECH", "Hartnäckig ab Fehlern", "Wie viele Rückfälle ein Wort braucht, um zusätzlich als „hartnäckig“ zu zählen.", 1, 8, 1)}
-            {advParam("examWindowDays", "Prüfungs-Fenster (Tage)", "Wie viele Tage vor einem Prüfungstermin die App dichter wiederholt (Prüfungs-Modus).", 1, 7, 1, (v: number) => `${v} T`)}
-            {advParam("examRetention", "Prüfungs-Sicherheit", "Wie sicher Wörter kurz vor der Prüfung sitzen sollen. Höher heisst häufigere Wiederholung im Prüfungs-Fenster.", 0.9, 0.99, 0.01, (v: number) => `${Math.round(v * 100)} %`)}
+            {advParam("examWindowDays", "Prüfungs-Fenster (Tage)", "So viele Tage vor dem Zieldatum gilt für die Wörter dieser Liste das erhöhte Behaltensziel aus der nächsten Zeile. Ein höheres Ziel verkürzt den Abstand bis zur nächsten Abfrage, dadurch werden die Wörter früher fällig und kommen öfter dran.", 1, 7, 1, (v: number) => `${v} T`)}
+            {advParam("examRetention", "Prüfungs-Sicherheit", "Das Behaltensziel, das innerhalb des Prüfungs-Fensters gilt. Es ersetzt dort das gewöhnliche Ziel aus der Lernintensität, solange der Termin nah ist.", 0.9, 0.99, 0.01, (v: number) => `${Math.round(v * 100)} %`)}
 
             <div className="set-subhead">{txt("Übungsrunde: wie oft welche Wörter drankommen")}</div>
-            {advParam("W_ROT", "Gewicht: wackelnde Wörter", "Wie oft rote (wackelnde) Wörter in einer Runde drankommen. Höher = häufiger. Sollten zusammen mit fälligen am meisten geübt werden.", 1, 10, 1)}
+            {advParam("W_ROT", "Gewicht: wackelnde Wörter", "Wie oft rote (wackelnde) Wörter in einer Runde drankommen. Höher heißt häufiger. Sie sollten zusammen mit den fälligen am meisten geübt werden.", 1, 10, 1)}
             {advParam("W_FAELLIG", "Gewicht: fällige Wörter", "Wie oft fällige (zur Auffrischung anstehende) Wörter drankommen.", 1, 10, 1)}
             {advParam("W_GRAU", "Gewicht: noch nie geübt", "Wie oft ganz neue, noch nie geübte Wörter drankommen.", 1, 10, 1)}
             {advParam("W_BLAU", "Gewicht: frisch gelernt", "Wie oft frisch gelernte Wörter drankommen.", 1, 10, 1)}
@@ -618,7 +619,7 @@ export function SettingsTab() {
             {advParam("ZIEL_FAST", "Runden-Ziel: sitzt fast", "Wie oft ein fast sitzendes Wort in einer Runde richtig sein muss.", 1, 5, 1, (v: number) => `${v}×`)}
             {advParam("ZIEL_FAELLIG", "Runden-Ziel: fällige Wörter", "Wie oft ein fälliges Wort zur Auffrischung richtig sein muss.", 1, 5, 1, (v: number) => `${v}×`)}
             {advParam("STALE_MIN", "Pause bis Neustart (Minuten)", "Nach so vielen Minuten Pause beginnt die App die Übungsrunde frisch, damit sie zum aktuellen Stand passt.", 10, 120, 5, (v: number) => `${v} min`)}
-            {advParam("GENUG_KARTEN", "Hinweis „Genug für heute“ ab", "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor, ganz ohne Zwang.", 10, 100, 5)}
+            {advParam("GENUG_KARTEN", "Hinweis „Genug für heute“ ab", "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor.", 10, 100, 5)}
 
             <Field title={txt("Das Gedächtnis-Modell")}
               desc={txt("Womit die App rechnet: das Behaltensziel, die abgeleiteten Schwellen und die 19 Modell-Gewichte. Nur zum Ansehen. Die App passt diese Werte nicht an dich an und zeichnet dafür auch nichts auf.")}>
@@ -633,7 +634,7 @@ export function SettingsTab() {
       {/* Konto & Daten */}
       <div className="set-section">
         <div className="set-section-h"><Icon name="download" size={16} /> {txt("Konto & Daten")}</div>
-        <Field title={txt("Daten exportieren")} desc={txt("Lädt alle deine Wörter, Listen, Fortschritte und Einstellungen als JSON-Datei herunter.")}>
+        <Field title={txt("Daten exportieren")} desc={txt("Lädt alle deine Wörter, Listen, Fortschritte und Einstellungen als Sicherungsdatei herunter (Format JSON).")}>
           <button className="btn btn-sm" onClick={doExport}><Icon name="download" size={15} /> {txt("Exportieren")}</button>
         </Field>
         <Field title={txt("Einstellungen zurücksetzen")} desc={txt("Setzt alle Einstellungen auf die Voreinstellungen zurück. Deine Wörter, Listen und Lernstände bleiben.")}>
@@ -642,7 +643,7 @@ export function SettingsTab() {
         <Field title={txt("Fortschritt zurücksetzen")} desc={txt("Löscht Punkte und Verlauf. Deine Wörter und Wortlisten bleiben.")}>
           <button className="btn btn-sm btn-ghost" onClick={() => setResetOpen(true)}><Icon name="refresh" size={15} /> {txt("Zurücksetzen")}</button>
         </Field>
-        <Field title={txt("Account löschen")} desc={cloudActive ? txt("Löscht deine Daten endgültig, lokal und in der Cloud. Das kann nicht rückgängig gemacht werden.") : txt("Löscht alle Daten auf diesem Gerät. Das kann nicht rückgängig gemacht werden.")}>
+        <Field title={txt("Konto löschen")} desc={cloudActive ? txt("Löscht deine Daten endgültig, lokal und in der Cloud. Das kann nicht rückgängig gemacht werden.") : txt("Löscht alle Daten auf diesem Gerät. Das kann nicht rückgängig gemacht werden.")}>
           <button className="btn btn-sm" style={{ borderColor: "var(--red)", color: "var(--red)" }} onClick={() => { setConfirmText(""); setDelErr(""); setDelOpen(true); }}>
             <Icon name="trash" size={15} /> Löschen
           </button>
@@ -659,12 +660,12 @@ export function SettingsTab() {
         knopf={txt("Zurücksetzen")} gefahr onClose={() => setResetOpen(false)}
         tun={() => { store.resetStats(); setResetOpen(false); toast(txt("Lernstand zurückgesetzt"), "refresh"); }} />
 
-      <Bestaetigen offen={delOpen} titel={txt("Account löschen")} gefahr
+      <Bestaetigen offen={delOpen} titel={txt("Konto löschen")} gefahr
         text={<>
           {cloudActive
             ? txt("Das löscht deine Daten endgültig, auf diesem Gerät und in der Cloud. Danach wirst du abgemeldet.")
             : txt("Das löscht alle Vokabeln, Listen und Fortschritte auf diesem Gerät.")}
-          {" "}{txt("Tippe zum Bestätigen")} <b style={{ color: "var(--ink)" }}>{txt("LÖSCHEN")}</b>.
+          {" "}{txt("Tippe LÖSCHEN zum Bestätigen")} <b style={{ color: "var(--ink)" }}>{txt("LÖSCHEN")}</b>.
         </>}
         knopf={txt("Endgültig löschen")} aus={delBusy || confirmText.trim().toUpperCase() !== "LÖSCHEN"}
         onClose={() => !delBusy && setDelOpen(false)} tun={doDelete}>

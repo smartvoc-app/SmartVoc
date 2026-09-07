@@ -2,7 +2,7 @@
  *
  * Sie stand zuerst in den Einstellungen, weil dort drei solche Schritte
  * nebeneinander liegen. Gebraucht wird sie überall: eine Wortliste löschen,
- * dreissig Wörter löschen, ein einzelnes Wort löschen. Vorher fragten die
+ * dreißig Wörter löschen, ein einzelnes Wort löschen. Vorher fragten die
  * einen mit `confirm()` — dem Systemdialog, der in der App fremd aussieht
  * und in einer WebView auch ausbleiben kann —, die anderen gar nicht.
  *

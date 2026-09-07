@@ -16,7 +16,7 @@ import { fk, isLatinPair } from "../lib/pairs";
 /* Frueher fuellte der erste Start eine Liste "Starter Words" mit einem
  * englischen Demo-Wortschatz. Das stammt aus dem Prototyp und ist seit dem
  * Grundwortschatz doppelt: der kommt von selbst, sobald eine Sprache
- * eingeschaltet ist, traegt Beispielsaetze und Lautschrift und heisst in
+ * eingeschaltet ist, traegt Beispielsaetze und Lautschrift und heißt in
  * der Sprache der Oberflaeche. Die App faengt jetzt leer an und fuellt sich
  * ueber diesen einen Weg.
  *
@@ -168,7 +168,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
      *      geladen wird.
      * Ein frueherer Anlauf raeumte in der umgekehrten Folge auf: der neue
      * Grundwortschatz kam, waehrend die Waisen noch dalagen, hielt vierzehn
-     * seiner Woerter fuer Doppel und liess sie weg -- und gleich darauf
+     * seiner Woerter fuer Doppel und ließ sie weg -- und gleich darauf
      * wurden die Waisen entfernt. Vierzehn Woerter fehlten. */
     if (!done.grundwortschatzV24) {
       const t = tauscheGrundwortschatz(initRef.current.lists || [], initRef.current.vocab || []);
@@ -201,6 +201,31 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setSettings((prev: any) => leerRaeumen(prev).settings);
       try { localStorage.removeItem(LS.offeneRunde); } catch (e) {}
       applied.schnittV26 = true;
+    }
+    /* V27 — der Grundwortschatz-Austausch noch einmal.
+     *
+     * V22, V24 und der Schnitt (V26) sollten "Starter Words" und die alten
+     * Listen abraeumen. Auf Geraeten, die einen dieser Merker gesetzt
+     * hatten, BEVOR die Erkennung stimmte, blieb der Altbestand liegen: ein
+     * erledigter Merker wird nie wieder angefasst. Das Ergebnis sah man am
+     * Zaehler -- 229 Woerter, aber nur eine Liste mit 57; die uebrigen 172
+     * waren Waisen aus geloeschten Listen, und der neue Grundwortschatz kam
+     * nie nach, weil `activatedStarters` ihn fuer erledigt hielt.
+     *
+     * Deshalb dieselben drei Schritte wie in V24, mit eigenem Merker und in
+     * derselben Reihenfolge: erst die mitgelieferten Listen, dann die
+     * Waisen, erst DANN den Merker leeren. Eigene Listen und eigene Woerter
+     * bleiben unberuehrt -- entfernt wird nur, was `herkunft` oder Name als
+     * mitgeliefert ausweist, und nur Woerter mit `source: "seed"`. */
+    if (!done.grundwortschatzV27) {
+      const t = tauscheGrundwortschatz(initRef.current.lists || [], initRef.current.vocab || []);
+      const w = entferneWaisenSaat(t.vocab, t.lists);
+      if (t.listen || w.weg) {
+        setListsState(t.lists);
+        setVocabState(w.vocab);
+        setSettings((prev: any) => ({ ...prev, activatedStarters: [] }));
+      }
+      applied.grundwortschatzV27 = true;
     }
     if (Object.keys(applied).length) {
       setMeta((prev: any) => ({ ...prev, migrations: { ...(prev.migrations || {}), ...applied } }));
@@ -305,7 +330,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       // session (FIX 1) — not from the live stat already mutated this session.
       base = baseCard || initialCard(s);
       const fsrsCard = gradeFromCard(base, rating as number, retentionFor(settings));
-      /* Der Tag, an dem ein Wort zum ersten Mal sass. Wird einmal gesetzt und
+      /* Der Tag, an dem ein Wort zum ersten Mal saß. Wird einmal gesetzt und
        * nie wieder -- faellt das Wort spaeter zurueck, bleibt der erste
        * Erfolg trotzdem der erste Erfolg. */
       const sitztSeitTs = s.sitztSeitTs || (fsrsCard.stability >= S2 ? Date.now() : undefined);

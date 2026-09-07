@@ -1210,6 +1210,13 @@ table.vt tr.row-sel td { background: var(--amber-bg); }
                                              display: flex; flex-direction: column; gap: 6px; }
 .help-klapp-rumpf h4 { font-size: 13px; font-weight: 700; color: var(--ink);
                        margin: 16px 0 6px; letter-spacing: .01em; }
+/* Die Frage einer haeufigen Frage. Sie steht als eigener Absatz ueber der
+   Antwort, nicht in derselben Zeile: so laesst sich beides getrennt lesen
+   und getrennt redigieren. Der Abstand nach unten faellt weg, damit Frage
+   und Antwort als Paar zusammenstehen. */
+.help-frage { margin-bottom: 1px; margin-top: 14px; }
+.help-frage + p { margin-top: 0; }
+
 .help-klapp-rumpf .help-callout { background: var(--amber-bg); color: var(--ink);
                                   border-radius: 10px; padding: 11px 13px; }
 .help-klapp-rumpf .help-code { font-family: var(--mono, ui-monospace, Menlo, monospace);
@@ -1892,9 +1899,9 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus
 /* „Alle Wörter" ist der Rückfall, nicht der Einstieg — abgesetzt durch eine
    Trennlinie und etwas Luft, NICHT durch einen Tintenrand. Der bedeutet in
    dieser App „ausgewählt", und ausgewählt ist die Zeile nicht. */
-.li-alle { margin-top: 14px; position: relative; }
-.li-alle::before { content: ""; position: absolute; left: 14px; right: 14px; top: -8px;
-                   border-top: 1px solid var(--line); }
+/* Die Trennlinie ist weg: Seit die Zeile eine eigene Überschrift trägt,
+   markiert die den Bruch, und beides zusammen wäre doppelt gemoppelt. */
+.li-alle { margin-top: 2px; }
 
 /* ==================================================================
  * Der Kartenstapel — gestern entschieden, heute gebaut.

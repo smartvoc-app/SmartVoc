@@ -6,12 +6,11 @@
  "src/components/AccountModal.tsx": [
   "Nur auf diesem Gerät",
   "Offline — wird nachgeholt",
-  "Falls diese E-Mail registriert ist, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.",
+  "Wenn es zu dieser Adresse ein Konto gibt, ist ein Link zum Zurücksetzen unterwegs. Öffne ihn auf diesem Gerät.",
   "Passwörter stimmen nicht überein.",
-  "Account erstellt. Falls E-Mail-Bestätigung aktiv ist, bestätige zuerst die Mail.",
+  "Konto erstellt. Wenn eine Bestätigungsmail kommt, bestätige zuerst die Adresse.",
   "Passwort zurücksetzen",
-  "Noch kein Account? Registrieren",
-  "Deine Wörter, Listen und Fortschritte werden mit der Cloud synchronisiert und stehen auf deinen Geräten zur Verfügung. Offline läuft alles weiter und wird beim nächsten Mal nachgeholt."
+  "Noch kein Konto? Registrieren"
  ],
  "src/components/FsrsValuesModal.tsx": [
   "Erster Halt: gar nicht gewusst",
@@ -46,28 +45,28 @@
   "ab so vielen Tagen Haltedauer wackelt ein Wort nicht mehr",
   "Richtige bis „nicht mehr neu“",
   "so oft muss ein frisches Wort sitzen, bevor es die Stufe verlässt",
+  "Lernintensität",
   "wie schnell die App annimmt, dass ein Wort fester wird"
  ],
  "src/components/ImportShareModal.tsx": [
   "Liste nicht gefunden — Code prüfen.",
-  "Sharing ist nicht verfügbar.",
+  "Teilen ist gerade nicht möglich.",
   "Konnte die Liste nicht laden.",
   "Geteilte Liste",
   "Du bekommst eine eigene Kopie; bereits vorhandene Wörter werden übersprungen."
  ],
  "src/components/PasteModal.tsx": [
-  "dog | der Hundncat | die Katze",
-  "le chien | der Hundnle chat | die Katze",
-  "el perro | der Hundnla casa | das Haus",
-  "il cane | der Hundnla casa | das Haus",
-  "o cão | der Hundna casa | das Haus",
-  "canis | canis, canis, m. | Nomen | der Hundnliber | liber, librī, m. | Nomen | das Buch",
-  "Formen = die Stammformen (Nomen: Nominativ, Genitiv, Genus; Verb: die vier Stammformen; Deponens: drei; Adjektiv: die drei Genusformen). Bei unveränderlichen Wörtern leer.n",
-  "Im Englischen leer, ausser bei Wörtern, die es nur im Plural gibt (pl).",
+  "dog | der Hund cat | die Katze",
+  "le chien | der Hund le chat | die Katze",
+  "el perro | der Hund la casa | das Haus",
+  "il cane | der Hund la casa | das Haus",
+  "o cão | der Hund a casa | das Haus",
+  "canis | canis, canis, m. | Nomen | der Hund liber | liber, librī, m. | Nomen | das Buch",
+  "Formen = die Stammformen (Nomen: Nominativ, Genitiv, Genus; Verb: die vier Stammformen; Deponens: drei; Adjektiv: die drei Genusformen). Bei unveränderlichen Wörtern leer.",
+  "Im Englischen leer, außer bei Wörtern, die es nur im Plural gibt (pl).",
   "das Stichwort noch einmal, mit Längenzeichen über den langen Vokalen (amicus → amīcus). Keine Lautschrift.",
   "IPA-Lautschrift des Fremdworts, ohne Klammern, mit Betonungszeichen; beim Nomen ohne den Artikel.",
-  "(Latein ohne Artikel, dafür mit Stammformen)",
-  "statt „ß"
+  "(Latein ohne Artikel, dafür mit Stammformen)"
  ],
  "src/components/PlanTab.tsx": [
   "{n} Liste",
@@ -75,28 +74,22 @@
  ],
  "src/components/Practice.tsx": [
   "Nur durchblättern",
-  "Die Wörter, die du heute üben solltest — die App mischt Fälliges und Neues sinnvoll zusammen.",
+  "Deine Tagesportion: fällige Wörter, dazu ein paar neue.",
   "Fällige Wörter",
-  "Diese Wörter hast du schon länger nicht geübt. Wenn du sie jetzt auffrischst, bleiben sie besser sitzen.",
+  "Diese Wörter hast du länger nicht geübt. Frischst du sie jetzt auf, bleiben sie sitzen.",
   "Wackeln noch",
   "Wörter, die du schon geübt hast, die aber noch nicht sicher sitzen.",
   "Bald fällig",
-  "Die sitzen noch, aber es wäre bald wieder Zeit zum Auffrischen, damit sie sicher bleiben.",
+  "Die sitzen noch. Jetzt aufzufrischen kostet wenig und hält sie fest.",
   "Übung",
-  "dir-kurz",
-  "Wähle oben eine andere Wortliste oder einen Schnellzugriff.",
-  "Lege unter „Wortlisten“ eine Liste an oder füge Wörter hinzu.",
-  "{n} Wort kommt später zur Wiederholung zurück, das ist so gedacht",
-  "{n} Wörter kommen später zur Wiederholung zurück, das ist so gedacht",
-  "card-dir",
-  "card-dir-chip",
-  "card-dir-arrow",
+  "Wähle oben eine andere Wortliste oder eine Smart List.",
+  "Du kannst sofort mit dem Grundwortschatz üben. Eigene Wörter legst du unter „Wortlisten“ an.",
+  "{n} Wort kommt später wieder",
+  "{n} Wörter kommen später wieder",
   "„{liste}“ ist heute dran. Alle {n} Wörter sind im Programm, die Tagesgrenze ist ausgesetzt.",
   "„{liste}“ ist morgen dran. Alle {n} Wörter sind im Programm, die Tagesgrenze ist ausgesetzt.",
   "„{liste}“ ist in {t} Tagen dran. Alle {n} Wörter sind im Programm, die Tagesgrenze ist ausgesetzt.",
-  "Lösung zeigen",
-  "Erst selber überlegen, dann aufdecken",
-  "Nur anschauen, das zählt nicht"
+  "Lösung zeigen"
  ],
  "src/components/ReviewModal.tsx": [
   "{n} Wort verwenden",
@@ -107,20 +100,20 @@
   "acht bis zwölf sind der belegte Normalwert",
   "Zügig",
   "für Prüfungsphasen, dafür mehr Rückstau",
-  "Nötig · voller Abzug",
-  "Nötig · kleiner Abzug",
-  "Freiwillig · wird nicht geprüft",
+  "Nötig, voller Abzug",
+  "Nötig, kleiner Abzug",
+  "Freiwillig. Wird nicht geprüft",
   "Zuletzt geübte Liste, weitermachen",
   "Zuletzt geübte Liste, neu beginnen",
   "Nichts vorwählen",
   "Häufig",
-  "Die Tagesliste. Fällliges und Neues, sinnvoll gemischt.",
+  "Die Tagesliste. Fälliges und Neues, sinnvoll gemischt.",
   "Dieselbe Liste wie zuletzt, und zwar mit den Wörtern, die noch offen waren.",
   "Dieselbe Liste wie zuletzt, aber von vorn.",
   "Nichts. Du wählst jedes Mal selbst.",
   "Die Beispielsätze eines Wortes stehen auf der Lösungsseite der Karte — der Satz in der Fremdsprache und darunter seine Übersetzung.",
   "Die Lautschrift steht klein unter dem Fremdwort und sagt, wie man es ausspricht.",
-  "Die Formen, die man zum Wort mitlernt: bei Latein die Stammformen, sonst Singular und Plural oder die unregelmässigen Formen. Sie stehen klein unter dem Fremdwort und werden nie abgefragt.",
+  "Die Formen, die man zum Wort mitlernt: bei Latein die Stammformen, sonst Singular und Plural oder die unregelmäßigen Formen. Sie stehen klein unter dem Fremdwort und werden nie abgefragt.",
   "folgt der Einstellung des Telefons",
   "Ab wie vielen Tagen erwarteter Haltbarkeit ein Wort als „sitzt“ (grün) gilt.",
   "Ab wie vielen Tagen Haltbarkeit ein Wort von „wackelt noch“ (rot) auf „sitzt fast“ (orange) wechselt.",
@@ -129,15 +122,15 @@
   "Vorlauf „bald fällig“ (Tage)",
   "Wie viele Tage vor dem eigentlichen Fälligkeitstag ein Wort schon als „bald fällig“ markiert wird.",
   "Schwelle „hartnäckig“ (Zähigkeit)",
-  "Ab welcher Schwierigkeit (0 bis 10) ein oft vergessenes Wort als „hartnäckig“ gilt, zusammen mit der Fehleranzahl.",
+  "Ab welcher Schwierigkeit (0 bis 10) ein oft vergessenes Wort als „hartnäckig“ gilt. Die Fehleranzahl muss zusätzlich erreicht sein.",
   "Hartnäckig ab Fehlern",
   "Wie viele Rückfälle ein Wort braucht, um zusätzlich als „hartnäckig“ zu zählen.",
   "Prüfungs-Fenster (Tage)",
-  "Wie viele Tage vor einem Prüfungstermin die App dichter wiederholt (Prüfungs-Modus).",
+  "So viele Tage vor dem Zieldatum gilt für die Wörter dieser Liste das erhöhte Behaltensziel aus der nächsten Zeile. Ein höheres Ziel verkürzt den Abstand bis zur nächsten Abfrage, dadurch werden die Wörter früher fällig und kommen öfter dran.",
   "Prüfungs-Sicherheit",
-  "Wie sicher Wörter kurz vor der Prüfung sitzen sollen. Höher heisst häufigere Wiederholung im Prüfungs-Fenster.",
+  "Das Behaltensziel, das innerhalb des Prüfungs-Fensters gilt. Es ersetzt dort das gewöhnliche Ziel aus der Lernintensität, solange der Termin nah ist.",
   "Gewicht: wackelnde Wörter",
-  "Wie oft rote (wackelnde) Wörter in einer Runde drankommen. Höher = häufiger. Sollten zusammen mit fälligen am meisten geübt werden.",
+  "Wie oft rote (wackelnde) Wörter in einer Runde drankommen. Höher heißt häufiger. Sie sollten zusammen mit den fälligen am meisten geübt werden.",
   "Gewicht: fällige Wörter",
   "Wie oft fällige (zur Auffrischung anstehende) Wörter drankommen.",
   "Gewicht: noch nie geübt",
@@ -154,14 +147,14 @@
   "Wie oft ein fälliges Wort zur Auffrischung richtig sein muss.",
   "Nach so vielen Minuten Pause beginnt die App die Übungsrunde frisch, damit sie zum aktuellen Stand passt.",
   "Hinweis „Genug für heute“ ab",
-  "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor, ganz ohne Zwang.",
+  "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor.",
   "Löschen"
  ],
  "src/components/Stats.tsx": [
   "1 Wort mehr als im Zeitraum davor. Es geht aufwärts.",
   "{n} Wörter mehr als im Zeitraum davor. Es geht aufwärts.",
-  "Gezählt sind nur Wörter, die heute sitzen. Dazu kommt {n} Wort, das es trotz vieler Versuche nicht tut. Es steht unten unter „Hartnäckig“.",
-  "Gezählt sind nur Wörter, die heute sitzen. Dazu kommen {n} Wörter, die es trotz vieler Versuche nicht tun. Sie stehen unten unter „Hartnäckig“."
+  "Gezählt sind nur Wörter, die heute sitzen. Dazu kommt {n} Wort, das trotz vieler Versuche nicht sitzt. Es steht unten unter „Hartnäckig“.",
+  "Gezählt sind nur Wörter, die heute sitzen. Dazu kommen {n} Wörter, die trotz vieler Versuche nicht sitzen. Sie stehen unten unter „Hartnäckig“."
  ],
  "src/components/WordList.tsx": [
   "der Hund",
@@ -176,9 +169,7 @@
   "{n} Wörter gelöscht",
   "{n} Wort bereit zum Import",
   "{n} Wörter bereit zum Import",
-  "wl-alle",
-  "Von jemandem übernommen",
-  "li li-alle"
+  "Von jemandem übernommen"
  ],
  "src/lib/fsrs.ts": [
   "wackelt noch",
@@ -188,13 +179,12 @@
   "Fast — Schreibweise der Stammformen prüfen",
   "Stammformen nochmal prüfen"
  ],
- "src/lib/migrate.ts": [
-  "Körper",
-  "Kleine Wörter"
+ "src/lib/pairs.ts": [
+  "Französisch"
  ],
  "src/lib/statistik.ts": [
   "Akzente und Längenstriche",
-  "zählt als richtig",
+  "zählt als Treffer",
   "ein anderes Wort",
   "der / die / das",
   "länger"
@@ -203,12 +193,12 @@
   "Wörter ohne Liste"
  ],
  "src/sync/auth.tsx": [
-  "Passwort-Zurücksetzen ist in dieser App-Fassung nicht eingerichtet. Bitte im Browser zurücksetzen."
+  "Das Passwort lässt sich in der App nicht zurücksetzen. Öffne SmartVoc dafür im Browser."
  ],
  "src/sync/SyncBridge.tsx": [
-  "Auf diesem Gerät liegen bereits Wörter und Listen.nn",
-  "OK – in diesen Account übernehmenn",
-  "Abbrechen – leer starten (die Daten bleiben als Backup auf dem Gerät)"
+  "Auf diesem Gerät liegen bereits Wörter und Listen.",
+  "OK — in dieses Konto übernehmen",
+  "Abbrechen — leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
  ],
  "src/ui/Kritzel.tsx": [
   "1 Liste",
@@ -223,10 +213,17 @@
   "im Rückstand",
   "Wörter ansehen",
   "zusammenführen",
+  "prüfen",
+  "der Schlüssel",
+  "üben",
+  "mit Fehler",
+  "Prüfung",
+  "ohne Zieldatum",
+  "mit Zieldatum",
   "ohne Wiederholen",
   "zu früh",
   "zu spät",
-  "weisst du noch",
+  "weißt du noch",
   "ist weg",
   "fühlt sich sicher an",
   "bleibt hängen"

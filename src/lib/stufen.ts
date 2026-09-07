@@ -1,4 +1,4 @@
-/* Die fünf Stufen, wie sie aussehen und heissen — an einer Stelle.
+/* Die fünf Stufen, wie sie aussehen und heißen — an einer Stelle.
  *
  * `STUFE` in fsrs.ts sagt, WAS eine Stufe ist. Hier steht, wie sie erscheint:
  * welche Farbe, welches Wort. Das war vorher viermal aufgeschrieben — in
@@ -7,7 +7,7 @@
  * Rostrot, überall sonst Gelb.
  *
  * Rostrot (`--amber`) ist in dieser App die Farbe der Hauptaktion. Eine
- * Beherrschungsstufe darf sie deshalb nicht tragen, sonst heisst dieselbe
+ * Beherrschungsstufe darf sie deshalb nicht tragen, sonst heißt dieselbe
  * Farbe an zwei Orten Verschiedenes. Grün, Gelb und Rot gehören den Stufen,
  * Rostrot gehört den Handlungen.
  */

@@ -52,7 +52,7 @@ export function darf(settings: any, was: "teilen" | "listeAnlegen" | "wortAnlege
   return zahl < g.woerterJeListe;
 }
 
-/** Für Texte wie „40 Wörter in der Gratis-Fassung". `Infinity` heisst: keine
+/** Für Texte wie „40 Wörter in der Gratis-Fassung". `Infinity` heißt: keine
  *  Zahl nennen, sondern gar nichts sagen. */
 export function grenze(settings: any, was: "listen" | "woerter"): number {
   const g = GRENZEN[planVon(settings)];
@@ -60,7 +60,7 @@ export function grenze(settings: any, was: "listen" | "woerter"): number {
 }
 
 /* Der Stempel beim ersten Start. Läuft einmal; wer schon einen trägt, behält
- * ihn. `bestehend` heisst: auf diesem Gerät liegen bereits Wörter -- dann ist
+ * ihn. `bestehend` heißt: auf diesem Gerät liegen bereits Wörter -- dann ist
  * es keine Neuinstallation, sondern jemand, der die App schon benutzt. */
 export function stempelPlan(settings: any, bestehend: boolean): Partial<Settings> | null {
   if (settings?.plan) return null;

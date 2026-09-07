@@ -31,7 +31,7 @@ const missing = new Set<string>();
 export function setUiLang(lang: UiLang) { current = lang === "en" ? "en" : "de"; }
 export function getUiLang(): UiLang { return current; }
 
-/** Voreinstellung aus dem Gerät: alles ausser Deutsch bekommt Englisch. */
+/** Voreinstellung aus dem Gerät: alles außer Deutsch bekommt Englisch. */
 export function detectUiLang(): UiLang {
   try {
     const l = (navigator.language || "de").toLowerCase();

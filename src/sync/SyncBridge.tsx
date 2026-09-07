@@ -118,8 +118,8 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
         if (cloudEmpty && hasOwnContent(docsRef.current)) {
           const adopt = window.confirm(
             "Auf diesem Gerät liegen bereits Wörter und Listen.\n\n" +
-            "OK – in diesen Account übernehmen\n" +
-            "Abbrechen – leer starten (die Daten bleiben als Backup auf dem Gerät)"
+            "OK — in dieses Konto übernehmen\n" +
+            "Abbrechen — leer starten (die bisherigen Daten bleiben als Sicherung auf dem Gerät)"
           );
           if (!adopt) {
             backupLocal(docsRef.current);
@@ -144,7 +144,7 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
       // Fix #2: before a risky overwrite of unsynced local data, snapshot it.
       if (!cloudEmpty && anyDirty) {
         backupLocal(docsRef.current);
-        toast("Lokale Daten als Backup gesichert", "download");
+        toast("Lokale Daten als Sicherung gespeichert", "download");
       }
 
       for (const k of DOC_KEYS) {
@@ -169,7 +169,7 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
       // here — say so, otherwise the app silently shows different data.
       if (localStorage.getItem(SWITCH_NOTICE_KEY)) {
         localStorage.removeItem(SWITCH_NOTICE_KEY);
-        toast("Gerät auf diesen Account umgestellt — die vorherigen Daten liegen als Backup auf dem Gerät.", "download");
+        toast("Gerät auf dieses Konto umgestellt — die vorherigen Daten liegen als Sicherung auf dem Gerät.", "download");
       }
     } catch {
       setStatus(navigator.onLine ? "error" : "offline");

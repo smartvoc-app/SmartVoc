@@ -76,8 +76,8 @@ export function smartCount(vocab: Word[], stats: Record<string, Stat>, key: stri
 /* Resolve a selection (array of list ids; [] = everything) into words. */
 export function wordsForSelection(vocab: Word[], stats: Record<string, Stat>, selected: string[], mc?: number) {
   if (!selected || !selected.length) return vocab;
-  // "list:<id>" und blosse Id meinen dasselbe -- beide Schreibweisen kommen aus
-  // gespeicherten Auswahlen, also hier einmal auf die blosse Id bringen.
+  // "list:<id>" und bloße Id meinen dasselbe -- beide Schreibweisen kommen aus
+  // gespeicherten Auswahlen, also hier einmal auf die bloße Id bringen.
   const set = new Set(selected.map((t) => (typeof t === "string" && t.startsWith("list:")) ? t.slice(5) : t));
   const smartActive = SMART_KEYS.filter((k) => set.has(SMART[k].id));
   const now = Date.now();

@@ -6,7 +6,7 @@
  * war für mich beim Bauen nützlich und für alle anderen nutzlos.
  *
  * Jetzt zeigt der Bildschirm, was am Wort steht — und im Abschnitt
- * „Lernstand", was die App darüber weiss, in Worten. Die leeren Felder
+ * „Lernstand", was die App darüber weiß, in Worten. Die leeren Felder
  * bleiben sichtbar und als „optional" beschriftet: so sieht man, was man
  * noch ergänzen könnte, statt es zu erraten.
  */
@@ -72,7 +72,7 @@ export function WordDetailModal({ open, word, onClose, onEdit }: { open: boolean
         <LernstandBlock word={word} />
 
         <div className="modal-foot">
-          <button className="btn btn-ghost" onClick={onClose}>{txt("Schliessen")}</button>
+          <button className="btn btn-ghost" onClick={onClose}>{txt("Schließen")}</button>
           {onEdit && <button className="btn btn-primary" onClick={() => onEdit(word)}><Icon name="edit" size={14} /> {txt("Bearbeiten")}</button>}
         </div>
       </div>

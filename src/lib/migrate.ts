@@ -135,7 +135,7 @@ export function planWortlisten(lessons: any[], lists: ListT[], vocab: Word[]) {
 export function retokenSettings(settings: any, tokenMap: Record<string, string>) {
   /* Zwei Schreibweisen, weil sie zwei Dinge bedeuten: practiceSel traegt genau
    * eine Wahl und praefixt sie ("list:" / "smart:"), selectedLists und statLists
-   * tragen mehrere und fuehren Listen als blosse Id. */
+   * tragen mehrere und fuehren Listen als bloße Id. */
   const mapped = (id: string) => tokenMap[id] || id;
   const sel = (t: string) => (typeof t === "string" && t.startsWith("lesson:")) ? "list:" + mapped(t.slice(7)) : t;
   const many = (t: string) => (typeof t === "string" && t.startsWith("lesson:")) ? mapped(t.slice(7)) : t;
