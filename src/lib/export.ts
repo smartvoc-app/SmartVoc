@@ -106,3 +106,36 @@ export function wortNutzlast(w: any, pair: string, fremdSchluessel: string) {
   if (w.genus) rest.genus = String(w.genus).trim();
   return { ...kopf, ...rest };
 }
+/* Wie sich eine uebernommene Liste auf den vorhandenen Bestand legt.
+ *
+ * Steht hier und nicht im Fenster, weil es die Stelle ist, an der beim
+ * Uebernehmen Woerter verloren gehen koennen -- und weil sie sich so gegen
+ * echte Faelle pruefen laesst.
+ *
+ * `neu`  : Woerter, die es noch nicht gibt; sie werden angelegt.
+ * `dazu` : Ids bereits vorhandener Woerter; sie kommen ZUSAETZLICH in die
+ *          neue Liste. Vorher wurden sie uebersprungen, und wer dieselbe
+ *          Liste schon hatte, bekam eine zweite, gleichnamige und leere.
+ *          Ein Wort darf in mehreren Listen stehen, doppelt angelegt wird
+ *          es trotzdem nicht.
+ */
+export function importPlan(
+  worte: any[], vocab: any[], pair: string, listId: string, isLat: boolean, fremdSchluessel: string,
+): { neu: any[]; dazu: string[] } {
+  const key = (w: any) => (isLat
+    ? (w.grundform || "") + "|" + (w.de || "")
+    : (w[fremdSchluessel] || "") + "|" + (w.de || "")).toLowerCase();
+  const vorhanden = new Map<string, string>();
+  for (const w of vocab) {
+    if (w.pair !== pair) continue;
+    const k = key(w);
+    if (!vorhanden.has(k)) vorhanden.set(k, w.id);
+  }
+  const neu: any[] = [], dazu: string[] = [];
+  for (const w of worte || []) {
+    const id = vorhanden.get(key(w));
+    if (id) dazu.push(id);
+    else neu.push({ ...w, pair, lists: [listId], review: false, source: "import" });
+  }
+  return { neu, dazu };
+}

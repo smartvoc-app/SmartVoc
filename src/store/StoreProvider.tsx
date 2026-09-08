@@ -361,7 +361,19 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     resetSettings: () => setSettings((p: any) => ({ ...p, ...RECOMMENDED })),
     // ---- Wortlisten (V16: der einzige Behaelter fuer Woerter) ----
     addList: (name: string, pair: string, mehr: any = {}) => {
-      const l = { id: newId(), name: name || "Neue Wortliste", pair: pair || "en-de",
+      /* Zwei Listen mit demselben Namen sind hinterher nicht auseinander-
+       * zuhalten: man oeffnet die eine und meint die andere, exportiert die
+       * eine und glaubt, es sei die andere. Beim Uebernehmen einer geteilten
+       * Liste ist der Namensgleichstand der Normalfall, denn sie heisst wie
+       * das Original. Deshalb bekommt der Name eine Nummer, sobald er im
+       * selben Sprachpaar schon vergeben ist. */
+      const pr = pair || "en-de";
+      const basis = (name || "Neue Wortliste").trim();
+      const belegt = new Set(lists.filter((x: any) => x.pair === pr)
+        .map((x: any) => String(x.name || "").trim().toLowerCase()));
+      let endgueltig = basis;
+      for (let n = 2; belegt.has(endgueltig.toLowerCase()); n++) endgueltig = `${basis} (${n})`;
+      const l = { id: newId(), name: endgueltig, pair: pr,
                   createdAt: Date.now(), updatedAt: Date.now(), herkunft: "selbst", ...mehr };
       setListsState((ls: any) => [...ls, l]);
       return l.id;

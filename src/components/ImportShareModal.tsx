@@ -6,6 +6,7 @@ import { useStore } from "../store/StoreProvider";
 import { useToast } from "../ui/Toast";
 import { PAIRS, fk, isLatinPair } from "../lib/pairs";
 import { fetchShared, parseCode, type SharePayload } from "../sync/share";
+import { importPlan } from "../lib/export";
 
 export function ImportShareModal({ open, initialToken, onClose }: { open: boolean; initialToken: string | null; onClose: () => void }) {
   const store = useStore();
@@ -44,13 +45,12 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
     const listId = store.addList(payload.name || txt("Geteilte Liste"), pair,
       { herkunft: "geteilt", autor: (payload as any).autor || undefined });
     const isLat = isLatinPair(pair);
-    const key = (w: any) => (isLat ? ((w.grundform || "") + "|" + (w.de || "")) : ((w[fk(pair)] || "") + "|" + (w.de || ""))).toLowerCase();
-    const existing = new Set(store.vocab.filter((w: any) => w.pair === pair).map(key));
-    const fresh = payload.words
-      .filter((w) => !existing.has(key(w)))
-      .map((w) => ({ ...w, pair, lists: [listId], review: false, source: "import" }));
-    store.addWords(fresh);
-    toast(`„${payload.name}" importiert · ${fresh.length} Wort${fresh.length === 1 ? "" : "er"}`, "check");
+    const { neu, dazu } = importPlan(payload.words, store.vocab, pair, listId, isLat, fk(pair));
+    if (neu.length) store.addWords(neu);
+    if (dazu.length) store.addWordsToList(listId, dazu);
+    const gesamt = neu.length + dazu.length;
+    toast(txt(gesamt === 1 ? "„{liste}“ übernommen · {n} Wort" : "„{liste}“ übernommen · {n} Wörter",
+      { liste: payload.name, n: gesamt }), "check");
     onClose();
   }
 
@@ -79,7 +79,7 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
               <div style={{ fontWeight: 700, fontSize: 15 }}>{payload.name}</div>
               <div className="muted" style={{ fontSize: 13, marginTop: 3 }}>{pairLabel} · {txt(payload.words.length === 1 ? "{n} Wort" : "{n} Wörter", { n: payload.words.length })}</div>
               <div className="faint" style={{ fontSize: 12, marginTop: 8, display: "flex", gap: 6, alignItems: "center" }}>
-                <Icon name="sparkle" size={13} /> {txt("Du bekommst eine eigene Kopie; bereits vorhandene Wörter werden übersprungen.")}
+                <Icon name="sparkle" size={13} /> {txt("Du bekommst eine eigene Kopie. Wörter, die du schon hast, werden nicht doppelt angelegt.")}
               </div>
             </div>
           )}
