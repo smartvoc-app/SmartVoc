@@ -1629,9 +1629,12 @@
   ],
   "Weitere (Fehlerbremse)": [
    "SmartVoc kann gerade nicht starten",
-   "Beim Aufbauen der Oberfläche ist ein Fehler aufgetreten. Deine Wörter und Lernstände sind\n            davon nicht betroffen — sie liegen unverändert auf dem Gerät.",
+   "Beim Aufbauen der Oberfläche ist ein Fehler aufgetreten. Deine Wörter und Lernstände sind davon nicht betroffen: sie liegen unverändert auf dem Gerät.",
    "Am häufigsten liegt es an einer angefangenen Übungsrunde. Der erste Knopf wirft nur diese weg.",
-   "Übungsrunde verwerfen und neu starten"
+   "Übungsrunde verwerfen und neu starten",
+   "Nur neu laden",
+   "Fehlermeldung anzeigen",
+   "Fehlermeldung kopieren"
   ]
  }
 }

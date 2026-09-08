@@ -1627,10 +1627,13 @@
    "Core vocabulary {kuerzel} · Level {n}"
   ],
   "Weitere (Fehlerbremse)": [
-   "SmartVoc kann gerade nicht starten",
-   "Beim Aufbauen der Oberfläche ist ein Fehler aufgetreten. Deine Wörter und Lernstände sind\n            davon nicht betroffen — sie liegen unverändert auf dem Gerät.",
-   "Am häufigsten liegt es an einer angefangenen Übungsrunde. Der erste Knopf wirft nur diese weg.",
-   "Übungsrunde verwerfen und neu starten"
+   "SmartVoc cannot start right now",
+   "Something went wrong while building the screen. Your words and progress are not affected: they are still on this device, unchanged.",
+   "Most often it is a practice round that was left open. The first button discards only that.",
+   "Discard the practice round and restart",
+   "Just reload",
+   "Show the error message",
+   "Copy the error message"
   ]
  }
 }

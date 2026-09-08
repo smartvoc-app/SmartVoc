@@ -11,7 +11,23 @@
  * was los ist, den Fehler zum Weitergeben anbietet und einen Ausweg laesst.
  */
 import React from "react";
-import { LS, save } from "../lib/storage";
+import { LS, save, load } from "../lib/storage";
+import { txt, setUiLang, detectUiLang } from "../lib/i18n";
+
+/* Die Sprache selbst bestimmen.
+ *
+ * Die Bremse greift moeglicherweise, BEVOR die App setUiLang aufgerufen
+ * hat -- dann stuende die Absturzmeldung auf Deutsch, auch bei einem
+ * englischen Benutzer. Sie liest die Einstellung deshalb direkt aus dem
+ * Speicher; klappt das nicht, entscheidet die Geraetesprache. */
+function spracheSetzen() {
+  try {
+    const s: any = load(LS.settings, {});
+    setUiLang(s && s.uiLang ? s.uiLang : detectUiLang());
+  } catch (e) {
+    setUiLang(detectUiLang());
+  }
+}
 
 interface Zustand { fehler: Error | null; info: string }
 
@@ -19,6 +35,7 @@ export class Fehlerbremse extends React.Component<{ children: React.ReactNode },
   state: Zustand = { fehler: null, info: "" };
 
   static getDerivedStateFromError(fehler: Error): Partial<Zustand> {
+    spracheSetzen();
     return { fehler };
   }
 
@@ -47,34 +64,33 @@ export class Fehlerbremse extends React.Component<{ children: React.ReactNode },
                     padding: 24, background: "#f2ece0", color: "#2f3437",
                     font: "16px/1.5 -apple-system, system-ui, sans-serif" }}>
         <div style={{ maxWidth: 460, width: "100%" }}>
-          <h1 style={{ fontSize: 21, margin: "0 0 10px" }}>SmartVoc kann gerade nicht starten</h1>
+          <h1 style={{ fontSize: 21, margin: "0 0 10px" }}>{txt("SmartVoc kann gerade nicht starten")}</h1>
           <p style={{ margin: "0 0 8px", color: "#5a554c" }}>
-            Beim Aufbauen der Oberfläche ist ein Fehler aufgetreten. Deine Wörter und Lernstände sind
-            davon nicht betroffen — sie liegen unverändert auf dem Gerät.
+            {txt("Beim Aufbauen der Oberfläche ist ein Fehler aufgetreten. Deine Wörter und Lernstände sind davon nicht betroffen: sie liegen unverändert auf dem Gerät.")}
           </p>
           <p style={{ margin: "0 0 16px", color: "#5a554c" }}>
-            Am häufigsten liegt es an einer angefangenen Übungsrunde. Der erste Knopf wirft nur diese weg.
+            {txt("Am häufigsten liegt es an einer angefangenen Übungsrunde. Der erste Knopf wirft nur diese weg.")}
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 18 }}>
             <button onClick={this.nurRundeVerwerfen}
               style={{ padding: "11px 18px", borderRadius: 999, border: "none",
                        background: "#2f3437", color: "#fff", font: "inherit", fontWeight: 600 }}>
-              Übungsrunde verwerfen und neu starten
+              {txt("Übungsrunde verwerfen und neu starten")}
             </button>
             <button onClick={() => location.reload()}
               style={{ padding: "11px 18px", borderRadius: 999, border: "1px solid #cdc4b4",
                        background: "transparent", color: "inherit", font: "inherit" }}>
-              Nur neu laden
+              {txt("Nur neu laden")}
             </button>
           </div>
           <details>
-            <summary style={{ cursor: "pointer", color: "#5a554c", fontSize: 14 }}>Fehlermeldung anzeigen</summary>
+            <summary style={{ cursor: "pointer", color: "#5a554c", fontSize: 14 }}>{txt("Fehlermeldung anzeigen")}</summary>
             <pre style={{ whiteSpace: "pre-wrap", wordBreak: "break-word", fontSize: 12, lineHeight: 1.45,
                           background: "#e7dfd0", padding: 12, borderRadius: 10, marginTop: 8 }}>{text}</pre>
             <button onClick={() => navigator.clipboard?.writeText(text)}
               style={{ marginTop: 8, padding: "8px 14px", borderRadius: 999, border: "1px solid #cdc4b4",
                        background: "transparent", color: "inherit", font: "inherit", fontSize: 14 }}>
-              Fehlermeldung kopieren
+              {txt("Fehlermeldung kopieren")}
             </button>
           </details>
         </div>
