@@ -121,5 +121,5 @@ export function wortNutzlast(w: any, pair: string, fremdSchluessel: string) {
  * Steht hier und nicht im Fenster, damit es sich pruefen laesst.
  */
 export function importPlan(worte: any[], pair: string, listId: string): { neu: any[] } {
-  return { neu: (worte || []).map((w) => ({ ...w, pair, lists: [listId], review: false, source: "import" })) };
+  return { neu: (worte || []).map((w) => ({ ...w, pair, listId: listId, review: false, source: "import" })) };
 }

@@ -77,7 +77,7 @@ export function activateStarter(store: any, pair: string, stufe: number) {
 
   if (fresh.length) {
     const listId = store.addList(starterLabel(entry), pair, { herkunft: "grundwortschatz" });
-    store.addWords(fresh.map((w: any) => ({ ...w, lists: [listId], source: "seed", review: false })));
+    store.addWords(fresh.map((w: any) => ({ ...w, listId: listId, source: "seed", review: false })));
   }
   if (!already) store.setSettings({ activatedStarters: [...activated, entry.key] });
 

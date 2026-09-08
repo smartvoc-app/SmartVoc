@@ -17,8 +17,8 @@ const P = (was, ist, erw) => { const gut = String(ist) === String(erw); gut ? ok
 
 const { neu } = importPlan(geteilt, "en-de", "L-neu");
 P("die Liste bekommt alle geteilten Wörter", neu.length, 100);
-P("jedes Wort liegt in genau EINER Liste", neu.every((w) => w.lists.length === 1), true);
-P("und zwar in der neuen", neu.every((w) => w.lists[0] === "L-neu"), true);
+P("jedes Wort traegt genau eine Listen-Id", neu.every((w) => typeof w.listId === "string" && w.listId), true);
+P("und zwar in der neuen", neu.every((w) => w.listId === "L-neu"), true);
 P("Sprachpaar gesetzt", neu.every((w) => w.pair === "en-de"), true);
 P("Felder bleiben erhalten (Aussprache)", neu[0].phonetic, "ˈfæməli");
 P("Felder bleiben erhalten (Beispielsatz)", neu[0].examples[0], "My family lives in Switzerland.");
@@ -31,7 +31,7 @@ P("Herkunft vermerkt", neu[0].source, "import");
 const a = importPlan(geteilt, "en-de", "L-a").neu;
 const b = importPlan(geteilt, "en-de", "L-b").neu;
 P("zweimal übernommen: beide Listen vollständig", a.length + "/" + b.length, "100/100");
-P("die Kopien teilen sich keine Liste", a.every((w) => w.lists[0] === "L-a") && b.every((w) => w.lists[0] === "L-b"), true);
+P("die Kopien teilen sich keine Liste", a.every((w) => w.listId === "L-a") && b.every((w) => w.listId === "L-b"), true);
 
 /* Leere Freigabe darf nicht stolpern. */
 P("leere Liste", importPlan([], "en-de", "L-x").neu.length, 0);

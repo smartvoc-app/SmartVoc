@@ -43,7 +43,7 @@ export function effectiveRetentionFor(word: any, settings: any, lists?: any[], n
   // deadline the override is gone (snap-back). Window/target read from CFG (settings).
   let target = base;
   for (const l of lists) {
-    if (!l.dueDate || !(word.lists || []).includes(l.id)) continue;
+    if (!l.dueDate || word.listId !== l.id) continue;
     const daysLeft = (l.dueDate - now) / 86400000;
     if (daysLeft < 0) continue;                                  // vorbei → kein Einfluss
     if (daysLeft <= CFG.examWindowDays) { target = Math.max(target, CFG.examRetention); continue; }

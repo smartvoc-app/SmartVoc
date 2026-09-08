@@ -39,3 +39,12 @@ export const supabase: SupabaseClient | null = isConfigured
 /* The synced documents — same keys as the local vt_v1_* store. */
 export const DOC_KEYS = ["vocab", "lists", "stats", "meta", "settings"] as const;
 export type DocKey = (typeof DOC_KEYS)[number];
+
+/* Der Schluessel in der Wolke traegt die Modellversion.
+ *
+ * Aendert sich das Datenmodell, aendert sich der Schluessel: ein Geraet mit
+ * der neuen Fassung liest die alten Dokumente gar nicht erst. Ohne das
+ * holte der erste Abgleich den alten Bestand zurueck, und der Neuanfang auf
+ * dem Geraet waere umsonst gewesen. */
+export const DOC_VERSION = "v2";
+export const dbKey = (k: DocKey) => `${k}_${DOC_VERSION}`;

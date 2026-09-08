@@ -9,10 +9,10 @@
  *  - Offline "queue" = the dirty flags: a failed push leaves the doc dirty
  *    and it retries on the next flush (reconnect / focus / session pause).
  */
-import { supabase, DOC_KEYS, type DocKey } from "../lib/supabase";
+import { supabase, DOC_KEYS, dbKey, type DocKey } from "../lib/supabase";
 import { LS } from "../lib/storage";
 
-const SYNC_KEY = "vt_v1_sync";
+const SYNC_KEY = "vt_v2_sync";   // v2: neue Dokumentschluessel, also auch ein neuer Abgleichzustand
 
 export interface DocSync { serverUpdatedAt: string | null; dirty: boolean; }
 export type SyncState = Record<string, DocSync>;
@@ -64,7 +64,7 @@ export async function pushDoc(userId: string, key: DocKey, data: any): Promise<s
   if (!supabase) throw new Error("not-configured");
   const { data: row, error } = await supabase
     .from("user_documents")
-    .upsert({ user_id: userId, doc_key: key, data }, { onConflict: "user_id,doc_key" })
+    .upsert({ user_id: userId, doc_key: dbKey(key), data }, { onConflict: "user_id,doc_key" })
     .select("updated_at")
     .single();
   if (error) throw error;
@@ -82,6 +82,11 @@ export async function pullAll(userId: string): Promise<Record<string, CloudDoc>>
     .eq("user_id", userId);
   if (error) throw error;
   const map: Record<string, CloudDoc> = {};
-  for (const r of data || []) map[r.doc_key] = { data: r.data, updatedAt: r.updated_at };
+  /* Nur Dokumente der eigenen Modellversion. Alles andere stammt aus einer
+   * frueheren Fassung und wird ignoriert, nicht umgerechnet. */
+  for (const r of data || []) {
+    const k = DOC_KEYS.find((x) => dbKey(x) === r.doc_key);
+    if (k) map[k] = { data: r.data, updatedAt: r.updated_at };
+  }
   return map;
 }

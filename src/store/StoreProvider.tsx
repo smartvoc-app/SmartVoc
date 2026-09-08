@@ -7,7 +7,6 @@ import { newId } from "../lib/ids";
 import { RECOMMENDED } from "../lib/defaults";
 import { stempelPlan } from "../lib/plan";
 import { stempelAnzeige } from "../lib/anzeige";
-import { migrateTopics, lessonsForLists, swissifyVocab, migrateLessonsStatic, planWortlisten, retokenSettings, datiereAltbestand, einListeJeWort, stempelMuttersprache, tauscheGrundwortschatz, entferneWaisenSaat, leerRaeumen } from "../lib/migrate";
 import { deriveRating, gradeFromCard, initialCard, retentionFor, RETENTION, configure, deriveProfile, STUFE_ORDER, S2 } from "../lib/fsrs";
 import type { SessionOutcome, SerializedCard } from "../lib/fsrs";
 import type { Word, ListT } from "../lib/types";
@@ -38,7 +37,7 @@ export function initData() {
     lists = [];
   } else {
     lists = lists.map((l: ListT) => ({ ...l, pair: l.pair || "en-de" }));
-    vocab = vocab.map((w: Word) => ({ ...w, pair: w.pair || "en-de", lists: Array.isArray(w.lists) ? w.lists : [] }));
+    vocab = vocab.map((w: Word) => ({ ...w, pair: w.pair || "en-de" }));
   }
   return { vocab, lists };
 }
@@ -54,7 +53,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
    * zweites Mal geladen, hielt seine eigenen Woerter fuer Doppel, legte
    * folgerichtig keine Liste an -- und die Woerter der ersten Sprache lagen
    * ohne Liste da, sichtbar nur noch in "Alle Woerter". */
-  const [migriert, setMigriert] = React.useState(false);
+  /* Sagt App.tsx, dass der Bestand steht und der Grundwortschatz gesaet
+     werden darf. Frueher wurde es nach den Datenumbauten gesetzt; die gibt es
+     nicht mehr, also gilt es von Anfang an. */
+  const [migriert] = React.useState(true);
   const initRef = React.useRef<any>(null);
   if (!initRef.current) initRef.current = initData();
   const [vocab, setVocabState] = React.useState(initRef.current.vocab);
@@ -82,44 +84,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   // registerSync() lets the sync bridge hear local (user-driven) changes.
   const remoteKeys = React.useRef<Set<string>>(new Set());
   const onLocalChange = React.useRef<((key: string) => void) | null>(null);
-  /* Die eine Regel, an einer Stelle durchgesetzt.
-   *
-   * Ein Wort gehoert in genau eine Liste (V18). Das Feld heisst trotzdem
-   * `lists` und IST ein Feld -- die Form stammt aus der Zeit davor und laesst
-   * sich nicht folgenlos aendern: sie liegt so im Speicher jedes Geraets und
-   * in jedem Konto in der Wolke.
-   *
-   * Damit erlaubt das Modell genau die beiden Zustaende, die die Regel
-   * verbietet: keine Liste und mehrere. Die Regel stand bisher nur als
-   * Kommentar da, und eine einzige uebriggebliebene Funktion aus der Zeit vor
-   * V18 (addWordsToList) hat sie gebrochen, ohne dass irgendetwas es merkte.
-   * Drei Fehler an einem Tag gingen darauf zurueck.
-   *
-   * Was sich aendern laesst, ist der Weg hinein. Fremde Daten kommen auf zwei
-   * Wegen: vom Abgleich mit einem anderen Geraet -- das eine aeltere Fassung
-   * der App fahren kann -- und aus einer Sicherungsdatei, die von Hand
-   * aenderbar ist. Beide laufen jetzt hier durch. Ein Wort mit zwei Listen
-   * wird dabei in zwei Woerter zerlegt, je Liste eines, mit eigener Id.
-   *
-   * Woerter OHNE Liste werden hier nicht angefasst: beim Abgleich koennen die
-   * Listen spaeter eintreffen als die Woerter, und dann waere ein Loeschen
-   * ein Datenverlust. Dafuer sind Migration V28 und deleteList zustaendig. */
-  const eineListeJeWort = React.useCallback((v: any): any => {
-    if (!Array.isArray(v) || !v.some((w: any) => ((w && w.lists) || []).length > 1)) return v;
-    const raus: any[] = [];
-    for (const w of v) {
-      const ls = (w && w.lists) || [];
-      if (ls.length <= 1) { raus.push(w); continue; }
-      raus.push({ ...w, lists: [ls[0]] });
-      for (const weitere of ls.slice(1)) {
-        raus.push({ ...w, id: newId(), lists: [weitere], source: "kopie", review: false });
-      }
-    }
-    return raus;
-  }, []);
-
   const setterFor: Record<string, (v: any) => void> = {
-    vocab: (v: any) => setVocabState(eineListeJeWort(v)), lists: setListsState, stats: setStats, meta: setMeta, settings: setSettings,
+    vocab: setVocabState, lists: setListsState, stats: setStats, meta: setMeta, settings: setSettings,
   };
   const applyRemote = React.useCallback((key: string, data: any) => {
     remoteKeys.current.add(key);
@@ -139,189 +105,11 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   React.useEffect(() => persist("settings", LS.settings, settings), [settings]);
   React.useEffect(() => { configure(settings); }, [settings]);   // FSRS thresholds follow settings live
 
-  // One-time, versioned data migrations (recorded in meta.migrations).
-  const migratedRef = React.useRef(false);
-  React.useEffect(() => {
-    if (migratedRef.current) return;
-    migratedRef.current = true;
-    const done = (meta.migrations || {}) as Record<string, boolean>;
-    const applied: Record<string, boolean> = {};
-    /* V28: Woerter loeschen, die in keiner Liste stehen.
-     *
-     * Ein Wort gehoert in genau eine Liste (V18). Ein Wort ohne Liste ist
-     * kein Sonderfall, sondern ein Rest: Die alte Fassung von deleteList
-     * liess die Woerter einer geloeschten Liste stehen, ohne Zugehoerigkeit.
-     * Danach waren sie nirgends zu sehen, wurden aber weiter mitgezaehlt und
-     * weiter abgefragt -- ein Bestand, an den man nicht mehr herankam.
-     *
-     * Sie haetten mit ihrer Liste verschwinden sollen, also verschwinden sie
-     * jetzt. Mit ihnen faellt die Sammelliste "Woerter ohne Liste" weg: sie
-     * hatte keinen einzigen Aufrufer und war nur ein Ort, an dem sich
-     * herrenlose Woerter haetten sammeln koennen. Seit deleteList die
-     * Woerter mitnimmt, entstehen keine neuen. */
-    if (!done.waisenV28) {
-      const ls = initRef.current.lists || [];
-      const vc = initRef.current.vocab || [];
-      const echt = new Set(ls.filter((l: any) => l.system !== "nolist").map((l: any) => l.id));
-      const waisen = vc.filter((w: any) => !(w.lists || []).some((id: string) => echt.has(id)));
-      const sammelliste = ls.some((l: any) => l.system === "nolist");
-      if (waisen.length || sammelliste) {
-        const weg = new Set(waisen.map((w: any) => w.id));
-        setListsState(ls.filter((l: any) => l.system !== "nolist"));
-        setVocabState(vc.filter((w: any) => !weg.has(w.id)));
-        if (weg.size) setStats((prev: any) => {
-          const next = { ...prev };
-          weg.forEach((id: any) => { delete next[id]; });
-          return next;
-        });
-      }
-      applied.waisenV28 = true;
-    }
-
-    /* V29: Woerter trennen, die in mehreren Listen stehen.
-     *
-     * Ein Wort gehoert in genau eine Liste (V18). Eine Zwischenfassung des
-     * Listen-Imports verknuepfte ein bereits vorhandenes Wort zusaetzlich
-     * mit der neuen Liste, statt es zu kopieren. Beide Listen zeigten
-     * danach dieselben Objekte -- und wer vier Woerter aus der einen
-     * verschob, sah sie auch in der anderen verschwinden. Denn verschoben
-     * wird ueber die Wort-Id, und die war dieselbe.
-     *
-     * V18 hat solche Woerter frueher auf die ERSTE Liste gekuerzt. Das
-     * waere hier falsch: die zweite Liste ist gewollt und wuerde leer
-     * zurueckbleiben. Stattdessen wird getrennt -- je Liste ein eigenes
-     * Wort mit eigener Id.
-     *
-     * Der Lernstand bleibt beim urspruenglichen Wort. Die Kopien fangen bei
-     * null an, wie jede uebernommene Liste: der Fortschritt wurde einmal
-     * erarbeitet, nicht zweimal. */
-    if (!done.trennV29) {
-      setVocabState((v: any) => eineListeJeWort(v));
-      applied.trennV29 = true;
-    }
-
-    if (!done.topicsDe) { setVocabState((v: any) => migrateTopics(v)); applied.topicsDe = true; } // V4
-    if (!done.swissV3) { setVocabState((v: any) => swissifyVocab(v)); applied.swissV3 = true; } // V3 — ß → ss
-    /* V16 — Lektionen werden Wortlisten. Der Plan wird aus den geladenen Daten
-     * gerechnet und dann funktional eingespielt, damit er die Migrationen
-     * darueber (die ebenfalls am Vokabular arbeiten) nicht ueberschreibt. */
-    if (!done.wortlistenV16) {
-      /* Die Vorstufen V6 und V9 laufen hier als reine Funktionen mit, statt
-       * eigenen Zustand zu schreiben: erst fehlende Listen-Lektionen ergaenzen,
-       * dann alle auf feste Mitglieder bringen -- und was dabei herauskommt,
-       * wird in Wortlisten aufgeloest. */
-      const stored = load(LS.lessons, []);
-      const withLists = [...stored, ...lessonsForLists(initRef.current.lists, stored, newId)];
-      const les = migrateLessonsStatic(withLists, initRef.current.lists, initRef.current.vocab || [], newId);
-      const plan = planWortlisten(les, initRef.current.lists, initRef.current.vocab || []);
-      setListsState(plan.lists);
-      setVocabState((v: any) => v.map((w: any) => {
-        const add = plan.memberships[w.id];
-        if (!add) return w;
-        return { ...w, lists: Array.from(new Set([...(w.lists || []), ...add])) };
-      }));
-      setSettings((prev: any) => ({ ...prev, ...retokenSettings(prev, plan.tokenMap) }));
-      applied.wortlistenV16 = true;
-    }
-    // V18 — ein Wort gehört in genau eine Wortliste.
-    if (!done.eineListeV18) { setVocabState((v: any) => einListeJeWort(v).vocab); applied.eineListeV18 = true; }
-    // V17 — Anlagedatum für Wörter, die noch keines haben.
-    if (!done.anlagedatumV17) { setVocabState((v: any) => datiereAltbestand(v)); applied.anlagedatumV17 = true; }
-    /* V19 — den Plan stempeln. Muss VOR jeder Grenze existieren, sonst gibt
-     * es später niemanden, dessen Besitzstand man wahren könnte: wer schon
-     * Wörter auf dem Gerät hat, ist kein neuer Nutzer. */
-    if (!done.planV19) {
-      setSettings((prev: any) => {
-        const stempel = stempelPlan(prev, (initRef.current.vocab || []).length > 0);
-        return stempel ? { ...prev, ...stempel } : prev;
-      });
-      applied.planV19 = true;
-    }
-    /* V20 — die Muttersprache stempeln. */
-    if (!done.mutterspracheV20) {
-      setSettings((prev: any) => {
-        const stempel = stempelMuttersprache(prev);
-        return stempel ? { ...prev, ...stempel } : prev;
-      });
-      applied.mutterspracheV20 = true;
-    }
-    /* V21 — die alten mitgelieferten Wortlisten hinauswerfen und die
-     * Merker loeschen, damit die neuen beim naechsten Durchlauf geladen
-     * werden. Beides gehoert zusammen: nur loeschen hiesse, ohne
-     * Grundwortschatz dazustehen. */
-    /* V24 — die mitgelieferten Listen austauschen. Drei Schritte, und die
-     * Reihenfolge ist der ganze Punkt:
-     *   1. alte mitgelieferte Listen samt ihrer Woerter hinaus,
-     *   2. die Waisen hinterher -- Woerter aus Listen, die es laengst nicht
-     *      mehr gibt und die in keiner Ansicht mehr auftauchen,
-     *   3. erst DANN den Merker leeren, damit der neue Grundwortschatz
-     *      geladen wird.
-     * Ein frueherer Anlauf raeumte in der umgekehrten Folge auf: der neue
-     * Grundwortschatz kam, waehrend die Waisen noch dalagen, hielt vierzehn
-     * seiner Woerter fuer Doppel und ließ sie weg -- und gleich darauf
-     * wurden die Waisen entfernt. Vierzehn Woerter fehlten. */
-    if (!done.grundwortschatzV24) {
-      const t = tauscheGrundwortschatz(initRef.current.lists || [], initRef.current.vocab || []);
-      const w = entferneWaisenSaat(t.vocab, t.lists);
-      if (t.listen || w.weg) {
-        setListsState(t.lists);
-        setVocabState(w.vocab);
-        setSettings((prev: any) => ({ ...prev, activatedStarters: [] }));
-      }
-      applied.grundwortschatzV24 = true;
-    }
-    /* V25 — aus "Beispielsätze anzeigen: ja/nein" wird ein Modus
-     * (immer / nie / beim Ueben waehlbar). Wer sie eingeschaltet hatte,
-     * bekommt "immer" -- das ist genau, was er hatte. */
-    if (!done.anzeigeV25) {
-      setSettings((prev: any) => {
-        const stempel = stempelAnzeige(prev);
-        return stempel ? { ...prev, ...stempel } : prev;
-      });
-      applied.anzeigeV25 = true;
-    }
-    /* V26 — der Schnitt: Woerter, Wortlisten und Lernstaende raus, in jeder
-     * Sprache. Steht bewusst NACH allen anderen: was hier weggeht, muss
-     * vorher nicht mehr migriert werden, aber die Reihenfolge der
-     * Migrationsnummern soll trotzdem stimmen. */
-    if (!done.schnittV26) {
-      setVocabState([]);
-      setListsState([]);
-      setStats({});
-      setSettings((prev: any) => leerRaeumen(prev).settings);
-      try { localStorage.removeItem(LS.offeneRunde); } catch (e) {}
-      applied.schnittV26 = true;
-    }
-    /* V27 — der Grundwortschatz-Austausch noch einmal.
-     *
-     * V22, V24 und der Schnitt (V26) sollten "Starter Words" und die alten
-     * Listen abraeumen. Auf Geraeten, die einen dieser Merker gesetzt
-     * hatten, BEVOR die Erkennung stimmte, blieb der Altbestand liegen: ein
-     * erledigter Merker wird nie wieder angefasst. Das Ergebnis sah man am
-     * Zaehler -- 229 Woerter, aber nur eine Liste mit 57; die uebrigen 172
-     * waren Waisen aus geloeschten Listen, und der neue Grundwortschatz kam
-     * nie nach, weil `activatedStarters` ihn fuer erledigt hielt.
-     *
-     * Deshalb dieselben drei Schritte wie in V24, mit eigenem Merker und in
-     * derselben Reihenfolge: erst die mitgelieferten Listen, dann die
-     * Waisen, erst DANN den Merker leeren. Eigene Listen und eigene Woerter
-     * bleiben unberuehrt -- entfernt wird nur, was `herkunft` oder Name als
-     * mitgeliefert ausweist, und nur Woerter mit `source: "seed"`. */
-    if (!done.grundwortschatzV27) {
-      const t = tauscheGrundwortschatz(initRef.current.lists || [], initRef.current.vocab || []);
-      const w = entferneWaisenSaat(t.vocab, t.lists);
-      if (t.listen || w.weg) {
-        setListsState(t.lists);
-        setVocabState(w.vocab);
-        setSettings((prev: any) => ({ ...prev, activatedStarters: [] }));
-      }
-      applied.grundwortschatzV27 = true;
-    }
-    if (Object.keys(applied).length) {
-      setMeta((prev: any) => ({ ...prev, migrations: { ...(prev.migrations || {}), ...applied } }));
-    }
-    setMigriert(true);
-  }, []);
+  /* Frueher lief hier eine Reihe einmaliger Datenumbauten. Mit dem Wechsel
+   * auf das Modell v2 (ein Wort traegt `listId`) haben sie keinen Gegenstand
+   * mehr: die alten Bestaende liegen unter den alten Schluesseln und werden
+   * nicht mehr gelesen. Ein Umrechnen waere aufwendiger gewesen als ein
+   * sauberer Neuanfang -- und der war ausdruecklich gewuenscht. */
 
   // FR3-2: one daily distribution snapshot per pair (first app contact of the day).
   // PFLICHT 1: merge trends[pair][today] only — NEVER replace the whole trends object
@@ -441,12 +229,12 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     setMeta: (patch: any) => setMeta((p: any) => ({ ...p, ...patch })),
     recordAttempt,
     gradeWord,
-    addWord: (w: any) => setVocabState((v: any) => [{ id: newId(), review: false, source: "manual", pair: "en-de", lists: [], createdAt: Date.now(), ...w }, ...v]),
-    addWords: (arr: any[]) => setVocabState((v: any) => { const t = Date.now(); return [...arr.map((w) => ({ id: newId(), review: false, source: "import", pair: "en-de", lists: [], createdAt: t, ...w })), ...v]; }),
+    addWord: (w: any) => setVocabState((v: any) => [{ id: newId(), review: false, source: "manual", pair: "en-de", createdAt: Date.now(), ...w }, ...v]),
+    addWords: (arr: any[]) => setVocabState((v: any) => { const t = Date.now(); return [...arr.map((w) => ({ id: newId(), review: false, source: "import", pair: "en-de", createdAt: t, ...w })), ...v]; }),
     updateWord: (id: string, patch: any) => setVocabState((v: any) => v.map((w: any) => (w.id === id ? { ...w, ...patch } : w))),
     deleteWord: (id: string) => setVocabState((v: any) => v.filter((w: any) => w.id !== id)),
-    replaceVocab: (list: any[]) => setVocabState(eineListeJeWort(
-      list.map((w) => ({ id: w.id || newId(), review: false, source: "import", pair: "en-de", lists: [], ...w })))),
+    replaceVocab: (list: any[]) => setVocabState(
+      list.map((w) => ({ id: w.id || newId(), review: false, source: "import", pair: "en-de", ...w }))),
     resetStats: () => { setStats({}); setMeta({ lastDate: null, streak: 0, todayCount: 0, newToday: 0, totalReviews: 0 }); },
     resetStatsForWords: (ids: string[]) => { setStats((prev: any) => { const next = { ...prev }; ids.forEach((id) => { delete next[id]; }); return next; }); },
     resetSettings: () => setSettings((p: any) => ({ ...p, ...RECOMMENDED })),
@@ -495,12 +283,12 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         const f = isLatinPair(pr) ? (w.grundform || "") : (w[fk(pr)] || "");
         return (f + "|" + (w.de || "")).toLowerCase().trim();
       };
-      const schonDa = new Set(vocab.filter((w: any) => (w.lists || []).includes(nachId)).map(schluessel));
-      const quelle = vocab.filter((w: any) => (w.lists || []).includes(vonId));
+      const schonDa = new Set(vocab.filter((w: any) => w.listId === nachId).map(schluessel));
+      const quelle = vocab.filter((w: any) => w.listId === vonId);
       const doppelt = new Set(quelle.filter((w: any) => schonDa.has(schluessel(w))).map((w: any) => w.id));
       setVocabState((v: any) => v
         .filter((w: any) => !doppelt.has(w.id))
-        .map((w: any) => ((w.lists || []).includes(vonId) ? { ...w, lists: [nachId] } : w)));
+        .map((w: any) => (w.listId === vonId ? { ...w, listId: nachId } : w)));
       setListsState((ls: any) => ls.filter((l: any) => l.id !== vonId));
       return { verschoben: quelle.length - doppelt.size, doppelt: doppelt.size };
     },
@@ -515,9 +303,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
        * Liste: unsichtbar, nicht zu bearbeiten, nicht zu loeschen, und
        * trotzdem weiter mitgezaehlt und weiter abgefragt. Genau diese
        * Unklarheit ("geht das Wort mit?") war der Grund fuer V18. */
-      const mit = vocab.filter((w: any) => (w.lists || []).includes(id));
+      const mit = vocab.filter((w: any) => w.listId === id);
       setListsState((ls: any) => ls.filter((l: any) => l.id !== id));
-      setVocabState((v: any) => v.filter((w: any) => !(w.lists || []).includes(id)));
+      setVocabState((v: any) => v.filter((w: any) => w.listId !== id));
       /* Der Lernstand gehoert zum Wort und hat ohne es keinen Sinn. */
       if (mit.length) setStats((prev: any) => {
         const next = { ...prev };
@@ -525,29 +313,15 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         return next;
       });
     },
-    toggleWordList: (wordId: string, listId: string) => setVocabState((v: any) => v.map((w: any) => w.id === wordId
-      ? { ...w, lists: (w.lists || []).includes(listId) ? w.lists.filter((x: string) => x !== listId) : [...(w.lists || []), listId] }
-      : w)),
-    /* Mitgliedschaft steht am Wort -- in GENAU EINER Liste. Hier stand
-     * frueher das Gegenteil ("darf in mehreren Listen liegen"); das galt bis
-     * V18 und wurde dort abgeschafft, weil beim Loeschen einer Liste nie
-     * klar war, ob das Wort mitgeht. Der Kommentar blieb stehen und hat
-     * genau diese Verwirrung noch einmal erzeugt. */
-    beruehreListe: (id: string) =>
-      setListsState((ls: any) => ls.map((l: any) => (l.id === id ? { ...l, updatedAt: Date.now() } : l))),
     /* Woerter in eine andere Liste bringen.
      *
-     * Ein Wort gehoert in genau eine Liste (V18), also ist das ein
-     * VERSCHIEBEN: die alte Zugehoerigkeit wird ersetzt, nicht ergaenzt.
-     * Rueckgaengig macht man es durch Zurueckverschieben -- deshalb braucht
-     * es dafuer keine Rueckfrage. */
+     * Ein Wort traegt genau eine Listen-Id, also ist das ein VERSCHIEBEN:
+     * die alte wird ersetzt. Rueckgaengig macht man es, indem man
+     * zurueckverschiebt -- deshalb braucht es keine Rueckfrage. */
     moveWordsToList: (wordIds: string[], zielId: string) => {
       const set = new Set(wordIds);
-      setVocabState((v: any) => v.map((w: any) => (set.has(w.id) ? { ...w, lists: [zielId] } : w)));
+      setVocabState((v: any) => v.map((w: any) => (set.has(w.id) ? { ...w, listId: zielId } : w)));
     },
-    removeWordFromList: (listId: string, wordId: string) =>
-      setVocabState((v: any) => v.map((w: any) => (w.id === wordId
-        ? { ...w, lists: (w.lists || []).filter((x: string) => x !== listId) } : w))),
     newId,
     // sync glue
     applyRemote,

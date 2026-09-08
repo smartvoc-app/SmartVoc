@@ -21,19 +21,23 @@
 import { Capacitor } from "@capacitor/core";
 import { Preferences } from "@capacitor/preferences";
 
+/* v2: Ein Wort traegt `listId`, nicht mehr `lists`. Die Schluessel tragen
+ * die Modellversion, damit ein alter Bestand gar nicht erst gelesen wird --
+ * eine Umrechnung waere aufwendiger als ein sauberer Neuanfang, und der war
+ * ausdruecklich gewuenscht. Die alten vt_v1_* bleiben unangetastet liegen. */
 export const LS = {
-  vocab: "vt_v1_vocab",
-  stats: "vt_v1_stats",
-  meta: "vt_v1_meta",
-  settings: "vt_v1_settings",
-  lists: "vt_v1_lists",
-  lessons: "vt_v1_lessons",   // nur noch zum Lesen: V16 löst sie in Wortlisten auf
+  vocab: "vt_v2_vocab",
+  stats: "vt_v2_stats",
+  meta: "vt_v2_meta",
+  settings: "vt_v2_settings",
+  lists: "vt_v2_lists",
+  lessons: "vt_v2_lessons",   // nur noch zum Lesen: V16 löst sie in Wortlisten auf
   /* Was von der letzten Runde offen blieb. Nur die Wort-Kennungen und die
    * Auswahl, nicht der Zustand der Warteschlange: aus Kennungen laesst sich
    * eine Runde neu bauen, und die Lernstaende kommen dabei frisch aus den
    * Statistiken. Den eingefrorenen FSRS-Zustand ueber einen Neustart zu
    * schleppen waere die Art Abkuerzung, die Lerndaten beschaedigt. */
-  offeneRunde: "vt_v1_offene_runde",
+  offeneRunde: "vt_v2_offene_runde",
 };
 
 const nativ = () => Capacitor.isNativePlatform();
@@ -82,7 +86,7 @@ export async function hydrateFromNative(): Promise<void> {
  * HANDOFF-iOS.md als eigener Schritt.
  */
 export async function entferneAltesProtokoll(): Promise<void> {
-  const alt = "vt_v1_reviews";
+  const alt = "vt_v2_reviews";
   try { if (localStorage.getItem(alt) === null) return; } catch (e) { return; }
   try { localStorage.removeItem(alt); } catch (e) {}
   if (nativ()) { try { await Preferences.remove({ key: alt }); } catch (e) {} }

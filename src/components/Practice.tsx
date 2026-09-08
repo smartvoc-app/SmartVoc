@@ -191,7 +191,7 @@ export function Practice() {
     }
     /* Eine Wortliste bringt ihre eigene Sprache mit. Nur so kann der
      * Uebungsplan mehrere Listen ueber Sprachgrenzen hinweg zusammen ueben. */
-    return vocab.filter((w) => (w.lists || []).includes(ref)).filter(practiceable);
+    return vocab.filter((w) => w.listId === ref).filter(practiceable);
   };
   // live resolution of the chosen scope(s) — deduped union over scopeTokens (one pair).
   const resolveScopeWords = () => {
@@ -712,7 +712,7 @@ export function Practice() {
   const dotTone = (t) => t === "green" ? "var(--green)" : t === "amber" ? "var(--amber)" : t === "red" ? "var(--red)" : "var(--ink-faint)";
   const listsSorted = [...pairLists].sort((a: any, b: any) => (a.dueDate || Infinity) - (b.dueDate || Infinity) || (a.createdAt || 0) - (b.createdAt || 0));
   // Der Waehler kennt nur noch Wortlisten. Mehrfachwahl, "alle"/"keine" oben.
-  const listCountOf = (id: string) => pairVocabAll.filter((w: any) => (w.lists || []).includes(id)).length;
+  const listCountOf = (id: string) => pairVocabAll.filter((w: any) => w.listId === id).length;
   /* Der Waehler als Blatt statt als aufklappender Bereich.
    *
    * Die anderen beiden Pillen oeffnen ein Menue, das sich ueber die Seite
@@ -853,7 +853,7 @@ export function Practice() {
       if (l.pair !== pair || !l.dueDate) continue;
       const tage = Math.ceil((l.dueDate - Date.now()) / 86400000);
       if (tage < 0 || tage > fenster) continue;
-      const n = vocab.filter((w: any) => (w.lists || []).includes(l.id)).length;
+      const n = vocab.filter((w: any) => w.listId === l.id).length;
       if (n) return { name: l.name, tage, n };
     }
     return null;

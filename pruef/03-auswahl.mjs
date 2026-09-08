@@ -10,7 +10,7 @@ const karte = (S, vorTagen, reps = 5, lapses = 0, D = 5) => ({
 });
 // 40 fällige, 10 sitzende, 30 nie geübte
 const vocab = [], stats = {};
-const neu = (id, extra = {}) => { vocab.push({ id, pair: "en-de", lists: ["l1"], en: id, de: id, ...extra }); };
+const neu = (id, extra = {}) => { vocab.push({ id, pair: "en-de", listId: "l1", en: id, de: id, ...extra }); };
 for (let i = 0; i < 40; i++) { neu("f" + i); stats["f" + i] = { seen: 3, fsrs: karte(5, 9) }; }       // überfällig
 for (let i = 0; i < 10; i++) { neu("s" + i); stats["s" + i] = { seen: 9, fsrs: karte(60, 1) }; }      // sitzt, nicht fällig
 for (let i = 0; i < 30; i++) { neu("n" + i); }                                                        // nie geübt

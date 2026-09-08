@@ -92,7 +92,7 @@ export function WordList() {
   const toggleWort = (id: string) => setGewaehlt((g) => g.includes(id) ? g.filter((x) => x !== id) : [...g, id]);
   const [query, setQuery] = useState("");
   const [editingId, setEditingId] = useState(null);
-  const [draft, setDraft] = useState({ fgn: "", de: "", lists: [] as any[], lernform: "", genus: "", wortart: "", ex1: "", ex2: "", ex1de: "", ex2de: "", phon: "" });
+  const [draft, setDraft] = useState({ fgn: "", de: "", listId: "", lernform: "", genus: "", wortart: "", ex1: "", ex2: "", ex1de: "", ex2de: "", phon: "" });
   const [adding, setAdding] = useState({ fgn: "", de: "", listId: "", lernform: "", genus: "", wortart: "", ex1: "", ex1de: "", phon: "" });
   const [busy, setBusy] = useState(false);
   const [pendingImport, setPendingImport] = useState(null);
@@ -231,7 +231,7 @@ export function WordList() {
 
   /* Wie viele Woerter das Loeschen der offenen Liste kostet. Ein Wort gehoert
      in genau eine Liste, also gehen alle mit. */
-  const loeschZahlen = pairVocab.filter((w: any) => (w.lists || []).includes(activeList)).length;
+  const loeschZahlen = pairVocab.filter((w: any) => w.listId === activeList).length;
 
 
   useEffect(() => { setOffen(null); }, [pair]);
@@ -244,7 +244,7 @@ export function WordList() {
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
     return pairVocab.filter((w) =>
-      (activeList === "__all" || (w.lists || []).includes(activeList)) &&
+      (activeList === "__all" || w.listId === activeList) &&
       (!q || fgnOf(w).toLowerCase().includes(q) || (w.lernform || "").toLowerCase().includes(q) || (w.de || "").toLowerCase().includes(q)));
   }, [pairVocab, query, activeList, foreign, isLat]);
 
@@ -271,7 +271,7 @@ export function WordList() {
       const lernform = adding.lernform.trim();
       const de = adding.de.trim();
       if (!grundform && !lernform && !de) return;
-      store.addWord({ grundform, lernform, genus: adding.genus, wortart: adding.wortart, de, examples, examplesDe, phonetic, pair, lists: listId ? [listId] : [] });
+      store.addWord({ grundform, lernform, genus: adding.genus, wortart: adding.wortart, de, examples, examplesDe, phonetic, pair, listId: listId || "" });
       setAdding((a) => ({ ...a, fgn: "", de: "", lernform: "", ex1: "", ex1de: "", phon: "" }));
       return;
     }
@@ -289,7 +289,7 @@ export function WordList() {
       toast(r.source === "none" ? "Couldn't translate — please fill it in" : `Auto-filled “${fgn}” — please review`, r.source === "none" ? "x" : "sparkle");
       setBusy(false);
     }
-    store.addWord({ [foreign]: fgn, genus: adding.genus, wortart: adding.wortart, de, examples, examplesDe, phonetic, review, pair, lists: listId ? [listId] : [] });
+    store.addWord({ [foreign]: fgn, genus: adding.genus, wortart: adding.wortart, de, examples, examplesDe, phonetic, review, pair, listId: listId || "" });
     setAdding((a) => ({ ...a, fgn: "", de: "", ex1: "", ex1de: "", phon: "" }));
   }, [adding, store, toast, foreign, pair, isLat]);
 
@@ -300,11 +300,11 @@ export function WordList() {
    * jetzt auch leer, und dann legt "Speichern" ein Wort an. */
   const NEU = "__neu";
   const startNeu = (listId: string) => {
-    setDraft({ fgn: "", de: "", lists: listId && listId !== "__all" ? [listId] : [],
+    setDraft({ fgn: "", de: "", listId: listId && listId !== "__all" ? listId : "",
       lernform: "", genus: "", wortart: "", ex1: "", ex2: "", ex1de: "", ex2de: "", phon: "" });
     setEditingId(NEU);
   };
-  const startEdit = (w) => { setEditingId(w.id); setDraft({ fgn: isLat ? (w.grundform || "") : (w[foreign] || ""), de: w.de, lists: w.lists || [], lernform: w.lernform || "", genus: w.genus || "", wortart: w.wortart || "", ex1: (w.examples || [])[0] || "", ex2: (w.examples || [])[1] || "", ex1de: (w.examplesDe || [])[0] || "", ex2de: (w.examplesDe || [])[1] || "", phon: w.phonetic || "" }); };
+  const startEdit = (w) => { setEditingId(w.id); setDraft({ fgn: isLat ? (w.grundform || "") : (w[foreign] || ""), de: w.de, listId: w.listId || "", lernform: w.lernform || "", genus: w.genus || "", wortart: w.wortart || "", ex1: (w.examples || [])[0] || "", ex2: (w.examples || [])[1] || "", ex1de: (w.examplesDe || [])[0] || "", ex2de: (w.examplesDe || [])[1] || "", phon: w.phonetic || "" }); };
   const saveEdit = (id) => {
     /* Index-treu speichern: examples[i] und examplesDe[i] gehören zusammen.
      * Deshalb hier KEIN filter(Boolean) — sonst rutscht die zweite Übersetzung
@@ -313,8 +313,8 @@ export function WordList() {
     const examplesDe = [draft.ex1de, draft.ex2de].map((s) => (s || "").trim());
     const phonetic = (draft.phon || "").trim();
     const patch = isLat
-      ? { grundform: draft.fgn.trim(), lernform: draft.lernform.trim(), genus: draft.genus, wortart: draft.wortart, de: draft.de.trim(), examples, examplesDe, phonetic, lists: draft.lists, review: false }
-      : { [foreign]: draft.fgn.trim(), lernform: draft.lernform.trim(), genus: draft.genus, wortart: draft.wortart, de: draft.de.trim(), examples, examplesDe, phonetic, lists: draft.lists, review: false };
+      ? { grundform: draft.fgn.trim(), lernform: draft.lernform.trim(), genus: draft.genus, wortart: draft.wortart, de: draft.de.trim(), examples, examplesDe, phonetic, listId: draft.listId, review: false }
+      : { [foreign]: draft.fgn.trim(), lernform: draft.lernform.trim(), genus: draft.genus, wortart: draft.wortart, de: draft.de.trim(), examples, examplesDe, phonetic, listId: draft.listId, review: false };
     if (id === NEU) {
       if (!draft.fgn.trim() && !draft.de.trim() && !draft.lernform.trim()) { setEditingId(null); return; }
       store.addWord({ ...patch, pair, source: "manual", createdAt: Date.now() });
@@ -374,7 +374,7 @@ export function WordList() {
   /* ---- share the active list (copy-on-import snapshot) ---- */
   const shareActiveList = async () => {
     const l = lists.find((x) => x.id === activeList); if (!l) return;
-    const members = pairVocab.filter((w) => (w.lists || []).includes(activeList));
+    const members = pairVocab.filter((w) => w.listId === activeList);
     if (!members.length) { toast(txt("Diese Liste hat noch keine Wörter"), "x"); return; }
     /* Frueher standen hier nur Wort und Uebersetzung -- Beispielsaetze und
      * Aussprache blieben beim Teilen zurueck, obwohl die Gegenseite sie
@@ -416,7 +416,7 @@ export function WordList() {
         const { examples, examplesDe } = beispielePaar(r);
         const phonetic = (r.phonetic || "").trim();
         const genus = (r.genus || "").trim();
-        if (grundform || lernform || de) result.push({ grundform, lernform, genus, wortart, de, examples, examplesDe, phonetic, review: false, pair, lists: [listId] });
+        if (grundform || lernform || de) result.push({ grundform, lernform, genus, wortart, de, examples, examplesDe, phonetic, review: false, pair, listId: listId });
       }
       const key = (w) => ((w.grundform || "") + "|" + (w.de || "")).toLowerCase();
       const existing = new Set(pairVocab.map(key));
@@ -435,7 +435,7 @@ export function WordList() {
       const { examples, examplesDe } = beispielePaar(r);
       const phonetic = (r.phonetic || "").trim();
       const wortart = (r.wortart || "").trim();
-      if (fgn || de) result.push({ [foreign]: fgn, lernform: (r.lernform || "").trim(), genus: (r.genus || "").trim(), wortart, de, examples, examplesDe, phonetic, review, pair, lists: [listId] });
+      if (fgn || de) result.push({ [foreign]: fgn, lernform: (r.lernform || "").trim(), genus: (r.genus || "").trim(), wortart, de, examples, examplesDe, phonetic, review, pair, listId: listId });
     }
     const existing = new Set(pairVocab.map((w) => ((w[foreign] || "") + "|" + w.de).toLowerCase()));
     const fresh = result.filter((w) => !existing.has(((w[foreign] || "") + "|" + w.de).toLowerCase()));
@@ -588,7 +588,7 @@ export function WordList() {
               {lists.filter((l: any) => l.pair === pair && l.id !== activeList).map((l: any) => (
                 <button key={l.id} className="li" onClick={() => verschiebeNach(l.id, l.name)}>
                   <span className="g">{l.name}
-                    <div className="m">{txt("{n} Wörter", { n: pairVocab.filter((w: any) => (w.lists || []).includes(l.id)).length })}</div></span>
+                    <div className="m">{txt("{n} Wörter", { n: pairVocab.filter((w: any) => w.listId === l.id).length })}</div></span>
                   <Icon name="arrowRight" size={14} />
                 </button>
               ))}
@@ -631,7 +631,7 @@ export function WordList() {
               {lists.filter((l: any) => l.pair === pair && l.id !== activeList).map((l: any) => (
                 <button key={l.id} className="li" onClick={() => { setMergeWahl(false); setMergeZiel(l.id); }}>
                   <span className="g">{l.name}
-                    <div className="m">{txt("{n} Wörter", { n: pairVocab.filter((w: any) => (w.lists || []).includes(l.id)).length })}</div></span>
+                    <div className="m">{txt("{n} Wörter", { n: pairVocab.filter((w: any) => w.listId === l.id).length })}</div></span>
                   <Icon name="arrowRight" size={14} />
                 </button>
               ))}
@@ -873,7 +873,7 @@ export function WordList() {
   const woerterImBlick = useMemo(() => {
     if (!offen) return [];
     if (offen.art === "alle") return pairVocab;
-    if (offen.art === "liste") return pairVocab.filter((w: any) => (w.lists || []).includes(offen.ref));
+    if (offen.art === "liste") return pairVocab.filter((w: any) => w.listId === offen.ref);
     const ret = retentionFor(settings);
     return offen.ref === "heute"
       ? resolveToday(pairVocab, stats, lists, ret, settings.dailyGoal, settings.newPerDay)
@@ -1256,7 +1256,7 @@ export function WordList() {
           <div className="list">{treffer.map((w: any) => {
             const wp = w.pair || "en-de";
             const stufe = !practiceable(w) ? "noch_nicht_geuebt" : deriveProfile(stats[w.id]?.fsrs, retentionFor(settings)).stufe;
-            const lid = (w.lists || [])[0];
+            const lid = w.listId;
             const pp = PAIRS[wp] || PAIRS["en-de"];
             const fgn = isLatinPair(wp) ? (w.grundform || "") : (w[pp.foreign] || "");
             /* Ein Wort kann auf eine Liste zeigen, die es nicht mehr gibt.

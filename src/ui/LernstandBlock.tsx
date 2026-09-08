@@ -50,7 +50,7 @@ export function LernstandBlock({ word }: { word: any }) {
     : tage == null ? txt("noch offen")
     : tage < 0 ? txt("jetzt") : tage === 0 ? txt("heute")
     : tage === 1 ? txt("morgen") : txt("in {n} Tagen", { n: tage });
-  const inListen = (lists || []).filter((l: any) => (word.lists || []).includes(l.id)).map((l: any) => l.name);
+  const inListen = (lists || []).filter((l: any) => word.listId === l.id).map((l: any) => l.name);
   const strich = <span className="faint">—</span>;
 
   return (

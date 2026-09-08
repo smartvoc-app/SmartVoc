@@ -83,7 +83,7 @@ export function wordsForSelection(vocab: Word[], stats: Record<string, Stat>, se
   const now = Date.now();
   const out: Word[] = [];
   for (const w of vocab) {
-    let inc = (w.lists || []).some((l) => set.has(l));
+    let inc = set.has(w.listId);
     if (!inc) { for (const k of smartActive) { if (SMART[k].test(w, stats[w.id], mc, now)) { inc = true; break; } } }
     if (inc) out.push(w);
   }
@@ -111,7 +111,7 @@ export function resolveToday(pairVocab: Word[], stats: Record<string, any>, list
     if (l.pair !== pair || !l.dueDate) continue;
     const daysLeft = (l.dueDate - now) / DAY_MS;
     if (daysLeft < 0 || daysLeft > 7) continue;
-    pairVocab.filter((w) => (w.lists || []).includes(l.id)
+    pairVocab.filter((w) => w.listId === l.id
       && deriveProfile(stats[w.id]?.fsrs, effFor(w), now).stufe !== "sitzt").forEach(add);
   }
   out.sort((a, b) => retrievabilityOf(stats[a.id], effFor(a), now) - retrievabilityOf(stats[b.id], effFor(b), now));
@@ -132,7 +132,7 @@ export function resolveToday(pairVocab: Word[], stats: Record<string, any>, list
     if (l.pair !== pair || !l.dueDate) continue;
     const daysLeft = (l.dueDate - now) / DAY_MS;
     if (daysLeft < 0 || daysLeft > getCfg().examWindowDays) continue;
-    for (const w of pairVocab) if ((w.lists || []).includes(l.id)) endspurt.add(w.id);
+    for (const w of pairVocab) if (w.listId === l.id) endspurt.add(w.id);
   }
   if (!dailyGoal) return out;
   const dringend = out.filter((w) => endspurt.has(w.id));
@@ -180,13 +180,13 @@ export function examPrognosis(list: any, vocab: Word[], stats: Record<string, an
 }
 
 /* V16: eine Wortliste zu ihren Woertern aufloesen. Mitgliedschaft steht am
- * Wort (w.lists) -- ein Mechanismus fuer Import, Handeingabe und Uebernahme.
+ * Wort (w.listId) -- ein Mechanismus fuer Import, Handeingabe und Uebernahme.
  * members[] wird nur noch gelesen, falls die Synchronisierung Daten von einem
  * Geraet bringt, das die Migration noch nicht gesehen hat. */
 export function resolveList(list: any, vocab: Word[]): Word[] {
   if (!list) return [];
   const pairVocab = vocab.filter((w) => w.pair === list.pair);
-  const byMembership = pairVocab.filter((w) => (w.lists || []).includes(list.id));
+  const byMembership = pairVocab.filter((w) => w.listId === list.id);
   if (byMembership.length || !list.members) return byMembership;
   const set = new Set(list.members);
   return pairVocab.filter((w) => set.has(w.id));
@@ -195,7 +195,7 @@ export function resolveList(list: any, vocab: Word[]): Word[] {
 /* Die Woerter einer Wortliste als Id-Liste. */
 export function snapshotMembers(vocab: Word[], pair: string, listId: string): string[] {
   const pv = vocab.filter((w) => w.pair === pair);
-  return Array.from(new Set(pv.filter((w) => (w.lists || []).includes(listId)).map((w) => w.id)));
+  return Array.from(new Set(pv.filter((w) => w.listId === listId).map((w) => w.id)));
 }
 
 /* V9/V14: list mastery aggregate from deriveProfile (the ONE source). Returns

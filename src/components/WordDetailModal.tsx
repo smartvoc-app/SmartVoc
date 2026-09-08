@@ -35,7 +35,7 @@ export function WordDetailModal({ open, word, onClose, onEdit }: { open: boolean
   const fgn = isLat ? latinHeadword(word) : (word[fk(pair)] || "");
   const bsp = (i: number) => (word.examples || [])[i] || "";
   const bspDe = (i: number) => (word.examplesDe || [])[i] || "";
-  const inListen = (lists || []).filter((l: any) => (word.lists || []).includes(l.id)).map((l: any) => l.name);
+  const inListen = (lists || []).filter((l: any) => word.listId === l.id).map((l: any) => l.name);
 
   const richtig = (stat?.correctCount || 0) + (stat?.almostCount || 0);
   const wieder = prof.due == null ? null : Math.round((prof.due - Date.now()) / 86400000);

@@ -24,7 +24,7 @@ export const useSync = () => React.useContext(SyncCtx);
 // docs whose pushes are deferred to a session pause (large / very frequent)
 const DEFERRED: DocKey[] = ["stats", "meta"];
 const EAGER: DocKey[] = ["vocab", "lists", "settings"];
-const SYNC_UID_KEY = "vt_v1_sync_uid";
+const SYNC_UID_KEY = "vt_v2_sync_uid";
 const SWITCH_NOTICE_KEY = "vt_v1_switch_notice";
 
 /* Liegt auf diesem Geraet etwas, das der Benutzer selbst gemacht hat?
@@ -42,7 +42,7 @@ export function hasOwnContent(docs: Record<string, any>): boolean {
   if (Object.keys(stats).length > 0) return true;
   const geliefert = new Set(lists.filter((l: any) => l?.herkunft === "grundwortschatz").map((l: any) => l.id));
   if (lists.some((l: any) => l?.herkunft !== "grundwortschatz")) return true;
-  return vocab.some((w: any) => !(w.lists || []).some((id: string) => geliefert.has(id)));
+  return vocab.some((w: any) => !geliefert.has(w.listId));
 }
 
 export function SyncBridge({ children }: { children: React.ReactNode }) {
