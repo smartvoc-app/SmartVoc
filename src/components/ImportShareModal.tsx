@@ -63,7 +63,7 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
 
         <div className="col" style={{ gap: 10 }}>
           <div className="row" style={{ gap: 8 }}>
-            <input className="field" placeholder={txt("Code (VT-…) oder Link einfügen")} value={code}
+            <input className="field" placeholder={txt("Link einfügen")} value={code}
               onChange={(e) => setCode(e.target.value)} onKeyDown={(e) => e.key === "Enter" && load(code)} />
             <button className="btn" onClick={() => load(code)} disabled={busy || !code.trim()}>
               {busy ? <Icon name="refresh" size={15} /> : <Icon name="search" size={15} />}

@@ -104,7 +104,11 @@ export function WordList() {
   const [pasteOpen, setPasteOpen] = useState(false);
   const [pasteSeed, setPasteSeed] = useState("");   // V12: scan → paste seeded text
   const [detailWord, setDetailWord] = useState(null);   // V16: word-detail popup
-  const canShare = isConfigured && !!auth.user;
+  /* Der Knopf bleibt sichtbar, auch ohne Konto. Vorher verschwand er
+     wortlos, und ein Weg, den man nicht sieht, ist einer, den es fuer den
+     Benutzer nicht gibt -- die Frage "warum kann ich nicht mehr teilen"
+     kam prompt. Warum es ein Konto braucht, sagt jetzt der Griff selbst. */
+  const canShare = isConfigured;
   /* Tabellen gibt es nur im Web -- die Bibliothek dahinter waere im
    * App-Paket 429 kB fuer eine Funktion, die das Telefon nicht hat.
    *
@@ -374,6 +378,10 @@ export function WordList() {
   /* ---- share the active list (copy-on-import snapshot) ---- */
   const shareActiveList = async () => {
     const l = lists.find((x) => x.id === activeList); if (!l) return;
+    /* Teilen legt die Liste unter dem eigenen Konto ab -- ohne Konto gibt es
+       niemanden, dem sie gehoert. Das sagen wir hier, statt den Knopf
+       auszublenden. */
+    if (!auth.user) { toast(txt("Zum Teilen brauchst du ein Konto. Du findest es oben rechts."), "x"); return; }
     const members = pairVocab.filter((w) => w.listId === activeList);
     if (!members.length) { toast(txt("Diese Liste hat noch keine Wörter"), "x"); return; }
     /* Frueher standen hier nur Wort und Uebersetzung -- Beispielsaetze und
@@ -704,7 +712,7 @@ export function WordList() {
         subtitle={pendingImport ? txt((pendingImport as any).length === 1 ? "{n} Wort bereit zum Import" : "{n} Wörter bereit zum Import", { n: (pendingImport as any).length }) : ""}
         onClose={() => setPendingImport(null)}
         onPick={(id: string, name: string) => { const p = pendingImport; setPendingImport(null); commitImport(p, id, name); }} />
-      <ShareModal open={!!shareToken} token={shareToken} listName={shareName} onClose={() => setShareToken(null)} />
+      <ShareModal open={!!shareToken} token={shareToken} listName={shareName} autor={auth.username || ""} onClose={() => setShareToken(null)} />
 
       {/* Zieldatum setzen und entfernen an einer Stelle. */}
       {datumOffen && (() => {
@@ -947,6 +955,63 @@ export function WordList() {
     } catch (e) { toast(txt("Das hat nicht geklappt. Versuch es nochmal."), "x"); }
   };
 
+  /* Zum Ausdrucken oder als PDF ablegen.
+   *
+   * Ohne zusaetzliche Bibliothek: die Liste wird als schlichte Seite in
+   * einen unsichtbaren Rahmen geschrieben und dessen Druckdialog geoeffnet.
+   * Dort waehlt man "Als PDF sichern" -- den Weg kennt jeder Browser, und
+   * er kostet kein einziges Kilobyte im Buendel.
+   *
+   * Ein eigenes Fenster waere der naheliegende Weg gewesen, aber
+   * Popup-Blocker machen daraus einen Knopf, der manchmal nichts tut.
+   *
+   * Gedruckt wird, was man zum Lernen braucht: Fremdwort, Stammformen wo es
+   * sie gibt, Uebersetzung. Beispielsaetze bleiben weg -- sie verdreifachen
+   * die Seitenzahl, und wer sie braucht, nimmt die Tabelle. */
+  const exportPdf = () => {
+    if (!woerterImBlick.length) { toast(txt("Hier stehen noch keine Wörter"), "x"); return; }
+    const sicher = (t: any) => String(t ?? "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c] as string));
+    const mitFormen = woerterImBlick.some((w: any) => (w.lernform || "").trim());
+    const kopf = [P.foreignLabel, ...(mitFormen ? [txt("Formen")] : []), P.nativeLabel];
+    const zeilen = woerterImBlick.map((w: any) => [
+      isLat ? (w.grundform || "") : (w[foreign] || ""),
+      ...(mitFormen ? [w.lernform || ""] : []),
+      w.de || "",
+    ]);
+    const heute = new Date().toLocaleDateString(LOCALE(), { day: "numeric", month: "long", year: "numeric" });
+    const html = `<!doctype html><html lang="${getUiLang()}"><head><meta charset="utf-8">
+<title>${sicher(titelImBlick)}</title><style>
+  @page { margin: 18mm 16mm; }
+  body { font: 11pt/1.45 Georgia, "Times New Roman", serif; color: #1f2328; margin: 0; }
+  h1 { font-size: 17pt; margin: 0 0 2mm; }
+  .sub { font-size: 9pt; color: #6b7280; margin-bottom: 7mm; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 8.5pt; letter-spacing: .06em; text-transform: uppercase;
+       color: #6b7280; border-bottom: 1px solid #9ca3af; padding: 0 6px 2mm 0; }
+  td { padding: 1.6mm 6px 1.6mm 0; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+  tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+</style></head><body>
+<h1>${sicher(titelImBlick)}</h1>
+<div class="sub">${sicher(txt("{n} Wörter", { n: woerterImBlick.length }))} · ${sicher(heute)} · SmartVoc</div>
+<table><thead><tr>${kopf.map((h) => `<th>${sicher(h)}</th>`).join("")}</tr></thead>
+<tbody>${zeilen.map((z) => `<tr>${z.map((c) => `<td>${sicher(c)}</td>`).join("")}</tr>`).join("")}</tbody>
+</table></body></html>`;
+    const rahmen = document.createElement("iframe");
+    rahmen.setAttribute("aria-hidden", "true");
+    rahmen.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden";
+    document.body.appendChild(rahmen);
+    const dok = rahmen.contentDocument;
+    if (!dok) { rahmen.remove(); toast(txt("Das hat nicht geklappt. Versuch es nochmal."), "x"); return; }
+    dok.open(); dok.write(html); dok.close();
+    setExportBlatt(false);
+    /* Erst drucken, wenn die Seite steht -- sonst druckt Safari ein leeres Blatt. */
+    setTimeout(() => {
+      try { rahmen.contentWindow?.focus(); rahmen.contentWindow?.print(); }
+      finally { setTimeout(() => rahmen.remove(), 60000); }
+    }, 250);
+  };
+
   /* Dasselbe Blatt wie beim Hineinholen, nur andersherum -- gleiche Form,
    * gleiche Zeilen, damit man nicht zweimal lernen muss, wie es geht. */
   const exportFenster = exportBlatt && (
@@ -969,6 +1034,13 @@ export function WordList() {
             <button className="li" onClick={() => exportTabelle()}>
               <Icon name="download" size={15} />
               <span className="g">{txt("Als Tabelle")}<div className="m">{txt("Excel-Datei (.xlsx), nur in der Webversion")}</div></span>
+              <Icon name="arrowRight" size={14} />
+            </button>
+          )}
+          {istWeb() && (
+            <button className="li" onClick={() => exportPdf()}>
+              <Icon name="book" size={15} />
+              <span className="g">{txt("Als PDF")}<div className="m">{txt("zum Ausdrucken; im Druckdialog „Als PDF sichern“ wählen")}</div></span>
               <Icon name="arrowRight" size={14} />
             </button>
           )}
@@ -1126,7 +1198,7 @@ export function WordList() {
             eine Smart List, denn das sind genauso Wörter, die jemand
             mitnehmen will. */}
         {(l || standImBlick.total > 0) && (
-          <div className="ruest">
+          <div className="ruest ruest-liste">
             {l && (
               <button className="pill pill-on" onClick={() => setDatumOffen(true)}>
                 <Icon name="calendar" size={14} />

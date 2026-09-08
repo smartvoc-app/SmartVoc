@@ -64,8 +64,25 @@ export async function teilen(opts: { titel: string; text: string; url?: string }
       return "gescheitert";   // der Benutzer hat abgebrochen, oder es ging nicht
     }
   }
-  /* Im Browser gibt es die Web-Share-API nur teilweise und nur über HTTPS.
-   * Die Zwischenablage ist der verlässlichere Weg und tut dasselbe. */
+  /* Im Browser: das Systemblatt, wo es das gibt (Safari und Chrome auf dem
+   * Telefon, Safari auf dem Mac -- immer nur über HTTPS). Dort liegen
+   * dieselben Wege wie in der App: Mail, WhatsApp, Nachrichten.
+   *
+   * Wo es das nicht gibt, bleibt die Zwischenablage. Ein Abbruch durch den
+   * Benutzer ist KEIN Grund, ersatzweise zu kopieren: wer abbricht, will
+   * nicht teilen, und eine stille Kopie in der Zwischenablage wäre eine
+   * Handlung, die er nicht verlangt hat. */
+  const kann = typeof navigator !== "undefined" && typeof (navigator as any).share === "function";
+  if (kann) {
+    try {
+      await (navigator as any).share({ title: opts.titel, text: opts.text, url: opts.url });
+      return "geteilt";
+    } catch (e: any) {
+      if (e && e.name === "AbortError") return "gescheitert";
+      /* Sonst hat der Browser abgelehnt (kein HTTPS, keine Nutzergeste) --
+         dann doch kopieren. */
+    }
+  }
   try {
     await navigator.clipboard.writeText([opts.text, opts.url].filter(Boolean).join("\n"));
     return "kopiert";

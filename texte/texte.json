@@ -952,7 +952,7 @@
    "Konnte die Liste nicht laden.",
    "Geteilte Liste",
    "Liste importieren",
-   "Code (VT-…) oder Link einfügen",
+   "Link einfügen",
    "Du bekommst eine eigene Kopie. Deine bestehenden Listen bleiben unverändert.",
    "Abbrechen",
    "„{liste}“ übernommen · {n} Wort",
@@ -1261,12 +1261,13 @@
    "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor."
   ],
   "Teilen": [
+   "{wer} möchte die Wortliste „{liste}“ mit dir teilen. Öffne den Link, sieh sie dir an und übernimm sie, wenn du magst.",
+   "Eine Wortliste für dich: „{liste}“. Öffne den Link, sieh sie dir an und übernimm sie, wenn du magst.",
    "„{liste}“ teilen",
-   "Übernimm meine Wortliste „{liste}“ in SmartVoc:",
-   "Wer den Code oder Link öffnet, bekommt eine eigene Kopie der Liste. Änderungen daran wirken sich nicht auf deine Liste aus.",
-   "Code",
+   "Wer den Link öffnet, bekommt eine eigene Kopie der Liste. Was er daran ändert, wirkt sich nicht auf deine aus.",
+   "Teilen ist gerade nicht möglich: Es fehlt die Adresse der Webfassung.",
    "Link",
-   "Teilen …"
+   "Nachricht schreiben …"
   ],
   "Statistik": [
    "Auswahl",
@@ -1363,6 +1364,7 @@
    "Wort hinzugefügt",
    "Neue Wortliste",
    "Wortliste „{name}“ gelöscht",
+   "Zum Teilen brauchst du ein Konto. Du findest es oben rechts.",
    "Diese Liste hat noch keine Wörter",
    "Teilen hat nicht geklappt. Zum Teilen brauchst du ein Konto.",
    "Übersetzung fehlt",
@@ -1422,6 +1424,8 @@
    "teilen oder in die Zwischenablage, eine Zeile je Wort",
    "Als Tabelle",
    "Excel-Datei (.xlsx), nur in der Webversion",
+   "Als PDF",
+   "zum Ausdrucken; im Druckdialog „Als PDF sichern“ wählen",
    "In dieser Liste suchen …",
    "Diese Liste stellt die App täglich neu zusammen. Ändern lässt sich hier nichts.",
    "Hinzufügen",

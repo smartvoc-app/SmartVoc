@@ -1684,6 +1684,14 @@ table.vt tr.row-sel td { background: var(--amber-bg); }
    Liste. Auf 402 Punkten reicht der Platz nur, wenn die Suche schrumpfen
    darf — sie ist das einzige Element, das ohne Schaden kürzer wird. */
 .wl > .ruest { flex-wrap: nowrap; gap: 7px; }
+/* ... ausser bei der Werkzeugzeile einer geoeffneten Liste.
+ *
+ * Das nowrap oben gilt der SUCHZEILE: dort soll das Feld schrumpfen statt
+ * umzubrechen. Dieselbe Regel traf aber auch die Zeile mit Zieldatum,
+ * Umbenennen, Teilen und Exportieren -- und die hat kein schrumpfbares
+ * Element. Auf einem iPhone lief "Exportieren" damit rechts aus dem Bild,
+ * ohne Hinweis, dass da noch etwas ist. */
+.wl > .ruest.ruest-liste { flex-wrap: wrap; }
 .wl > .ruest .search { flex: 1 1 auto; min-width: 0; }
 .wl > .ruest .search .field { min-width: 0; }
 .wl > .ruest .pill { flex: none; }

@@ -951,7 +951,7 @@
    "Could not load the list.",
    "Shared list",
    "Import list",
-   "Paste a code (VT-…) or link",
+   "Paste the link",
    "You get your own copy. Your existing lists stay untouched.",
    "Cancel",
    "“{liste}” imported · {n} word",
@@ -1260,12 +1260,13 @@
    "From this many cards in a round, the app suggests a break."
   ],
   "Teilen": [
+   "{wer} would like to share the word list “{liste}” with you. Open the link, take a look, and import it if you like.",
+   "A word list for you: “{liste}”. Open the link, take a look, and import it if you like.",
    "Share “{liste}”",
-   "Take my word list “{liste}” into SmartVoc:",
-   "Whoever opens the code or link gets their own copy of the list, changes there do not affect your list.",
-   "Code",
+   "Whoever opens the link gets their own copy of the list. What they change there does not affect yours.",
+   "Sharing is not possible right now: the address of the web version is missing.",
    "Link",
-   "Share …"
+   "Write a message …"
   ],
   "Statistik": [
    "Selection",
@@ -1362,6 +1363,7 @@
    "Word added",
    "New word list",
    "Word list “{name}” deleted",
+   "You need an account to share. You will find it at the top right.",
    "This list has no words yet",
    "Sharing did not work. You need an account to share.",
    "Translation missing",
@@ -1421,6 +1423,8 @@
    "share or copy to the clipboard, one line per word",
    "As a spreadsheet",
    "Excel file (.xlsx), web version only",
+   "As a PDF",
+   "for printing; choose “Save as PDF” in the print dialog",
    "Search in this list …",
    "The app puts this list together fresh every day. Nothing can be changed here.",
    "Add",
