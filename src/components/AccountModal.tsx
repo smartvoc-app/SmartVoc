@@ -265,15 +265,38 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
           </div>
         ) : mode === "reset" ? (
           <div className="col" style={{ gap: 10 }}>
-            <div className="muted" style={{ fontSize: 12.5, lineHeight: 1.45 }}>{txt("Wir schicken dir einen Link, mit dem du ein neues Passwort setzen kannst.")}</div>
-            <input className="field" type="email" placeholder={txt("E-Mail")} value={email} autoComplete="email" autoFocus
-              onChange={(e) => setEmail(e.target.value)} onKeyDown={(e) => e.key === "Enter" && submit()} />
-            {error && <div className="badge red" style={{ alignSelf: "flex-start" }}><span className="dot" />{error}</div>}
-            {info && <div className="muted" style={{ fontSize: 12.5 }}>{info}</div>}
-            <button className="btn btn-primary" onClick={submit} disabled={busy || !email.trim()}>
-              {busy ? <Icon name="refresh" size={15} /> : <Icon name="check" size={15} />} {txt("Link senden")}
-            </button>
-            <button className="btn btn-ghost btn-sm" onClick={() => switchMode("in")}>{txt("Zurück zum Anmelden")}</button>
+            {/* Zwei Zustaende, nicht einer mit einem Satz mehr.
+             *
+             * Vorher stand nach dem Senden dieselbe Maske da: Adresse noch im
+             * Feld, Knopf noch bereit, nur ein Satz kam dazu. Man sah nicht,
+             * ob etwas passiert war, und tippte den Knopf ein zweites Mal.
+             * Dasselbe war beim Anlegen eines Kontos schon aufgefallen und
+             * dort behoben -- hier war es stehen geblieben.
+             *
+             * Der Haken auf dem Knopf verschlimmerte es: er stand da, BEVOR
+             * etwas gesendet war, und blieb danach unveraendert stehen. Ein
+             * Pfeil sagt "das steht noch aus", der Haken gehoert erst in den
+             * Zustand danach. */}
+            {info ? (
+              <>
+                <div className="muted" style={{ fontSize: 12.5, lineHeight: 1.45 }}>{info}</div>
+                <button className="btn btn-primary" onClick={() => switchMode("in")}>
+                  <Icon name="check" size={15} /> {txt("Zurück zum Anmelden")}
+                </button>
+                <button className="btn btn-ghost btn-sm" onClick={() => setInfo("")}>{txt("Nochmal senden")}</button>
+              </>
+            ) : (
+              <>
+                <div className="muted" style={{ fontSize: 12.5, lineHeight: 1.45 }}>{txt("Wir schicken dir einen Link, mit dem du ein neues Passwort setzen kannst.")}</div>
+                <input className="field" type="email" placeholder={txt("E-Mail")} value={email} autoComplete="email" autoFocus
+                  onChange={(e) => setEmail(e.target.value)} onKeyDown={(e) => e.key === "Enter" && submit()} />
+                {error && <div className="badge red" style={{ alignSelf: "flex-start" }}><span className="dot" />{error}</div>}
+                <button className="btn btn-primary" onClick={submit} disabled={busy || !mailOk(email)}>
+                  {busy ? <Icon name="refresh" size={15} /> : <Icon name="arrowRight" size={15} />} {txt("Link senden")}
+                </button>
+                <button className="btn btn-ghost btn-sm" onClick={() => switchMode("in")}>{txt("Zurück zum Anmelden")}</button>
+              </>
+            )}
           </div>
         ) : (
           <div className="col" style={{ gap: 10 }}>
