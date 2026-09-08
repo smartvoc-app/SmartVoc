@@ -4,6 +4,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Capacitor } from "@capacitor/core";
 import { supabase, isConfigured, cameFromRecoveryLink } from "../lib/supabase";
+import { webBasis } from "../lib/native";
 
 type AuthResult = { error?: string };
 
@@ -65,11 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    * Dashboard -- eine Einstellung, die man beim Umzug vergisst und die auf
    * dem Telefon ohnehin nicht die App oeffnet. Dieselbe Ueberlegung wie beim
    * Zuruecksetzen des Passworts darunter, deshalb dieselbe Ableitung. */
-  const zielAdresse = (): string | null => {
-    if (!Capacitor.isNativePlatform()) return window.location.origin + import.meta.env.BASE_URL;
-    const web = (import.meta.env.VITE_WEB_URL as string | undefined)?.trim();
-    return web ? web.replace(/\/*$/, "/") : null;
-  };
+  const zielAdresse = (): string | null => webBasis();
 
   const signUp = useCallback(async (email: string, password: string, username?: string): Promise<AuthResult> => {
     if (!supabase) return { error: "not-configured" };

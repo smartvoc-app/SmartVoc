@@ -3,6 +3,7 @@
  *  - fetchShared: reads one snapshot through the security-definer RPC
  *    get_shared_list(token) — the table itself is not directly selectable. */
 import { supabase } from "../lib/supabase";
+import { webBasis } from "../lib/native";
 
 export interface SharePayload {
   name: string;
@@ -44,9 +45,18 @@ export async function deleteCloudAccount(): Promise<void> {
   if (error) throw error;
 }
 
-/* Shareable link using a hash param (GitHub-Pages friendly). */
+/* Shareable link using a hash param (GitHub-Pages friendly).
+ *
+ * Die Herkunft kommt aus webBasis(), NICHT aus location.origin: in der App
+ * ergaebe das "capacitor://localhost/#share=..." -- und genau das stand im
+ * Teilen-Fenster und ging auch ans System-Teilenblatt. Der Empfaenger
+ * bekam einen Link, der nirgends aufgeht.
+ *
+ * Leerer Rueckgabewert heisst: kein Link moeglich. Der Code (VT-...) bleibt
+ * davon unberuehrt und reicht zum Teilen aus. */
 export function shareLink(token: string): string {
-  return `${location.origin}${location.pathname}#share=${token}`;
+  const basis = webBasis();
+  return basis ? `${basis}#share=${token}` : "";
 }
 /* Human-typable code. */
 export function shareCode(token: string): string {

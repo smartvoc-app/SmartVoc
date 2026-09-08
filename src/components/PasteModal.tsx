@@ -189,8 +189,8 @@ export function PasteModal({ open, pair, onParsed, onClose, initialText }: { ope
 
   const copyPrompt = () => navigator.clipboard?.writeText(aiPrompt).then(() => { setCopied(true); setTimeout(() => setCopied(false), 1600); });
   const pasteClipboard = async () => {
-    try { const t = await navigator.clipboard.readText(); if (t) setText(t); else toast("Zwischenablage ist leer", "x"); }
-    catch { toast("Die App kommt nicht an die Zwischenablage. Füg den Text von Hand ein.", "x"); }
+    try { const t = await navigator.clipboard.readText(); if (t) setText(t); else toast(txt("Zwischenablage ist leer"), "x"); }
+    catch { toast(txt("Die App kommt nicht an die Zwischenablage. Füg den Text von Hand ein."), "x"); }
   };
 
   const proceed = () => {

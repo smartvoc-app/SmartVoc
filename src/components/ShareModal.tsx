@@ -3,7 +3,7 @@ import { useState } from "react";
 import { txt } from "../lib/i18n";
 import { Icon } from "../ui/Icon";
 import { shareLink, shareCode } from "../sync/share";
-import { teilen, tapLeicht } from "../lib/native";
+import { teilen, tapLeicht, istApp } from "../lib/native";
 
 export function ShareModal({ open, token, listName, onClose }: { open: boolean; token: string | null; listName: string; onClose: () => void }) {
   const [copied, setCopied] = useState("");
@@ -18,7 +18,9 @@ export function ShareModal({ open, token, listName, onClose }: { open: boolean; 
    * bleibt es beim Kopieren, was die Knoepfe daneben ohnehin anbieten. */
   const systemTeilen = async () => {
     tapLeicht();
-    const wie = await teilen({ titel: txt("„{liste}“ teilen", { liste: listName }), text: txt("Übernimm meine Wortliste „{liste}“ in SmartVoc:", { liste: listName }), url: link });
+    const wie = await teilen({ titel: txt("„{liste}“ teilen", { liste: listName }),
+      text: txt("Übernimm meine Wortliste „{liste}“ in SmartVoc:", { liste: listName }) + " " + (link || code),
+      url: link || undefined });
     if (wie === "kopiert") { setCopied("link"); setTimeout(() => setCopied(""), 1600); }
   };
   return (
@@ -39,16 +41,25 @@ export function ShareModal({ open, token, listName, onClose }: { open: boolean; 
               <button className="btn" onClick={() => copy(code, "code")}><Icon name={copied === "code" ? "check" : "download"} size={15} /> {txt(copied === "code" ? "Kopiert" : "Kopieren")}</button>
             </div>
           </div>
-          <div>
-            <div className="diff-label" style={{ textAlign: "left", marginBottom: 6 }}>{txt("Link")}</div>
-            <div className="row" style={{ gap: 8 }}>
-              <input className="field" readOnly value={link} onFocus={(e) => e.target.select()} />
-              <button className="btn" onClick={() => copy(link, "link")}><Icon name={copied === "link" ? "check" : "download"} size={15} /> {txt(copied === "link" ? "Kopiert" : "Kopieren")}</button>
+          {/* Ohne hinterlegte Webadresse gibt es keinen brauchbaren Link.
+              Dann steht hier nichts -- der Code daneben reicht zum Teilen. */}
+          {link && (
+            <div>
+              <div className="diff-label" style={{ textAlign: "left", marginBottom: 6 }}>{txt("Link")}</div>
+              <div className="row" style={{ gap: 8 }}>
+                <input className="field" readOnly value={link} onFocus={(e) => e.target.select()} />
+                <button className="btn" onClick={() => copy(link, "link")}><Icon name={copied === "link" ? "check" : "download"} size={15} /> {txt(copied === "link" ? "Kopiert" : "Kopieren")}</button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="modal-foot">
-          <button className="btn" onClick={systemTeilen}><Icon name="share" size={15} /> {txt("Teilen …")}</button>
+          {/* Nur auf dem Geraet. Dort oeffnet der Knopf das Systemblatt mit
+              Nachrichten, Mail und AirDrop -- der Empfaenger ist einen Tipp
+              entfernt. Im Browser kopierte er bloss, und das tun die beiden
+              Knoepfe darueber schon. Ein Knopf, der dasselbe wie der Knopf
+              daneben tut, kostet nur Ueberlegung. */}
+          {istApp() && <button className="btn" onClick={systemTeilen}><Icon name="share" size={15} /> {txt("Teilen …")}</button>}
           <span className="grow" />
           <button className="btn btn-primary" onClick={onClose}>{txt("Fertig")}</button>
         </div>

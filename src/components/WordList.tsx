@@ -354,7 +354,7 @@ export function WordList() {
   const shareActiveList = async () => {
     const l = lists.find((x) => x.id === activeList); if (!l) return;
     const members = pairVocab.filter((w) => (w.lists || []).includes(activeList));
-    if (!members.length) { toast("Diese Liste hat noch keine Wörter", "x"); return; }
+    if (!members.length) { toast(txt("Diese Liste hat noch keine Wörter"), "x"); return; }
     /* Frueher standen hier nur Wort und Uebersetzung -- Beispielsaetze und
      * Aussprache blieben beim Teilen zurueck, obwohl die Gegenseite sie
      * einlesen kann. Jetzt geht die volle Nutzlast mit. */
@@ -362,7 +362,7 @@ export function WordList() {
     try {
       const token = await publishList({ name: l.name, pair, words });
       setShareName(l.name); setShareToken(token);
-    } catch (e) { toast("Teilen hat nicht geklappt. Zum Teilen brauchst du ein Konto.", "x"); }
+    } catch (e) { toast(txt("Teilen hat nicht geklappt. Zum Teilen brauchst du ein Konto."), "x"); }
   };
 
   /* Beispielsaetze und ihre Uebersetzungen gehoeren paarweise zusammen und

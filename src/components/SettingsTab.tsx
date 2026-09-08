@@ -186,7 +186,7 @@ export function SettingsTab() {
   const [delBusy, setDelBusy] = useState(false);
   const [delErr, setDelErr] = useState("");
   const cloudActive = auth.configured && !!auth.user;
-  const doExport = () => { exportAllData(new Date().toISOString()); toast("Daten exportiert", "download"); };
+  const doExport = () => { exportAllData(new Date().toISOString()); toast(txt("Daten exportiert"), "download"); };
   const doDelete = async () => {
     if (confirmText.trim().toUpperCase() !== txt("LÖSCHEN").toUpperCase()) return;
     setDelBusy(true); setDelErr("");
@@ -206,7 +206,7 @@ export function SettingsTab() {
   const activeIds: string[] = Array.isArray(settings.activePairs) ? settings.activePairs : Object.keys(PAIRS);
   const togglePair = (id: string) => {
     const next = activeIds.includes(id) ? activeIds.filter((x) => x !== id) : [...activeIds, id];
-    if (!next.length) { toast("Mindestens eine Sprache muss aktiv bleiben", "x"); return; }
+    if (!next.length) { toast(txt("Mindestens eine Sprache muss aktiv bleiben"), "x"); return; }
     setSettings({ activePairs: next });
   };
 

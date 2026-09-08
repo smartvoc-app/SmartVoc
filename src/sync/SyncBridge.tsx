@@ -142,7 +142,7 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
       // Fix #2: before a risky overwrite of unsynced local data, snapshot it.
       if (!cloudEmpty && anyDirty) {
         backupLocal(docsRef.current);
-        toast("Lokale Daten als Sicherung gespeichert", "download");
+        toast(txt("Lokale Daten als Sicherung gespeichert"), "download");
       }
 
       for (const k of DOC_KEYS) {
@@ -167,7 +167,7 @@ export function SyncBridge({ children }: { children: React.ReactNode }) {
       // here — say so, otherwise the app silently shows different data.
       if (localStorage.getItem(SWITCH_NOTICE_KEY)) {
         localStorage.removeItem(SWITCH_NOTICE_KEY);
-        toast("Gerät auf dieses Konto umgestellt. Die vorherigen Daten liegen als Sicherung auf dem Gerät.", "download");
+        toast(txt("Gerät auf dieses Konto umgestellt. Die vorherigen Daten liegen als Sicherung auf dem Gerät."), "download");
       }
     } catch {
       setStatus(navigator.onLine ? "error" : "offline");
