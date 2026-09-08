@@ -81,6 +81,7 @@ export const EN: Record<string, string> = {
   "baut sich auf, ab heute füllt sich diese Linie": "building up, this line fills from today",
   "Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.": "No history yet. From today the app records where you stand each day.",
   "{n} Wort": "{n} word",
+  "Ein Spitzname genügt. Er steht bei einer geteilten Wortliste als Absender.": "A nickname is enough. It shows as the sender on a shared word list.",
   "SmartVoc kann gerade nicht starten": "SmartVoc cannot start right now",
   "Beim Aufbauen der Oberfläche ist ein Fehler aufgetreten. Deine Wörter und Lernstände sind davon nicht betroffen: sie liegen unverändert auf dem Gerät.": "Something went wrong while building the screen. Your words and progress are not affected: they are still on this device, unchanged.",
   "Am häufigsten liegt es an einer angefangenen Übungsrunde. Der erste Knopf wirft nur diese weg.": "Most often it is a practice round that was left open. The first button discards only that.",

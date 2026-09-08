@@ -125,11 +125,15 @@ ERSTE FRAGE: "Erfasst du Daten von dieser App?"  ->  JA
       Für Tracking verwendet:    NEIN
       (Anmeldung, Bestätigungsmail, Passwort zurücksetzen.)
 
-  ☑ Name
-      Zweck:            App-Funktionalität
-      Mit Identität verknüpft:   JA
-      Für Tracking verwendet:    NEIN
-      (Der frei wählbare Anzeigename. Freiwillig, kann leer bleiben.)
+  ☐ Name  -- NICHT ankreuzen.
+      Der Anzeigename ist ein Spitzname, keine Personenangabe. Apples
+      Definition von Benutzer-ID nennt ausdrücklich "Bildschirmname,
+      Benutzername (Handle)" -- dort ist er richtig aufgehoben, und dort
+      ist er auch deklariert.
+      Damit das stimmt, steht im Registrierungsfenster jetzt: "Ein
+      Spitzname genügt. Er steht bei einer geteilten Wortliste als
+      Absender." Ohne diesen Hinweis traegt ein Teil der Benutzer seinen
+      Vornamen ein, und dann waere die Angabe unwahr.
 
 
 ─── 2. BENUTZERINHALTE ────────────────────────────────────────────

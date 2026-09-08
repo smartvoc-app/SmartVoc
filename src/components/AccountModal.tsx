@@ -313,9 +313,21 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
           </div>
         ) : (
           <div className="col" style={{ gap: 10 }}>
+            {/* Der Hinweis leistet zweierlei: Er sagt, wo der Name auftaucht --
+                sonst weiss niemand, wofuer er gut ist -- und er macht klar,
+                dass ein Spitzname genuegt. Das zweite ist nicht Kosmetik: In
+                den Datenschutzangaben ist dieses Feld als Benutzerkennung
+                deklariert, nicht als Name. Wer seinen Vornamen eintraegt,
+                weil ihn niemand vom Gegenteil unterrichtet hat, macht diese
+                Angabe unwahr. */}
             {mode === "up" && (
-              <input className="field" type="text" placeholder={txt("Anzeigename")} value={username} autoComplete="nickname"
-                onChange={(e) => setUsername(e.target.value)} />
+              <>
+                <input className="field" type="text" placeholder={txt("Anzeigename")} value={username} autoComplete="nickname"
+                  onChange={(e) => setUsername(e.target.value)} />
+                <div className="muted" style={{ fontSize: 12, marginTop: -4, lineHeight: 1.4 }}>
+                  {txt("Ein Spitzname genügt. Er steht bei einer geteilten Wortliste als Absender.")}
+                </div>
+              </>
             )}
             <input className="field" type="email" placeholder={txt("E-Mail")} value={email} autoComplete="email"
               onChange={(e) => setEmail(e.target.value)} />
