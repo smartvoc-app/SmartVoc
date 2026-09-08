@@ -43,6 +43,12 @@
   "Lernintensität",
   "wie schnell die App annimmt, dass ein Wort fester wird"
  ],
+ "src/components/ImportShareModal.tsx": [
+  "„{liste}“ übernommen · {n} Wort",
+  "„{liste}“ übernommen · {n} Wörter",
+  "{n} Wort",
+  "{n} Wörter"
+ ],
  "src/components/PasteModal.tsx": [
   "dog | der Hund cat | die Katze",
   "le chien | der Hund le chat | die Katze",
@@ -80,6 +86,8 @@
   "Lösung zeigen"
  ],
  "src/components/ReviewModal.tsx": [
+  "{n} Wort erkannt. Korrigiere, was nicht stimmt, dann wähle eine Liste.",
+  "{n} Wörter erkannt. Korrigiere, was nicht stimmt, dann wähle eine Liste.",
   "{n} Wort verwenden",
   "{n} Wörter verwenden"
  ],
@@ -144,6 +152,8 @@
   "Gezählt sind nur Wörter, die heute sitzen. Dazu kommen {n} Wörter, die trotz vieler Versuche nicht sitzen. Sie stehen unten unter „Hartnäckig“."
  ],
  "src/components/WordList.tsx": [
+  "1 Wort nach „{liste}“ verschoben",
+  "{n} Wörter nach „{liste}“ verschoben",
   "der Hund",
   "Der Hund läuft im Garten.",
   "Ich sehe das Mädchen.",
@@ -153,6 +163,10 @@
   "das Kind",
   "Das Kind öffnet die Tür.",
   "Jedes Kind bekommt einen Apfel.",
+  "Ein Wort wechselt die Liste.",
+  "{n} Wörter wechseln die Liste.",
+  "Die Wortliste „{name}“ wird gelöscht, mitsamt ihrem Wort und dessen Lernstand.",
+  "Die Wortliste „{name}“ wird gelöscht, mitsamt ihren {n} Wörtern und deren Lernstand.",
   "{n} Wörter gelöscht",
   "{n} Wort bereit zum Import",
   "{n} Wörter bereit zum Import",
@@ -176,8 +190,8 @@
   "der / die / das",
   "länger"
  ],
- "src/store/StoreProvider.tsx": [
-  "Wörter ohne Liste"
+ "src/sync/auth.tsx": [
+  "Das Passwort lässt sich in der App nicht zurücksetzen. Öffne SmartVoc dafür im Browser."
  ],
  "src/ui/Kritzel.tsx": [
   "1 Liste",

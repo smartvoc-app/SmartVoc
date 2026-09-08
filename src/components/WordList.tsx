@@ -71,6 +71,8 @@ export function WordList() {
    * Anlegen einer Liste und beim Ergaenzen einer bestehenden. */
   const [quellenBlatt, setQuellenBlatt] = useState<"neu" | "dazu" | null>(null);
   const [exportBlatt, setExportBlatt] = useState(false);
+  const [verschiebenWahl, setVerschiebenWahl] = useState(false);
+  const [neueZielListe, setNeueZielListe] = useState<string | null>(null);
   const [mergeWahl, setMergeWahl] = useState(false);
   const [mergeZiel, setMergeZiel] = useState<string | null>(null);
   const [datumOffen, setDatumOffen] = useState(false);
@@ -225,7 +227,6 @@ export function WordList() {
     store.setSettings({ practiceSel: "list:" + id });
     window.dispatchEvent(new CustomEvent("vt-tab", { detail: "practice" }));
   };
-  const activeIsNoList = lists.find((l) => l.id === activeList)?.system === "nolist";
   const pairVocab = useMemo(() => vocab.filter((w) => w.pair === pair), [vocab, pair]);
 
   /* Wie viele Woerter das Loeschen der offenen Liste kostet. Ein Wort gehoert
@@ -320,6 +321,22 @@ export function WordList() {
       toast(txt("Wort hinzugefügt"), "check");
     } else store.updateWord(id, patch);
     setEditingId(null);
+  };
+
+  /* Verschieben: die Auswahl wandert in die Zielliste, danach ist die
+     Auswahl aufgehoben -- die Woerter sind hier ja nicht mehr zu sehen. */
+  const verschiebeNach = (zielId: string, zielName: string) => {
+    const n = gewaehlt.length;
+    store.moveWordsToList(gewaehlt, zielId);
+    setGewaehlt([]); setVerschiebenWahl(false); setNeueZielListe(null);
+    toast(txt(n === 1 ? "1 Wort nach „{liste}“ verschoben" : "{n} Wörter nach „{liste}“ verschoben",
+      { n, liste: zielName }), "check");
+  };
+  const verschiebeInNeue = () => {
+    const name = (neueZielListe || "").trim();
+    if (!name) return;
+    const id = store.addList(name, pair);
+    verschiebeNach(id, name);
   };
 
   /* ---- list management ---- */
@@ -554,6 +571,50 @@ export function WordList() {
         </div>
       )}
 
+      {/* Verschieben: Zielliste waehlen. Kein Bestaetigungsschritt -- ein Wort
+          gehoert in genau eine Liste, das Verschieben nimmt nichts weg und
+          laesst sich durch Zurueckverschieben aufheben. */}
+      {verschiebenWahl && (
+        <div className="modal-backdrop" onClick={() => setVerschiebenWahl(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 460 }}>
+            <div className="modal-head">
+              <div className="modal-title">{txt("Wohin verschieben?")}</div>
+              <button className="icon-btn" style={{ width: 34, height: 34 }} onClick={() => setVerschiebenWahl(false)}><Icon name="x" size={16} /></button>
+            </div>
+            <p className="said" style={{ marginTop: 0 }}>
+              {txt(gewaehlt.length === 1 ? "Ein Wort wechselt die Liste." : "{n} Wörter wechseln die Liste.", { n: gewaehlt.length })}
+            </p>
+            <div className="list">
+              {lists.filter((l: any) => l.pair === pair && l.id !== activeList).map((l: any) => (
+                <button key={l.id} className="li" onClick={() => verschiebeNach(l.id, l.name)}>
+                  <span className="g">{l.name}
+                    <div className="m">{txt("{n} Wörter", { n: pairVocab.filter((w: any) => (w.lists || []).includes(l.id)).length })}</div></span>
+                  <Icon name="arrowRight" size={14} />
+                </button>
+              ))}
+              {neueZielListe === null ? (
+                <button className="li" onClick={() => setNeueZielListe("")}>
+                  <span className="g">{txt("Neue Liste …")}</span>
+                  <Icon name="plus" size={14} />
+                </button>
+              ) : (
+                <div className="row" style={{ gap: 8, padding: "8px 0" }}>
+                  <input className="field" autoFocus placeholder={txt("Name der Liste …")} value={neueZielListe}
+                    onChange={(e) => setNeueZielListe(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && neueZielListe.trim() && verschiebeInNeue()} />
+                  <button className="btn btn-primary" disabled={!neueZielListe.trim()} onClick={verschiebeInNeue}>
+                    <Icon name="check" size={15} /> {txt("Anlegen")}
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="modal-foot">
+              <button className="btn btn-ghost" onClick={() => setVerschiebenWahl(false)}>{txt("Abbrechen")}</button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Zusammenführen: erst die Zielliste wählen, dann die Rückfrage. */}
       {mergeWahl && (
         <div className="modal-backdrop" onClick={() => setMergeWahl(false)}>
@@ -567,14 +628,14 @@ export function WordList() {
                 { name: lists.find((x: any) => x.id === activeList)?.name || "" })}
             </p>
             <div className="list">
-              {lists.filter((l: any) => l.pair === pair && l.id !== activeList && l.system !== "nolist").map((l: any) => (
+              {lists.filter((l: any) => l.pair === pair && l.id !== activeList).map((l: any) => (
                 <button key={l.id} className="li" onClick={() => { setMergeWahl(false); setMergeZiel(l.id); }}>
                   <span className="g">{l.name}
                     <div className="m">{txt("{n} Wörter", { n: pairVocab.filter((w: any) => (w.lists || []).includes(l.id)).length })}</div></span>
                   <Icon name="arrowRight" size={14} />
                 </button>
               ))}
-              {!lists.some((l: any) => l.pair === pair && l.id !== activeList && l.system !== "nolist") && (
+              {!lists.some((l: any) => l.pair === pair && l.id !== activeList) && (
                 <div className="quiet links">{txt("Es gibt in dieser Sprache keine zweite Liste.")}</div>
               )}
             </div>
@@ -961,7 +1022,6 @@ export function WordList() {
    */
   if (offen) {
     const l = offen.art === "liste" ? lists.find((x: any) => x.id === offen.ref) : null;
-    const istSystemliste = l?.system === "nolist";
     /* Eine Smart List ist ein Blick, keine Ablage: die App stellt sie jeden
      * Tag neu zusammen. Wer darin ein Wort loeschte, loeschte es aus seiner
      * echten Liste -- ohne zu sehen, aus welcher. Also nur ansehen.
@@ -1006,6 +1066,13 @@ export function WordList() {
                 <button className="btn btn-sm" disabled={!nurEines}
                   onClick={() => { const w = vocab.find((x: any) => x.id === gewaehlt[0]); if (w) startEdit(w); }}>
                   <Icon name="edit" size={14} /> {txt("Bearbeiten")}
+                </button>
+                {/* Bis hierher liess sich die Liste eines Wortes ueberhaupt
+                    nicht aendern -- nur ganze Listen zusammenfuehren. Der
+                    Auswahlmodus war schon da, ihm fehlte genau diese Aktion. */}
+                <button className="btn btn-sm" disabled={!gewaehlt.length}
+                  onClick={() => { setNeueZielListe(null); setVerschiebenWahl(true); }}>
+                  <Icon name="swap" size={14} /> {txt("Verschieben")}
                 </button>
                 <button className="btn btn-sm" disabled={!gewaehlt.length} onClick={() => setLoeschFrage(true)}>
                   <Icon name="trash" size={14} /> {txt("Löschen")}
@@ -1066,12 +1133,12 @@ export function WordList() {
                 <span>{l.dueDate ? new Date(l.dueDate).toLocaleDateString(LOCALE(), { weekday: "short", day: "numeric", month: "numeric" }) : txt("Kein Zieldatum")}</span>
               </button>
             )}
-            {l && !istSystemliste && (
+            {l && (
               <button className="pill" onClick={() => { setEditingListId(l.id); setListName(l.name); }}>
                 <Icon name="edit" size={14} /> {txt("Umbenennen")}
               </button>
             )}
-            {canShare && l && !istSystemliste && (
+            {canShare && l && (
               <button className="pill" onClick={shareActiveList}><Icon name="share" size={14} /> {txt("Teilen")}</button>
             )}
             {standImBlick.total > 0 && (
@@ -1107,7 +1174,7 @@ export function WordList() {
 
         {/* Zwei Wortlisten zu einer machen -- „Unité 3" und „Unité 3 Teil 2"
             gehören meist ohnehin zusammen. */}
-        {l && !istSystemliste && (
+        {l && (
           <button className="li" onClick={() => setMergeWahl(true)}>
             <Icon name="swap" size={15} />
             <span className="g">{txt("Mit einer anderen Liste zusammenführen")}
@@ -1137,7 +1204,7 @@ export function WordList() {
           </div>
         )}
 
-        {l && !istSystemliste && (
+        {l && (
           <button className="wl-loeschen" onClick={() => setListeLoeschen(true)}>
             <Icon name="trash" size={13} /> {txt("Diese Wortliste löschen")}
           </button>

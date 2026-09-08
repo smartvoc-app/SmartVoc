@@ -110,41 +110,34 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     migratedRef.current = true;
     const done = (meta.migrations || {}) as Record<string, boolean>;
     const applied: Record<string, boolean> = {};
-    /* V28: Woerter einsammeln, die in keiner Liste mehr stehen.
+    /* V28: Woerter loeschen, die in keiner Liste stehen.
      *
-     * Rueckstand aus der alten Fassung von deleteList: die liess die Woerter
-     * einer geloeschten Liste stehen, ohne Zugehoerigkeit. Danach waren sie
-     * unsichtbar, wurden aber weiter mitgezaehlt und weiter abgefragt -- ein
-     * Bestand, an den man nicht mehr herankam. Seit deleteList die Woerter
-     * mitnimmt, entstehen keine neuen mehr.
+     * Ein Wort gehoert in genau eine Liste (V18). Ein Wort ohne Liste ist
+     * kein Sonderfall, sondern ein Rest: Die alte Fassung von deleteList
+     * liess die Woerter einer geloeschten Liste stehen, ohne Zugehoerigkeit.
+     * Danach waren sie nirgends zu sehen, wurden aber weiter mitgezaehlt und
+     * weiter abgefragt -- ein Bestand, an den man nicht mehr herankam.
      *
-     * Die vorhandenen werden SICHTBAR gemacht, nicht geloescht. Sie haetten
-     * zwar mit ihrer Liste verschwinden sollen, aber eine Migration, die
-     * ungefragt Woerter loescht, ist der falsche Ort dafuer: sie laeuft
-     * einmal, still, und laesst sich nicht zurueckholen. In "Woerter ohne
-     * Liste" stehen sie da, wo man sie ansehen und in zwei Schritten
-     * loeschen kann -- die Entscheidung bleibt beim Benutzer. */
+     * Sie haetten mit ihrer Liste verschwinden sollen, also verschwinden sie
+     * jetzt. Mit ihnen faellt die Sammelliste "Woerter ohne Liste" weg: sie
+     * hatte keinen einzigen Aufrufer und war nur ein Ort, an dem sich
+     * herrenlose Woerter haetten sammeln koennen. Seit deleteList die
+     * Woerter mitnimmt, entstehen keine neuen. */
     if (!done.waisenV28) {
       const ls = initRef.current.lists || [];
       const vc = initRef.current.vocab || [];
-      const gueltig = new Set(ls.map((l: any) => l.id));
-      const waisen = vc.filter((w: any) => !(w.lists || []).some((id: string) => gueltig.has(id)));
-      if (waisen.length) {
-        const neueListen = [...ls];
-        const auffangJePaar: Record<string, string> = {};
-        for (const l of ls) if (l.system === "nolist") auffangJePaar[l.pair] = l.id;
-        for (const w of waisen) {
-          const pr = w.pair || "en-de";
-          if (!auffangJePaar[pr]) {
-            const id = newId();
-            auffangJePaar[pr] = id;
-            neueListen.push({ id, name: "Wörter ohne Liste", pair: pr, system: "nolist", createdAt: Date.now() });
-          }
-        }
-        const waisenIds = new Set(waisen.map((w: any) => w.id));
-        setListsState(neueListen);
-        setVocabState(vc.map((w: any) => (waisenIds.has(w.id)
-          ? { ...w, lists: [auffangJePaar[w.pair || "en-de"]] } : w)));
+      const echt = new Set(ls.filter((l: any) => l.system !== "nolist").map((l: any) => l.id));
+      const waisen = vc.filter((w: any) => !(w.lists || []).some((id: string) => echt.has(id)));
+      const sammelliste = ls.some((l: any) => l.system === "nolist");
+      if (waisen.length || sammelliste) {
+        const weg = new Set(waisen.map((w: any) => w.id));
+        setListsState(ls.filter((l: any) => l.system !== "nolist"));
+        setVocabState(vc.filter((w: any) => !weg.has(w.id)));
+        if (weg.size) setStats((prev: any) => {
+          const next = { ...prev };
+          weg.forEach((id: any) => { delete next[id]; });
+          return next;
+        });
       }
       applied.waisenV28 = true;
     }
@@ -417,16 +410,6 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setListsState((ls: any) => [...ls, l]);
       return l.id;
     },
-    // FR3-6: the per-pair "Wörter ohne Liste" collection (system list). Auto-created,
-    // never duplicated. PFLICHT 2: not shareable/exportable-as-list, not deletable.
-    addLooseWord: (word: any, p: string) => {
-      const pr = p || "en-de";
-      let listId = lists.find((l: any) => l.system === "nolist" && l.pair === pr)?.id;
-      if (!listId) { listId = newId(); setListsState((ls: any) => [...ls, { id: listId, name: "Wörter ohne Liste", pair: pr, system: "nolist", createdAt: Date.now() }]); }
-      const wid = newId();
-      setVocabState((v: any) => [{ id: wid, review: false, source: "manual", pair: pr, lists: [listId], ...word }, ...v]);
-      return wid;
-    },
     renameList: (id: string, name: string) => {
       setListsState((ls: any) => ls.map((l: any) => (l.id === id ? { ...l, name, updatedAt: Date.now() } : l)));
     },
@@ -447,7 +430,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
      * Oberflaeche meldet es, damit es niemandem stillschweigend passiert. */
     mergeLists: (vonId: string, nachId: string) => {
       const von = lists.find((l: any) => l.id === vonId);
-      if (!von || von.system === "nolist" || vonId === nachId) return { verschoben: 0, doppelt: 0 };
+      if (!von || vonId === nachId) return { verschoben: 0, doppelt: 0 };
       const schluessel = (w: any) => {
         const pr = w.pair || "en-de";
         const f = isLatinPair(pr) ? (w.grundform || "") : (w[fk(pr)] || "");
@@ -464,7 +447,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     },
     deleteList: (id: string) => {
       const weg = lists.find((l: any) => l.id === id);
-      if (!weg || weg.system === "nolist") return;   // PFLICHT 2: nolist not deletable
+      if (!weg) return;
       /* Ein Wort gehoert in GENAU EINE Liste (V18, siehe einListeJeWort).
        * Also gehen mit der Liste ihre Woerter -- wer nur die Liste loswerden
        * will, raeumt sie vorher leer.
@@ -493,6 +476,16 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
      * genau diese Verwirrung noch einmal erzeugt. */
     beruehreListe: (id: string) =>
       setListsState((ls: any) => ls.map((l: any) => (l.id === id ? { ...l, updatedAt: Date.now() } : l))),
+    /* Woerter in eine andere Liste bringen.
+     *
+     * Ein Wort gehoert in genau eine Liste (V18), also ist das ein
+     * VERSCHIEBEN: die alte Zugehoerigkeit wird ersetzt, nicht ergaenzt.
+     * Rueckgaengig macht man es durch Zurueckverschieben -- deshalb braucht
+     * es dafuer keine Rueckfrage. */
+    moveWordsToList: (wordIds: string[], zielId: string) => {
+      const set = new Set(wordIds);
+      setVocabState((v: any) => v.map((w: any) => (set.has(w.id) ? { ...w, lists: [zielId] } : w)));
+    },
     addWordsToList: (listId: string, wordIds: string[]) => {
       const set = new Set(wordIds);
       setVocabState((v: any) => v.map((w: any) => (set.has(w.id) && !(w.lists || []).includes(listId)

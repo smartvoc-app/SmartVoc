@@ -125,7 +125,7 @@ export function Practice() {
   // V14: FSRS-based quick-access chips (one axis each). „Wackeln noch" = stufe
   // 'sitzt_schlecht' (S), replaces the old classifyWord-„Schwierige". Leeches (D)
   // live only in Stats, not here.
-  const pairLists = useMemo(() => (store.lists || []).filter((l: any) => l.pair === pair && !(l.system === "nolist" && !vocab.some((w: any) => w.pair === pair && (w.lists || []).includes(l.id)))), [store.lists, pair, vocab]);
+  const pairLists = useMemo(() => (store.lists || []).filter((l: any) => l.pair === pair), [store.lists, pair, vocab]);
   // F-NAV-2: multiselect is EPHEMERAL UI state — NOT persisted, NOT synced (FIX C:
   // practiceSel stays a single token; 2+ scopes drive a deduped union at runtime only).
   const [multiSel, setMultiSel] = useState<string[]>([]);
