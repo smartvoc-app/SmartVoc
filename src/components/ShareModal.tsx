@@ -8,7 +8,7 @@ import { useState } from "react";
 import { txt } from "../lib/i18n";
 import { Icon } from "../ui/Icon";
 import { shareLink } from "../sync/share";
-import { teilen, tapLeicht } from "../lib/native";
+import { teilen, tapLeicht, istApp, perMail, perWhatsApp } from "../lib/native";
 
 export function ShareModal({ open, token, listName, autor, onClose }: { open: boolean; token: string | null; listName: string; autor?: string; onClose: () => void }) {
   const [copied, setCopied] = useState("");
@@ -63,15 +63,41 @@ export function ShareModal({ open, token, listName, autor, onClose }: { open: bo
             </div>
           )}
         </div>
+        {/* Auf dem Geraet das Systemblatt -- dort stehen Nachrichten, Mail,
+            AirDrop und WhatsApp, und der Empfaenger ist einen Tipp entfernt.
+         *
+         * Im Browser NICHT: Auf dem Mac zeigt das Blatt nur, was sich als
+         * Erweiterung eingetragen hat, und WhatsApp und Outlook tun das
+         * nicht -- man kann sie dort auch nicht hinzufuegen. Statt eines
+         * Blattes, in dem der gesuchte Weg fehlt, stehen hier die Wege
+         * selbst. Beide tragen den Begleittext von Anfang an. */}
+        {link && (
+          <div className="col" style={{ gap: 10, marginTop: 16 }}>
+            <div className="diff-label" style={{ textAlign: "left" }}>{txt("Nachricht schicken")}</div>
+            {istApp() ? (
+              <button className="btn btn-primary" onClick={systemTeilen}>
+                <Icon name="share" size={15} /> {txt("Nachricht schreiben …")}
+              </button>
+            ) : (
+              <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>
+                <button className="btn" onClick={() => { tapLeicht(); perMail(txt("Wortliste „{liste}“", { liste: listName }), nachricht + "\n\n" + link); }}>
+                  {txt("Per E-Mail")}
+                </button>
+                <button className="btn" onClick={() => { tapLeicht(); perWhatsApp(nachricht + "\n\n" + link); }}>
+                  {txt("Per WhatsApp")}
+                </button>
+                <button className="btn" onClick={() => copy(nachricht + "\n\n" + link, "nachricht")}>
+                  <Icon name={copied === "nachricht" ? "check" : "download"} size={15} />
+                  {txt(copied === "nachricht" ? "Kopiert" : "Text kopieren")}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
         <div className="modal-foot">
-          {/* Auf beiden Plattformen. Auf dem Geraet oeffnet das Systemblatt
-              Nachrichten, Mail und AirDrop; im Browser dasselbe, wo er es
-              kann, sonst landet die Nachricht in der Zwischenablage. So oder
-              so geht der Text mit -- der Knopf daneben kopiert nur den
-              nackten Link. */}
-          <button className="btn btn-primary" onClick={systemTeilen} disabled={!link}><Icon name="share" size={15} /> {txt("Nachricht schreiben …")}</button>
           <span className="grow" />
-          <button className="btn" onClick={onClose}>{txt("Fertig")}</button>
+          <button className="btn btn-primary" onClick={onClose}>{txt("Fertig")}</button>
         </div>
       </div>
     </div>

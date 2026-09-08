@@ -75,7 +75,13 @@ export async function teilen(opts: { titel: string; text: string; url?: string }
   const kann = typeof navigator !== "undefined" && typeof (navigator as any).share === "function";
   if (kann) {
     try {
-      await (navigator as any).share({ title: opts.titel, text: opts.text, url: opts.url });
+      /* Der Link steht IM Text, und `url` bleibt leer.
+       *
+       * Bekommt navigator.share beides, nehmen die meisten Ziele nur die
+       * URL und werfen den Text weg -- beim Empfaenger landet dann ein
+       * nackter Link ohne den Satz, der erklaert, was er damit soll. Steht
+       * der Link im Text, geht er mit, was das Ziel auch tut. */
+      await (navigator as any).share({ title: opts.titel, text: [opts.text, opts.url].filter(Boolean).join("\n\n") });
       return "geteilt";
     } catch (e: any) {
       if (e && e.name === "AbortError") return "gescheitert";
@@ -84,9 +90,37 @@ export async function teilen(opts: { titel: string; text: string; url?: string }
     }
   }
   try {
-    await navigator.clipboard.writeText([opts.text, opts.url].filter(Boolean).join("\n"));
+    await navigator.clipboard.writeText([opts.text, opts.url].filter(Boolean).join("\n\n"));
     return "kopiert";
   } catch (e) {
     return "gescheitert";
   }
+}
+
+/* Benannte Wege statt Systemblatt.
+ *
+ * Auf dem Mac bietet das Systemblatt nur an, was sich als Erweiterung
+ * eingetragen hat -- WhatsApp und Outlook tun das nicht, und man kann sie
+ * dort auch nicht hinzufuegen. Ein Blatt, in dem der gesuchte Weg fehlt und
+ * sich nicht ergaenzen laesst, ist kein Weg.
+ *
+ * Diese beiden sind blosse Verweise: mailto oeffnet das eingerichtete
+ * Mailprogramm (auch Outlook, wenn es das Standardprogramm ist), wa.me die
+ * WhatsApp-App oder WhatsApp Web. Beide tragen den Text von Anfang an. */
+export function perMail(betreff: string, text: string) {
+  oeffne(`mailto:?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(text)}`);
+}
+export function perWhatsApp(text: string) {
+  oeffne(`https://wa.me/?text=${encodeURIComponent(text)}`);
+}
+function oeffne(ziel: string) {
+  /* Ueber einen Verweis, nicht ueber window.open: der wird von
+   * Popup-Blockern seltener abgefangen, und mailto braucht ohnehin keinen
+   * neuen Reiter. */
+  const a = document.createElement("a");
+  a.href = ziel;
+  if (ziel.startsWith("http")) { a.target = "_blank"; a.rel = "noopener"; }
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }

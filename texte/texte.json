@@ -1268,7 +1268,11 @@
    "Wer den Link öffnet, bekommt eine eigene Kopie der Liste. Was er daran ändert, wirkt sich nicht auf deine aus.",
    "Teilen ist gerade nicht möglich: Es fehlt die Adresse der Webfassung.",
    "Link",
-   "Nachricht schreiben …"
+   "Nachricht schicken",
+   "Nachricht schreiben …",
+   "Wortliste „{liste}“",
+   "Per E-Mail",
+   "Per WhatsApp"
   ],
   "Statistik": [
    "Auswahl",

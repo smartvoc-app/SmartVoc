@@ -1267,7 +1267,11 @@
    "Whoever opens the link gets their own copy of the list. What they change there does not affect yours.",
    "Sharing is not possible right now: the address of the web version is missing.",
    "Link",
-   "Write a message …"
+   "Send a message",
+   "Write a message …",
+   "Word list “{liste}”",
+   "By email",
+   "By WhatsApp"
   ],
   "Statistik": [
    "Selection",
