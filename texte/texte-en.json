@@ -1261,15 +1261,15 @@
    "From this many cards in a round, the app suggests a break."
   ],
   "Teilen": [
-   "{wer} would like to share the word list “{liste}” with you. Open the link, take a look, and import it if you like.",
-   "A word list for you: “{liste}”. Open the link, take a look, and import it if you like.",
+   "{wer} would like to share the word list “{liste}” with you. SmartVoc is a vocabulary trainer; open the link, take a look at the list, and import it if you like.",
+   "A word list for you: “{liste}”. SmartVoc is a vocabulary trainer; open the link, take a look at the list, and import it if you like.",
    "Share “{liste}”",
    "Whoever opens the link gets their own copy of the list. What they change there does not affect yours.",
    "Sharing is not possible right now: the address of the web version is missing.",
    "Link",
    "Send a message",
    "Write a message …",
-   "Word list “{liste}”",
+   "SmartVoc: word list “{liste}”",
    "By email",
    "By WhatsApp"
   ],

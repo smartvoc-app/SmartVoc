@@ -1262,15 +1262,15 @@
    "Ab so vielen Karten in einer Runde schlägt die App eine Pause vor."
   ],
   "Teilen": [
-   "{wer} möchte die Wortliste „{liste}“ mit dir teilen. Öffne den Link, sieh sie dir an und übernimm sie, wenn du magst.",
-   "Eine Wortliste für dich: „{liste}“. Öffne den Link, sieh sie dir an und übernimm sie, wenn du magst.",
+   "{wer} möchte die Wortliste „{liste}“ mit dir teilen. SmartVoc ist ein Vokabeltrainer; öffne den Link, sieh dir die Liste an und übernimm sie, wenn du magst.",
+   "Eine Wortliste für dich: „{liste}“. SmartVoc ist ein Vokabeltrainer; öffne den Link, sieh dir die Liste an und übernimm sie, wenn du magst.",
    "„{liste}“ teilen",
    "Wer den Link öffnet, bekommt eine eigene Kopie der Liste. Was er daran ändert, wirkt sich nicht auf deine aus.",
    "Teilen ist gerade nicht möglich: Es fehlt die Adresse der Webfassung.",
    "Link",
    "Nachricht schicken",
    "Nachricht schreiben …",
-   "Wortliste „{liste}“",
+   "SmartVoc: Wortliste „{liste}“",
    "Per E-Mail",
    "Per WhatsApp"
   ],

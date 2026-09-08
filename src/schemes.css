@@ -46,8 +46,8 @@
   --stack: #f0e8d6;
   --ok: #4f6a44;
   --ok-bg: #dcdbc9;
-  --warn: #796218;
-  --warn-bg: #e3dac2;
+  --warn: #a35a09;
+  --warn-bg: #f0dfc6;
   --bad: #8a3f2e;
   --bad-bg: #e6d5c5;
 }
@@ -77,8 +77,8 @@
   --stack: #332e26;
   --ok: #8fae7f;
   --ok-bg: #3b3d30;
-  --warn: #c9a227;
-  --warn-bg: #443b22;
+  --warn: #e09b3c;
+  --warn-bg: #46351f;
   --bad: #d08a74;
   --bad-bg: #45372e;
 }
@@ -108,8 +108,8 @@
   --stack: #eaeff7;
   --ok: #2f6b4f;
   --ok-bg: #dbeae1;
-  --warn: #8a6a12;
-  --warn-bg: #f0e6cd;
+  --warn: #a35a09;
+  --warn-bg: #f6e5cc;
   --bad: #a33a34;
   --bad-bg: #f4dedc;
 }
@@ -139,8 +139,8 @@
   --stack: #222936;
   --ok: #7cb894;
   --ok-bg: #22322a;
-  --warn: #d4b04a;
-  --warn-bg: #3a3220;
+  --warn: #e0a33a;
+  --warn-bg: #3d2f1e;
   --bad: #e08a80;
   --bad-bg: #35262a;
 }
@@ -170,8 +170,8 @@
   --stack: #eaeded;
   --ok: #4a7a2f;
   --ok-bg: #e0ecd6;
-  --warn: #8a6a12;
-  --warn-bg: #efe6cd;
+  --warn: #a35a09;
+  --warn-bg: #f5e5cc;
   --bad: #a33a34;
   --bad-bg: #f3ddda;
 }
@@ -201,8 +201,8 @@
   --stack: #242a29;
   --ok: #97c073;
   --ok-bg: #2a3524;
-  --warn: #d4b04a;
-  --warn-bg: #3a3220;
+  --warn: #e0a33a;
+  --warn-bg: #3d2f1e;
   --bad: #e08a80;
   --bad-bg: #362725;
 }
@@ -235,8 +235,8 @@
     --stack: #332e26;
     --ok: #8fae7f;
     --ok-bg: #3b3d30;
-    --warn: #c9a227;
-    --warn-bg: #443b22;
+    --warn: #e09b3c;
+    --warn-bg: #46351f;
     --bad: #d08a74;
     --bad-bg: #45372e;
   }
@@ -265,8 +265,8 @@
     --stack: #222936;
     --ok: #7cb894;
     --ok-bg: #22322a;
-    --warn: #d4b04a;
-    --warn-bg: #3a3220;
+    --warn: #e0a33a;
+    --warn-bg: #3d2f1e;
     --bad: #e08a80;
     --bad-bg: #35262a;
   }
@@ -295,8 +295,8 @@
     --stack: #242a29;
     --ok: #97c073;
     --ok-bg: #2a3524;
-    --warn: #d4b04a;
-    --warn-bg: #3a3220;
+    --warn: #e0a33a;
+    --warn-bg: #3d2f1e;
     --bad: #e08a80;
     --bad-bg: #362725;
   }

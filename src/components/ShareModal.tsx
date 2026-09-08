@@ -23,10 +23,13 @@ export function ShareModal({ open, token, listName, autor, onClose }: { open: bo
   /* Die Nachricht sagt, von wem sie kommt, worum es geht und was zu tun ist.
      Ohne den ersten Teil steht beim Empfaenger ein nackter Link von einer
      unbekannten Adresse -- den klickt zu Recht niemand an. */
+  /* Der Name der App gehoert in Betreff UND Text. Beim Empfaenger steht
+     sonst eine Wortliste von jemandem, ein Link auf eine unbekannte Adresse
+     und kein Wort dazu, worum es ueberhaupt geht. */
   const nachricht = autor
-    ? txt("{wer} möchte die Wortliste „{liste}“ mit dir teilen. Öffne den Link, sieh sie dir an und übernimm sie, wenn du magst.",
+    ? txt("{wer} möchte die Wortliste „{liste}“ mit dir teilen. SmartVoc ist ein Vokabeltrainer; öffne den Link, sieh dir die Liste an und übernimm sie, wenn du magst.",
         { wer: autor, liste: listName })
-    : txt("Eine Wortliste für dich: „{liste}“. Öffne den Link, sieh sie dir an und übernimm sie, wenn du magst.",
+    : txt("Eine Wortliste für dich: „{liste}“. SmartVoc ist ein Vokabeltrainer; öffne den Link, sieh dir die Liste an und übernimm sie, wenn du magst.",
         { liste: listName });
   const systemTeilen = async () => {
     tapLeicht();
@@ -80,7 +83,7 @@ export function ShareModal({ open, token, listName, autor, onClose }: { open: bo
               </button>
             ) : (
               <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>
-                <button className="btn" onClick={() => { tapLeicht(); perMail(txt("Wortliste „{liste}“", { liste: listName }), nachricht + "\n\n" + link); }}>
+                <button className="btn" onClick={() => { tapLeicht(); perMail(txt("SmartVoc: Wortliste „{liste}“", { liste: listName }), nachricht + "\n\n" + link); }}>
                   {txt("Per E-Mail")}
                 </button>
                 <button className="btn" onClick={() => { tapLeicht(); perWhatsApp(nachricht + "\n\n" + link); }}>
