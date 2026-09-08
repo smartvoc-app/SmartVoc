@@ -215,3 +215,66 @@ Frage: "Verwendet deine App Daten zum Tracking?"  ->  NEIN
 
 Die App verfolgt niemanden über andere Apps oder Websites hinweg und
 gibt keine Daten an Datenhändler weiter.
+
+
+═══════════════════════════════════════════════════════════════════
+TESTFLIGHT — EXTERNE BETA (nur für die Beta-Prüfung nötig)
+═══════════════════════════════════════════════════════════════════
+App Store Connect → TestFlight → Externe Tests → Gruppe → Build
+zuweisen. Apple fragt dann der Reihe nach diese Felder ab.
+
+
+─── BETA-APP-BESCHREIBUNG ──────────────────── 565 / 4000 Zeichen ──
+Gilt für alle Builds, wird den Testern in der TestFlight-App gezeigt.
+
+SmartVoc ist ein Vokabeltrainer, der für jedes Wort einzeln ausrechnet,
+wann du es vergessen wirst, und es kurz davor abfragt. Was sitzt,
+verschwindet für Wochen. Was wackelt, ist morgen wieder da.
+
+Sechs Sprachen mit je hundert Wörtern liegen bereit: Englisch,
+Französisch, Spanisch, Italienisch, Portugiesisch und Latein. Eigene
+Wortlisten tippst du ab, fügst sie ein oder lässt sie dir von deiner
+KI-App aus einem Foto der Heftseite erstellen.
+
+Ein Konto ist für nichts davon nötig. Es dient nur dem Abgleich
+zwischen mehreren Geräten und dem Teilen einer Liste.
+
+
+─── WAS GIBT ES ZU TESTEN ──────────────────── 984 / 4000 Zeichen ──
+Gilt je Build. Bei jedem neuen Build neu schreiben, was dazugekommen ist.
+
+Das ist der erste Build, den jemand ausser mir in die Hand bekommt.
+Interessant ist alles, was sich im Alltag schief anfühlt.
+
+Der schnellste Weg hinein: unten auf «Üben» tippen. Eine Karte steht
+sofort da, es ist nichts vorzubereiten.
+
+Worauf ich besonders achten würde:
+
+* Antwortprüfung. Tippe absichtlich daneben — ein Buchstabe vertauscht,
+  ein Umlaut weggelassen, der falsche Artikel. Stimmt das Urteil
+  «richtig / fast richtig / falsch» mit deinem Gefühl überein? Wenn
+  nicht: welches Wort, welche Antwort, welches Urteil.
+* Eigene Liste anlegen, über «Wortlisten → + Neue Liste → Liste
+  einfügen». Der Weg über die KI mit einem Foto der Heftseite ist der
+  Hauptweg; ob die Zuordnung der Spalten stimmt, sieht man im
+  Prüfen-Fenster.
+* Zieldatum an einer Liste setzen und schauen, ob der Übungsplan
+  plausibel rechnet.
+* Auf dem iPad: Hochformat und Querformat.
+
+Ein Konto ist nicht nötig. Wer eines anlegt, kann zusätzlich Listen
+teilen und zwischen Geräten abgleichen.
+
+
+─── DIE ÜBRIGEN FELDER ────────────────────────────────────────────
+
+Feedback-E-Mail            support@smartvoc.app
+Marketing-URL              https://smartvoc.app
+Datenschutzrichtlinien-URL https://smartvoc.app/datenschutz.html
+
+Anmeldedaten erforderlich? NEIN
+  (Alle Lernfunktionen stehen ohne Anmeldung zur Verfügung.)
+
+Kontakt für die Beta-Prüfung
+  Martin Keller · support@smartvoc.app · +41 79 822 36 75
