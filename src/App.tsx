@@ -150,18 +150,28 @@ export function App() {
     r.cardFont = settings.cardFont || "serif";
   }, [settings.scheme, settings.appearance, settings.cardStyle, settings.cardFont]);
 
-  // V1: hide the fixed mobile bottom-nav while typing so the iOS keyboard
-  // doesn't collide with it. Uses both focus events and the visualViewport API.
+  /* V1: die untere Leiste weicht der Tastatur. Sie verschwindet, solange in
+   * einem Feld getippt wird, und kommt danach zurueck.
+   *
+   * "Danach" laesst sich nicht an `focusout` festmachen. Beim Pruefen einer
+   * Antwort verschwindet das Eingabefeld aus dem Baum, und WebKit meldet
+   * dafuer kein `focusout` -- die Leiste blieb den Rest der Uebung weg, und
+   * damit die einzige Moeglichkeit, den Bereich zu wechseln. Deshalb wird
+   * nicht mehr auf ein Ereignis hin geschaltet, sondern jedesmal neu
+   * nachgesehen, was gerade den Fokus hat. Das `setTimeout` gibt dem Browser
+   * den Moment, den er zwischen alt und neu braucht. */
   useEffect(() => {
-    const setTyping = (on: boolean) => document.body.classList.toggle("typing", on);
-    const onFocusIn = (e: any) => { if (e.target?.matches?.("input,textarea")) setTyping(true); };
-    const onFocusOut = () => setTyping(false);
-    document.addEventListener("focusin", onFocusIn);
-    document.addEventListener("focusout", onFocusOut);
+    const nachsehen = () => {
+      const a: any = document.activeElement;
+      document.body.classList.toggle("typing", !!a?.matches?.("input,textarea"));
+    };
+    const spaeter = () => setTimeout(nachsehen, 0);
+    document.addEventListener("focusin", spaeter);
+    document.addEventListener("focusout", spaeter);
     const vv = window.visualViewport;
-    const onVV = () => { if (vv) document.body.classList.toggle("kbd-open", (window.innerHeight - vv.height) > 140); };
+    const onVV = () => { if (vv) document.body.classList.toggle("kbd-open", (window.innerHeight - vv.height) > 140); spaeter(); };
     vv?.addEventListener("resize", onVV);
-    return () => { document.removeEventListener("focusin", onFocusIn); document.removeEventListener("focusout", onFocusOut); vv?.removeEventListener("resize", onVV); };
+    return () => { document.removeEventListener("focusin", spaeter); document.removeEventListener("focusout", spaeter); vv?.removeEventListener("resize", onVV); };
   }, []);
 
   // shared-list import: top-level modal, opened by the toolbar or a #share= link

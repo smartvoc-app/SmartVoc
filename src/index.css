@@ -1108,7 +1108,16 @@ table.vt tr.row-sel td { background: var(--amber-bg); }
 .practice-wrap.focus-on .round-progress-head,
 .practice-wrap.focus-on .toolbelt .faint,
 .practice-wrap.focus-on .mbar-legend,
-.practice-wrap.focus-on .mbar-total { color: oklch(0.86 0.01 80); }
+.practice-wrap.focus-on .mbar-total,
+.practice-wrap.focus-on .urteil-deins { color: oklch(0.86 0.01 80); }
+/* "Du hast geschrieben: ..." stand im Vollbild dunkel auf dunkel -- gerade
+   die Zeile, die den Fehler zeigt, war die einzige unlesbare. */
+.practice-wrap.focus-on .deins-wort { color: oklch(0.95 0.01 80); }
+/* Auch die Markierung braucht auf Schwarz einen helleren Rot-Ton, sonst
+   verschwindet genau das Zeichen, das die Zeile zeigen soll. */
+.practice-wrap.focus-on .deins-wort .ch.wrong,
+.practice-wrap.focus-on .deins-wort .ch.extra { color: color-mix(in srgb, var(--red) 38%, white); }
+.practice-wrap.focus-on .deins-wort .ch.wrong { text-decoration-color: color-mix(in srgb, var(--red) 38%, white); }
 .practice-wrap.focus-on .round-progress-track { background: oklch(1 0 0 / .16); }
 .practice-wrap.focus-on .round-progress-off { background: oklch(1 0 0 / .1); color: oklch(0.86 0.01 80); }
 .practice-wrap.focus-on .card-expand { background: oklch(1 0 0 / .12); border-color: oklch(1 0 0 / .2); color: #fff; }

@@ -149,7 +149,7 @@ export const ANLEITUNG_EN: Kapitel[] = [
         <p><b>The route via AI.</b> It works with any AI that can read images. Tap <b>Copy AI prompt</b> in the app, switch to your AI app, paste the instruction and attach a photo of your page. Copy the answer back into the large field and tap <b>Continue to checking</b>.</p>
         <p><b>The checking window.</b> Every word is listed there on its own, with all its details. Look over it and correct whatever went wrong. At the end you choose the list. Photos are misread now and then; this is where you catch it.</p>
         <p><b>Changing lists and words.</b> When you open a list you first see the list itself: target date, progress and the actions. The words sit one level down under <b>View and edit words</b>. Tap a row there and use <b>Edit</b> or <b>Delete</b>; several at once works too.</p>
-        <p>Two lists that belong together can be <b>merged</b>. If you delete a list, its words are kept and only leave that list.</p>
+        <p>Two lists that belong together can be <b>merged</b>. Deleting a list deletes its words too, along with their progress. To keep them, move them to another list first.</p>
         <p><b>Exporting and sharing.</b> <b>Export</b> gives you your words back as text or as an Excel spreadsheet, in the same format the app reads back in, and without an account. <b>Share</b> sends a list to someone else; they get their own copy, and your progress stays separate. Sharing needs an account.</p>
         <p><b>The four Smart lists.</b> Next to your own lists there are four the app puts together every day, across everything you have:</p>
         <ul>
