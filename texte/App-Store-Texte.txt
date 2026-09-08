@@ -22,39 +22,46 @@ Neu: Wortlisten teilen, Übungsplan mit Zieldatum und ein Grundwortschatz für s
 
 
 ═══════════════════════════════════════════════════════════════════
-BESCHREIBUNG                                       2239 / 4000 Zeichen
+BESCHREIBUNG                                       3660 / 4000 Zeichen
 ═══════════════════════════════════════════════════════════════════
 
-SmartVoc ist ein Vokabeltrainer, der sich merkt, was du kannst, und dir zeigt, was du wiederholen musst.
+Fünfmal durchlesen bringt weniger als viermal abfragen. Das ist keine Meinung, das ist gemessen. Und es ist der Grund, warum es SmartVoc gibt.
 
-Der Unterschied zu Karteikarten: SmartVoc rechnet für jedes Wort aus, wann du es vergessen wirst, und fragt es kurz davor ab. Was sitzt, kommt selten. Was wackelt, kommt oft. Damit lernst du in weniger Zeit mehr, und der Stoff bleibt auch nach der Prüfung.
+SmartVoc rät nicht, wann ein Wort wiederkommt. Es rechnet es aus, für jedes Wort einzeln, und fragt kurz bevor du die Antwort verloren hättest. Was sitzt, verschwindet für Wochen. Was wackelt, ist morgen wieder da. So bringen zehn Minuten am Tag mehr als eine Stunde am Samstag, und der Stoff bleibt auch nach der Prüfung.
+
+DAS MODELL DAHINTER
+Hermann Ebbinghaus hat Ende des 19. Jahrhunderts die Vergessenskurve gemessen: Frisch Gelerntes fällt steil ab, nach jeder Wiederholung etwas flacher. Daraus folgen zwei der bestbelegten Befunde der Lernpsychologie, verteiltes Lernen und der Testeffekt. SmartVoc setzt beide um, statt sie nur zu erwähnen.
+
+Gerechnet wird mit FSRS, einem modernen Gedächtnismodell aus der offenen Forschung. Es führt für jedes Wort drei Zahlen: wie lange es bei dir hält, wie zäh es ist, und wie sicher du es gerade noch kannst. Sinkt diese Sicherheit unter dein Ziel, ist das Wort fällig. Wo dieses Ziel liegt, bestimmst du.
+
+Und was die App nicht tut: Sie trainiert das Modell nicht heimlich auf dich und zeichnet dafür nichts auf. Wie gerechnet wird, steht in der App im Kapitel «Dahinter», mit Quellen.
+
+DU SIEHST, WIE DU LERNST
+Die Statistik ist mehr als ein Balken mit Prozentzahl. Sie zeigt, wie sich deine Wörter auf fünf Stufen verteilen, wie viele neu die Stufe «sitzt» erreicht haben, wie lange deine Wörter halten, woran deine Antworten scheitern, wie lang deine Sitzungen sind und zu welcher Tageszeit du am besten triffst. Zwei Listen sammeln, was dir immer wieder entwischt: «Stolpersteine» und «Hartnäckig». Von dort übst du sie gezielt.
+
+DIE PRÜFUNG IM BLICK
+Gib einer Wortliste ein Zieldatum. Ab etwa drei Wochen davor verlangt SmartVoc von diesen Wörtern mehr Sicherheit, sie kommen also häufiger; in den letzten Tagen fällt für sie die Tagesgrenze weg. Der Übungsplan zeigt im Kalender, wie du stehst: bereit, auf Kurs oder im Rückstand.
 
 SECHS SPRACHEN, SOFORT LOSLEGEN
-Englisch, Französisch, Spanisch, Italienisch, Portugiesisch und Latein. Zu jeder Sprache liegt ein Grundwortschatz von hundert Wörtern bereit, mit Beispielsätzen und Lautschrift. Du kannst sofort anfangen.
+Englisch, Französisch, Spanisch, Italienisch, Portugiesisch und Latein. Zu jeder Sprache liegt ein Grundwortschatz von hundert Wörtern bereit, mit Beispielsätzen und Lautschrift. Du kannst ohne Vorbereitung anfangen.
 
-DEINE EIGENEN WÖRTER
-Wortlisten tippst du ab, fügst sie aus der Zwischenablage ein oder lässt sie dir von deiner KI-App aus einem Foto der Heftseite erstellen. In der Webfassung liest SmartVoc auch Excel- und CSV-Dateien ein und gibt Listen als Excel oder PDF wieder aus.
+DEINE EIGENEN WÖRTER, IN ZWEI MINUTEN
+Abtippen, aus der Zwischenablage einfügen, oder das Foto der Heftseite von deiner KI-App auswerten lassen: SmartVoc gibt dir den fertigen Auftrag zum Kopieren, samt Beispielsätzen und Lautschrift. In der Webfassung liest die App auch Excel und CSV ein und gibt Listen als Excel oder PDF wieder aus.
 
 VIER ARTEN ZU ÜBEN
-Eintippen prägt am stärksten ein. Multiple Choice geht schnell. Selbstkontrolle heisst umdrehen und selbst beurteilen. Und Durchblättern ist zum Anschauen, ohne dass es zählt.
+Eintippen prägt am stärksten ein. Multiple Choice geht schnell. Selbstkontrolle heisst umdrehen und selbst beurteilen. Und Durchblättern zählt mit Absicht für gar nichts.
 
 FAIR BEWERTET
-Ein Tippfehler ist kein ganzer Fehler. SmartVoc zeigt dir, welcher Buchstabe nicht stimmte, und du entscheidest in den Einstellungen, wie streng gewertet wird: Gross- und Kleinschreibung, Umlaute und Akzente, der Artikel bei Substantiven.
-
-PRÜFUNG IM BLICK
-Gib einer Wortliste ein Zieldatum, und der Übungsplan zeigt dir, wie weit sie ist. Je näher der Termin, desto mehr Wörter nimmt SmartVoc ins Tagespensum.
+Ein Tippfehler ist kein ganzer Fehler. SmartVoc zeigt dir, welcher Buchstabe nicht stimmte, und du entscheidest, wie streng gewertet wird: Gross- und Kleinschreibung, Umlaute und Akzente, der Artikel bei Substantiven.
 
 LATEIN RICHTIG
 Stammformen statt blossem Vokabelpaar, Längenzeichen über den Vokalen, und auf Wunsch werden die Formen mit abgefragt.
 
 TEILEN
-Schick jemandem eine Wortliste per Nachricht. Wer den Link öffnet, sieht die Liste und übernimmt sie als eigene Kopie.
+Schick jemandem eine Wortliste per Nachricht. Wer den Link öffnet, sieht die Liste und übernimmt sie als eigene Kopie, mit eigenem Lernstand.
 
-OHNE KONTO NUTZBAR
-Alles läuft ohne Anmeldung. Ein Konto brauchst du nur, wenn du auf mehreren Geräten lernen oder Listen teilen willst.
-
-KEINE WERBUNG, KEINE VERFOLGUNG
-SmartVoc zeigt keine Werbung, verkauft keine Daten und bindet keine Zählpixel ein. Deine Wörter liegen auf deinem Gerät. Mit Konto liegen sie zusätzlich verschlüsselt auf einem Server in Frankfurt, damit sie zwischen deinen Geräten abgeglichen werden können. Du kannst dein Konto jederzeit in der App löschen.
+OHNE KONTO, OHNE WERBUNG, OHNE VERFOLGUNG
+Alles läuft ohne Anmeldung und ohne Netzverbindung. Keine Werbung, kein Zählpixel, kein Datenverkauf. Deine Wörter liegen auf deinem Gerät; mit Konto zusätzlich verschlüsselt auf einem Server in Frankfurt, damit deine Geräte denselben Stand haben. Dein Konto löschst du jederzeit in der App.
 
 
 ═══════════════════════════════════════════════════════════════════

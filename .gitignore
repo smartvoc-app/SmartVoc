@@ -8,3 +8,6 @@ dist-ssr
 # iOS web bundle (ios/ has its own .gitignore for the Xcode side)
 dist-ios
 .build
+
+# App-Store-Bilder: 16 MB PNG, gehoeren nicht in die Versionsverwaltung
+texte/App-Store-Bilder
