@@ -230,14 +230,27 @@ export function AccountModal({ open, onClose }: { open: boolean; onClose: () => 
               <Icon name="arrowRight" size={14} />
             </button>
 
-            <div className="grp">{txt("Konto beenden")}</div>
+            {/* "Abmelden" gehoert zu den Kontozeilen, nicht zum Loeschen.
+                Vorher stand darueber die Ueberschrift "Konto beenden", und
+                unter der liest sich Abmelden wie eine Art der Loeschung. Die
+                Folge war genau die Verwechslung, die zu erwarten war: die
+                beiden Zeilen wirkten wie zwei Loeschvarianten -- eine fuer die
+                Wolke, eine fuer alles --, und der Log-out schien zu fehlen,
+                obwohl er die ganze Zeit da war. Ohne die Ueberschrift ist
+                Abmelden wieder das, was es ist. */}
             <button className="li" onClick={() => auth.signOut()}>
               <span className="g">{txt("Abmelden")}</span>
               <span className="lern-wert">{txt("Deine Wörter bleiben auf diesem Gerät")}</span>
             </button>
-            <button className="li li-gefahr" onClick={() => { setConfirmText(""); setDelErr(""); setDelOpen(true); }}>
+
+            {/* Ohne Beschreibung. Was geloescht wird, steht im
+                Bestaetigungsdialog -- dort, wo entschieden wird, und dort
+                ausfuehrlicher, als eine Zeile es koennte. Die Unterscheidung
+                zwischen Konto und Geraetedaten trug hier nichts: wer sein
+                Konto loescht, will es ganz weg. */}
+            <button className="li li-gefahr" style={{ marginTop: 16 }}
+              onClick={() => { setConfirmText(""); setDelErr(""); setDelOpen(true); }}>
               <span className="g">{txt("Konto löschen")}</span>
-              <span className="lern-wert">{txt("Endgültig, auch auf dem Server")}</span>
             </button>
           </div>
         ) : mode === "newpw" ? (
