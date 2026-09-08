@@ -451,6 +451,14 @@
     [
      "P",
      "Yes. Export gives you every list as text or as an Excel spreadsheet, without an account and without a detour."
+    ],
+    [
+     "P",
+     "My question is not here."
+    ],
+    [
+     "P",
+     "Write to support@smartvoc.app. Questions, bugs and suggestions all go to the same address."
     ]
    ]
   ]
@@ -1617,6 +1625,12 @@
   ],
   "Weitere (index)": [
    "Core vocabulary {kuerzel} · Level {n}"
+  ],
+  "Weitere (Fehlerbremse)": [
+   "SmartVoc kann gerade nicht starten",
+   "Beim Aufbauen der Oberfläche ist ein Fehler aufgetreten. Deine Wörter und Lernstände sind\n            davon nicht betroffen — sie liegen unverändert auf dem Gerät.",
+   "Am häufigsten liegt es an einer angefangenen Übungsrunde. Der erste Knopf wirft nur diese weg.",
+   "Übungsrunde verwerfen und neu starten"
   ]
  }
 }

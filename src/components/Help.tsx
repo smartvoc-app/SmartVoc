@@ -19,7 +19,7 @@
  * die Sätze bauen sich anders auf. Eine Übersetzungstabelle hätte hier
  * Bruchstücke erzeugt.
  * =================================================================== */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icon } from "../ui/Icon";
 import { txt, getUiLang } from "../lib/i18n";
 import { TIPPS_DE, ANLEITUNG_DE, THEORIE_DE, THEORIE_LEAD_DE } from "./help.de";
@@ -57,6 +57,20 @@ export function Help() {
   // Der erste Eintrag steht offen da -- eine Liste aus lauter zugeklappten
   // Zeilen sieht aus wie eine Datenbankausgabe, nicht wie ein Ratgeber.
   const [tipp, setTipp] = useState<number | null>(0);
+
+  /* Ein Verweis von aussen oeffnet die Anleitung: smartvoc.app/#hilfe
+   *
+   * Das ist die Adresse, die im App Store als Support-Adresse steht. Ohne
+   * das landet dort jemand mit einem Problem in der App und muss erst das
+   * Fragezeichen finden -- Apple erwartet an dieser Stelle eine Seite, die
+   * tatsaechlich hilft. Die Marke wird danach aus der Adresse genommen,
+   * damit ein Neuladen nicht wieder die Anleitung aufreisst. */
+  useEffect(() => {
+    if (!/^#(hilfe|help)\b/i.test(location.hash)) return;
+    setOpen(true);
+    setTeil("anleitung");
+    history.replaceState(null, "", location.pathname + location.search);
+  }, []);
   const [satz, setSatz] = useState<number | null>(0);
 
   const en = getUiLang() === "en";

@@ -219,6 +219,8 @@ export const ANLEITUNG_EN: Kapitel[] = [
         <p>In the settings under <b>Data on this device</b> you can reset your progress: points, history and daily streak, in every language. Your words stay. It cannot be undone.</p>
         <p className="help-frage"><b>I want to leave SmartVoc. Do I get my words out?</b></p>
         <p>Yes. <b>Export</b> gives you every list as text or as an Excel spreadsheet, without an account and without a detour.</p>
+        <p className="help-frage"><b>My question is not here.</b></p>
+        <p>Write to <b>support@smartvoc.app</b>. Questions, bugs and suggestions all go to the same address.</p>
       </>
     ),
   },

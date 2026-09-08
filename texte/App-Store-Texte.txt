@@ -72,7 +72,7 @@ Vokabeln,Vokabeltrainer,Englisch,Franzoesisch,Latein,Spanisch,Italienisch,Kartei
 URLS
 ═══════════════════════════════════════════════════════════════════
 
-Support-URL (Pflicht)      https://smartvoc.app
+Support-URL (Pflicht)      https://smartvoc.app/#hilfe
 Marketing-URL (optional)   https://smartvoc.app
 Datenschutz-URL (Pflicht)  https://smartvoc.app/datenschutz.html
 

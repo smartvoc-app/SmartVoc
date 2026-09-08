@@ -251,6 +251,12 @@ export const ANLEITUNG_DE: Kapitel[] = [
         <p>In den Einstellungen unter <b>Daten auf diesem Gerät</b> lässt sich der Fortschritt zurücksetzen: Punkte, Verlauf und Tagesserie, in allen Sprachen. Deine Wörter bleiben. Rückgängig machen lässt es sich nicht.</p>
         <p className="help-frage"><b>Ich möchte weg von SmartVoc. Bekomme ich meine Wörter mit?</b></p>
         <p>Ja. <b>Exportieren</b> gibt dir jede Liste als Text oder als Excel-Tabelle heraus, ohne Konto und ohne Umweg.</p>
+        {/* Der Verweis auf eine echte Adresse gehoert ans Ende der Fragen.
+            Vorher stand sie nur im Impressum und im Datenschutztext -- also
+            genau dort, wo niemand sucht, der nicht weiterkommt. Und die
+            Support-Adresse im App Store fuehrt auf diese Anleitung. */}
+        <p className="help-frage"><b>Meine Frage steht hier nicht.</b></p>
+        <p>Schreib an <b>support@smartvoc.app</b>. Fragen, Fehler und Vorschläge gehen alle an dieselbe Adresse.</p>
       </>
     ),
   },
