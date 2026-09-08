@@ -186,7 +186,12 @@ export function App() {
           <button key={t.id} className="tab" role="tab" aria-selected={tab === t.id && tab !== "settings"} onClick={() => setTab(t.id)}>
             <Icon name={t.icon} size={17} />
             <span className="tab-full">{txt(t.label)}</span>
-            {t.id === "lists" && <span className="badge-count">{nWords}</span>}
+            {/* Hier stand die Zahl aller Woerter des Sprachpaars -- unbeschriftet,
+                neben einem Reiter, der Listen verspricht. Wer zwei Listen mit je
+                100 Woertern sah und oben 233 las, hielt das fuer einen Fehler.
+                Dieselbe Zahl steht auf der Seite selbst unter "Gesamtbestand",
+                dort beschriftet und mit Erklaerung daneben. Zweimal dieselbe
+                Zahl, einmal ohne Auskunft, hilft niemandem. */}
           </button>
         ))}
       </div>

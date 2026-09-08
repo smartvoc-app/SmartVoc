@@ -110,6 +110,40 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     migratedRef.current = true;
     const done = (meta.migrations || {}) as Record<string, boolean>;
     const applied: Record<string, boolean> = {};
+    /* V28: Woerter einsammeln, die in keiner Liste mehr stehen.
+     *
+     * Sie entstanden beim Loeschen einer Liste (siehe deleteList) und waren
+     * danach unsichtbar, wurden aber weiter mitgezaehlt und weiter
+     * abgefragt. Wer mehrfach Listen angelegt und wieder geloescht hat,
+     * traegt einen Bestand mit sich herum, den er nirgends aufraeumen kann:
+     * die Zahl am Reiter zeigte dann mehr Woerter, als alle Listen zusammen
+     * enthalten. Sie kommen in "Woerter ohne Liste" -- dort sind sie
+     * sichtbar, uebbar und loeschbar. */
+    if (!done.waisenV28) {
+      const ls = initRef.current.lists || [];
+      const vc = initRef.current.vocab || [];
+      const gueltig = new Set(ls.map((l: any) => l.id));
+      const waisen = vc.filter((w: any) => !(w.lists || []).some((id: string) => gueltig.has(id)));
+      if (waisen.length) {
+        const neueListen = [...ls];
+        const auffangJePaar: Record<string, string> = {};
+        for (const l of ls) if (l.system === "nolist") auffangJePaar[l.pair] = l.id;
+        for (const w of waisen) {
+          const pr = w.pair || "en-de";
+          if (!auffangJePaar[pr]) {
+            const id = newId();
+            auffangJePaar[pr] = id;
+            neueListen.push({ id, name: "Wörter ohne Liste", pair: pr, system: "nolist", createdAt: Date.now() });
+          }
+        }
+        const waisenIds = new Set(waisen.map((w: any) => w.id));
+        setListsState(neueListen);
+        setVocabState(vc.map((w: any) => (waisenIds.has(w.id)
+          ? { ...w, lists: [auffangJePaar[w.pair || "en-de"]] } : w)));
+      }
+      applied.waisenV28 = true;
+    }
+
     if (!done.topicsDe) { setVocabState((v: any) => migrateTopics(v)); applied.topicsDe = true; } // V4
     if (!done.swissV3) { setVocabState((v: any) => swissifyVocab(v)); applied.swissV3 = true; } // V3 — ß → ss
     /* V16 — Lektionen werden Wortlisten. Der Plan wird aus den geladenen Daten
@@ -424,9 +458,31 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       return { verschoben: quelle.length - doppelt.size, doppelt: doppelt.size };
     },
     deleteList: (id: string) => {
-      if (lists.find((l: any) => l.id === id)?.system === "nolist") return;   // PFLICHT 2: nolist not deletable
-      setListsState((ls: any) => ls.filter((l: any) => l.id !== id));
-      setVocabState((v: any) => v.map((w: any) => ({ ...w, lists: (w.lists || []).filter((x: string) => x !== id) })));
+      const weg = lists.find((l: any) => l.id === id);
+      if (!weg || weg.system === "nolist") return;   // PFLICHT 2: nolist not deletable
+      const pr = weg.pair || "en-de";
+      /* "Die Woerter selbst bleiben erhalten" -- das verspricht der
+       * Bestaetigungstext, und in den Daten stimmte es auch. In der
+       * Oberflaeche nicht: ein Wort, dessen einzige Liste geloescht wurde,
+       * stand danach in KEINER Liste. Sichtbar war es nirgends mehr,
+       * gezaehlt wurde es weiter (die Zahl am Reiter "Wortlisten" zaehlt
+       * alle Woerter des Sprachpaars), und abgefragt wurde es auch weiter.
+       * So entsteht ein Bestand, den man weder sieht noch loeschen kann.
+       *
+       * Solche Woerter wandern jetzt in "Woerter ohne Liste" -- die
+       * Auffangliste, die es fuer genau diesen Fall laengst gibt. */
+      let auffang: string | undefined = lists.find((l: any) => l.system === "nolist" && l.pair === pr)?.id;
+      const wirdWaise = vocab.some((w: any) => (w.lists || []).includes(id)
+        && (w.lists || []).filter((x: string) => x !== id).length === 0);
+      if (wirdWaise && !auffang) auffang = newId();
+      const neueAuffangliste = wirdWaise && !lists.some((l: any) => l.system === "nolist" && l.pair === pr)
+        ? [{ id: auffang, name: "Wörter ohne Liste", pair: pr, system: "nolist", createdAt: Date.now() }] : [];
+      setListsState((ls: any) => [...ls.filter((l: any) => l.id !== id), ...neueAuffangliste]);
+      setVocabState((v: any) => v.map((w: any) => {
+        if (!(w.lists || []).includes(id)) return w;
+        const rest = (w.lists || []).filter((x: string) => x !== id);
+        return { ...w, lists: rest.length ? rest : (auffang ? [auffang] : []) };
+      }));
     },
     toggleWordList: (wordId: string, listId: string) => setVocabState((v: any) => v.map((w: any) => w.id === wordId
       ? { ...w, lists: (w.lists || []).includes(listId) ? w.lists.filter((x: string) => x !== listId) : [...(w.lists || []), listId] }

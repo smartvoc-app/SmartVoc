@@ -826,6 +826,11 @@ export function WordList() {
       : resolveSmart(ref, pairVocab, stats, settings.masteryCorrect, { retention: ret }).filter(practiceable).length;
   };
 
+  /* Wie viele Listenplaetze insgesamt belegt sind -- nicht wie viele
+     Woerter es gibt. Nur zum Vergleich mit dem Gesamtbestand. */
+  const mitgliedschaften = pairVocab.reduce((n: number, w: any) =>
+    n + (w.lists || []).filter((id: string) => lists.some((l: any) => l.id === id)).length, 0);
+
   const titelImBlick = !offen ? ""
     : offen.art === "alle" ? txt("Alle Wörter")
     : offen.art === "smart" ? txt((SMART_ACCESS.find((s) => s.ref === offen.ref) || {}).label || "Auswahl")
@@ -1267,6 +1272,18 @@ export function WordList() {
             <span className="lchip-n">{pairVocab.length}</span>
             <Icon name="arrowRight" size={14} />
           </button>
+          {/* Die Listenzahlen zaehlen Mitgliedschaften, der Gesamtbestand
+              zaehlt Woerter. Steht ein Wort in zwei Listen, ist die Summe der
+              Listen groesser als der Bestand -- und beide Zahlen stimmen
+              trotzdem. Wer das nicht weiss, haelt es fuer einen Fehler.
+              Deshalb steht der Satz da, aber nur dann, wenn es zutrifft:
+              solange jedes Wort in genau einer Liste liegt, gehen die Zahlen
+              auf und der Hinweis waere blosses Rauschen. */}
+          {mitgliedschaften > pairVocab.length && (
+            <div className="muted" style={{ fontSize: 12, padding: "8px 4px 0", lineHeight: 1.45 }}>
+              {txt("Ein Wort kann in mehreren Listen stehen. Deshalb ergeben die Zahlen der Listen zusammen mehr als der Gesamtbestand.")}
+            </div>
+          )}
         </div>
       )}
 

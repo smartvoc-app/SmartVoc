@@ -81,6 +81,7 @@ export const EN: Record<string, string> = {
   "baut sich auf, ab heute füllt sich diese Linie": "building up, this line fills from today",
   "Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.": "No history yet. From today the app records where you stand each day.",
   "{n} Wort": "{n} word",
+  "Ein Wort kann in mehreren Listen stehen. Deshalb ergeben die Zahlen der Listen zusammen mehr als der Gesamtbestand.": "A word can be in several lists. That is why the list figures add up to more than the total.",
   "„{liste}“ übernommen · {n} Wort": "“{liste}” imported · {n} word",
   "„{liste}“ übernommen · {n} Wörter": "“{liste}” imported · {n} words",
   "Du bekommst eine eigene Kopie. Wörter, die du schon hast, werden nicht doppelt angelegt.": "You get your own copy. Words you already have are not added twice.",
