@@ -1336,36 +1336,53 @@ export function Practice() {
           optionen={Object.keys(MODE_NAME).map((v) => ({ wert: v, label: txt(MODE_NAME[v]) }))}
           onWahl={(v) => { store.setSettings({ mode: v }); restartCard(); }}
         />
-        {/* Die zwei Schalter stehen NEBEN der Antwortart, weil sie dasselbe
-            sind: Einstellungen zum Üben, die man mitten in der Übung
-            umlegen will. Sie erscheinen nur, wenn die Einstellung sie
-            wählbar lässt -- wer die Lautschrift grundsätzlich nicht will,
-            soll auch den Schalter nicht sehen. */}
-        {hatSchalter(settings, BEISPIELE) && (
-          <button className={"pill" + (zeigt(settings, BEISPIELE) ? " pill-an" : "")}
-            aria-pressed={zeigt(settings, BEISPIELE)}
-            onClick={() => store.setSettings({ beispieleAn: !zeigt(settings, BEISPIELE) })}>
-            <Icon name={zeigt(settings, BEISPIELE) ? "check" : "eye"} size={15} />
-            <span>{txt("Beispielsätze")}</span>
-          </button>
-        )}
-        {hatSchalter(settings, FORMEN) && (
-          <button className={"pill" + (zeigt(settings, FORMEN) ? " pill-an" : "")}
-            aria-pressed={zeigt(settings, FORMEN)}
-            onClick={() => store.setSettings({ formenAn: !zeigt(settings, FORMEN) })}>
-            <Icon name={zeigt(settings, FORMEN) ? "check" : "eye"} size={15} />
-            <span>{txt("Formen")}</span>
-          </button>
-        )}
-        {hatSchalter(settings, PHONETIK) && (
-          <button className={"pill" + (zeigt(settings, PHONETIK) ? " pill-an" : "")}
-            aria-pressed={zeigt(settings, PHONETIK)}
-            onClick={() => store.setSettings({ phonetikAn: !zeigt(settings, PHONETIK) })}>
-            <Icon name={zeigt(settings, PHONETIK) ? "check" : "eye"} size={15} />
-            <span>{txt("Lautschrift")}</span>
-          </button>
-        )}
-        <div className="grow" />
+      </div>
+
+      {/* Die Anzeigeschalter stehen UNTER der Antwortart und unter einer
+          eigenen Ueberschrift.
+       *
+       * Vorher standen sie daneben, in derselben Form: eine Pille "Nur
+       * durchblättern" neben einer Pille "Beispielsätze". Beide sahen gleich
+       * aus und meinten Verschiedenes -- die erste waehlt die Antwortart und
+       * oeffnet ein Blatt, die anderen legen um, was auf der Karte steht. Wer
+       * das nicht weiss, liest dort vier gleichrangige Schalter.
+       *
+       * Sie erscheinen nur, wenn die Einstellung sie waehlbar laesst: wer die
+       * Lautschrift grundsaetzlich nicht will, soll auch den Schalter nicht
+       * sehen. Gibt es keinen einzigen, faellt die Ueberschrift mit weg. */}
+      {(hatSchalter(settings, BEISPIELE) || hatSchalter(settings, FORMEN) || hatSchalter(settings, PHONETIK)) && (
+        <div className="p-anzeige">
+          <div className="p-anzeige-titel">{txt("Auf der Karte anzeigen")}</div>
+          <div className="p-anzeige-pillen">
+            {hatSchalter(settings, BEISPIELE) && (
+              <button className={"pill" + (zeigt(settings, BEISPIELE) ? " pill-an" : "")}
+                aria-pressed={zeigt(settings, BEISPIELE)}
+                onClick={() => store.setSettings({ beispieleAn: !zeigt(settings, BEISPIELE) })}>
+                <Icon name={zeigt(settings, BEISPIELE) ? "check" : "eye"} size={15} />
+                <span>{txt("Beispielsätze")}</span>
+              </button>
+            )}
+            {hatSchalter(settings, FORMEN) && (
+              <button className={"pill" + (zeigt(settings, FORMEN) ? " pill-an" : "")}
+                aria-pressed={zeigt(settings, FORMEN)}
+                onClick={() => store.setSettings({ formenAn: !zeigt(settings, FORMEN) })}>
+                <Icon name={zeigt(settings, FORMEN) ? "check" : "eye"} size={15} />
+                <span>{txt("Formen")}</span>
+              </button>
+            )}
+            {hatSchalter(settings, PHONETIK) && (
+              <button className={"pill" + (zeigt(settings, PHONETIK) ? " pill-an" : "")}
+                aria-pressed={zeigt(settings, PHONETIK)}
+                onClick={() => store.setSettings({ phonetikAn: !zeigt(settings, PHONETIK) })}>
+                <Icon name={zeigt(settings, PHONETIK) ? "check" : "eye"} size={15} />
+                <span>{txt("Lautschrift")}</span>
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      <div className="p-abbruch">
         <button className="btn btn-ghost btn-sm" onClick={leaveRun}>{txt("Übung abbrechen")}</button>
       </div>
 

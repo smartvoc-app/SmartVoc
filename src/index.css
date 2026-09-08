@@ -289,6 +289,13 @@ input, button, textarea, select { font-family: inherit; }
    ==================================================================== */
 .practice-wrap { display: flex; flex-direction: column; align-items: center; gap: 22px; }
 .practice-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; width: 100%; }
+/* Die Anzeigeschalter: eigene Gruppe unter der Antwortart, mit Ueberschrift.
+   Getrennt, weil sie etwas anderes tun -- die Antwortart bestimmt, WIE
+   geuebt wird, diese hier nur, was auf der Karte steht. */
+.p-anzeige { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 14px; }
+.p-anzeige-titel { font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.p-anzeige-pillen { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.p-abbruch { width: 100%; display: flex; justify-content: center; margin-top: 18px; }
 .dir-pill {
   display: inline-flex; align-items: center; gap: 10px; background: var(--card);
   border: 1px solid var(--line); border-radius: 999px; padding: 6px 8px 6px 16px;
@@ -852,7 +859,12 @@ table.vt tr.row-sel td { background: var(--amber-bg); }
   .practice-wrap > .empty { order: 2; }
   .practice-stage { order: 2; }
   .p-controls { order: 3; }
-  .enough-hint { order: 4; }
+  /* Die Anzeigeschalter und der Abbruch gehoeren HINTER die Antwortart.
+     Ohne eigene Ordnung landen sie bei 0 -- also vor allem, was hier eine
+     Nummer hat, und damit ganz oben. */
+  .p-anzeige { order: 4; }
+  .p-abbruch { order: 5; }
+  .enough-hint { order: 6; }
   .card-scene { width: 100%; }
   /* Die Zeile daroben braucht auf dem Handy keine eigene Zeile fuer sich. */
   .scope-line { padding: 0 0 2px; justify-content: flex-start; }

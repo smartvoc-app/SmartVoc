@@ -81,6 +81,7 @@ export const EN: Record<string, string> = {
   "baut sich auf, ab heute füllt sich diese Linie": "building up, this line fills from today",
   "Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.": "No history yet. From today the app records where you stand each day.",
   "{n} Wort": "{n} word",
+  "Auf der Karte anzeigen": "Show on the card",
   "Als PDF": "As a PDF",
   "zum Ausdrucken; im Druckdialog „Als PDF sichern“ wählen": "for printing; choose “Save as PDF” in the print dialog",
   "{wer} möchte die Wortliste „{liste}“ mit dir teilen. Öffne den Link, sieh sie dir an und übernimm sie, wenn du magst.": "{wer} would like to share the word list “{liste}” with you. Open the link, take a look, and import it if you like.",
