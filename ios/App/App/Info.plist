@@ -22,6 +22,12 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<!-- Ausfuhrerklaerung: Die App benutzt ausschliesslich HTTPS/TLS fuer die
+	     Verbindung zu Supabase und keine eigene Verschluesselung. Das faellt
+	     unter die Standardausnahme. Ohne diesen Schluessel fragt App Store
+	     Connect bei JEDEM Upload danach und haelt den Build so lange zurueck. -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
