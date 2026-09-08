@@ -19,23 +19,26 @@ import { AuthProvider } from "./sync/auth";
 import { SyncBridge } from "./sync/SyncBridge";
 import { App } from "./App";
 import { hydrateFromNative, entferneAltesProtokoll } from "./lib/storage";
+import { Fehlerbremse } from "./ui/Fehlerbremse";
 
 /* Auf iOS zuerst die native Sicherung in den Arbeitsspeicher zurueckholen --
  * vor dem ersten Rendern, weil der Laden seine Anfangswerte synchron aus
  * localStorage liest. Im Browser kehrt das sofort zurueck. */
 hydrateFromNative().then(entferneAltesProtokoll).finally(() => {
   createRoot(document.getElementById("root")!).render(
-    <ToastHost>
-      <AuthProvider>
-        <StoreProvider>
-          <SyncBridge>
-            <ScreenHeadProvider>
-              <App />
-            </ScreenHeadProvider>
-          </SyncBridge>
-        </StoreProvider>
-      </AuthProvider>
-    </ToastHost>
+    <Fehlerbremse>
+      <ToastHost>
+        <AuthProvider>
+          <StoreProvider>
+            <SyncBridge>
+              <ScreenHeadProvider>
+                <App />
+              </ScreenHeadProvider>
+            </SyncBridge>
+          </StoreProvider>
+        </AuthProvider>
+      </ToastHost>
+    </Fehlerbremse>
   );
 });
 
