@@ -142,6 +142,40 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       applied.waisenV28 = true;
     }
 
+    /* V29: Woerter trennen, die in mehreren Listen stehen.
+     *
+     * Ein Wort gehoert in genau eine Liste (V18). Eine Zwischenfassung des
+     * Listen-Imports verknuepfte ein bereits vorhandenes Wort zusaetzlich
+     * mit der neuen Liste, statt es zu kopieren. Beide Listen zeigten
+     * danach dieselben Objekte -- und wer vier Woerter aus der einen
+     * verschob, sah sie auch in der anderen verschwinden. Denn verschoben
+     * wird ueber die Wort-Id, und die war dieselbe.
+     *
+     * V18 hat solche Woerter frueher auf die ERSTE Liste gekuerzt. Das
+     * waere hier falsch: die zweite Liste ist gewollt und wuerde leer
+     * zurueckbleiben. Stattdessen wird getrennt -- je Liste ein eigenes
+     * Wort mit eigener Id.
+     *
+     * Der Lernstand bleibt beim urspruenglichen Wort. Die Kopien fangen bei
+     * null an, wie jede uebernommene Liste: der Fortschritt wurde einmal
+     * erarbeitet, nicht zweimal. */
+    if (!done.trennV29) {
+      setVocabState((v: any) => {
+        if (!v.some((w: any) => (w.lists || []).length > 1)) return v;
+        const raus: any[] = [];
+        for (const w of v) {
+          const ls = w.lists || [];
+          if (ls.length <= 1) { raus.push(w); continue; }
+          raus.push({ ...w, lists: [ls[0]] });
+          for (const weitere of ls.slice(1)) {
+            raus.push({ ...w, id: newId(), lists: [weitere], source: "kopie", review: false });
+          }
+        }
+        return raus;
+      });
+      applied.trennV29 = true;
+    }
+
     if (!done.topicsDe) { setVocabState((v: any) => migrateTopics(v)); applied.topicsDe = true; } // V4
     if (!done.swissV3) { setVocabState((v: any) => swissifyVocab(v)); applied.swissV3 = true; } // V3 — ß → ss
     /* V16 — Lektionen werden Wortlisten. Der Plan wird aus den geladenen Daten
