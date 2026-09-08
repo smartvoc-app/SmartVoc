@@ -81,6 +81,8 @@ export const EN: Record<string, string> = {
   "baut sich auf, ab heute füllt sich diese Linie": "building up, this line fills from today",
   "Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.": "No history yet. From today the app records where you stand each day.",
   "{n} Wort": "{n} word",
+  "Tippfehler milder werten": "Count typos more leniently",
+  "Ein Tippfehler zählt für die Runde als geschafft, das Wort kommt aber früher wieder. Aus: er zählt als Fehler.": "A typo counts as done for this round, but the word comes back sooner. Off: it counts as a mistake.",
   "Du hast geschrieben:": "You wrote:",
   "Nachricht schicken": "Send a message",
   "Per E-Mail": "By email",

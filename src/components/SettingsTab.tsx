@@ -417,7 +417,13 @@ export function SettingsTab() {
             eine Rechtschreibung, die man nicht übt, lernt man nicht. */}
         <ZeileSchalter titel={txt("Groß- und Kleinschreibung zählt")} sub={txt("„hund“ statt „Hund“ ist ein Fehler")}
           value={!settings.lenientCase} onChange={(v: boolean) => set("lenientCase", !v)} />
-        <ZeileSchalter titel={txt("Fast richtig zulassen")} sub={txt("ein Tippfehler zählt noch als fast richtig")}
+        {/* Der Text sagt jetzt, was der Schalter TUT. Vorher stand da "ein
+            Tippfehler zählt noch als fast richtig" -- das beschrieb die
+            Beschriftung auf der Karte, nicht die Wirkung. Wer ihn umlegt,
+            will wissen, ob er das Wort nochmal tippen muss und was mit dem
+            Abstand passiert. */}
+        <ZeileSchalter titel={txt("Tippfehler milder werten")}
+          sub={txt("Ein Tippfehler zählt für die Runde als geschafft, das Wort kommt aber früher wieder. Aus: er zählt als Fehler.")}
           value={settings.acceptPartial} onChange={(v: boolean) => set("acceptPartial", v)} />
         <ZeileSchalter titel={txt("Umlaute und Akzente streng")} sub={txt("„grun“ statt „grün“ gilt dann als falsch")}
           value={settings.strictAccents} onChange={(v: boolean) => set("strictAccents", v)} />

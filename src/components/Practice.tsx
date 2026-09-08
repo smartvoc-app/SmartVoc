@@ -418,7 +418,7 @@ export function Practice() {
 
   // V8: record the current word's resolution into the runqueue; fire ONE FSRS
   // grade at graduation. Memorize = pure exposition → seen, never graded.
-  const resolveWord = useCallback((rawCorrect, usedHint) => {
+  const resolveWord = useCallback((rawCorrect, usedHint, fast) => {
     const st = runRef.current;
     if (!st || !st.current) return;
     const id = st.current;
@@ -431,7 +431,16 @@ export function Practice() {
       return;
     }
     const elapsed = Date.now() - (shownAtRef.current || Date.now());
-    const { graduated } = record(st, { correct: !!rawCorrect, usedHint: !!usedHint, elapsedMs: elapsed });
+    /* Beim milden Werten zaehlt "fast richtig" fuer die RUNDE als geschafft
+     * -- man muss das Wort nicht noch einmal tippen. Fuer den LERNSTAND
+     * zaehlt es trotzdem als Muehe: der Vermerk fast=true fuehrt am Ende zur
+     * Note "schwer", das Wort kommt also frueher wieder.
+     *
+     * Streng gestellt bleibt es ein Fehler wie jeder andere: Zaehler zurueck,
+     * Wort kommt in derselben Runde noch einmal. */
+    const milde = settings.acceptPartial !== false;
+    const alsRichtig = !!rawCorrect || (!!fast && milde);
+    const { graduated } = record(st, { correct: alsRichtig, fast: !!fast, usedHint: !!usedHint, elapsedMs: elapsed });
     if (graduated) {
       markDone(id);
       if (!gradedRef.current.has(id)) {
@@ -448,7 +457,7 @@ export function Practice() {
         }
       }
     }
-  }, [mode, markDone, store]);
+  }, [mode, markDone, store, settings.acceptPartial]);
 
   // V8: session-end flush — grade started-but-ungraded words once. Fires on
   // unmount, scope/pair change (via startRun), AND mobile backgrounding.
@@ -501,7 +510,7 @@ export function Practice() {
     setResult(res);
     if (res.verdict === "correct") tapRichtig(); else tapFalsch();
     recordAttempt(current.id, res.score, res.verdict, isNew, res.errorType ?? null);  // legacy stats
-    resolveWord(rawCorrect, hintUsed);   // V8: runqueue + single FSRS grade at graduation
+    resolveWord(rawCorrect, hintUsed, res.verdict === "almost");   // V8: runqueue + single FSRS grade at graduation
     setSession((s) => [...s, res.verdict].slice(-12));
     maybeTip();
     flip("back");
@@ -547,7 +556,7 @@ export function Practice() {
   // Recall / Memorize: reveal the answer without scoring yet
   const reveal = useCallback(() => {
     if (!current || face === "back" || anim) return;
-    if (mode === "memorize") resolveWord(true, false);   // V5/V8: Memorize = seen, no grade
+    if (mode === "memorize") resolveWord(true, false, false);   // V5/V8: Memorize = seen, no grade
     flip("back");
   }, [current, face, anim, flip, mode, resolveWord]);
 
@@ -558,7 +567,9 @@ export function Practice() {
     const isNew = !st || !st.seen;
     if (correct) tapRichtig(); else tapFalsch();
     recordAttempt(current.id, correct ? 1 : 0, correct ? "correct" : "wrong", isNew);  // legacy
-    resolveWord(correct, false);   // V8: runqueue + grade at graduation
+    /* Selbstkontrolle kennt kein "fast": man beurteilt sich selbst, und
+       dabei gibt es nur gewusst oder nicht. */
+    resolveWord(correct, false, false);   // V8: runqueue + grade at graduation
     setSession((s) => [...s, correct ? "correct" : "wrong"].slice(-12));
     maybeTip();
     flip("front", () => pickNext());

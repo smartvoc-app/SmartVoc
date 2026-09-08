@@ -52,6 +52,7 @@ export interface RunWord {
   attempts: number;
   usedHint: boolean;
   failedOnce: boolean;
+  fastOnce: boolean;        // war mindestens einmal nur fast richtig
   firstAnswerMs?: number;
   mastered: boolean;       // done >= goal
   graded: boolean;         // FSRS grade already fired this run (once-only)
@@ -111,7 +112,7 @@ export function buildQueue(ids: string[], meta: Record<string, WordMeta>, cfg: Q
     if (!pot && forceAll) pot = "faellig";    // explicit "drill the whole lesson" override
     if (!pot) continue;                       // green & not due → excluded
     const goal = Math.max(1, Math.round(goalFor(pot, cfg)));
-    words[id] = { id, pot, goal, done: 0, correct: 0, attempts: 0, usedHint: false, failedOnce: false,
+    words[id] = { id, pot, goal, done: 0, correct: 0, attempts: 0, usedHint: false, failedOnce: false, fastOnce: false,
       mastered: false, graded: false, sinceShown: 0, block: 0, mode: undefined };
     goalTotal += goal;
   }
@@ -168,7 +169,12 @@ export function pick(st: RunState, cfg: QueueCfg): string | null {
   return chosen;
 }
 
-export interface AttemptResult { correct: boolean; usedHint?: boolean; elapsedMs?: number; }
+export interface AttemptResult {
+  correct: boolean;
+  fast?: boolean;          // nur fast richtig (Tippfehler, Akzent, Artikel)
+  usedHint?: boolean;
+  elapsedMs?: number;
+}
 
 /* Record the current word's resolution. Returns whether it just graduated. */
 export function record(st: RunState, res: AttemptResult): { id: string; graduated: boolean } {
@@ -176,6 +182,15 @@ export function record(st: RunState, res: AttemptResult): { id: string; graduate
   const w = st.words[id];
   w.attempts++;
   if (res.usedHint) w.usedHint = true;
+  /* "Fast richtig" ist ein eigener Ausgang, kein halber Fehler.
+   *
+   * Ob er als richtig durchgeht, entscheidet die Einstellung und steht in
+   * res.correct. Gemerkt wird er hier trotzdem -- damit das Wort am Ende
+   * die Note "schwer" bekommt und frueher wiederkommt, auch wenn es die
+   * Runde geschafft hat. Ohne diesen Vermerk waere ein Tippfehler beim
+   * milden Werten spurlos: er zaehlte als richtig und der Abstand wuechse,
+   * als haette man es sicher gewusst. */
+  if (res.fast) w.fastOnce = true;
   if (w.firstAnswerMs == null) w.firstAnswerMs = res.elapsedMs;
 
   let graduated = false;
@@ -199,7 +214,7 @@ export function outcomeOf(w: RunWord): SessionOutcome {
   return {
     failed: w.correct === 0,
     usedHint: w.usedHint,
-    retries: w.failedOnce || w.attempts > w.correct,
+    retries: w.failedOnce || w.fastOnce || w.attempts > w.correct,
     elapsedMs: w.firstAnswerMs,
   };
 }

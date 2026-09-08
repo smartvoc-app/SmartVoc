@@ -64,6 +64,13 @@ export function align(a: string, b: string) {
 /* Score a user answer against the correct one.
  * opts: { lenientCase, strictAccents, articleMode, acceptPartial }
  * Returns { score 0..1, verdict, note, targetDiff[], userDiff[] } */
+/* Die Obergrenze fuer "fast richtig".
+ *
+ * Stand viermal als 0.8 im Code. Jetzt einmal und benannt -- und tiefer:
+ * 0.8 las sich wie "so gut wie richtig", und das ist ein Tippfehler nicht.
+ * 0.7 sagt: erkennbar naeher an richtig als an falsch, aber nicht dasselbe. */
+export const FAST_MAX = 0.7;
+
 export function scoreAnswer(user: string, correct: string, opts?: ScoreOpts): ScoreResult {
   opts = opts || {};
   const lenientCase = opts.lenientCase !== false;
@@ -117,7 +124,7 @@ export function scoreAnswer(user: string, correct: string, opts?: ScoreOpts): Sc
     if (articleMode === "required-full")
       return { score: 0, verdict: "wrong", note: hasArticle(userOrig) ? "Wrong article" : "The article is missing", targetDiff, userDiff, errorType: "article" };
     const note = hasArticle(userOrig) ? "Wrong article — the rest is right" : "Almost! The article is missing";
-    return { score: 0.8, verdict: "almost", note, targetDiff, userDiff, errorType: "article" }; // required-partial
+    return { score: FAST_MAX, verdict: "almost", note, targetDiff, userDiff, errorType: "article" }; // required-partial
   }
   /* Der umgekehrte Fall: die Loesung traegt keinen Artikel, die Antwort
    * schon. Das ist der englische Alltag -- "family" steht in der Liste,
@@ -141,7 +148,7 @@ export function scoreAnswer(user: string, correct: string, opts?: ScoreOpts): Sc
   // Umlauts / accents only
   if (fold(userOrig) === fold(corrOrig)) {
     if (!strictAccents) {
-      return finalize({ score: 0.8, verdict: "almost", note: "Mind the umlauts / accents", targetDiff, userDiff, errorType: "accent" });
+      return finalize({ score: FAST_MAX, verdict: "almost", note: "Mind the umlauts / accents", targetDiff, userDiff, errorType: "accent" });
     }
     /* Streng gestellt heisst: der Akzent ist der Fehler. Ohne diesen Zweig
      * fiel der Fall eine Regel weiter in die Tippfehler-Pruefung -- "grun"
@@ -157,7 +164,7 @@ export function scoreAnswer(user: string, correct: string, opts?: ScoreOpts): Sc
   const sim = 1 - dist / maxLen;
   const tol = Math.max(1, Math.round(ceM.length * 0.34));
   if (dist <= tol && sim >= 0.5) {
-    const score = Math.max(0.35, Math.min(0.8, sim));
+    const score = Math.max(0.35, Math.min(FAST_MAX, sim));
     return finalize({ score, verdict: "almost", note: "So close — check the spelling", targetDiff, userDiff, errorType: "typo" });
   }
 

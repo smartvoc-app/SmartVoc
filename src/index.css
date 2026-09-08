@@ -1952,12 +1952,33 @@ select.fz-feld { text-align: right; }
    dem Loesungswort. */
 .deins-wort { font-family: var(--serif); font-size: 16px; color: var(--ink); }
 
-/* Der Grund der Karte, sobald das Urteil steht. Ein Hauch, kein Anstrich:
-   die Karte bleibt Papier, und die Linien bleiben sichtbar. */
-.card-face.urteil-correct { background-color: color-mix(in srgb, var(--ok) 12%, var(--card)); }
-.card-face.urteil-almost  { background-color: color-mix(in srgb, var(--warn) 13%, var(--card)); }
-.card-face.urteil-wrong   { background-color: color-mix(in srgb, var(--bad) 12%, var(--card)); }
-.card-face[class*="urteil-"] { transition: background-color .22s ease; }
+/* Der Grund der Karte, sobald das Urteil steht -- und ein Schein rundherum.
+ *
+ * Der Grund allein war zu leise: ein Hauch auf getoentem Papier faellt kaum
+ * auf. Der Schein traegt deshalb die Farbe, und zwar die der Ampel, die auch
+ * sonst in der App gilt: gruen, bernstein, rot. Er liegt AUSSERHALB der
+ * Karte und aendert ihre Groesse nicht -- ein echter Rahmen wuerde sie im
+ * Moment des Lesens verschieben.
+ *
+ * Zwei Ringe: ein enger, kraeftiger direkt am Rand, und ein weicher darum.
+ * Der enge zeichnet die Kante nach, der weiche macht daraus ein Leuchten. */
+.card-face[class*="urteil-"] {
+  transition: background-color .22s ease, box-shadow .22s ease;
+}
+.card-face.urteil-correct {
+  background-color: color-mix(in srgb, var(--ok) 12%, var(--card));
+  box-shadow: 0 0 0 2px var(--ok), 0 0 26px 6px color-mix(in srgb, var(--ok) 55%, transparent), var(--shadow-lg);
+}
+.card-face.urteil-almost {
+  background-color: color-mix(in srgb, var(--warn) 13%, var(--card));
+  box-shadow: 0 0 0 2px var(--warn), 0 0 26px 6px color-mix(in srgb, var(--warn) 55%, transparent), var(--shadow-lg);
+}
+.card-face.urteil-wrong {
+  background-color: color-mix(in srgb, var(--bad) 12%, var(--card));
+  box-shadow: 0 0 0 2px var(--bad), 0 0 26px 6px color-mix(in srgb, var(--bad) 55%, transparent), var(--shadow-lg);
+}
+/* Wer Bewegung nicht mag, bekommt das Ergebnis ohne Uebergang. */
+@media (prefers-reduced-motion: reduce) { .card-face[class*="urteil-"] { transition: none; } }
 
 /* ==================================================================
  * Fokus: sichtbar für die Tastatur, unsichtbar für den Finger.

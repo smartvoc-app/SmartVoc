@@ -11,6 +11,7 @@
  */
 import type { LatinMode, ScoreOpts, ScoreResult, Word } from "./types";
 import { scoreAnswer } from "./scoring";
+import { FAST_MAX } from "./scoring";
 
 export const latinHeadword = (w: Word) => (w.grundform || w.lernform || "").trim();
 export const latinReveal = (w: Word) => (w.lernform || w.grundform || "").trim();
@@ -58,7 +59,7 @@ export function scoreLatinForm(user: string, lernform: string, opts?: ScoreOpts)
     const note = missing > 0
       ? `Fast — ${missing} Stammform${missing === 1 ? "" : "en"} fehlt oder stimmt nicht`
       : "Fast: Schreibweise der Stammformen prüfen";
-    return { ...base, score: Math.max(0.35, Math.min(0.8, frac)), verdict: "almost", note, errorType: "typo" };
+    return { ...base, score: Math.max(0.35, Math.min(FAST_MAX, frac)), verdict: "almost", note, errorType: "typo" };
   }
   return { ...base, score: 0, verdict: "wrong", note: "Stammformen nochmal prüfen", errorType: "wrong" };
 }

@@ -24,24 +24,24 @@ P("Grundfall", "doppelte Leerzeichen innen", "la  maison", "la maison", {}, "cor
 P("Grundfall", "leere Antwort", "", "la maison", {}, "wrong/0");
 P("Grundfall", "voellig anderes Wort", "le chien", "la maison", {}, "wrong/0");
 
-P("Schreibung", "klein statt gross zaehlt (Vorgabe)", "haus", "Haus", {}, "almost/0.75");
+P("Schreibung", "klein statt gross zaehlt (Vorgabe)", "haus", "Haus", {}, "almost/0.7");
 P("Schreibung", "nachsichtig gestellt", "haus", "Haus", { lenientCase: true }, "correct/1");
 
 P("ss/ß", "ss getippt, Loesung ß", "Strasse", "Straße", {}, "correct/1");
 P("ss/ß", "ß getippt, Loesung ss", "Straße", "Strasse", {}, "correct/1");
 
-P("Akzente", "fehlt, Vorgabe nachsichtig", "ecole", "école", {}, "almost/0.8");
+P("Akzente", "fehlt, Vorgabe nachsichtig", "ecole", "école", {}, "almost/0.7");
 P("Akzente", "fehlt, streng gestellt", "ecole", "école", { strictAccents: true }, "wrong/0");
 P("Akzente", "Umlaut fehlt, streng gestellt", "grun", "grün", { strictAccents: true }, "wrong/0");
 
-P("Artikel", "fehlt, Vorgabe halber Abzug", "maison", "la maison", {}, "almost/0.8");
+P("Artikel", "fehlt, Vorgabe halber Abzug", "maison", "la maison", {}, "almost/0.7");
 P("Artikel", "fehlt, freiwillig", "maison", "la maison", { articleMode: "optional" }, "correct/1");
 P("Artikel", "fehlt, voll verlangt", "maison", "la maison", { articleMode: "required-full" }, "wrong/0");
-P("Artikel", "falscher Artikel", "le maison", "la maison", {}, "almost/0.8");
+P("Artikel", "falscher Artikel", "le maison", "la maison", {}, "almost/0.7");
 P("Artikel", "ueberzaehlig, Loesung ohne", "the family", "family", {}, "correct/1");
 
-P("Tippfehler", "ein Buchstabe daneben", "la maisin", "la maison", {}, "almost/0.8");
-P("Tippfehler", "ein Buchstabe fehlt", "la maisn", "la maison", {}, "almost/0.8");
+P("Tippfehler", "ein Buchstabe daneben", "la maisin", "la maison", {}, "almost/0.7");
+P("Tippfehler", "ein Buchstabe fehlt", "la maisn", "la maison", {}, "almost/0.7");
 P("Tippfehler", "zu weit weg", "xyz", "la maison", {}, "wrong/0");
 P("Tippfehler", "Teilpunkte abgeschaltet", "la maisin", "la maison", { acceptPartial: false }, "wrong/0");
 
