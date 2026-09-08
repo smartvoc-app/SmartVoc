@@ -112,13 +112,18 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     const applied: Record<string, boolean> = {};
     /* V28: Woerter einsammeln, die in keiner Liste mehr stehen.
      *
-     * Sie entstanden beim Loeschen einer Liste (siehe deleteList) und waren
-     * danach unsichtbar, wurden aber weiter mitgezaehlt und weiter
-     * abgefragt. Wer mehrfach Listen angelegt und wieder geloescht hat,
-     * traegt einen Bestand mit sich herum, den er nirgends aufraeumen kann:
-     * die Zahl am Reiter zeigte dann mehr Woerter, als alle Listen zusammen
-     * enthalten. Sie kommen in "Woerter ohne Liste" -- dort sind sie
-     * sichtbar, uebbar und loeschbar. */
+     * Rueckstand aus der alten Fassung von deleteList: die liess die Woerter
+     * einer geloeschten Liste stehen, ohne Zugehoerigkeit. Danach waren sie
+     * unsichtbar, wurden aber weiter mitgezaehlt und weiter abgefragt -- ein
+     * Bestand, an den man nicht mehr herankam. Seit deleteList die Woerter
+     * mitnimmt, entstehen keine neuen mehr.
+     *
+     * Die vorhandenen werden SICHTBAR gemacht, nicht geloescht. Sie haetten
+     * zwar mit ihrer Liste verschwinden sollen, aber eine Migration, die
+     * ungefragt Woerter loescht, ist der falsche Ort dafuer: sie laeuft
+     * einmal, still, und laesst sich nicht zurueckholen. In "Woerter ohne
+     * Liste" stehen sie da, wo man sie ansehen und in zwei Schritten
+     * loeschen kann -- die Entscheidung bleibt beim Benutzer. */
     if (!done.waisenV28) {
       const ls = initRef.current.lists || [];
       const vc = initRef.current.vocab || [];
@@ -460,35 +465,32 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     deleteList: (id: string) => {
       const weg = lists.find((l: any) => l.id === id);
       if (!weg || weg.system === "nolist") return;   // PFLICHT 2: nolist not deletable
-      const pr = weg.pair || "en-de";
-      /* "Die Woerter selbst bleiben erhalten" -- das verspricht der
-       * Bestaetigungstext, und in den Daten stimmte es auch. In der
-       * Oberflaeche nicht: ein Wort, dessen einzige Liste geloescht wurde,
-       * stand danach in KEINER Liste. Sichtbar war es nirgends mehr,
-       * gezaehlt wurde es weiter (die Zahl am Reiter "Wortlisten" zaehlt
-       * alle Woerter des Sprachpaars), und abgefragt wurde es auch weiter.
-       * So entsteht ein Bestand, den man weder sieht noch loeschen kann.
+      /* Ein Wort gehoert in GENAU EINE Liste (V18, siehe einListeJeWort).
+       * Also gehen mit der Liste ihre Woerter -- wer nur die Liste loswerden
+       * will, raeumt sie vorher leer.
        *
-       * Solche Woerter wandern jetzt in "Woerter ohne Liste" -- die
-       * Auffangliste, die es fuer genau diesen Fall laengst gibt. */
-      let auffang: string | undefined = lists.find((l: any) => l.system === "nolist" && l.pair === pr)?.id;
-      const wirdWaise = vocab.some((w: any) => (w.lists || []).includes(id)
-        && (w.lists || []).filter((x: string) => x !== id).length === 0);
-      if (wirdWaise && !auffang) auffang = newId();
-      const neueAuffangliste = wirdWaise && !lists.some((l: any) => l.system === "nolist" && l.pair === pr)
-        ? [{ id: auffang, name: "Wörter ohne Liste", pair: pr, system: "nolist", createdAt: Date.now() }] : [];
-      setListsState((ls: any) => [...ls.filter((l: any) => l.id !== id), ...neueAuffangliste]);
-      setVocabState((v: any) => v.map((w: any) => {
-        if (!(w.lists || []).includes(id)) return w;
-        const rest = (w.lists || []).filter((x: string) => x !== id);
-        return { ...w, lists: rest.length ? rest : (auffang ? [auffang] : []) };
-      }));
+       * Frueher blieben die Woerter stehen und standen danach in keiner
+       * Liste: unsichtbar, nicht zu bearbeiten, nicht zu loeschen, und
+       * trotzdem weiter mitgezaehlt und weiter abgefragt. Genau diese
+       * Unklarheit ("geht das Wort mit?") war der Grund fuer V18. */
+      const mit = vocab.filter((w: any) => (w.lists || []).includes(id));
+      setListsState((ls: any) => ls.filter((l: any) => l.id !== id));
+      setVocabState((v: any) => v.filter((w: any) => !(w.lists || []).includes(id)));
+      /* Der Lernstand gehoert zum Wort und hat ohne es keinen Sinn. */
+      if (mit.length) setStats((prev: any) => {
+        const next = { ...prev };
+        for (const w of mit) delete next[w.id];
+        return next;
+      });
     },
     toggleWordList: (wordId: string, listId: string) => setVocabState((v: any) => v.map((w: any) => w.id === wordId
       ? { ...w, lists: (w.lists || []).includes(listId) ? w.lists.filter((x: string) => x !== listId) : [...(w.lists || []), listId] }
       : w)),
-    /* Mitgliedschaft steht am Wort. Ein Wort darf in mehreren Listen liegen --
-     * "Lektion 4" und "Unregelmaessige Verben" sind beide wahr. */
+    /* Mitgliedschaft steht am Wort -- in GENAU EINER Liste. Hier stand
+     * frueher das Gegenteil ("darf in mehreren Listen liegen"); das galt bis
+     * V18 und wurde dort abgeschafft, weil beim Loeschen einer Liste nie
+     * klar war, ob das Wort mitgeht. Der Kommentar blieb stehen und hat
+     * genau diese Verwirrung noch einmal erzeugt. */
     beruehreListe: (id: string) =>
       setListsState((ls: any) => ls.map((l: any) => (l.id === id ? { ...l, updatedAt: Date.now() } : l))),
     addWordsToList: (listId: string, wordIds: string[]) => {

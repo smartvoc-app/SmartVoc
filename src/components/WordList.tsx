@@ -228,6 +228,11 @@ export function WordList() {
   const activeIsNoList = lists.find((l) => l.id === activeList)?.system === "nolist";
   const pairVocab = useMemo(() => vocab.filter((w) => w.pair === pair), [vocab, pair]);
 
+  /* Wie viele Woerter das Loeschen der offenen Liste kostet. Ein Wort gehoert
+     in genau eine Liste, also gehen alle mit. */
+  const loeschZahlen = pairVocab.filter((w: any) => (w.lists || []).includes(activeList)).length;
+
+
   useEffect(() => { setOffen(null); }, [pair]);
   useEffect(() => { setWoerterOffen(false); setGewaehlt([]); }, [offen]);
   useEffect(() => {
@@ -316,7 +321,6 @@ export function WordList() {
     } else store.updateWord(id, patch);
     setEditingId(null);
   };
-  const toggleDraftList = (lid) => setDraft((d) => ({ ...d, lists: d.lists.includes(lid) ? d.lists.filter((x) => x !== lid) : [...d.lists, lid] }));
 
   /* ---- list management ---- */
   /* Anlegen laeuft ueber das Blatt "Neue Liste": Name und Zieldatum werden
@@ -596,9 +600,15 @@ export function WordList() {
 
       {/* Die drei Rueckfragen vor dem Loeschen -- eine Bauart, an einer
           Stelle, damit keine davon vergessen wird. */}
+      {/* Der Text nennt die Zahl, weil hier Lernstand verloren geht. Frueher
+          stand da "Die Woerter selbst bleiben erhalten" -- das stimmte in den
+          Daten, aber die Woerter waren danach in keiner Liste mehr zu finden.
+          Jetzt gehen sie mit, und das muss vorher dastehen. */}
       <Bestaetigen offen={listeLoeschen} titel={txt("Wortliste löschen")} gefahr
-        text={txt("Die Wortliste „{name}“ wird gelöscht. Die Wörter selbst bleiben erhalten und verlassen nur diese Liste.",
-          { name: lists.find((x: any) => x.id === activeList)?.name || "" })}
+        text={txt(loeschZahlen === 1
+          ? "Die Wortliste „{name}“ wird gelöscht, mitsamt ihrem Wort und dessen Lernstand."
+          : "Die Wortliste „{name}“ wird gelöscht, mitsamt ihren {n} Wörtern und deren Lernstand.",
+          { name: lists.find((x: any) => x.id === activeList)?.name || "", n: loeschZahlen })}
         knopf={txt("Löschen")} onClose={() => setListeLoeschen(false)} tun={deleteActiveList} />
 
       <Bestaetigen offen={loeschFrage} titel={gewaehlt.length === 1 ? txt("Wort löschen") : txt("Wörter löschen")} gefahr
@@ -825,11 +835,6 @@ export function WordList() {
       ? resolveToday(pairVocab, stats, lists, ret, settings.dailyGoal, settings.newPerDay).length
       : resolveSmart(ref, pairVocab, stats, settings.masteryCorrect, { retention: ret }).filter(practiceable).length;
   };
-
-  /* Wie viele Listenplaetze insgesamt belegt sind -- nicht wie viele
-     Woerter es gibt. Nur zum Vergleich mit dem Gesamtbestand. */
-  const mitgliedschaften = pairVocab.reduce((n: number, w: any) =>
-    n + (w.lists || []).filter((id: string) => lists.some((l: any) => l.id === id)).length, 0);
 
   const titelImBlick = !offen ? ""
     : offen.art === "alle" ? txt("Alle Wörter")
@@ -1272,18 +1277,6 @@ export function WordList() {
             <span className="lchip-n">{pairVocab.length}</span>
             <Icon name="arrowRight" size={14} />
           </button>
-          {/* Die Listenzahlen zaehlen Mitgliedschaften, der Gesamtbestand
-              zaehlt Woerter. Steht ein Wort in zwei Listen, ist die Summe der
-              Listen groesser als der Bestand -- und beide Zahlen stimmen
-              trotzdem. Wer das nicht weiss, haelt es fuer einen Fehler.
-              Deshalb steht der Satz da, aber nur dann, wenn es zutrifft:
-              solange jedes Wort in genau einer Liste liegt, gehen die Zahlen
-              auf und der Hinweis waere blosses Rauschen. */}
-          {mitgliedschaften > pairVocab.length && (
-            <div className="muted" style={{ fontSize: 12, padding: "8px 4px 0", lineHeight: 1.45 }}>
-              {txt("Ein Wort kann in mehreren Listen stehen. Deshalb ergeben die Zahlen der Listen zusammen mehr als der Gesamtbestand.")}
-            </div>
-          )}
         </div>
       )}
 

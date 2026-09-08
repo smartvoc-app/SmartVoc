@@ -4,7 +4,7 @@ import { txt } from "../lib/i18n";
 import { Icon } from "../ui/Icon";
 import { useStore } from "../store/StoreProvider";
 import { useToast } from "../ui/Toast";
-import { PAIRS, fk, isLatinPair } from "../lib/pairs";
+import { PAIRS } from "../lib/pairs";
 import { fetchShared, parseCode, type SharePayload } from "../sync/share";
 import { importPlan } from "../lib/export";
 
@@ -44,13 +44,10 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
     /* Eine uebernommene Liste behaelt, von wem sie kam. */
     const listId = store.addList(payload.name || txt("Geteilte Liste"), pair,
       { herkunft: "geteilt", autor: (payload as any).autor || undefined });
-    const isLat = isLatinPair(pair);
-    const { neu, dazu } = importPlan(payload.words, store.vocab, pair, listId, isLat, fk(pair));
+    const { neu } = importPlan(payload.words, pair, listId);
     if (neu.length) store.addWords(neu);
-    if (dazu.length) store.addWordsToList(listId, dazu);
-    const gesamt = neu.length + dazu.length;
-    toast(txt(gesamt === 1 ? "„{liste}“ übernommen · {n} Wort" : "„{liste}“ übernommen · {n} Wörter",
-      { liste: payload.name, n: gesamt }), "check");
+    toast(txt(neu.length === 1 ? "„{liste}“ übernommen · {n} Wort" : "„{liste}“ übernommen · {n} Wörter",
+      { liste: payload.name, n: neu.length }), "check");
     onClose();
   }
 
@@ -79,7 +76,7 @@ export function ImportShareModal({ open, initialToken, onClose }: { open: boolea
               <div style={{ fontWeight: 700, fontSize: 15 }}>{payload.name}</div>
               <div className="muted" style={{ fontSize: 13, marginTop: 3 }}>{pairLabel} · {txt(payload.words.length === 1 ? "{n} Wort" : "{n} Wörter", { n: payload.words.length })}</div>
               <div className="faint" style={{ fontSize: 12, marginTop: 8, display: "flex", gap: 6, alignItems: "center" }}>
-                <Icon name="sparkle" size={13} /> {txt("Du bekommst eine eigene Kopie. Wörter, die du schon hast, werden nicht doppelt angelegt.")}
+                <Icon name="sparkle" size={13} /> {txt("Du bekommst eine eigene Kopie. Deine bestehenden Listen bleiben unverändert.")}
               </div>
             </div>
           )}
