@@ -82,8 +82,44 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   // registerSync() lets the sync bridge hear local (user-driven) changes.
   const remoteKeys = React.useRef<Set<string>>(new Set());
   const onLocalChange = React.useRef<((key: string) => void) | null>(null);
+  /* Die eine Regel, an einer Stelle durchgesetzt.
+   *
+   * Ein Wort gehoert in genau eine Liste (V18). Das Feld heisst trotzdem
+   * `lists` und IST ein Feld -- die Form stammt aus der Zeit davor und laesst
+   * sich nicht folgenlos aendern: sie liegt so im Speicher jedes Geraets und
+   * in jedem Konto in der Wolke.
+   *
+   * Damit erlaubt das Modell genau die beiden Zustaende, die die Regel
+   * verbietet: keine Liste und mehrere. Die Regel stand bisher nur als
+   * Kommentar da, und eine einzige uebriggebliebene Funktion aus der Zeit vor
+   * V18 (addWordsToList) hat sie gebrochen, ohne dass irgendetwas es merkte.
+   * Drei Fehler an einem Tag gingen darauf zurueck.
+   *
+   * Was sich aendern laesst, ist der Weg hinein. Fremde Daten kommen auf zwei
+   * Wegen: vom Abgleich mit einem anderen Geraet -- das eine aeltere Fassung
+   * der App fahren kann -- und aus einer Sicherungsdatei, die von Hand
+   * aenderbar ist. Beide laufen jetzt hier durch. Ein Wort mit zwei Listen
+   * wird dabei in zwei Woerter zerlegt, je Liste eines, mit eigener Id.
+   *
+   * Woerter OHNE Liste werden hier nicht angefasst: beim Abgleich koennen die
+   * Listen spaeter eintreffen als die Woerter, und dann waere ein Loeschen
+   * ein Datenverlust. Dafuer sind Migration V28 und deleteList zustaendig. */
+  const eineListeJeWort = React.useCallback((v: any): any => {
+    if (!Array.isArray(v) || !v.some((w: any) => ((w && w.lists) || []).length > 1)) return v;
+    const raus: any[] = [];
+    for (const w of v) {
+      const ls = (w && w.lists) || [];
+      if (ls.length <= 1) { raus.push(w); continue; }
+      raus.push({ ...w, lists: [ls[0]] });
+      for (const weitere of ls.slice(1)) {
+        raus.push({ ...w, id: newId(), lists: [weitere], source: "kopie", review: false });
+      }
+    }
+    return raus;
+  }, []);
+
   const setterFor: Record<string, (v: any) => void> = {
-    vocab: setVocabState, lists: setListsState, stats: setStats, meta: setMeta, settings: setSettings,
+    vocab: (v: any) => setVocabState(eineListeJeWort(v)), lists: setListsState, stats: setStats, meta: setMeta, settings: setSettings,
   };
   const applyRemote = React.useCallback((key: string, data: any) => {
     remoteKeys.current.add(key);
@@ -160,19 +196,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
      * null an, wie jede uebernommene Liste: der Fortschritt wurde einmal
      * erarbeitet, nicht zweimal. */
     if (!done.trennV29) {
-      setVocabState((v: any) => {
-        if (!v.some((w: any) => (w.lists || []).length > 1)) return v;
-        const raus: any[] = [];
-        for (const w of v) {
-          const ls = w.lists || [];
-          if (ls.length <= 1) { raus.push(w); continue; }
-          raus.push({ ...w, lists: [ls[0]] });
-          for (const weitere of ls.slice(1)) {
-            raus.push({ ...w, id: newId(), lists: [weitere], source: "kopie", review: false });
-          }
-        }
-        return raus;
-      });
+      setVocabState((v: any) => eineListeJeWort(v));
       applied.trennV29 = true;
     }
 
@@ -421,7 +445,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     addWords: (arr: any[]) => setVocabState((v: any) => { const t = Date.now(); return [...arr.map((w) => ({ id: newId(), review: false, source: "import", pair: "en-de", lists: [], createdAt: t, ...w })), ...v]; }),
     updateWord: (id: string, patch: any) => setVocabState((v: any) => v.map((w: any) => (w.id === id ? { ...w, ...patch } : w))),
     deleteWord: (id: string) => setVocabState((v: any) => v.filter((w: any) => w.id !== id)),
-    replaceVocab: (list: any[]) => setVocabState(list.map((w) => ({ id: w.id || newId(), review: false, source: "import", pair: "en-de", lists: [], ...w }))),
+    replaceVocab: (list: any[]) => setVocabState(eineListeJeWort(
+      list.map((w) => ({ id: w.id || newId(), review: false, source: "import", pair: "en-de", lists: [], ...w })))),
     resetStats: () => { setStats({}); setMeta({ lastDate: null, streak: 0, todayCount: 0, newToday: 0, totalReviews: 0 }); },
     resetStatsForWords: (ids: string[]) => { setStats((prev: any) => { const next = { ...prev }; ids.forEach((id) => { delete next[id]; }); return next; }); },
     resetSettings: () => setSettings((p: any) => ({ ...p, ...RECOMMENDED })),
@@ -519,11 +544,6 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     moveWordsToList: (wordIds: string[], zielId: string) => {
       const set = new Set(wordIds);
       setVocabState((v: any) => v.map((w: any) => (set.has(w.id) ? { ...w, lists: [zielId] } : w)));
-    },
-    addWordsToList: (listId: string, wordIds: string[]) => {
-      const set = new Set(wordIds);
-      setVocabState((v: any) => v.map((w: any) => (set.has(w.id) && !(w.lists || []).includes(listId)
-        ? { ...w, lists: [...(w.lists || []), listId] } : w)));
     },
     removeWordFromList: (listId: string, wordId: string) =>
       setVocabState((v: any) => v.map((w: any) => (w.id === wordId

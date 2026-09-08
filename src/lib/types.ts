@@ -52,6 +52,20 @@ export interface Word {
    * simply shows nothing on the German side. */
   examplesDe?: string[];
   phonetic?: string;      // optional pronunciation of the foreign word, e.g. "dɒɡ" or "dohg"
+  /* Die Wortliste, in der dieses Wort steht -- GENAU EINE (V18).
+   *
+   * Das Feld ist ein Feld und heisst im Plural, weil es aus der Zeit davor
+   * stammt: damals durfte ein Wort in mehreren Listen liegen. Die Form
+   * umzubauen hiesse, den Speicher jedes Geraets und jedes Konto in der
+   * Wolke anzufassen; das Feld bleibt deshalb, wie es ist.
+   *
+   * Es hat genau einen Eintrag. Wer hier anhaengt, bricht die Regel -- und
+   * genau das ist schon passiert: beide Listen zeigten danach dieselben
+   * Woerter, und ein Verschieben aus der einen nahm sie auch aus der
+   * anderen, weil es dieselbe Id war. Durchgesetzt wird die Regel in
+   * StoreProvider (eineListeJeWort): alles, was in den Bestand kommt,
+   * laeuft dort durch. Ein leeres Feld ist ebenso ungueltig; solche Woerter
+   * werden geloescht (Migration V28, deleteList). */
   lists?: string[];
   review?: boolean;
   source?: "seed" | "manual" | "import" | "none" | string;
