@@ -103,3 +103,79 @@ nur, wem der Absender den Link selbst schickt, und der Empfänger erhält
 eine eigene Kopie.
 
 Die App zeigt keine Werbung und bindet keine Analysedienste ein.
+
+
+═══════════════════════════════════════════════════════════════════
+APP-DATENSCHUTZ (App Privacy)
+═══════════════════════════════════════════════════════════════════
+App Store Connect → SmartVoc → App-Datenschutz → "Erste Schritte"
+
+GRUNDSATZ: Ohne Konto verlässt NICHTS das Gerät. Alles Folgende wird nur
+erhoben, wenn jemand freiwillig ein Konto anlegt. Apple zählt das
+trotzdem als Erhebung, also wird es deklariert.
+
+ERSTE FRAGE: "Erfasst du Daten von dieser App?"  ->  JA
+
+
+─── 1. KONTAKTINFORMATIONEN ───────────────────────────────────────
+
+  ☑ E-Mail-Adresse
+      Zweck:            App-Funktionalität
+      Mit Identität verknüpft:   JA
+      Für Tracking verwendet:    NEIN
+      (Anmeldung, Bestätigungsmail, Passwort zurücksetzen.)
+
+  ☑ Name
+      Zweck:            App-Funktionalität
+      Mit Identität verknüpft:   JA
+      Für Tracking verwendet:    NEIN
+      (Der frei wählbare Anzeigename. Freiwillig, kann leer bleiben.)
+
+
+─── 2. BENUTZERINHALTE ────────────────────────────────────────────
+
+  ☑ Andere Benutzerinhalte
+      Zweck:            App-Funktionalität
+      Mit Identität verknüpft:   JA
+      Für Tracking verwendet:    NEIN
+      (Wortlisten, eingetragene Wörter, Lernstand und Einstellungen.
+       Sie liegen auf dem Server, damit sie zwischen den Geräten
+       desselben Benutzers abgeglichen werden können.)
+
+
+─── 3. IDENTIFIKATOREN ────────────────────────────────────────────
+
+  ☑ Benutzer-ID
+      Zweck:            App-Funktionalität
+      Mit Identität verknüpft:   JA
+      Für Tracking verwendet:    NEIN
+      (Die Kennung des Kontos. Ohne sie liesse sich nicht sagen, wem
+       welche Wortliste gehört.)
+
+
+─── NICHTS SONST ──────────────────────────────────────────────────
+
+Alle übrigen Kategorien bleiben leer. Insbesondere NICHT ankreuzen:
+
+  Standort · Kontakte · Fotos · Gesundheit · Finanzdaten ·
+  Suchverlauf · Browserverlauf · Käufe · Werbedaten ·
+  Nutzungsdaten (Produktinteraktion) · Diagnose / Absturzdaten ·
+  Sensible Daten · Kontaktliste
+
+Begründung, falls jemand fragt: Die App bindet keinen einzigen
+Analysedienst ein. Die Abhängigkeiten sind Capacitor, drei Schriften,
+Supabase, React, das Gedächtnismodell ts-fsrs und eine Excel-Bibliothek.
+Kein Zählpixel, kein Werbenetz, kein Absturzmelder.
+
+Der Lernstand ist bewusst NICHT als "Nutzungsdaten" deklariert: Er wird
+nicht erhoben, um Nutzerverhalten auszuwerten, sondern ist der Inhalt,
+den der Benutzer selbst erzeugt und den die App ihm zurückgibt. Deshalb
+steht er unter Benutzerinhalte.
+
+
+─── TRACKING ──────────────────────────────────────────────────────
+
+Frage: "Verwendet deine App Daten zum Tracking?"  ->  NEIN
+
+Die App verfolgt niemanden über andere Apps oder Websites hinweg und
+gibt keine Daten an Datenhändler weiter.
