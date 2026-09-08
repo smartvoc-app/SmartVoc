@@ -138,9 +138,9 @@ ERSTE FRAGE: "Erfasst du Daten von dieser App?"  ->  JA
       Zweck:            App-Funktionalität
       Mit Identität verknüpft:   JA
       Für Tracking verwendet:    NEIN
-      (Wortlisten, eingetragene Wörter, Lernstand und Einstellungen.
-       Sie liegen auf dem Server, damit sie zwischen den Geräten
-       desselben Benutzers abgeglichen werden können.)
+      (Wortlisten und die eingetragenen Wörter. Sie liegen auf dem
+       Server, damit sie zwischen den Geräten desselben Benutzers
+       abgeglichen werden können.)
 
 
 ─── 3. IDENTIFIKATOREN ────────────────────────────────────────────
@@ -152,6 +152,29 @@ ERSTE FRAGE: "Erfasst du Daten von dieser App?"  ->  JA
       (Die Kennung des Kontos. Ohne sie liesse sich nicht sagen, wem
        welche Wortliste gehört.)
 
+  ☐ Geräte-ID  -- NICHT ankreuzen. Die App benutzt keine.
+
+
+─── 4. NUTZUNGSDATEN ──────────────────────────────────────────────
+
+  ☑ Produktinteraktion
+      Zweck:            App-Funktionalität
+      Mit Identität verknüpft:   JA
+      Für Tracking verwendet:    NEIN
+      (Der Lernstand: je Wort die letzten dreissig Antworten mit
+       Zeitstempel, dazu Tagesserie und Gesamtzahl der Abfragen.)
+
+      ANMERKUNG: Zuerst hatte ich geraten, das wegzulassen und den
+      Lernstand unter Benutzerinhalte zu führen. Das war zu schnell.
+      Apples Definition nennt ausdrücklich "andere Informationen
+      darüber, wie der Benutzer mit der App interagiert" -- und genau
+      das ist eine Antwortgeschichte mit Zeitstempeln. Die Wortlisten
+      selbst bleiben Benutzerinhalte, der Lernstand darüber ist
+      Produktinteraktion. Beides mit dem Zweck App-Funktionalität.
+
+  ☐ Werbedaten           -- NICHT ankreuzen. Es gibt keine Werbung.
+  ☐ Sonstige Nutzungsdaten -- NICHT ankreuzen (siehe unten).
+
 
 ─── NICHTS SONST ──────────────────────────────────────────────────
 
@@ -159,18 +182,20 @@ Alle übrigen Kategorien bleiben leer. Insbesondere NICHT ankreuzen:
 
   Standort · Kontakte · Fotos · Gesundheit · Finanzdaten ·
   Suchverlauf · Browserverlauf · Käufe · Werbedaten ·
-  Nutzungsdaten (Produktinteraktion) · Diagnose / Absturzdaten ·
-  Sensible Daten · Kontaktliste
+  Diagnose (Crash-, Leistungs- und sonstige Diagnosedaten) ·
+  Sensible Daten · Körper (Hände, Kopf) · Geräte-ID
+
+KEINE AUFFANGKATEGORIEN: "Sonstige Nutzungsdaten" und "Sonstige Daten"
+bleiben leer. Sie sind für Dinge gedacht, die in keine benannte
+Kategorie passen -- bei SmartVoc passt alles in eine. Auf der
+Produktseite erscheint "Sonstige Daten" sonst als eigener Punkt, und
+das liest sich für einen Benutzer wie ein Verschweigen, ohne dass es
+einen Grund dafür gäbe.
 
 Begründung, falls jemand fragt: Die App bindet keinen einzigen
 Analysedienst ein. Die Abhängigkeiten sind Capacitor, drei Schriften,
 Supabase, React, das Gedächtnismodell ts-fsrs und eine Excel-Bibliothek.
 Kein Zählpixel, kein Werbenetz, kein Absturzmelder.
-
-Der Lernstand ist bewusst NICHT als "Nutzungsdaten" deklariert: Er wird
-nicht erhoben, um Nutzerverhalten auszuwerten, sondern ist der Inhalt,
-den der Benutzer selbst erzeugt und den die App ihm zurückgibt. Deshalb
-steht er unter Benutzerinhalte.
 
 
 ─── TRACKING ──────────────────────────────────────────────────────
