@@ -1189,8 +1189,20 @@ export function Practice() {
                 <div className="card-center" ref={centerRef}>
                   {result ? (
                     <>
+                      {/* Die Zeichenmarkierung nur bei "fast richtig".
+                       *
+                       * Sie zeigt, WO es klemmte -- das setzt voraus, dass es
+                       * ueberhaupt eine Stelle gibt. Wer auf "parents" mit
+                       * "child" antwortet, hat keine Stelle: dann stimmt fast
+                       * kein Buchstabe, fast jeder wird markiert, und die
+                       * Loesung steht ganz in Rot da. Genau das war zu sehen.
+                       *
+                       * Bei "ganz daneben" gibt es nichts zu zeigen ausser dem
+                       * richtigen Wort -- also steht es sauber da. */}
                       <div className="prompt-word">
-                        {result.targetDiff.map((c, i) => <span key={i} className={"ch " + c.status}>{c.ch}</span>)}
+                        {result.verdict === "almost"
+                          ? result.targetDiff.map((c, i) => <span key={i} className={"ch " + c.status}>{c.ch}</span>)
+                          : result.targetDiff.map((c: any) => c.ch).join("")}
                       </div>
                       {tgtKey !== NATIVE && phoneticEl}
                       {tgtKey !== NATIVE && formenVon(current) && (
@@ -1242,7 +1254,7 @@ export function Practice() {
               <div className="urteil-deins">
                 {txt("Du hast geschrieben:")}{" "}
                 <span className="deins-wort">
-                  {(result.userDiff || []).length
+                  {result.verdict === "almost" && (result.userDiff || []).length
                     ? result.userDiff.map((c: any, i: number) => <span key={i} className={"ch " + c.status}>{c.ch}</span>)
                     : input.trim()}
                 </span>
