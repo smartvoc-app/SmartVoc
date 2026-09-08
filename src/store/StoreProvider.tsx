@@ -232,7 +232,14 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     addWord: (w: any) => setVocabState((v: any) => [{ id: newId(), review: false, source: "manual", pair: "en-de", createdAt: Date.now(), ...w }, ...v]),
     addWords: (arr: any[]) => setVocabState((v: any) => { const t = Date.now(); return [...arr.map((w) => ({ id: newId(), review: false, source: "import", pair: "en-de", createdAt: t, ...w })), ...v]; }),
     updateWord: (id: string, patch: any) => setVocabState((v: any) => v.map((w: any) => (w.id === id ? { ...w, ...patch } : w))),
-    deleteWord: (id: string) => setVocabState((v: any) => v.filter((w: any) => w.id !== id)),
+    /* Mit dem Wort geht sein Lernstand. Vorher blieb der Eintrag in `stats`
+     * stehen -- fuer immer, denn er wird nur ueber die Wort-Id gefunden, und
+     * die gibt es nicht mehr. Sichtbar war das nie; abgeglichen wurde es
+     * trotzdem, und mit jedem geloeschten Wort wuchs es. */
+    deleteWord: (id: string) => {
+      setVocabState((v: any) => v.filter((w: any) => w.id !== id));
+      setStats((prev: any) => { if (!(id in prev)) return prev; const next = { ...prev }; delete next[id]; return next; });
+    },
     replaceVocab: (list: any[]) => setVocabState(
       list.map((w) => ({ id: w.id || newId(), review: false, source: "import", pair: "en-de", ...w }))),
     resetStats: () => { setStats({}); setMeta({ lastDate: null, streak: 0, todayCount: 0, newToday: 0, totalReviews: 0 }); },
