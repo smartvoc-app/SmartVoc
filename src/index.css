@@ -1048,12 +1048,21 @@ table.vt tr.row-sel td { background: var(--amber-bg); }
 .card-dir-to { color: var(--ink-soft); border: 1px solid var(--line); border-radius: 5px; padding: 2px 7px; }
 .card-top { justify-content: center; }
 
-/* ---- Das Urteil steht in Worten über dem Wort, das Wort trägt die Farbe.
-       Kein Haken, kein Kreuz, kein Kasten um die Lösung. ---- */
+/* ---- Die Loesung zeigt, WO es nicht gestimmt hat ----
+ *
+ * Hier stand eine Regel, die genau das abschaltete: die abweichenden
+ * Zeichen wurden auf dem Loesungswort neutralisiert, weil das Wort selbst
+ * die Farbe tragen sollte. Getragen hat es sie nie -- die Markierung war
+ * weg, und an ihre Stelle trat nichts. Ein Tippfehler sah aus wie eine
+ * ganz falsche Antwort.
+ *
+ * Jetzt greifen die .ch-Regeln wieder: falscher Buchstabe rot und wellig
+ * unterstrichen, fehlender rot hinterlegt. Das Wort BLEIBT im Grundton --
+ * ein durchgefaerbtes Wort wuerde die Markierung wieder verschlucken.
+ * Die Farbe zum Urteil traegt der Grund der Karte. */
 .verdict { font-size: calc(13px * var(--fit)); font-weight: 800; letter-spacing: .14em; }
-.prompt-word .ch.wrong, .prompt-word .ch.missing, .prompt-word .ch.extra, .prompt-word .ch.ok {
-  background: none; color: inherit; text-decoration: none; padding: 0;
-}
+.prompt-word .ch.wrong { text-underline-offset: 6px; text-decoration-thickness: 2px; }
+.prompt-word .ch.missing { padding: 0 2px; }
 
 /* ---- Eine Höhe für alle Aufklapper, eine für alle Handlungsknöpfe.
        Die Breite darf mitwachsen, die Höhe nie. ---- */
@@ -1922,6 +1931,33 @@ select.fz-feld { text-align: right; }
           background: color-mix(in srgb, var(--u) 13%, var(--card));
           color: var(--u); font-size: 12.5px; font-weight: 700;
           letter-spacing: .06em; align-self: center; }
+
+/* Das Urteil, deutlich.
+ *
+ * Es stand zweimal da, klein und blass, und ging genau in dem Moment unter,
+ * in dem es zaehlt. Jetzt einmal, gefuellt statt getoent, groesser -- und
+ * darunter, was man selbst geschrieben hat.
+ *
+ * Der GRUND der Karte traegt die Farbe mit (siehe .card-face.urteil-*).
+ * Das Wort NICHT: dort markieren rote Zeichen, WO der Fehler war, und ein
+ * durchgefaerbtes Wort wuerde das ueberdecken. Deshalb Farbe nur um das
+ * Wort herum, nie darin. */
+.urteil-zone { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 10px 0 4px; }
+.urteil-gross { margin: 0; padding: 10px 22px; font-size: 15px; letter-spacing: .08em;
+                background: var(--u); color: var(--card); box-shadow: var(--shadow-sm); }
+.urteil-deins { font-size: 13.5px; color: var(--ink-soft); text-align: center; }
+/* Die eigene Antwort etwas kraeftiger als der Begleittext, damit die
+   markierten Zeichen darin auffallen. Die Markierung selbst kommt aus den
+   .ch-Regeln weiter oben -- hier wird sie NICHT abgeschaltet, anders als auf
+   dem Loesungswort. */
+.deins-wort { font-family: var(--serif); font-size: 16px; color: var(--ink); }
+
+/* Der Grund der Karte, sobald das Urteil steht. Ein Hauch, kein Anstrich:
+   die Karte bleibt Papier, und die Linien bleiben sichtbar. */
+.card-face.urteil-correct { background-color: color-mix(in srgb, var(--ok) 12%, var(--card)); }
+.card-face.urteil-almost  { background-color: color-mix(in srgb, var(--warn) 13%, var(--card)); }
+.card-face.urteil-wrong   { background-color: color-mix(in srgb, var(--bad) 12%, var(--card)); }
+.card-face[class*="urteil-"] { transition: background-color .22s ease; }
 
 /* ==================================================================
  * Fokus: sichtbar für die Tastatur, unsichtbar für den Finger.

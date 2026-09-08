@@ -1136,12 +1136,10 @@ export function Practice() {
               { liste: endspurtListe.name, n: endspurtListe.n, t: endspurtListe.tage })}
           </div>
         )}
-        {result && (
-          <div className="urteil" style={{ ["--u" as any]: TONE_VAR[verdictMeta[result.verdict].tone] }}>
-            <Icon name={verdictMeta[result.verdict].icon as any} size={15} />
-            {txt(verdictMeta[result.verdict].label)}
-          </div>
-        )}
+        {/* Das Urteil stand hier UND unter der Karte -- zweimal dieselbe
+            Auskunft, und keine davon fiel auf. Es steht jetzt nur noch
+            unten: dort, wo eben noch das Eingabefeld war und der Blick
+            ohnehin hingeht. */}
         <div className="card-frame">
           {schichten > 0 && (
             <div className="card-stapel" aria-hidden="true">
@@ -1181,7 +1179,11 @@ export function Practice() {
                 )}
               </div>
             ) : (
-              <div className="card-face">
+              /* Der Grund der Karte traegt das Urteil, NICHT das Wort.
+               * Das Wort traegt schon Farbe: die abweichenden Buchstaben
+               * stehen rot da und zeigen, WO der Fehler war. Ein rotes Wort
+               * wuerde genau diese Auskunft ueberdecken. */
+              <div className={"card-face" + (result ? " urteil-" + result.verdict : "")}>
                 <span className="ruled-margin" />
                 <div className="card-top">{dirMark(true)}</div>
                 <div className="card-center" ref={centerRef}>
@@ -1193,9 +1195,6 @@ export function Practice() {
                       {tgtKey !== NATIVE && phoneticEl}
                       {tgtKey !== NATIVE && formenVon(current) && (
                         <div className="card-sub">{formenVon(current)}</div>
-                      )}
-                      {result.verdict !== "correct" && input.trim() && (
-                        <div className="card-yours">{txt("Du hast {wort} geschrieben", { wort: input.trim() })}</div>
                       )}
                       {examplesFor(tgtKey)}
                     </>
@@ -1222,9 +1221,33 @@ export function Practice() {
             wenn es erscheint. Darueber haette es sie beim Antworten nach
             unten geschoben -- genau in dem Moment, in dem man sie liest. */}
         {result && (
-          <div className="urteil" style={{ ["--u" as any]: TONE_VAR[verdictMeta[result.verdict].tone] }}>
-            <Icon name={verdictMeta[result.verdict].icon as any} size={15} />
-            {txt(verdictMeta[result.verdict].label)}
+          <div className="urteil-zone">
+            <div className={"urteil urteil-gross urteil-" + result.verdict}
+              style={{ ["--u" as any]: TONE_VAR[verdictMeta[result.verdict].tone] }}>
+              <Icon name={verdictMeta[result.verdict].icon as any} size={17} />
+              {txt(verdictMeta[result.verdict].label)}
+            </div>
+            {/* Die eigene Antwort steht UNTER der Karte, nicht darauf. Auf der
+                Karte steht, was richtig ist -- das soll man sich merken. Was
+                man selbst geschrieben hat, gehoert daneben, nicht dazwischen.
+             *
+             * Und die Abweichung wird HIER markiert, nicht in der Loesung.
+             * Die Zeichenmarkierung gab es einmal auf dem Loesungswort und
+             * wurde abgeschaltet -- zu Recht: das Wort auf der Karte ist das,
+             * was man sich merken soll, und ein durchgestrichener Buchstabe
+             * darin praegt sich mit ein. In der eigenen Antwort ist dieselbe
+             * Markierung genau richtig: sie zeigt, WO der Fehler war.
+             * userDiff wurde bisher berechnet und nie angezeigt. */}
+            {result.verdict !== "correct" && input.trim() && (
+              <div className="urteil-deins">
+                {txt("Du hast geschrieben:")}{" "}
+                <span className="deins-wort">
+                  {(result.userDiff || []).length
+                    ? result.userDiff.map((c: any, i: number) => <span key={i} className={"ch " + c.status}>{c.ch}</span>)
+                    : input.trim()}
+                </span>
+              </div>
+            )}
           </div>
         )}
         {masteryBar}

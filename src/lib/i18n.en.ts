@@ -81,6 +81,7 @@ export const EN: Record<string, string> = {
   "baut sich auf, ab heute füllt sich diese Linie": "building up, this line fills from today",
   "Noch kein Verlauf. Ab heute merkt sich die App jeden Tag deinen Stand.": "No history yet. From today the app records where you stand each day.",
   "{n} Wort": "{n} word",
+  "Du hast geschrieben:": "You wrote:",
   "Nachricht schicken": "Send a message",
   "Per E-Mail": "By email",
   "Per WhatsApp": "By WhatsApp",
