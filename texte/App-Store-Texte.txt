@@ -1,0 +1,105 @@
+SMARTVOC — TEXTE FÜR DIE APP-STORE-SEITE
+Stand 8. September 2026 · Version 1.0 · Sprache Deutsch
+
+Jeder Block ist zum Kopieren gedacht. Die Zeichenzahl steht daneben und ist
+gegen Apples Grenze geprüft.
+
+
+═══════════════════════════════════════════════════════════════════
+UNTERTITEL                                            28 / 30 Zeichen
+═══════════════════════════════════════════════════════════════════
+
+Vokabeln lernen und behalten
+
+
+═══════════════════════════════════════════════════════════════════
+WERBETEXT (optional)                                 92 / 170 Zeichen
+═══════════════════════════════════════════════════════════════════
+Lässt sich später ohne neue Prüfung ändern. Guter Ort für Saisonales
+("Jetzt vor den Herbstprüfungen").
+
+Neu: Wortlisten teilen, Übungsplan mit Zieldatum und ein Grundwortschatz für sechs Sprachen.
+
+
+═══════════════════════════════════════════════════════════════════
+BESCHREIBUNG                                       2239 / 4000 Zeichen
+═══════════════════════════════════════════════════════════════════
+
+SmartVoc ist ein Vokabeltrainer, der sich merkt, was du kannst, und dir zeigt, was du wiederholen musst.
+
+Der Unterschied zu Karteikarten: SmartVoc rechnet für jedes Wort aus, wann du es vergessen wirst, und fragt es kurz davor ab. Was sitzt, kommt selten. Was wackelt, kommt oft. Damit lernst du in weniger Zeit mehr, und der Stoff bleibt auch nach der Prüfung.
+
+SECHS SPRACHEN, SOFORT LOSLEGEN
+Englisch, Französisch, Spanisch, Italienisch, Portugiesisch und Latein. Zu jeder Sprache liegt ein Grundwortschatz von hundert Wörtern bereit, mit Beispielsätzen und Lautschrift. Du kannst sofort anfangen.
+
+DEINE EIGENEN WÖRTER
+Wortlisten tippst du ab, fügst sie aus der Zwischenablage ein oder lässt sie dir von deiner KI-App aus einem Foto der Heftseite erstellen. In der Webfassung liest SmartVoc auch Excel- und CSV-Dateien ein und gibt Listen als Excel oder PDF wieder aus.
+
+VIER ARTEN ZU ÜBEN
+Eintippen prägt am stärksten ein. Multiple Choice geht schnell. Selbstkontrolle heisst umdrehen und selbst beurteilen. Und Durchblättern ist zum Anschauen, ohne dass es zählt.
+
+FAIR BEWERTET
+Ein Tippfehler ist kein ganzer Fehler. SmartVoc zeigt dir, welcher Buchstabe nicht stimmte, und du entscheidest in den Einstellungen, wie streng gewertet wird: Gross- und Kleinschreibung, Umlaute und Akzente, der Artikel bei Substantiven.
+
+PRÜFUNG IM BLICK
+Gib einer Wortliste ein Zieldatum, und der Übungsplan zeigt dir, wie weit sie ist. Je näher der Termin, desto mehr Wörter nimmt SmartVoc ins Tagespensum.
+
+LATEIN RICHTIG
+Stammformen statt blossem Vokabelpaar, Längenzeichen über den Vokalen, und auf Wunsch werden die Formen mit abgefragt.
+
+TEILEN
+Schick jemandem eine Wortliste per Nachricht. Wer den Link öffnet, sieht die Liste und übernimmt sie als eigene Kopie.
+
+OHNE KONTO NUTZBAR
+Alles läuft ohne Anmeldung. Ein Konto brauchst du nur, wenn du auf mehreren Geräten lernen oder Listen teilen willst.
+
+KEINE WERBUNG, KEINE VERFOLGUNG
+SmartVoc zeigt keine Werbung, verkauft keine Daten und bindet keine Zählpixel ein. Deine Wörter liegen auf deinem Gerät. Mit Konto liegen sie zusätzlich verschlüsselt auf einem Server in Frankfurt, damit sie zwischen deinen Geräten abgeglichen werden können. Du kannst dein Konto jederzeit in der App löschen.
+
+
+═══════════════════════════════════════════════════════════════════
+SCHLÜSSELWÖRTER                                      93 / 100 Zeichen
+═══════════════════════════════════════════════════════════════════
+Mit Komma trennen, KEINE Leerzeichen dazwischen. Den App-Namen und die
+Wörter aus dem Untertitel weglassen: die findet Apple ohnehin.
+
+Vokabeln,Vokabeltrainer,Englisch,Franzoesisch,Latein,Spanisch,Italienisch,Karteikarten,Schule
+
+(Ohne Umlaute geschrieben, damit beide Schreibweisen greifen.)
+
+
+═══════════════════════════════════════════════════════════════════
+URLS
+═══════════════════════════════════════════════════════════════════
+
+Support-URL (Pflicht)      https://smartvoc.app
+Marketing-URL (optional)   https://smartvoc.app
+Datenschutz-URL (Pflicht)  https://smartvoc.app/datenschutz.html
+
+
+═══════════════════════════════════════════════════════════════════
+ANGABEN ZUR APP-PRÜFUNG
+═══════════════════════════════════════════════════════════════════
+
+Kontakt
+  Martin Keller · support@smartvoc.app · +41 79 822 36 75
+
+Anmeldedaten erforderlich?   NEIN
+
+Hinweise für die Prüfung (zum Kopieren):
+
+Ein Konto ist nicht nötig. Alle Lernfunktionen stehen ohne Anmeldung zur
+Verfügung: Wortlisten anlegen und füllen, üben in vier Antwortarten,
+Übungsplan und Statistik.
+
+Ein Konto dient ausschliesslich zwei Zwecken: dem Abgleich zwischen
+mehreren Geräten und dem Teilen einer eigenen Wortliste mit einer anderen
+Person. Es lässt sich in der App unter "Konto" jederzeit vollständig
+löschen, samt aller Daten auf dem Server.
+
+Zum Teilen: Es gibt keinen öffentlichen Bereich, keine Suche nach fremden
+Listen, keine Profile und keine Kommentare. Eine geteilte Liste erreicht
+nur, wem der Absender den Link selbst schickt, und der Empfänger erhält
+eine eigene Kopie.
+
+Die App zeigt keine Werbung und bindet keine Analysedienste ein.
