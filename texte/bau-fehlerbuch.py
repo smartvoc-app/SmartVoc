@@ -1,22 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Legt das Fehlerbuch an -- EINMALIG.
+"""Schreibt das Fehlerbuch aus einer JSON-Datei.
 
-Warum Python und nicht wie die uebrigen bau-*.cjs mit Node: die
-Bibliothek `xlsx` im Projekt schreibt keine Datenpruefung (Klapplisten)
-und keine Formate. Beides ist hier der halbe Nutzen, also wird die Datei
-direkt als OOXML geschrieben; das Zip dafuer kann Python von Haus aus.
+    python3 texte/bau-fehlerbuch.py eintraege.json
 
-DIESES SKRIPT UEBERSCHREIBT NICHTS. Existiert die Zieldatei, bricht es
-ab -- sonst waeren beim zweiten Lauf alle Eintraege weg.
+Warum Python und nicht wie die uebrigen bau-*.cjs mit Node: die Bibliothek
+`xlsx` im Projekt schreibt keine Datenpruefung (Klapplisten) und keine
+Formate. Beides ist hier der halbe Nutzen, also wird die Datei direkt als
+OOXML geschrieben; das Zip dafuer kann Python von Haus aus. Gelesen wird
+mit `texte/fehlerbuch-lesen.cjs` -- lesen kann `xlsx` alles, was Excel je
+gespeichert hat.
+
+Die bestehende Mappe wird vorher zur Seite gelegt (.bak mit Zeitstempel),
+damit ein Fehllauf keine Eintraege kostet.
 """
-import os, sys, zipfile, datetime
+import os, sys, io, json, shutil, zipfile, datetime
 
 ZIEL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
                     "SmartVoc-Fehler-und-Aenderungen.xlsx")
 ZIEL = os.path.normpath(ZIEL)
 if os.path.exists(ZIEL):
-    sys.exit("Es gibt schon ein Fehlerbuch: %s\nNichts getan." % ZIEL)
+    sicherung = ZIEL + "." + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + ".bak"
+    shutil.copy2(ZIEL, sicherung)
+    print("Sicherung:", os.path.basename(sicherung))
 
 ZEILEN_GESAMT = 200          # so weit reichen Formate und Klapplisten
 
@@ -59,7 +65,8 @@ LISTEN = [
     ("Bereich",   ["Üben", "Übungsplan", "Wortlisten", "Statistik",
                    "Einstellungen", "Konto und Sync", "Teilen",
                    "Import und Export", "Hilfe und Texte",
-                   "Store und Auslieferung", "Web-Fassung", "Sonstiges"]),
+                   "Store und Auslieferung", "Plan und Kauf", "Web-Fassung",
+                   "Sonstiges"]),
     ("Schwere",   ["Blocker", "Schwer", "Mittel", "Klein", "Kosmetik"]),
     ("Prioritaet",["Sofort", "Vor Release", "Nach Release", "Zurückgestellt"]),
     ("Status",    ["Neu", "Bestätigt", "In Arbeit", "Behoben", "Geprüft",
@@ -101,64 +108,16 @@ HINWEIS = [
   "z. B. 1.0 (3). Erst wenn die dort steht, darf der Status auf «Geprueft».", "text"),
 ]
 
-# ------------------------------------------------------------- Erstbestand
-E = [
- dict(datum="2026-09-08", von="Claude", typ="Fehler", bereich="Üben",
-      titel="Untere Bereichsleiste kommt nach einer getippten Antwort nicht zurück",
-      ist="Beim Tippen weicht die Leiste der Tastatur. Nach dem Prüfen kommt sie "
-          "nicht zurück, für den Rest der Übung. Schritte: 1. Üben öffnen  "
-          "2. Antwort eintippen  3. Enter drücken.",
-      soll="Die Leiste steht wieder da, sobald das Eingabefeld den Fokus verliert.",
-      geraet="iPhone, 1.0 (1)", schwere="Schwer", prio="Sofort", status="Geprüft",
-      build="1.0 (2)",
-      notiz="WebKit löst kein focusout aus, wenn das Feld aus dem Baum verschwindet. "
-            "Jetzt wird activeElement nachgesehen. Commit a8b4f3b."),
- dict(datum="2026-09-08", von="Claude", typ="Fehler", bereich="Üben",
-      titel="Vollbild: «Du hast geschrieben …» steht dunkel auf dunkel",
-      ist="Im Vollbild ist die Zeile mit der eigenen Antwort und den markierten "
-          "Zeichen kaum lesbar.",
-      soll="Auf dem dunklen Grund helle Schrift, die Markierung in hellerem Rot.",
-      geraet="iPad, 1.0 (1)", schwere="Klein", prio="Sofort", status="Geprüft",
-      build="1.0 (2)", notiz="Commit a8b4f3b."),
- dict(datum="2026-09-08", von="Claude", typ="Fehler", bereich="Hilfe und Texte",
-      titel="Anleitung behauptet, beim Löschen einer Liste bleiben die Wörter",
-      ist="Kapitel «Bereich Wortlisten» sagte, die Wörter blieben erhalten.",
-      soll="Seit V18 gehört ein Wort in genau eine Liste; mit der Liste gehen die "
-           "Wörter samt Lernstand.",
-      geraet="alle", schwere="Mittel", prio="Sofort", status="Geprüft",
-      build="1.0 (2)", notiz="Deutsch und Englisch. Commit a8b4f3b."),
- dict(datum="2026-09-08", von="Claude", typ="Änderungswunsch", bereich="Üben",
-      titel="iPad im Hochformat: unteres Drittel bleibt leer",
-      ist="Karte links, Antwortfeld rechts, darunter nichts. Auf dem 13-Zoll-iPad "
-          "rund ein Drittel der Seite.",
-      soll="Der Platz wird genutzt oder die Karte wächst mit.",
-      geraet="iPad Pro 13\", 1.0 (2)", schwere="Klein", prio="Nach Release",
-      status="Neu", build="", notiz="Übungsplan und Statistik füllen die Seite gut, "
-      "Wortlisten mittel, Üben am deutlichsten."),
- dict(datum="2026-09-08", von="Martin", typ="Aufgabe",
-      bereich="Store und Auslieferung",
-      titel="DSA-Händlerstatus erklären",
-      ist="Noch nicht erklärt.",
-      soll="Als Einzelunternehmer gilt Händlerstatus. Ohne die Erklärung nimmt Apple "
-           "die App in der EU nicht in den Verkauf.",
-      geraet="App Store Connect", schwere="Blocker", prio="Vor Release",
-      status="Neu", build="", notiz="Vor der App-Store-Einreichung."),
- dict(datum="2026-09-08", von="Martin", typ="Aufgabe",
-      bereich="Store und Auslieferung",
-      titel="Reihenfolge der Screenshots: grüne Karte nach vorn",
-      ist="Position 1 ist die orange Karte «fast richtig», die grüne steht auf 7.",
-      soll="1. Karte richtig  2. Karte fast richtig  3. Übungsplan. Nur die ersten "
-           "drei erscheinen auf dem Installationsblatt.",
-      geraet="App Store Connect", schwere="Kosmetik", prio="Vor Release",
-      status="Neu", build="", notiz=""),
- dict(datum="2026-09-08", von="Claude", typ="Technische Schuld", bereich="Sonstiges",
-      titel="OneDrive spielt gelöschte Quelldateien wieder ein",
-      ist="Vierzehn von Commits gelöschte Dateien lagen wieder in src/ und brachen "
-          "den Type-Check. Der Build lief morgens noch, mittags nicht mehr.",
-      soll="Gelöscht bleibt gelöscht, oder der Build sieht die Leichen nicht.",
-      geraet="Mac", schwere="Mittel", prio="Nach Release", status="Neu", build="",
-      notiz="Beiseite gelegt, nicht gelöscht. Prüfen mit: git log --diff-filter=D -- <datei>"),
-]
+# ------------------------------------------------------------- Eintraege
+if len(sys.argv) < 2:
+    sys.exit("Aufruf: bau-fehlerbuch.py <eintraege.json>")
+E = json.load(io.open(sys.argv[1], encoding="utf-8"))
+FELDER = ("datum","von","typ","bereich","titel","ist","soll","geraet",
+          "schwere","prio","status","build","notiz")
+for i, e in enumerate(E, 1):
+    fehlt = [f for f in FELDER if f not in e]
+    if fehlt:
+        sys.exit("Eintrag %d fehlen Felder: %s" % (i, ", ".join(fehlt)))
 
 # ------------------------------------------------------------------- Bauen
 def zelle(ref, stil, wert=None, typ=None, formel=None, cache=None):
